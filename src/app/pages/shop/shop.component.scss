@@ -1,0 +1,57 @@
+.shopCategoriesHolderFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  overflow-x:auto;
+}
+.customCategoryButton{
+  border:2px solid #D9D9D9;
+}
+.filterFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.leftFilterFlex{
+  display:flex;
+  gap:20px;
+}
+.rightFilterFlex{
+  display:flex;
+  gap:20px;
+}
+.priceSelectionFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:100px;
+}
+.rangeSlider{
+  flex-grow:1;
+}
+.searchResultFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.bannerWithBg{
+  background-size:cover !important;
+  background: url("/assets/images/customizeYourJewels.png") no-repeat;
+  padding:40px;
+  border-radius:5px;
+  overflow:hidden;
+}
+
+//media queries
+
+@media (max-width: 600px){
+
+  .filterFlex{
+    flex-direction:column;
+    align-items:flex-start;
+    row-gap:15px;
+  }
+  .priceSelectionFlex{
+    gap:50px;
+  }
+}

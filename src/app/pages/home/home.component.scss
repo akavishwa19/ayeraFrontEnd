@@ -1,0 +1,514 @@
+.bannerImageContainer{
+    width: 70%;
+    height:500px;
+}
+.customBannerHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.expandableBanner{
+  width:100%;
+
+  display:flex;
+  overflow:hidden;
+}
+.modelHolder{
+  width:35%;
+
+}
+.middleIcons{
+  flex-grow:1;
+}
+.positionWomenText{
+  bottom:20px;
+  right:20px;
+}
+.positionMenText{
+  bottom:20px;
+  left:20px;
+}
+.imageHolderModel{
+  height:100%;
+}
+.crownHolder{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  height:150px;
+}
+.offcanvasFlex{
+  display:flex;
+}
+.offcanvasFlexReverse{
+  display:flex;
+  flex-direction:row-reverse;
+}
+.categoryOffcanvas{
+  flex-grow:1;
+}
+.CategoryCirclesFlex{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.categoryCircle{
+  border-radius:50%;
+  width:120px;
+  height:120px;
+  border: 3px solid rgba(2, 7, 36, 0.05);
+  filter: drop-shadow(5px 7px 30px rgba(0, 0, 0, 0.25));
+  box-shadow:  5px 5px 10px #c7c7c7;
+}
+
+
+.positionOffcanvasContent{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.blockFlex{
+  display:flex;
+}
+.swiperBlockFlex{
+  display:flex;
+  align-items:center;
+  gap:70px;
+}
+.limitWidth{
+  width:220px;
+}
+.swiperBlock{
+  background-color:#DAA49A;
+  padding:20px;
+  border-radius:30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.mediaHolder{
+  border-radius:30px;
+  border:12px solid #020724;
+  width:80%;
+  display:block;
+  margin:auto;
+}
+.mediaFlex{
+  padding:30px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.mediaImageHolder{
+  padding:30px;
+  width:25%;
+  height:160px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.mediaBar{
+  border:7px solid #020724;
+  border-radius:20px;
+  width:600px;
+  display:block;
+  margin:auto;
+}
+.testimonialCard{
+  filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.25));
+  background: rgba(255, 255, 255, 0.4);
+  border: 5px solid #020724;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding:15px;
+}
+.centerCardHeading{
+  display:flex;
+  justify-content:center;
+}
+.testimonialUserHolder{
+  border-radius:25px;
+  overflow:hidden;
+}
+.blissfulArtCard{
+  width:80%;
+  display:block;
+  margin:auto;
+  border:10px solid #020724;
+  border-radius:10px;
+  padding:15px;
+}
+.blissFulArtFlex{
+  display:flex;
+  align-items:flex-end;
+}
+.innerBlissFlex{
+  display:flex;
+}
+.positionBlissfulCard{
+  top:-50% !important;
+  right:0;
+  position:absolute;
+  transform:translateY(50%);
+  z-index:9;
+}
+.padding-top-for-blissful-section{
+  padding-top:50px;
+}
+.hexagonBlock{
+  width:400px;
+}
+.hexagon{
+  background:url("/assets/images/hexagonContainer.png") no-repeat;
+  object-fit:contain;
+  width:100%;
+  height:400px;
+}
+.bestSellerImage{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.sellerPriceFlex{
+  display:flex;
+  justify-content:space-around;
+}
+.alignBtnCenter{
+  display:flex;
+  justify-content:center;
+}
+.shadowedBtn{
+  box-shadow: 0 4px 4px 0 #00000040;
+}
+.productTable{
+  border-collapse:collapse;
+  background-color:#020724;
+  border-radius:20dpx;
+  height:265px;
+  overflow-y:auto;
+}
+.productTable  td, th {
+  border: 3px solid #D8DBE2;
+  padding:8px;
+}
+.truckFlex{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:200px;
+}
+.bannerSIngleImageHolder{
+  height:180px;
+}
+.bannerHomeFlex{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:50px;
+}
+.centerAlignPfp{
+  display:flex;
+  justify-content:center;
+  margin-top:-40%;
+  //transform:translateY(-50%);
+}
+.videoBlockHolder{
+  border:2px solid #020724;
+  border-radius:20px;
+  overflow:hidden;
+}
+.videoPfp{
+  border-radius:50%;
+  width:150px;
+  height:150px;
+  //box-shadow: 0 4px 10px 0 #00000040;
+}
+.bottomLikeFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:5px 10px;
+}
+.videoHolder{
+  width:100%;
+}
+.imageContainerMood{
+  width:330px;
+  height:450px;
+  overflow:hidden;
+  border-radius:30px;
+}
+.shopByMoodBtn{
+  border-radius:20px;
+  border:2px solid #020724;
+}
+.btnHolderFOrShopByMood{
+  display:flex;
+  justify-content:center;
+}
+.shopByMoodCard{
+  width:330px;
+  display:flex;
+}
+.flex-direction-column{
+  flex-direction:column;
+}
+.flex-direction-column-rev{
+  flex-direction:column-reverse;
+}
+.shopByMoodFlex{
+  display:flex;
+  overflow-x:auto;
+}
+.beforeTick::before{
+  position:absolute;
+  content:'';
+  left:50%;
+  transform:translateX(-50%);
+  width:2px;
+  height:20px;
+  background-color:#020724;
+  top:-20px;
+}
+
+.afterTick::before{
+  position:absolute;
+  content:'';
+  left:50%;
+  transform:translateX(-50%);
+  width:2px;
+  height:20px;
+  background-color:#020724;
+  bottom:-20px;
+}
+
+.specialTitleFlex{
+  display:flex;
+  align-items:flex-end;
+}
+.middleTitle{
+  flex-grow:1;
+  margin-bottom:-10px;
+}
+.shopCategoriesHolderFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  overflow-x:auto;
+}
+.shopCategoryImageHolder{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  overflow:hidden;
+}
+.mirrorBody:before{
+  content:'';
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:20px;
+  height:25px;
+  background-color:#020724;
+  top:-25px;
+}
+.homeFeatureFlex{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  position:relative;
+}
+.featureDesc{
+  border:3px solid #020724;
+}
+.topRowFlexFeatures{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:30px;
+  overflow-x:auto;
+}
+.bottomRowFlexFeatures{
+  display:flex;
+  justify-content:space-evenly;
+  align-items:center;
+  padding-top:30px;
+  position:relative;
+  overflow-x:auto;
+}
+.bottomRowFlexFeatures::before{
+  content:'';
+  position:absolute;
+  width:89%;
+  height:3px;
+  top:0;
+  background: linear-gradient(to right,
+    #020724 0%, #020724 3%,
+    white 3%, white 4%,
+    #020724 4%, #020724 6%,
+    white 6%, white 9%,
+    #020724 9%, #020724 12%,
+    white 12%, white 13%,
+    #020724 13%, #020724 15%,
+    white 15%, white 18%,
+    #020724 18%, #020724 21%,
+    white 21%, white 22%,
+    #020724 22%, #020724 24%,
+    white 24%, white 27%,
+    #020724 27%, #020724 30%,
+    white 30%, white 31%,
+    #020724 31%, #020724 33%,
+    white 33%, white 36%,
+    #020724 36%, #020724 39%,
+    white 39%, white 40%,
+    #020724 40%, #020724 42%,
+    white 42%, white 45%,
+    #020724 45%, #020724 48%,
+    white 48%, white 49%,
+    #020724 49%, #020724 51%,
+    white 51%, white 54%,
+    #020724 54%, #020724 57%,
+    white 57%, white 58%,
+    #020724 58%, #020724 60%,
+    white 60%, white 63%,
+    #020724 63%, #020724 66%,
+    white 66%, white 67%,
+    #020724 67%, #020724 69%,
+    white 69%, white 72%,
+    #020724 72%, #020724 75%,
+    white 75%, white 76%,
+    #020724 76%, #020724 78%,
+    white 78%, white 81%,
+    #020724 81%, #020724 84%,
+    white 84%, white 85%,
+    #020724 85%, #020724 87%,
+    white 87%, white 90%,
+    #020724 90%, #020724 93%,
+    white 93%, white 94%,
+    #020724 94%, #020724 96%,
+    white 96%, white 99%,
+    #020724 99%, #020724 100%);
+}
+.topRowFlexFeatures .homeFeatureFlex::before{
+  content:'';
+  position:absolute;
+  width:3px;
+  height:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background-color:#020724;
+  bottom:-30px;
+}
+
+.bottomRowFlexFeatures .homeFeatureFlex::before{
+  content:'';
+  position:absolute;
+  width:3px;
+  height:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background-color:#020724;
+  top:-30px;
+}
+
+//media queries
+
+//media query for blissful art
+
+@media (min-width:1600px) and (max-width: 1700px) {
+  .positionBlissfulCard {
+    top:-54% !important;
+  }
+}
+@media (min-width:1500px) and (max-width: 1600px) {
+  .positionBlissfulCard {
+    top:-57% !important;
+  }
+  .font-35{
+    font-size:28px !important;
+  }
+}
+
+@media (min-width:1400px) and (max-width: 1500px) {
+  .positionBlissfulCard {
+    top:-60% !important;
+  }
+  .font-35{
+    font-size:24px !important;
+  }
+  .font-27{
+    font-size:22px !important;
+  }
+}
+
+  @media (max-width:600px){
+    .padding-top-for-blissful-section{
+      padding-top:0;
+    }
+    .blissfulArtCard{
+      margin:10px;
+      width:95%;
+      padding:0;
+    }
+    .blissFulArtFlex{
+      align-items:stretch ;
+    }
+    .small-device-d-block{
+      display:block;
+    }
+  .mediaBar{
+    width:200px;
+    border:3.5px solid #020724;
+  }
+  .mediaHolder{
+    border:6px solid #020724;
+  }
+  .mediaFlex{
+    padding:10px;
+  }
+  .mediaImageHolder{
+    padding:5px;
+    height:80px;
+  }
+  .expandableBanner{
+    flex-direction: column;
+  }
+  .small-device-d-none{
+    display:none;
+  }
+  .modelHolder{
+    width:100%;
+    padding:10px;
+  }
+  .offcanvasFlex{
+    flex-direction:column;
+  }
+  .offcanvasFlexReverse{
+    flex-direction:column;
+  }
+}
+  @media(min-width: 600px) and (max-width: 900px){
+    .mediaBar{
+      width:400px;
+    }
+    .mediaFlex{
+      padding:10px 0;
+    }
+    .mediaImageHolder{
+      padding:15px;
+    }
+  }
+
+  @media(min-width: 600px) and (max-width: 1200px) {
+    .medium-device-d-none{
+      display:none;
+    }
+    .modelHolder{
+      width:50%;
+      padding:10px;
+    }
+
+  }
+

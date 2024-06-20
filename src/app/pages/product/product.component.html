@@ -1,1 +1,335 @@
-<p>product works!</p>
+<app-advertisement-header></app-advertisement-header>
+<app-header></app-header>
+<section class="default-section-padding">
+  <div class="container-xl">
+    <div class="breadcrumb">
+      <i class="fa-solid fa-arrow-left fa-2x"></i>
+      <p class="font-lato font-weight-700 text-black font-14 letter-spacing-04 zero-padding-bottom zero-margin-bottom line-height-19">
+        <span> All Jewelleries </span>
+        <span> > </span>
+        <span> Rings </span>
+        <span> > </span>
+        <span> Unclench Oxidized Ring</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="default-section-padding">
+  <div class="container-xl">
+    <div class="row">
+      <div class="col-12 col-lg-5 col-md-6 col-sm-12">
+        <div class="productImageShowcase ">
+          <div class="swiper-head bg-white small-device-d-none">
+            <div class="vertical-swiper-container">
+              <div class="swiper-wrapper">
+                <swiper [config]="verticalSwiperOptions" > //#verticalSwiperRef
+                  <ng-template swiperSlide="" *ngFor="let x of swiperArray">
+                    <div class="thumbnailImageSpacing">
+                      <div class="thumbnailHolder border-radius-5px">
+                        <img class="responsiveImage" src="assets/images/thumbnailSwiperDisplayImage.png">
+                      </div>
+                    </div>
+                  </ng-template>
+                </swiper>
+              </div>
+            </div>
+          </div>
+          <div class="previewedImage ">
+            <div class="previewed-swiper-container ">
+            <div  class="swiper-wrapper ">
+            <swiper [config]="previewedSwiperOptions" > //[thumbs]="swiperRef"
+              <ng-template swiperSlide="" *ngFor="let x of swiperArray">
+                <div class="previewedImageHolder">
+                  <img class="responsiveImage" src="assets/images/previewedImage.png">
+                </div>
+              </ng-template>
+            </swiper>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-7 col-md-6 col-sm-12">
+        <p class="font-lato font-weight-700 font-20 text-black line-height-24 letter-spacing-03 py-1">Men's 22KT Gold Ring with Dazzling Cubic Zirconia Stone (Rose Gold)</p>
+        <p class="font-lato font-weight-700 font-20 text-discount-grey line-height-24 letter-spacing-04 py-1">Product Code:<span class="px-2">64A288075</span></p>
+        <div class="alignSHareCenter py-1">
+          <i class="fa-solid fa-share-nodes padding-right-10px fa-2x cursor-pointer"></i><p class="zero-padding-bottom zero-margin-bottom font-lato font-weight-700 font-18 text-black line-height-24 letter-spacing-02 py-1">  Share this product with your loved ones</p>
+        </div>
+        <div class="pricingDetails py-2">
+          <p class="font-lato font-20 font-weight-700 text-black line-height-24 zero-margin-bottom zero-padding-bottom ">₹ 1711</p>
+          <p class="font-lato font-18 font-weight-700 text-black line-height-24 zero-margin-bottom zero-padding-bottom text-decoration-line-through">₹ 1800</p>
+          <p class="font-lato font-18 font-weight-700 text-black line-height-24 zero-margin-bottom zero-padding-bottom text-decoration-line-through">₹ 2000</p>
+          <p class="font-lato font-16 font-weight-700 text-red line-height-24 zero-margin-bottom zero-padding-bottom ">(5% OFF )</p>
+        </div>
+        <small class="font-lato font-weight-700">(Inclusive of all taxes)</small>
+        <p class="py-2 font-lato font-18 font-weight-700 text-black line-height-24">Size:</p>
+        <div class="size-options">
+          <div *ngFor="let radio of sizeArray">
+            <input type="radio" id="{{radio.value}}" name="size" [value]="radio.value" [checked]="radio.value === selectedSize" (change)="onSizeChange(radio.value)" >
+            <label for="{{radio.value}}">{{radio.value}} mm</label>
+          </div>
+        </div>
+        <div class="weightFlex py-2">
+          <div class="pt-2">
+            <p class=" font-lato font-18 font-weight-700 text-black line-height-24">Weight (g) :</p>
+            <p class="font-lato font-weight-700 text-black line-height-24 font-18">5.48 Grams</p>
+          </div>
+          <div>
+            <i class="fa-solid fa-ruler text-black fa-3x padding-right-10px"></i>
+            <span class="font-lato font-weight-700 text-black line-height-24 font-18">Size Chart</span>
+          </div>
+
+        </div>
+        <p class="py-1 font-lato font-18 font-weight-700 text-black line-height-24">Colour:</p>
+        <div class="color-options">
+          <div *ngFor="let color of colorArray">
+            <input type="radio" id="{{color.value}}" name="color" [value]="color.value" [checked]="color.value === selectedColor" (change)="onColorChange(color.value)">
+            <label [style.background-color]="color.value" [for]="color.value"></label>
+            <p class="text-align-center font-10 font-lato font-weight-700 text-black line-height-13">{{color.name}}</p>
+          </div>
+        </div>
+        <p class="pt-1 font-lato font-18 font-weight-700 text-black line-height-24">Buy It With :</p>
+        <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+        <app-suggested-product-card
+          [productImage]="'assets/images/cardImage.png'"
+          [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
+          [productCode]="'64A288075'"
+          [rating]="5"
+          [strikedPrice]="1800"
+          [discount]="10"
+          [price]="1710"
+        >
+        </app-suggested-product-card>
+        </div>
+        <p class="pt-2 font-lato font-18 font-weight-700 text-black line-height-24"><i class="fa-solid fa-truck text-black padding-right-10px"></i>Delivery Date:</p>
+        <input class="customInputFooter bg-white p-2 width-70Percent font-weight-400 font-16 text-black line-height-19 mb-2" type="number" placeholder="Enter Pincode">
+        <button class="font-lato text-white font-weight-600 font-16 bg-blue-black px-3 py-2 border-radius-5px mx-2">{{expectedDeliveryDate | date}}</button>
+
+        <div class="row mt-2">
+          <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+            <button class="width-100 buyBtn text-white bg-blue-black font-lato font-weight-700 font-20 border-radius-10px letter-spacing-02 line-height-24 py-3">
+              Buy Now
+            </button>
+          </div>
+          <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+            <button class="width-100 cartBtn text-black bg-white font-lato font-20 font-weight-700 border-radius-10px letter-spacing-02 line-height-24 py-3">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modifyProductTabs" class="default-section-padding">
+  <div class="container-xl">
+    <div class="centerAlignTabHeadings">
+      <tabset type="pills">
+        <tab
+          *ngFor="let tab of productTabs"
+          [heading]="tab.name"
+          (click)="onTab(tab.name)"
+          (selectTab)="onTab(tab.name)"
+        >
+        </tab>
+      </tabset>
+    </div>
+  </div>
+  <div class="container-xl mt-3">
+    <p class="font-lato font-weight-600 letter-spacing-03 line-height-38 font-16 ">Silver Front Open Ring studded with Green CZ's. Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two pieces are exactly alike!
+      Care Tips: The first step is to store your jewellery in a zip lock bag when you're not wearing it. Also, avoid direct contact with chemicals such as perfumes, sanitisers and the likes.
+
+      Silver Front Open Ring studded with Green CZ's. Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two pieces are exactly alike!
+      Care Tips: The first step is to store your jewellery in a zip lock bag when you're not wearing it. Also, avoid direct contact with chemicals such as perfumes, sanitisers and the likes.
+
+      Silver Front Open Ring studded with Green CZ's. Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two pieces are exactly alike!
+      Care Tips: The first step is to store your jewellery in a zip lock bag when you're not wearing it. Also, avoid direct contact with chemicals such as perfumes, sanitisers and the likes.
+
+      Silver Front Open Ring studded with Green CZ's. Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two pieces are exactly alike!
+      Care Tips: The first step is to store your jewellery in a zip lock bag when you're not wearing it. Also, avoid direct contact with chemicals such as perfumes, sanitisers and the likes.
+
+
+      Silver Front Open Ring studded with Green CZ's. Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two pieces are exactly alike!
+      Care Tips: The first step is to store your jewellery in a zip lock bag when you're not wearing it. Also, avoid direct contact with chemicals such as perfumes, sanitisers and the likes.
+
+    </p>
+  </div>
+</section>
+
+<section class="default-section-padding">
+  <div class="container-xl">
+    <div class="searchResultFlex">
+      <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom">Frequently Bought Together : </p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-4 col-md-4 col-sm-12" *ngFor="let card of [1,1,1]">
+        <app-suggested-product-card
+          [productImage]="'assets/images/cardImage.png'"
+          [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
+          [productCode]="'64A288075'"
+          [rating]="5"
+          [strikedPrice]="1800"
+          [discount]="10"
+          [price]="1710"
+        >
+        </app-suggested-product-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="default-section-padding">
+  <div class="container-xl">
+  <div class="bannerContainer">
+    <img class="responsiveImage" src="assets/images/productBanner.png">
+  </div>
+  </div>
+</section>
+
+<section class="default-section-padding bh-section-grey">
+  <div class="container-xl">
+    <div class="badgeFlex">
+      <div class="singleBadge" *ngFor="let x of [1,1,1,1]">
+        <i class="fa-solid fa-award text-black fa-5x"></i>
+        <p class="text-black font-lato font-weight-700 line-height-19 font-16 py-2 letter-spacing-02 zero-margin-bottom">925 Sterling Silver</p>
+        <p class="text-black font-lato font-weight-600 line-height-19 font-13 letter-spacing-02">(Tested and Stamped, yep!)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="default-section-padding">
+  <div class="container-xl ">
+    <div class="searchResultFlex">
+      <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom">Recommended Products : </p>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-3 col-md-6 col-sm-12" *ngFor="let x of [1,1,1,1]">
+        <app-product-card
+          [islIked]="false"
+          [highlightedTag]="'BEST SELLER'"
+          [productImage]="'assets/images/cardImage.png'"
+          [productName]="'Unclench Oxidized Ring in 925 Silver'"
+          [strikedPrice]="1800"
+          [discount]="10"
+          [price]="1710"
+          [hasSimilarProducts]="false"
+        >
+        </app-product-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="default-section-padding">
+  <app-compare-product></app-compare-product>
+</section>
+
+<section class="default-section-padding">
+  <div class="container-xl">
+    <div class="rewardsBanner bg-blue-black">
+      <div class="rupeeImageHolder">
+        <img class="responsiveImage" src="assets/images/rupeeImage.png">
+      </div>
+      <div>
+        <p class="text-white font-weight-700 font-27 line-height-38 letter-spacing-02 py-2">Complete Profile and Earn ₹1500 on your first order!</p>
+        <p class="text-white font-weight-700 font-27 line-height-38 letter-spacing-02 py-2">You can now redeem exclusive Points on all your orders!
+        </p>
+      </div>
+      <div>
+        <button class="font-weight-700 text-black font-20 px-4 py-3 border-radius-10px">LOG IN </button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="default-section-padding">
+  <div class="container-xl">
+    <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 text-align-center zero-padding-bottom zero-margin-bottom">Recommended Products : </p>
+      <div class="row">
+        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+          <div class="fixToCenter height-100perCent">
+            <div>
+          <p class="test-icon-star text-align-center py-2">
+            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+          </p>
+          <p class="font-lato font-weight-700 font-20 line-height-24 text-black text-align-center">5 out of 5 Based on 4 Reviews</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+          <div *ngFor="let data of [1,1,1,1,1]" class="reviewFlex py-2">
+            <div>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+            </div>
+            <div class="progressBarWidth">
+              <progressbar [value]="55"></progressbar>
+            </div>
+            <div>
+              <p class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom">5</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+          <div class="fixToCenter height-100perCent">
+            <div>
+            <button class="reviewShadows none-outline mx-2 my-3 border-radius-10px bg-blue-black text-white px-5 py-3 font-weight-700 letter-spacing-04 display-block">
+              Write a Review
+            </button>
+            <button class="none-outline reviewShadows mx-2 my-3 border-radius-10px bg-white text-black px-5 py-3 font-weight-700 letter-spacing-04 display-block">
+              Ask Questions
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div id="reviewSection" class="reviewTags">
+      <tabset type="pills">
+        <tab heading="Reviews">
+          <div class="mt-4 pb-4 commentBorderBottom">
+            <button style="margin-left:0 !important;" class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2">Highest</button>
+            <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2">Lowest</button>
+            <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2">Most Recent</button>
+            <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2">Most Helpful</button>
+          </div>
+          <div class="py-2 my-2 commentBorderBottom" *ngFor="let comment of [1,1,1,1,1]">
+            <div class="comment">
+              <div>
+                <i class="fa-solid fa-star test-icon-star"></i>
+                <i class="fa-solid fa-star test-icon-star"></i>
+                <i class="fa-solid fa-star test-icon-star"></i>
+                <i class="fa-solid fa-star test-icon-star"></i>
+                <i class="fa-solid fa-star test-icon-star"></i>
+              </div>
+              <div class="commentFlex py-2">
+                <div class="userImageHolder">
+                  <img class="responsiveImage" src="assets/images/userImage.png">
+                </div>
+                <p class="font-lato font-weight-700 font-16 line-height-19 zero-margin-bottom zero-padding-bottom text-black">Suhash Vishwakarma</p>
+              </div>
+              <p class="font-18 font-lato font-weight-700 text-black line-height-24">I loved the quality of the products I received. The packaging was minimal and cute. I enjoyed it.</p>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Questions">Pills content 2</tab>
+      </tabset>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
+
+
+

@@ -1,0 +1,49 @@
+.suggestedCardHolder{
+  border-radius:20px;
+  box-shadow: 2px 2px 10px 1px #02072440;
+}
+.displayImageHolder{
+  width:150px !important;
+  height:150px !important;
+  box-shadow: 2px 2px 10px 1px #02072440;
+  border:20px;
+}
+.cardFlex{
+  display:flex;
+  align-items: center;
+  gap:20px;
+}
+i {
+  font-size: 1rem;
+  color: #999999;
+}
+.bottomInfoFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+.cutCard{
+  border-radius:50%;
+  width:30px;
+  height:30px;
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  top:0;
+  right:0;
+}
+.elseContainer{
+  height:210px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.roundHolderToAddProduct{
+  width:50px;
+  height:50px;
+  border-radius:20px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin:auto;
+}

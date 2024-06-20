@@ -1,1 +1,68 @@
-<p>product-card works!</p>
+<div class="product-card mt-5 mx-2">
+  <div class="productShowCase position-relative">
+    <div class="productImageContainer">
+      <img class="responsiveImage" src="{{productImage}}">
+    </div>
+    <div class="position-absolute positionHighlightedTag border-radius-5px bg-white px-2 py-2 m-3">
+      <p class="text-black font-lato zero-margin-bottom zero-padding-bottom font-weight-700"><i class="fa-solid fa-award padding-right-10px text-black"></i>BEST SELLER</p>
+    </div>
+    <div class="position-absolute positionActions m-3">
+      <i class="fa-solid fa-heart fa-3x iconColor cursor-pointer"></i>
+        <i *ngIf="hasSimilarProducts" (click)="open(content)" class="fa-regular fa-window-maximize fa-3x iconColor cursor-pointer"></i>
+    </div>
+  </div>
+  <div class="productInfo bg-blue-black px-3 py-2">
+    <p class="text-white font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom py-1">{{productName}}</p>
+    <p class="text-decoration-line-through font-lato font-14 text-white font-weight-700 letter-spacing-02 line-height-13 text-align-left zero-margin-bottom py-1 ">₹ {{strikedPrice}}
+      <span class="font-lato font-13 text-white font-weight-600 letter-spacing-02 line-height-13 px-2">
+        ({{discount}} % OFF)
+      </span>
+    </p>
+    <p class="text-white font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom ">₹ {{price}}</p>
+  </div>
+</div>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-body position-relativei">
+    <p class="font-lato font-weight-700 text-black font-20 line-height-24 letter-spacing-02 pb-4 padding-left-10px">Similar products</p>
+    <div class="selectedProductFlex padding-left-10px">
+      <div class="showcasedImageContainer">
+        <img class="responsiveImage" src="assets/images/cardImage.png">
+      </div>
+      <div class="alignInfoCenter">
+        <div>
+        <p class="font-lato font-weight-700 font-20 letter-spacing-04 text-black">Men's 22KT Gold Ring with Dazzling Cubic Zirconia Stone</p>
+        <div class="selectedImageInfoFlex">
+          <p class="font-lato font-weight-700 font-16 letter-spacing-02 text-discount-grey">Product Code:64A288075</p>
+          <p class="font-lato font-14 text-white font-weight-700 letter-spacing-02 line-height-13 text-align-left zero-margin-bottom py-1 ">₹ {{strikedPrice}}
+            <span class="font-lato font-13 text-discount-grey font-weight-600 letter-spacing-02 line-height-13 px-2">
+        ({{discount}} % OFF)
+            </span>
+          </p>
+        </div>
+        <div class="selectedImageInfoBottomFlex">
+          <button class="none-outline bg-blue-black text-white border-radius-5px font-lato font-weight-700 px-3 py-1">Metal:91.6, 5.48 Grams</button>
+          <p class="font-lato font-weight-700 font-16 letter-spacing-02 text-black">₹43,749</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 col-lg-4 col-md-6 col-sm-12" *ngFor="let x of [1,1,1,1,1,1,1,1,1,1,1,1]">
+        <app-product-card
+          [islIked]="false"
+          [highlightedTag]="'BEST SELLER'"
+          [productImage]="'assets/images/cardImage.png'"
+          [productName]="'Unclench Oxidized Ring in 925 Silver'"
+          [strikedPrice]="1800"
+          [discount]="10"
+          [price]="1710"
+        >
+        </app-product-card>
+      </div>
+    </div>
+    <div (click)="offcanvas.dismiss('Cross click')" class="closeOffcanvas position-absolute cursor-pointer">
+      <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
+    </div>
+  </div>
+</ng-template>

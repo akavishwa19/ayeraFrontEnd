@@ -1,0 +1,23 @@
+.blockHolder{
+  display:flex;
+  align-items:center;
+  gap:40px;
+}
+.socialIcons{
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+.advertisementStrip{
+  flex-grow:1;
+}
+.marqueeFlex{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+}
+@media (min-width: 400px) and (max-width: 600px) {
+  .socialIcons{
+    gap:14px;
+  }
+}

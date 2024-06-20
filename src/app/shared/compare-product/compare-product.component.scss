@@ -1,0 +1,19 @@
+.tableBodyFlex{
+  display:flex;
+}
+.tableBodySingle{
+  flex-grow:1;
+}
+.tableHead{
+  background-color:#020724;
+}
+.comparedTable{
+  box-shadow: 2px 2px 10px 1px #02072440;
+  background-color:#FFFFFF;
+  border-radius:20px;
+  overflow: hidden;
+}
+.centerCellBorder{
+  border-right:1px solid #020724;
+  border-left:1px solid #020724;
+}

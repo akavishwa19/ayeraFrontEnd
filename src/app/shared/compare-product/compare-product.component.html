@@ -1,1 +1,144 @@
-<p>compare-product works!</p>
+<div class="container-xl">
+  <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom">Compare Products : </p>
+  <div class="row">
+    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+      <app-product-in-comparison (productChange)="handleChange($event,0)"  ></app-product-in-comparison>
+    </div>
+    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+      <app-product-in-comparison (productChange)="handleChange($event,1)" ></app-product-in-comparison>
+    </div>
+    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+      <app-product-in-comparison (productChange)="handleChange($event,2)" ></app-product-in-comparison>
+    </div>
+  </div>
+  <div class="comparedTable my-4">
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Price</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.price || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.price || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.price || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Colour</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.color || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.color || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.color || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Size</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.size || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.size || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.size || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Weight in grams</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.weight || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.weight || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.weight || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Length in cms</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.length || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.length || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.length || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Breadth in cms</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.breadth || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.breadth || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.breadth || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Stone Size</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.stoneSize || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.stoneSize || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.stoneSize || '-'}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Discount %</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.discount || '-'}}</p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.discount || '-'}}</p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.discount || '-'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
