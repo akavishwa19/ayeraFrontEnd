@@ -12,6 +12,6 @@ export class HeaderComponent implements  OnInit{
   constructor() {
   }
   ngOnInit() {
-    this.featuredCategoryList=['ALL JEWELLERY','EARRINGS','RINGS','NECKLACES','BRACELETES','GIFT BOXES','CUSTOM JEWELLERY']
+    this.featuredCategoryList=['ALL JEWELLERY','EARRINGS','RINGS','NECKLACES','BRACELETES','GIFT BOXES','CUSTOM JEWELLERY',]
   }
 }

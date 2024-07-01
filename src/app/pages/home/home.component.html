@@ -1,71 +1,108 @@
 <app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 
-<section  class="default-section-padding bg-blue-black">
+<section class="default-section-padding bg-blue-black">
   <div class="height-80vh customBannerHome">
     <div class="bannerImageContainer">
-      <img class="responsiveImage-contain" src="assets/images/ayeraHomeBanner.png">
+      <img
+        class="responsiveImage-contain"
+        src="assets/images/ayeraHomeBanner.png"
+      />
     </div>
   </div>
 </section>
 
 <section id="modifiedOffcanvas" class="default-section-padding">
   <div class="expandableBanner">
-        <div class="modelHolder border-top-right-30 border-bottom-right-30 position-relative">
-          <div (click)="open(content)" class="imageHolderModel">
-            <img class="responsiveImage " src="assets/images/femaleModel.png" alt="femaleModel">
-          </div>
-          <p class="text-white font-lato font-weight-700 font-40 position-absolute positionWomenText">WOMEN</p>
-        </div>
+    <div
+      class="modelImage border-top-right-30 border-bottom-right-30 position-relative"
+    >
+      <div (click)="toggleOffcanvas('women')" class="imageHolderModel">
+        <img
+          class="responsiveImage"
+          src="assets/images/femaleModel.png"
+          alt="femaleModel"
+        />
+      </div>
+      <p
+        class="text-white font-lato font-weight-700 font-40 position-absolute positionWomenText"
+      >
+        WOMEN
+      </p>
+    </div>
 
-      <div class="middleIcons small-device-d-none medium-device-d-none">
-        <div class="row " *ngFor="let x of [1,1,1]">
-          <div class="col-12 col-lg-6 col-md-12 col-sm-12">
-            <div class="crownHolder">
-              <img src="assets/images/crown.png">
-            </div>
+    <div class="middleIcons small-device-d-none medium-device-d-none">
+      <div class="row" *ngFor="let x of [1, 1, 1]">
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+          <div class="crownHolder">
+            <img src="assets/images/crown.png" />
           </div>
-          <div class="col-12 col-lg-6 col-md-12 col-sm-12">
-            <div class="crownHolder">
-              <img src="assets/images/ruby.png">
-            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+          <div class="crownHolder">
+            <img src="assets/images/ruby.png" />
           </div>
-          <div class="col-12 col-lg-6 col-md-12 col-sm-12">
-            <div class="crownHolder">
-              <img src="assets/images/ruby.png">
-            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+          <div class="crownHolder">
+            <img src="assets/images/ruby.png" />
           </div>
-          <div class="col-12 col-lg-6 col-md-12 col-sm-12">
-            <div class="crownHolder">
-              <img src="assets/images/crown.png">
-            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-md-12 col-sm-12">
+          <div class="crownHolder">
+            <img src="assets/images/crown.png" />
           </div>
         </div>
       </div>
+    </div>
 
-        <div class="modelHolder border-top-left-30 border-bottom-left-30 position-relative">
-          <div (click)="openEnd(content2)" class="imageHolderModel ">
-            <img class="responsiveImage" src="assets/images/maleModel.png" alt="femaleModel">
-          </div>
-          <p class="text-white font-lato font-weight-700 font-40 position-absolute positionMenText">MEN</p>
-        </div>
+    <div
+      class="modelImage border-top-left-30 border-bottom-left-30 position-relative"
+    >
+      <div (click)="toggleOffcanvas('men')" class="imageHolderModel">
+        <img
+          class="responsiveImage"
+          src="assets/images/maleModel.png"
+          alt="femaleModel"
+        />
+      </div>
+      <p
+        class="text-white font-lato font-weight-700 font-40 position-absolute positionMenText"
+      >
+        MEN
+      </p>
+    </div>
   </div>
 </section>
 
 <section class="default-section-padding">
   <swiper [config]="featuredProductsSwiper">
-    <ng-template swiperSlide="" *ngFor="let x of [1,1,1,1,1,1,1,1,1]">
+    <ng-template swiperSlide="" *ngFor="let x of [1, 1, 1, 1, 1, 1, 1, 1, 1]">
       <div class="swiperBlock">
         <div class="swiperBlockFlex">
           <div class="limitWidth">
-            <p class="font-weight-800 font-lato font-50 letter-spacing-04 text-black line-height-60 ">NEW ARRIVALS</p>
-            <p class="font-weight-600 font-lato font-18 text-black line-height-24 py-1">Mine Diamond Studded Studs Gold Earring
+            <p
+              class="font-weight-800 font-lato font-50 letter-spacing-04 text-black line-height-60"
+            >
+              NEW ARRIVALS
             </p>
-            <button class="font-weight-600 font-lato text-white bg-blue-black none-outline border-radius-10px px-4 py-2 my-2">Buy Now</button>
+            <p
+              class="font-weight-600 font-lato font-18 text-black line-height-24 py-1"
+            >
+              Mine Diamond Studded Studs Gold Earring
+            </p>
+            <button
+              class="font-weight-600 font-lato text-white bg-blue-black none-outline border-radius-10px px-4 py-2 my-2"
+            >
+              Buy Now
+            </button>
           </div>
           <div class="productImage">
             <div class="productImageHolder">
-              <img class="responsiveImage" src="assets/images/productShowcaseSwiper.png">
+              <img
+                class="responsiveImage"
+                src="assets/images/productShowcaseSwiper.png"
+              />
             </div>
           </div>
         </div>
@@ -74,14 +111,18 @@
   </swiper>
 </section>
 
-
 <section class="default-section-padding bg-best-sellers">
   <div class="container-xl">
-      <p class="mediaTitle text-align-center pb-1">
-        <i class="fa-solid fa-hand-holding-heart fa-2x text-black"></i>
-       <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2 my-1">BEST SELLERS</span>
-      </p>
-    <p class="font-lato font-18 text-black text-align-center font-weight-700">Unmatched quality, unbeatable value: our pieces that thrive over time</p>
+    <p class="mediaTitle text-align-center pb-1">
+      <i class="fa-solid fa-hand-holding-heart fa-2x text-black"></i>
+      <span
+        class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2 my-1"
+        >BEST SELLERS</span
+      >
+    </p>
+    <p class="font-lato font-18 text-black text-align-center font-weight-700">
+      Unmatched quality, unbeatable value: our pieces that thrive over time
+    </p>
     <div class="row pt-3">
       <div id="verticalTabs" class="col-12 col-lg-3 col-md-4 col-sm-12">
         <tabset [vertical]="true" [justified]="true" type="pills">
@@ -96,71 +137,131 @@
       </div>
       <div id="bestSellerSwiper" class="col-12 col-lg-6 col-md-4 col-sm-12">
         <swiper [config]="bestSellerWiper">
-          <ng-template swiperSlide="" *ngFor="let product of [1,1,1,1,1]">
+          <ng-template swiperSlide="" *ngFor="let product of [1, 1, 1, 1, 1]">
             <div class="hexagonBlock">
               <div class="hexagon position-relative">
                 <div class="bestSellerImage">
-                  <img src="assets/images/bestSellerJewellery.png">
+                  <img src="assets/images/bestSellerJewellery.png" />
                 </div>
               </div>
               <div class="sellerPriceFlex">
-                <p class="font-lato text-black text-align-center font-weight-800 line-height-19">Cute Evil Eye Adjustable Ring - Rose Gold</p>
-                <p class="font-lato text-black text-align-center font-weight-800 line-height-19">₹ 1250</p>
+                <p
+                  class="font-lato text-black text-align-center font-weight-800 line-height-19"
+                >
+                  Cute Evil Eye Adjustable Ring - Rose Gold
+                </p>
+                <p
+                  class="font-lato text-black text-align-center font-weight-800 line-height-19"
+                >
+                  ₹ 1250
+                </p>
               </div>
               <div class="alignBtnCenter">
-                <button class="shadowedBtn bg-blue-black text-white border-radius-10px px-3 py-2 ">View More</button>
+                <button
+                  class="shadowedBtn bg-blue-black text-white border-radius-10px px-3 py-2"
+                >
+                  View More
+                </button>
               </div>
-
             </div>
           </ng-template>
         </swiper>
-
       </div>
       <div class="col-12 col-lg-3 col-md-4 col-sm-12">
         <table class="productTable">
           <thead>
             <tr>
               <th>
-                <p class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08">PRODUCT</p>
-            </th>
-            <th>
-                <p class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08">QTY. SOLD</p>
-            </th>
+                <p
+                  class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
+                >
+                  PRODUCT
+                </p>
+              </th>
+              <th>
+                <p
+                  class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
+                >
+                  QTY. SOLD
+                </p>
+              </th>
             </tr>
-          <tr *ngFor="let row of [1,1,1,1,1,1]">
-            <td>
-              <p class="text-align-left zero-padding-bottom zero-margin-bottom text-white">Cute Evil Eye Adjustable Ring - Rose Gold</p>
-            </td>
-            <td>
-              <p class="text-align-center zero-padding-bottom zero-margin-bottom text-white">65</p>
-            </td>
-          </tr>
+            <tr *ngFor="let row of [1, 1, 1, 1, 1, 1]">
+              <td>
+                <p
+                  class="text-align-left zero-padding-bottom zero-margin-bottom text-white"
+                >
+                  Cute Evil Eye Adjustable Ring - Rose Gold
+                </p>
+              </td>
+              <td>
+                <p
+                  class="text-align-center zero-padding-bottom zero-margin-bottom text-white"
+                >
+                  65
+                </p>
+              </td>
+            </tr>
           </thead>
         </table>
       </div>
     </div>
     <div class="truckFlex pt-4 mt-2">
       <div>
-        <p class="bg-white text-black display-inline--block px-2 border-radius-5px font-lato font-weight-700 font-20 px-2">
+        <p
+          class="bg-white text-black display-inline--block px-2 border-radius-5px font-lato font-weight-700 font-20 px-2"
+        >
           BUDGET CENTER
         </p>
-        <p class="text-black px-2  font-lato font-weight-800 font-16 zero-margin-bottom zero-padding-bottom">
+        <p
+          class="text-black px-2 font-lato font-weight-800 font-16 zero-margin-bottom zero-padding-bottom"
+        >
           TAKE ME TO PRODUCTS WITH PRICE
         </p>
       </div>
       <div>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
 
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1">₹ 500</button>
-
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        >
+          ₹ 500
+        </button>
       </div>
-
     </div>
   </div>
 </section>
@@ -169,40 +270,59 @@
   <div class="container-xl">
     <div class="bannerHomeFlex">
       <div class="bannerSIngleImageHolder">
-        <img class="responsiveImage" src="assets/images/emblem.png">
+        <img class="responsiveImage" src="assets/images/emblem.png" />
       </div>
       <div class="bannerSIngleImageHolder">
-        <img class="responsiveImage" src="assets/images/startup.png">
+        <img class="responsiveImage" src="assets/images/startup.png" />
       </div>
       <div class="bannerSIngleImageHolder">
-        <img class="responsiveImage" src="assets/images/trust.png">
+        <img class="responsiveImage" src="assets/images/trust.png" />
       </div>
     </div>
   </div>
 </section>
 
 <section class="default-section-padding">
-    <p class="mediaTitle text-align-center pb-3">
-      <i class="fa-solid fa-coins fa-2x text-black"></i>
-     <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2">SHOP BY EXPERIENCE</span>
-    </p>
+  <p class="mediaTitle text-align-center pb-3">
+    <i class="fa-solid fa-coins fa-2x text-black"></i>
+    <span
+      class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
+      >SHOP BY EXPERIENCE</span
+    >
+  </p>
   <div class="container-xl">
     <div class="row">
-      <div class="col-12 col-lg-2 col-md-4 col-sm-12" *ngFor="let card of [1,1,1,1,1,1]">
+      <div
+        class="col-12 col-lg-2 col-md-4 col-sm-12"
+        *ngFor="let card of [1, 1, 1, 1, 1, 1]"
+      >
         <div class="videoBlockHolder m-1">
           <div class="videoHolder">
-            <img class="responsiveImage" src="assets/images/promoVIdeo.png">
+            <img class="responsiveImage" src="assets/images/promoVIdeo.png" />
           </div>
           <div class="videoProductInfo p-2">
             <div class="centerAlignPfp">
               <div class="videoPfp">
-                <img class="responsiveImage" src="assets/images/promoProfilePic.png">
+                <img
+                  class="responsiveImage"
+                  src="assets/images/promoProfilePic.png"
+                />
               </div>
             </div>
-            <p class="text-align-center font-lato letter-spacing-08 font-weight-600 line-height-24 zero-padding-bottom zero-margin-bottom">Diamond's Jewellery Butterfly Stud Earrings</p>
+            <p
+              class="text-align-center font-lato letter-spacing-08 font-weight-600 line-height-24 zero-padding-bottom zero-margin-bottom"
+            >
+              Diamond's Jewellery Butterfly Stud Earrings
+            </p>
             <div class="bottomLikeFlex">
-              <p class="zero-padding-bottom zero-margin-bottom font-lato font-18 font-weight-700 text-black">₹ 500</p>
-              <i class="fa-solid fa-heart zero-padding-bottom zero-margin-bottom fa-2x font-weight-700 text-black"></i>
+              <p
+                class="zero-padding-bottom zero-margin-bottom font-lato font-18 font-weight-700 text-black"
+              >
+                ₹ 500
+              </p>
+              <i
+                class="fa-solid fa-heart zero-padding-bottom zero-margin-bottom fa-2x font-weight-700 text-black"
+              ></i>
             </div>
           </div>
         </div>
@@ -214,21 +334,33 @@
 <section class="default-section-padding">
   <p class="mediaTitle text-align-center pb-3">
     <i class="fa-solid fa-brain fa-2x text-black"></i>
-    <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2">SHOP BY MOODS</span>
+    <span
+      class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
+      >SHOP BY MOODS</span
+    >
   </p>
 
   <div class="container-xl">
     <div class="shopByMoodFlex width-100">
-    <div class="shopByMoodCard m-2" [ngStyle]="{'flex-direction':card.down?'column':'column-reverse'}" *ngFor="let card of shopByMood">
-      <div class="imageContainerMood">
-        <img class="responsiveImage" src="assets/images/shopByMoods.png">
-      </div>
+      <div
+        class="shopByMoodCard m-2"
+        [ngStyle]="{
+          'flex-direction': card.down ? 'column' : 'column-reverse'
+        }"
+        *ngFor="let card of shopByMood"
+      >
+        <div class="imageContainerMood">
+          <img class="responsiveImage" src="assets/images/shopByMoods.png" />
+        </div>
 
-      <div class="btnHolderFOrShopByMood">
-        <button [ngClass]="card.down?'beforeTick':'afterTick'" [innerHTML]="indentName(card.name)"  class="shopByMoodBtn font-lato font-weight-700 bg-white text-black px-3 py-2 my-3 position-relative">
-        </button>
+        <div class="btnHolderFOrShopByMood">
+          <button
+            [ngClass]="card.down ? 'beforeTick' : 'afterTick'"
+            [innerHTML]="indentName(card.name)"
+            class="shopByMoodBtn font-lato font-weight-700 bg-white text-black px-3 py-2 my-3 position-relative"
+          ></button>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </section>
@@ -237,71 +369,94 @@
   <div class="container-xl">
     <div class="specialTitleFlex">
       <div class="specialTitle small-device-d-none">
-        <img src="assets/images/headLeft.png">
+        <img src="assets/images/headLeft.png" />
       </div>
       <div class="middleTitle mt-5">
-      <p class="mediaTitle text-align-center zero-margin-bottom zero-padding-bottom">
-        <i class="fa-solid fa-grip fa-2x text-black"></i>
-        <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2">SHOP BY CATEGORY</span>
-      </p>
+        <p
+          class="mediaTitle text-align-center zero-margin-bottom zero-padding-bottom"
+        >
+          <i class="fa-solid fa-grip fa-2x text-black"></i>
+          <span
+            class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
+            >SHOP BY CATEGORY</span
+          >
+        </p>
       </div>
       <div class="specialTitle small-device-d-none">
-        <img src="assets/images/headRight.png">
+        <img src="assets/images/headRight.png" />
       </div>
     </div>
-      <div class="container-xl py-4">
-        <div class="shopCategoriesHolderFlex width-100">
-          <div (mouseenter)="hoverClass(i)" (mouseleave)="removeHoverClass(i)" class="shopCategoryBlock cursor-pointer" *ngFor="let category of [1,1,1,1,1,1,1,1];index as i">
-            <div id="border{{i}}" class="shopCategoryImageHolder">
-              <img class="responsiveImage" src="assets/images/hsopCategoryImage.png">
-            </div>
-            <div id="textPad{{i}}" class="py-2 border-radius-10px position-relative" >
-              <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom">Necklaces</p>
-            </div>
+    <div class="container-xl py-4">
+      <div class="shopCategoriesHolderFlex width-100">
+        <div
+          (mouseenter)="hoverClass(i)"
+          (mouseleave)="removeHoverClass(i)"
+          class="shopCategoryBlock cursor-pointer"
+          *ngFor="let category of [1, 1, 1, 1, 1, 1, 1, 1]; index as i"
+        >
+          <div id="border{{ i }}" class="shopCategoryImageHolder">
+            <img
+              class="responsiveImage"
+              src="assets/images/hsopCategoryImage.png"
+            />
+          </div>
+          <div
+            id="textPad{{ i }}"
+            class="py-2 border-radius-10px position-relative"
+          >
+            <p
+              class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom"
+            >
+              Necklaces
+            </p>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </section>
 
 <section class="default-section-padding">
-    <p class="mediaTitle text-align-center pb-3">
-      <i class="fa-brands fa-envira fa-2x text-black"></i>
-      <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2">CELEBRITY HIGHLIGHTS</span>
-    </p>
+  <p class="mediaTitle text-align-center pb-3">
+    <i class="fa-brands fa-envira fa-2x text-black"></i>
+    <span
+      class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
+      >CELEBRITY HIGHLIGHTS</span
+    >
+  </p>
   <div class="container-xl">
     <div class="row">
       <div class="col-12 col-lg-3">
         <div class="00">
-          <img class="responsiveImage" src="assets/images/00.png">
+          <img class="responsiveImage" src="assets/images/00.png" />
         </div>
         <div class="10 mt-4">
-          <img class="responsiveImage" src="assets/images/10.png">
+          <img class="responsiveImage" src="assets/images/10.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
         <div class="01">
-          <img class="responsiveImage" src="assets/images/01.png">
+          <img class="responsiveImage" src="assets/images/01.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
         <div class="02">
-          <img class="responsiveImage" src="assets/images/02.png">
+          <img class="responsiveImage" src="assets/images/02.png" />
         </div>
         <div class="11 mt-4">
-          <img class="responsiveImage" src="assets/images/11.png">
+          <img class="responsiveImage" src="assets/images/11.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
         <div class="03">
-          <img class="responsiveImage" src="assets/images/03.png">
+          <img class="responsiveImage" src="assets/images/03.png" />
         </div>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-12 col-lg-12">
         <div class="20">
-          <img class="responsiveImage" src="assets/images/20.png">
+          <img class="responsiveImage" src="assets/images/20.png" />
         </div>
       </div>
     </div>
@@ -314,25 +469,45 @@
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-award fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">BEST PRICE <br> GUARANTEED</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            BEST PRICE <br />
+            GUARANTEED
+          </p>
         </div>
       </div>
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-rotate-left fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">30 DAY <br> RETURN POLICY</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            30 DAY <br />
+            RETURN POLICY
+          </p>
         </div>
       </div>
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-shield-halved fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">COLOUR <br> PROTECTIVE</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            COLOUR <br />
+            PROTECTIVE
+          </p>
         </div>
       </div>
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-truck-ramp-box fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">FREE <br> SHIPPING</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            FREE <br />
+            SHIPPING
+          </p>
         </div>
       </div>
     </div>
@@ -341,86 +516,141 @@
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-gem fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">3000+ <br> ELITE DESIGNS</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            3000+ <br />
+            ELITE DESIGNS
+          </p>
         </div>
       </div>
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-circle-check fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">BUREAU OF <br> INDIAN STANDARDS</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            BUREAU OF <br />
+            INDIAN STANDARDS
+          </p>
         </div>
       </div>
       <div class="homeFeatureFlex">
         <i class="fa-solid fa-coins fa-4x"></i>
         <div class="featureDesc p-2 border-radius-5px">
-          <p class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom">916 PURE <br> GOLD / SILVER</p>
+          <p
+            class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
+          >
+            916 PURE <br />
+            GOLD / SILVER
+          </p>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-
-
-
 <section class="default-section-padding">
   <div class="container-xl padding-top-for-blissful-section">
-    <div class=" bg-blue-black p-3 border-radius-10px m-2 small-device-d-block">
-      <p class="text-align-center text-white font-lato font-35 font-weight-600 ">Blissful Art Meets Experience </p>
-      <p class="font-lato font-weight-600 line-height-24 font-27 text-white text-align-center zero-padding-bottom zero-margin-bottom">40 + Years of Silver Expertise</p>
+    <div class="bg-blue-black p-3 border-radius-10px m-2 small-device-d-block">
+      <p class="text-align-center text-white font-lato font-35 font-weight-600">
+        Blissful Art Meets Experience
+      </p>
+      <p
+        class="font-lato font-weight-600 line-height-24 font-27 text-white text-align-center zero-padding-bottom zero-margin-bottom"
+      >
+        40 + Years of Silver Expertise
+      </p>
     </div>
-  <div class="blissfulArtCard ">
-    <div class="blissFulArtFlex">
-      <div class="l1 p-2 border-radius-10px">
-        <img class="responsiveImage" src="assets/images/blissfulArtl1.png">
-      </div>
-      <div class="innerBlissFlex position-relative">
-        <div class="l2 p-2 border-radius-10px">
-          <img class="responsiveImage" src="assets/images/blissfulArtl2.png">
+    <div class="blissfulArtCard">
+      <div class="blissFulArtFlex">
+        <div class="l1 p-2 border-radius-10px">
+          <img class="responsiveImage" src="assets/images/blissfulArtl1.png" />
         </div>
-        <div class="l3 p-2 border-radius-10px">
-         <img class="responsiveImage" src="assets/images/blissfulArtl3.png">
-       </div>
-        <div class="position-absolute width-100 positionBlissfulCard small-device-d-none">
-         <div class=" bg-blue-black px-5 py-5 border-radius-10px m-2">
-            <p class="text-align-right text-white font-lato font-35 font-weight-600 pb-3">Blissful Art Meets Experience </p>
-            <p class="font-lato font-weight-600 line-height-24 font-27 text-white text-align-right zero-padding-bottom zero-margin-bottom">40 + Years of Silver Expertise</p>
-         </div>
+        <div class="innerBlissFlex position-relative">
+          <div class="l2 p-2 border-radius-10px">
+            <img
+              class="responsiveImage"
+              src="assets/images/blissfulArtl2.png"
+            />
+          </div>
+          <div class="l3 p-2 border-radius-10px">
+            <img
+              class="responsiveImage"
+              src="assets/images/blissfulArtl3.png"
+            />
+          </div>
+          <div
+            class="position-absolute width-100 positionBlissfulCard small-device-d-none"
+          >
+            <div class="bg-blue-black px-5 py-5 border-radius-10px m-2">
+              <p
+                class="text-align-right text-white font-lato font-35 font-weight-600 pb-3"
+              >
+                Blissful Art Meets Experience
+              </p>
+              <p
+                class="font-lato font-weight-600 line-height-24 font-27 text-white text-align-right zero-padding-bottom zero-margin-bottom"
+              >
+                40 + Years of Silver Expertise
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </section>
 
 <section class="default-section-padding">
   <p class="mediaTitle text-align-center pb-3">
     <i class="fa-solid fa-tv fa-2x text-black"></i>
-   <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2">CUSTOMERS LOVE</span>-->
+    <span
+      class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
+      >CUSTOMERS LOVE</span
+    >-->
   </p>
   <swiper [config]="testimonialSlider">
-    <ng-template swiperSlide="" *ngFor="let card of [1,1,1,1,1,1,1]">
+    <ng-template swiperSlide="" *ngFor="let card of [1, 1, 1, 1, 1, 1, 1]">
       <div class="col-12 col-lg-12">
         <div class="testimonialCard">
           <div class="width-100 centerCardHeading">
-          <button class="px-2 py-1 border-radius-5px font-weight-800 font-16 text-align-center text-white font-lato bg-blue-black">Swetha</button>
+            <button
+              class="px-2 py-1 border-radius-5px font-weight-800 font-16 text-align-center text-white font-lato bg-blue-black"
+            >
+              Swetha
+            </button>
           </div>
           <div class="row py-3">
             <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-            <div class="testimonialUserHolder">
-              <img class="responsiveImage" src="assets/images/testimonialUser.png">
-            </div>
+              <div class="testimonialUserHolder">
+                <img
+                  class="responsiveImage"
+                  src="assets/images/testimonialUser.png"
+                />
+              </div>
             </div>
             <div class="col-12 col-lg-6 col-md-6 col-sm-12">
-              <p class="font-14 font-lato font-weight-600 line-height-24 mt-3">I always adored magnificent designs and finally made a purchase online (very well designed website) that turned out to be a pleasant experience. The customer carewas extremely supportive, prompt and patient. I ordered emerald beads necklace and an amethyst beads necklace that look stunningly beautiful and elegant. I also used emerald necklace as choker which looked very pretty. I absolutely appreciate their idea of sending tomato seeds for plantation. Looking forward to shop again in future. ❤️</p>
+              <p class="font-14 font-lato font-weight-600 line-height-24 mt-3">
+                I always adored magnificent designs and finally made a purchase
+                online (very well designed website) that turned out to be a
+                pleasant experience. The customer carewas extremely supportive,
+                prompt and patient. I ordered emerald beads necklace and an
+                amethyst beads necklace that look stunningly beautiful and
+                elegant. I also used emerald necklace as choker which looked
+                very pretty. I absolutely appreciate their idea of sending
+                tomato seeds for plantation. Looking forward to shop again in
+                future. ❤️
+              </p>
             </div>
           </div>
           <div class="width-100 centerCardHeading py-2 mb-2">
-            <i class="fa fa-star fa-2x px-1" *ngFor="let star of [1,1,1,1,1]"></i>
+            <i
+              class="fa fa-star fa-2x px-1"
+              *ngFor="let star of [1, 1, 1, 1, 1]"
+            ></i>
           </div>
         </div>
-
       </div>
     </ng-template>
   </swiper>
@@ -429,78 +659,147 @@
 <section class="default-section-padding">
   <p class="mediaTitle text-align-center pb-3">
     <i class="fa-solid fa-tv fa-2x text-black"></i>
-    <span class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2">MEDIA FEATURING</span>
+    <span
+      class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
+      >MEDIA FEATURING</span
+    >
   </p>
   <div class="mediaHolder my-3">
     <div class="mediaFlex">
       <div class="mediaImageHolder" *ngFor="let img of mediaImages">
-        <img class="responsiveImage-contain" src="{{img}}">
+        <img class="responsiveImage-contain" src="{{ img }}" />
       </div>
     </div>
   </div>
-  <div class="mediaBar">
-  </div>
+  <div class="mediaBar"></div>
 </section>
 
 <app-footer></app-footer>
 
-<ng-template #content let-offcanvas>
+<ng-template #womenOffcanvas let-c="close" let-d="dismiss">
   <div class="offcanvas-body position-relative positionOffcanvasContent">
     <div>
-    <p class="font-lato font-weight-700 font-18 line-height-24 py-5 text-align-center">CATEGORIES</p>
-    <div class="offcanvasFlex">
-
-    <div class="modelHolder border-top-right-30 border-bottom-right-30 position-relative">
-      <div (click)="open(content)" class="imageHolderModel">
-        <img  class="responsiveImage " src="assets/images/femaleModel.png" alt="femaleModel">
-      </div>
-      <p class="text-white font-lato font-weight-700 font-40 position-absolute positionWomenText">WOMEN</p>
-    </div>
-    <div class="categoryOffcanvas">
-
-      <div class="CategoryCirclesFlex">
-        <div class="px-5 cursor-pointer" *ngFor="let data of [1,1,1,1,1,1,1,1]">
-        <div class="categoryCircle overflow-hidden">
-          <img class="responsiveImage" src="assets/images/categoryImage.png">
-        </div>
-        <p class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24">RINGS</p>
-        </div>
-      </div>
-    </div>
-    </div>
-    </div>
-    <div (click)="offcanvas.dismiss('Cross click')" class="closeOffcanvas position-absolute cursor-pointer">
-      <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
-    </div>
-  </div>
-</ng-template>
-<ng-template #content2 let-offcanvas>
-  <div class="offcanvas-body position-relative positionOffcanvasContent">
-    <div>
-      <p class="font-lato font-weight-700 font-18 line-height-24 py-5 text-align-center">CATEGORIES</p>
-      <div class="offcanvasFlexReverse">
-
-        <div class="modelHolder border-top-right-30 border-bottom-right-30 position-relative">
-          <div (click)="open(content)" class="imageHolderModel">
-            <img  class="responsiveImage " src="assets/images/maleModel.png" alt="femaleModel">
+      <div class="offcanvasFlex">
+        <div
+          class="modelHolder border-top-right-30 border-bottom-right-30 position-relative"
+        >
+          <div class="imageHolderModel">
+            <img
+              class="responsiveImage"
+              src="assets/images/femaleModel.png"
+              alt="femaleModel"
+            />
           </div>
-          <p class="text-white font-lato font-weight-700 font-40 position-absolute positionWomenText">MEN</p>
+          <p
+            class="text-white font-lato font-weight-700 font-40 position-absolute positionWomenText"
+          >
+            WOMEN
+          </p>
         </div>
-        <div class="categoryOffcanvas">
 
+        <div class="categoryOffcanvas">
+          <p
+            class="font-lato font-weight-700 font-18 line-height-24 py-5 text-align-center"
+          >
+            CATEGORIES
+          </p>
           <div class="CategoryCirclesFlex">
-            <div class="px-5 cursor-pointer" *ngFor="let data of [1,1,1,1,1,1,1,1]">
+            <div
+              class="padding-x-2rem cursor-pointer"
+              *ngFor="let data of [1, 1, 1, 1, 1, 1, 1, 1]"
+            >
               <div class="categoryCircle overflow-hidden">
-                <img class="responsiveImage" src="assets/images/categoryImage.png">
+                <img
+                  class="responsiveImage"
+                  src="assets/images/categoryImage.png"
+                />
               </div>
-              <p class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24">RINGS</p>
+              <p
+                class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24"
+              >
+                RINGS
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div (click)="offcanvas.dismiss('Cross click')" class="closeOffcanvas position-absolute cursor-pointer">
+    <div
+      aria-label="Close"
+      (click)="c()"
+      class="closeOffcanvas position-absolute cursor-pointer"
+    >
       <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
+    </div>
+  </div>
+  <div class="offcanvasMenButton">
+    <div class="menBtn" (click)="switchToMen()">
+      <div class="arrowTopIcon"><i class="fa-solid fa-angles-up"></i></div>
+      MEN
+    </div>
+  </div>
+</ng-template>
+<ng-template #menOffcanvas let-c="close" let-d="dismiss">
+  <div class="offcanvas-body position-relative positionOffcanvasContent">
+    <div>
+      <div class="offcanvasFlexReverse">
+        <div
+          class="modelHolder border-top-right-30 border-bottom-right-30 position-relative"
+        >
+          <div class="imageHolderModel">
+            <img
+              class="responsiveImage"
+              src="assets/images/maleModel.png"
+              alt="femaleModel"
+            />
+          </div>
+          <p
+            class="text-white font-lato font-weight-700 font-40 position-absolute positionWomenText"
+          >
+            MEN
+          </p>
+        </div>
+        <div class="categoryOffcanvas">
+          <p
+            class="font-lato font-weight-700 font-18 line-height-24 py-5 text-align-center"
+          >
+            CATEGORIES
+          </p>
+          <div class="CategoryCirclesFlex">
+            <div
+              class="padding-x-2rem cursor-pointer"
+              *ngFor="let data of [1, 1, 1, 1, 1, 1, 1, 1]"
+            >
+              <div class="categoryCircle overflow-hidden">
+                <img
+                  class="responsiveImage"
+                  src="assets/images/categoryImage.png"
+                />
+              </div>
+              <p
+                class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24"
+              >
+                RINGS
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      aria-label="Close"
+      (click)="c()"
+      class="closeOffcanvas position-absolute cursor-pointer"
+    >
+      <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
+    </div>
+  </div>
+  <div class="offcanvasWomenButton">
+    <div class="womenBtn" (click)="switchToWomen()">
+      <div class="arrowTopIcon">
+        <i class="fa-solid fa-angles-up"></i>
+      </div>
+      WOMEN
     </div>
   </div>
 </ng-template>

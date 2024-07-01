@@ -6,6 +6,7 @@
 .socialIcons{
   display:flex;
   gap:20px;
+  width: 23%;
   align-items:center;
 }
 .advertisementStrip{
@@ -19,5 +20,6 @@
 @media (min-width: 400px) and (max-width: 600px) {
   .socialIcons{
     gap:14px;
+    width: 50%;
   }
 }

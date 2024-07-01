@@ -1,5 +1,5 @@
-import {Component, inject, TemplateRef} from '@angular/core';
-import {NgbOffcanvas, OffcanvasDismissReasons} from "@ng-bootstrap/ng-bootstrap";
+import {Component, inject, TemplateRef, ViewChild} from '@angular/core';
+import {NgbOffcanvas, NgbOffcanvasRef, OffcanvasDismissReasons} from "@ng-bootstrap/ng-bootstrap";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import SwiperCore, {
   Navigation,
@@ -16,71 +16,105 @@ SwiperCore.use([
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-
-  private offcanvasService:NgbOffcanvas = inject(NgbOffcanvas);
-  private modalService:NgbModal = inject(NgbModal);
-  closeResult:string = '';
+  private offcanvasService: NgbOffcanvas = inject(NgbOffcanvas);
+  private modalService: NgbModal = inject(NgbModal);
+  closeResult: string = '';
   activeIndex: number = 0;
-  mediaImages:string[]=['assets/images/yourStory.png','assets/images/etNow.png','assets/images/economicTimes.png','assets/images/toi.png','assets/images/ted.png','assets/images/forbes.png','assets/images/indiaToday.png','assets/images/timesNow.png',]
-  jewelleryTab:any[]=[
+  @ViewChild('womenOffcanvas', { static: true }) womenOffcanvas;
+  @ViewChild('menOffcanvas', { static: true }) menOffcanvas;
+  offcanvasRef?: NgbOffcanvasRef;
+  offcanvasRef2?: NgbOffcanvasRef;
+
+  mediaImages: string[] = [
+    'assets/images/yourStory.png',
+    'assets/images/etNow.png',
+    'assets/images/economicTimes.png',
+    'assets/images/toi.png',
+    'assets/images/ted.png',
+    'assets/images/forbes.png',
+    'assets/images/indiaToday.png',
+    'assets/images/timesNow.png',
+  ];
+  jewelleryTab: any[] = [
     {
-      name:'Temple Jewellery'
+      name: 'Temple Jewellery',
     },
     {
-      name:'Office Jewellery'
+      name: 'Office Jewellery',
     },
     {
-      name:'Fancy Jewellery'
+      name: 'Fancy Jewellery',
     },
     {
-      name:'Couple Jewellery'
+      name: 'Couple Jewellery',
     },
     {
-      name:'Kids Jewellery'
+      name: 'Kids Jewellery',
     },
     {
-      name:'Mens Jewellery'
+      name: 'Mens Jewellery',
     },
     {
-      name:'GenZ Jewellery'
-    },
-  ]
-  shopByMood:any[]=[
-    {
-      down:true,
-      name:'BRIDES MINDSET'
+      name: 'GenZ Jewellery',
     },
     {
-      down:false,
-      name:'ROMANTIC DATE'
+      name: 'Temple Jewellery',
     },
     {
-      down:true,
-      name:'BLACK JANE'
+      name: 'Office Jewellery',
     },
     {
-      down:false,
-      name:'PRINCESS MODE'
+      name: 'Fancy Jewellery',
     },
     {
-      down:true,
-      name:'HOUSEWIFE ROUTINE'
-    }
-  ]
+      name: 'Couple Jewellery',
+    },
+    {
+      name: 'Kids Jewellery',
+    },
+    {
+      name: 'Mens Jewellery',
+    },
+    {
+      name: 'GenZ Jewellery',
+    },
+  ];
+  shopByMood: any[] = [
+    {
+      down: true,
+      name: 'BRIDES MINDSET',
+    },
+    {
+      down: false,
+      name: 'ROMANTIC DATE',
+    },
+    {
+      down: true,
+      name: 'BLACK JANE',
+    },
+    {
+      down: false,
+      name: 'PRINCESS MODE',
+    },
+    {
+      down: true,
+      name: 'HOUSEWIFE ROUTINE',
+    },
+  ];
 
   featuredProductsSwiper: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 1,
-    initialSlide:2,
+    initialSlide: 2,
     loop: true,
-    centeredSlides:true,
+    centeredSlides: true,
     pagination: true,
     mousewheel: false,
     on: {
-      slideChange: (swiper) => this.onSlideChange(swiper)
+      slideChange: (swiper) => this.onSlideChange(swiper),
     },
     breakpoints: {
       400: {
@@ -109,9 +143,9 @@ export class HomeComponent {
   testimonialSlider: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 1,
-    initialSlide:2,
+    initialSlide: 2,
     loop: true,
-    centeredSlides:true,
+    centeredSlides: true,
     pagination: true,
     mousewheel: false,
     breakpoints: {
@@ -145,9 +179,9 @@ export class HomeComponent {
   bestSellerWiper: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 1,
-    initialSlide:2,
+    initialSlide: 2,
     loop: true,
-    centeredSlides:true,
+    centeredSlides: true,
     pagination: false,
     mousewheel: false,
     breakpoints: {
@@ -177,61 +211,84 @@ export class HomeComponent {
       },
     },
   };
+  currentOffcanvas: NgbOffcanvasRef;
 
-  onSlideChange(swiper:Swiper) {
+  onSlideChange(swiper: Swiper) {
     this.activeIndex = swiper.activeIndex;
-    console.log('hi',this.activeIndex)
+    console.log('hi', this.activeIndex);
   }
 
-  open(content: TemplateRef<any>) {
-    this.offcanvasService.open(content, { ariaLabelledBy: 'offcanvas-basic-title' }).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-      (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      },
+  onTab(name: string) {}
+  indentName(name: string) {
+    return name.replaceAll(' ', '<br>');
+  }
+
+  hoverClass(i) {
+    const specialBorderElement: HTMLElement = document.getElementById(
+      'border' + i
     );
-  }
-
-  openEnd(content: TemplateRef<any>) {
-    this.offcanvasService.open(content, { position: 'end' });
-  }
-  getDismissReason(reason: any): string {
-    switch (reason) {
-      case OffcanvasDismissReasons.ESC:
-        return 'by pressing ESC';
-      case OffcanvasDismissReasons.BACKDROP_CLICK:
-        return 'by clicking on the backdrop';
-      default:
-        return `with: ${reason}`;
-    }
-  }
-
-  onTab(name:string){
-
-  }
-  indentName(name:string){
-    return name.replaceAll(' ','<br>')
-  }
-
-  hoverClass(i){
-    const specialBorderElement:HTMLElement=document.getElementById('border'+i);
-    specialBorderElement.style.border='15px solid #020724'
-    const textBorder:HTMLElement=document.getElementById('textPad'+i);
-    textBorder.style.background='#020724';
-    textBorder.style.color='#ffffff';
+    specialBorderElement.style.border = '15px solid #020724';
+    const textBorder: HTMLElement = document.getElementById('textPad' + i);
+    textBorder.style.background = '#020724';
+    textBorder.style.color = '#ffffff';
     textBorder.classList.add('mt-4');
     textBorder.classList.add('mirrorBody');
   }
-  removeHoverClass(i){
-    const specialBorderElement:HTMLElement=document.getElementById('border'+i);
-    specialBorderElement.style.border='none';
-    const textBorder:HTMLElement=document.getElementById('textPad'+i);
-    textBorder.style.background='#ffffff';
-    textBorder.style.color='#020724';
-    textBorder.classList.remove('mt-4')
+  removeHoverClass(i) {
+    const specialBorderElement: HTMLElement = document.getElementById(
+      'border' + i
+    );
+    specialBorderElement.style.border = 'none';
+    const textBorder: HTMLElement = document.getElementById('textPad' + i);
+    textBorder.style.background = '#ffffff';
+    textBorder.style.color = '#020724';
+    textBorder.classList.remove('mt-4');
     textBorder.classList.remove('mirrorBody');
   }
+  open(content, options = {}) {
+    this.currentOffcanvas = this.offcanvasService.open(content, options);
+  }
+  toggleOffcanvas(offcanvas: string) {
+    if (this.currentOffcanvas) {
+      this.currentOffcanvas.dismiss();
+    }
 
+    if (offcanvas === 'women') {
+      this.open(this.womenOffcanvas);
+    } else if (offcanvas === 'men') {
+      this.open(this.menOffcanvas, { position: 'end' });
+    }
+  }
+
+  switchToMen() {
+    if (this.currentOffcanvas) {
+      this.currentOffcanvas.dismiss();
+      this.currentOffcanvas.result.then(
+        () => {
+          this.open(this.menOffcanvas, { position: 'end' });
+        },
+        () => {
+          this.open(this.menOffcanvas, { position: 'end' });
+        }
+      );
+    } else {
+      this.open(this.menOffcanvas, { position: 'end' });
+    }
+  }
+
+  switchToWomen() {
+    if (this.currentOffcanvas) {
+      this.currentOffcanvas.dismiss();
+      this.currentOffcanvas.result.then(
+        () => {
+          this.open(this.womenOffcanvas);
+        },
+        () => {
+          this.open(this.womenOffcanvas);
+        }
+      );
+    } else {
+      this.open(this.womenOffcanvas);
+    }
+  }
 }
