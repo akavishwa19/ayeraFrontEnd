@@ -124,16 +124,20 @@
       Unmatched quality, unbeatable value: our pieces that thrive over time
     </p>
     <div class="row pt-3">
-      <div id="verticalTabs" class="col-12 col-lg-3 col-md-4 col-sm-12">
-        <tabset [vertical]="true" [justified]="true" type="pills">
-          <tab
-            *ngFor="let tab of jewelleryTab"
-            [heading]="tab.name"
-            (click)="onTab(tab.name)"
-            (selectTab)="onTab(tab.name)"
-          >
-          </tab>
-        </tabset>
+      <div class="col-12 col-lg-3 col-md-4 col-sm-12">
+        <div class="bestSellerSliderContent">
+          <div id="verticalTabs">
+            <tabset [vertical]="true" [justified]="true" type="pills">
+              <tab
+                *ngFor="let tab of jewelleryTab"
+                [heading]="tab.name"
+                (click)="onTab(tab.name)"
+                (selectTab)="onTab(tab.name)"
+              >
+              </tab>
+            </tabset>
+          </div>
+        </div>
       </div>
       <div id="bestSellerSwiper" class="col-12 col-lg-6 col-md-4 col-sm-12">
         <swiper [config]="bestSellerWiper">
@@ -168,45 +172,56 @@
         </swiper>
       </div>
       <div class="col-12 col-lg-3 col-md-4 col-sm-12">
-        <table class="productTable">
-          <thead>
-            <tr>
-              <th>
-                <p
-                  class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
-                >
-                  PRODUCT
-                </p>
-              </th>
-              <th>
-                <p
-                  class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
-                >
-                  QTY. SOLD
-                </p>
-              </th>
-            </tr>
-            <tr *ngFor="let row of [1, 1, 1, 1, 1, 1]">
-              <td>
-                <p
-                  class="text-align-left zero-padding-bottom zero-margin-bottom text-white"
-                >
-                  Cute Evil Eye Adjustable Ring - Rose Gold
-                </p>
-              </td>
-              <td>
-                <p
-                  class="text-align-center zero-padding-bottom zero-margin-bottom text-white"
-                >
-                  65
-                </p>
-              </td>
-            </tr>
-          </thead>
-        </table>
+        <div class="bestSellerSliderContent">
+          <table class="productTable">
+            <thead>
+              <p class="p-2 text-white font-20 text-align-center">
+                CATEGORY ANALYTICS
+              </p>
+              <tr>
+                <th>
+                  <p
+                    class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
+                  >
+                    PRODUCT
+                  </p>
+                </th>
+                <th>
+                  <p
+                    class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
+                  >
+                    QTY. SOLD
+                  </p>
+                </th>
+              </tr>
+              <tr *ngFor="let row of [1, 1, 1, 1, 1, 1]">
+                <td>
+                  <p
+                    class="text-align-left zero-padding-bottom zero-margin-bottom text-white"
+                  >
+                    Cute Evil Eye Adjustable Ring - Rose Gold
+                  </p>
+                </td>
+                <td>
+                  <p
+                    class="text-align-center zero-padding-bottom zero-margin-bottom text-white"
+                  >
+                    65
+                  </p>
+                </td>
+              </tr>
+              <tr class="width-100 text-align-center">
+                <i class="fa-solid text-white p-2 font-20 fa-chevron-down"></i>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
     </div>
     <div class="truckFlex pt-4 mt-2">
+      <div>
+        <div><img src="/assets/icons/truck.svg" /></div>
+      </div>
       <div>
         <p
           class="bg-white text-black display-inline--block px-2 border-radius-5px font-lato font-weight-700 font-20 px-2"
@@ -400,10 +415,7 @@
               src="assets/images/hsopCategoryImage.png"
             />
           </div>
-          <div
-            id="textPad{{ i }}"
-            class="py-2 border-radius-10px position-relative"
-          >
+          <div id="textPad{{ i }}" class="py-2 position-relative">
             <p
               class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom"
             >
@@ -421,41 +433,46 @@
     <i class="fa-brands fa-envira fa-2x text-black"></i>
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
-      >CELEBRITY HIGHLIGHTS</span
+    >
+      CELEBRITY HIGHLIGHTS</span
     >
   </p>
+
   <div class="container-xl">
+    <div class="">
+      <div class=""></div>
+    </div>
     <div class="row">
       <div class="col-12 col-lg-3">
-        <div class="00">
+        <div class="imageGallery">
           <img class="responsiveImage" src="assets/images/00.png" />
         </div>
-        <div class="10 mt-4">
+        <div class="imageGallery mt-4">
           <img class="responsiveImage" src="assets/images/10.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="01">
+        <div class="imageGallery">
           <img class="responsiveImage" src="assets/images/01.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="02">
+        <div class="imageGallery">
           <img class="responsiveImage" src="assets/images/02.png" />
         </div>
-        <div class="11 mt-4">
+        <div class="imageGallery mt-4">
           <img class="responsiveImage" src="assets/images/11.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="03">
+        <div class="imageGallery">
           <img class="responsiveImage" src="assets/images/03.png" />
         </div>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-12 col-lg-12">
-        <div class="20">
+        <div class="imageGallery">
           <img class="responsiveImage" src="assets/images/20.png" />
         </div>
       </div>
@@ -478,7 +495,7 @@
         </div>
       </div>
       <div class="homeFeatureFlex">
-        <i class="fa-solid fa-rotate-left fa-4x"></i>
+        <img src="/assets/icons/30dayReplace.svg" />
         <div class="featureDesc p-2 border-radius-5px">
           <p
             class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
@@ -489,7 +506,7 @@
         </div>
       </div>
       <div class="homeFeatureFlex">
-        <i class="fa-solid fa-shield-halved fa-4x"></i>
+        <img src="/assets/icons/colorProtection.svg" />
         <div class="featureDesc p-2 border-radius-5px">
           <p
             class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
@@ -500,7 +517,7 @@
         </div>
       </div>
       <div class="homeFeatureFlex">
-        <i class="fa-solid fa-truck-ramp-box fa-4x"></i>
+        <img src="/assets/icons/shipping.svg" />
         <div class="featureDesc p-2 border-radius-5px">
           <p
             class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
@@ -514,7 +531,7 @@
 
     <div class="bottomRowFlexFeatures width-100">
       <div class="homeFeatureFlex">
-        <i class="fa-solid fa-gem fa-4x"></i>
+        <img src="/assets/icons/eliteDesign.svg" />
         <div class="featureDesc p-2 border-radius-5px">
           <p
             class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
@@ -525,7 +542,8 @@
         </div>
       </div>
       <div class="homeFeatureFlex">
-        <i class="fa-solid fa-circle-check fa-4x"></i>
+        <img src="/assets/icons/indianStandards.svg" />
+
         <div class="featureDesc p-2 border-radius-5px">
           <p
             class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
@@ -536,7 +554,7 @@
         </div>
       </div>
       <div class="homeFeatureFlex">
-        <i class="fa-solid fa-coins fa-4x"></i>
+        <img src="/assets/icons/goldBar.svg" />
         <div class="featureDesc p-2 border-radius-5px">
           <p
             class="font-lato font-weight-800 text-black letter-spacing-08 line-height-24 zero-padding-bottom zero-margin-bottom"
@@ -608,7 +626,7 @@
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
       >CUSTOMERS LOVE</span
-    >-->
+    >
   </p>
   <swiper [config]="testimonialSlider">
     <ng-template swiperSlide="" *ngFor="let card of [1, 1, 1, 1, 1, 1, 1]">
@@ -644,7 +662,7 @@
               </p>
             </div>
           </div>
-          <div class="width-100 centerCardHeading py-2 mb-2">
+          <div class="width-100 centerCardHeading">
             <i
               class="fa fa-star fa-2x px-1"
               *ngFor="let star of [1, 1, 1, 1, 1]"
@@ -741,6 +759,13 @@
 </ng-template>
 <ng-template #menOffcanvas let-c="close" let-d="dismiss">
   <div class="offcanvas-body position-relative positionOffcanvasContent">
+      <div
+      aria-label="Close"
+      (click)="c()"
+      class="closeOffcanvasLeft position-absolute cursor-pointer"
+    >
+      <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
+    </div>
     <div>
       <div class="offcanvasFlexReverse">
         <div
@@ -786,13 +811,7 @@
         </div>
       </div>
     </div>
-    <div
-      aria-label="Close"
-      (click)="c()"
-      class="closeOffcanvas position-absolute cursor-pointer"
-    >
-      <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
-    </div>
+  
   </div>
   <div class="offcanvasWomenButton">
     <div class="womenBtn" (click)="switchToWomen()">

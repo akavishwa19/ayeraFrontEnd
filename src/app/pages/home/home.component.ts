@@ -1,18 +1,19 @@
-import {Component, inject, TemplateRef, ViewChild} from '@angular/core';
-import {NgbOffcanvas, NgbOffcanvasRef, OffcanvasDismissReasons} from "@ng-bootstrap/ng-bootstrap";
+import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
+import {
+  NgbOffcanvas,
+  NgbOffcanvasRef,
+  OffcanvasDismissReasons,
+} from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import SwiperCore, {
   Navigation,
   Autoplay,
-  Pagination, SwiperOptions,
-  Swiper
+  Pagination,
+  SwiperOptions,
+  Swiper,
 } from 'swiper';
 
-SwiperCore.use([
-  Navigation,
-  Pagination,
-  Autoplay
-]);
+SwiperCore.use([Navigation, Pagination, Autoplay]);
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -102,6 +103,14 @@ export class HomeComponent {
     {
       down: true,
       name: 'HOUSEWIFE ROUTINE',
+    },
+    {
+      down: false,
+      name: 'BRIDES MINDSET',
+    },
+    {
+      down: true,
+      name: 'ROMANTIC DATE',
     },
   ];
 
@@ -228,9 +237,11 @@ export class HomeComponent {
       'border' + i
     );
     specialBorderElement.style.border = '15px solid #020724';
+
     const textBorder: HTMLElement = document.getElementById('textPad' + i);
     textBorder.style.background = '#020724';
     textBorder.style.color = '#ffffff';
+    textBorder.style.borderRadius = '17px';
     textBorder.classList.add('mt-4');
     textBorder.classList.add('mirrorBody');
   }

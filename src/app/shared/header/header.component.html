@@ -1,27 +1,46 @@
 <section class="bg-blue-black pb-2">
-  <div class="bg-light-grey py-3 mx-2" id="mainHeader" >
-  <div class="container-fluid">
-    <div class="headerFlex py-3 px-3">
-      <i class="fa-solid fa-bars-staggered font-40 cursor-pointer"></i>
-      <div class="rightPart">
-        <div class="input-group">
-          <span  class="input-group-text bg-white"><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" class="form-control border-left-none border-right-none" placeholder="Search By Keyword" >
-          <span class="input-group-text bg-white px-1"><i class="fa-solid fa-microphone cursor-pointer"></i></span>
-          <span class="input-group-text bg-white border-left-none px-2"><i class="fa-solid fa-qrcode cursor-pointer"></i></span>
+  <div class="bg-light-grey py-3 mx-2" id="mainHeader">
+    <div class="container-fluid">
+      <div class="headerFlex py-3 px-3">
+        <i class="fa-solid fa-bars-staggered font-40 cursor-pointer"></i>
+        <div class="rightPart">
+          <div class="input-group">
+            <span class="input-group-text bg-white"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control border-left-none border-right-none"
+              placeholder="Search By Keyword"
+            />
+            <span class="input-group-text bg-white px-1"
+              ><i class="fa-solid fa-microphone cursor-pointer"></i
+            ></span>
+            <span class="input-group-text bg-white border-left-none px-2"
+              ><i class="fa-solid fa-qrcode cursor-pointer"></i
+            ></span>
+          </div>
+          <i
+            class="fa-solid fa-user text-black font-21 small-device-d-none cursor-pointer"
+          ></i>
+          <i
+            class="fa-solid fa-heart text-black font-21 small-device-d-none cursor-pointer"
+          ></i>
+          <i
+            class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
+          ></i>
         </div>
-        <i class="fa-solid fa-user text-black font-20 small-device-d-none cursor-pointer"></i>
-        <i class="fa-solid fa-heart text-black font-20 small-device-d-none cursor-pointer"></i>
-        <i class="fa-solid fa-bag-shopping text-black font-20 small-device-d-none cursor-pointer"></i>
       </div>
     </div>
-  </div>
-  <div class="container-fluid pt-2 socialIcons">
-    <div class="categoryItemHolder medium-device-d-none">
-      <div class="categoryItem font-18 font-lato font-weight-700 cursor-pointer" *ngFor="let name of featuredCategoryList">
-        {{name}}
+    <div class="container-fluid pt-2 socialIcons">
+      <div class="categoryItemHolder medium-device-d-none">
+        <div
+          class="categoryItem font-18 font-lato font-weight-700 cursor-pointer"
+          *ngFor="let name of featuredCategoryList"
+        >
+          {{ name }}
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </section>

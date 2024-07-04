@@ -1,25 +1,26 @@
-.blockHolder{
-  display:flex;
-  align-items:center;
-  gap:40px;
+.blockHolder {
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
-.socialIcons{
-  display:flex;
-  gap:20px;
+.socialIcons {
+  display: flex;
+  gap: 20px;
   width: 23%;
-  align-items:center;
+  align-items: center;
+
 }
-.advertisementStrip{
-  flex-grow:1;
+.advertisementStrip {
+  flex-grow: 1;
 }
-.marqueeFlex{
-  display:flex;
-  justify-content:space-between;
+.marqueeFlex {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 @media (min-width: 400px) and (max-width: 600px) {
-  .socialIcons{
-    gap:14px;
+  .socialIcons {
+    gap: 14px;
     width: 50%;
   }
 }
