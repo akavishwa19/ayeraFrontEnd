@@ -517,6 +517,18 @@ margin: 5px !important;
 ::-webkit-scrollbar-thumb {
   background: rgb(66, 66, 223);
 }
+//mat slider 
+ #blueSlider .mat-slider-thumb {
+  background-color: blue !important;
+}
+
+#blueSlider .mat-slider-track-fill {
+  background-color: blue !important;
+}
+
+#blueSlider .mat-slider-track-background {
+  background-color: lightblue !important; /* Adjust if needed */
+}
 
 //SOME MEDIA QUERIES FOR UTILITY CLASSES
 @media (max-width: 600px) {

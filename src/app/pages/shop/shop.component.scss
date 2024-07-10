@@ -55,3 +55,15 @@
     gap:50px;
   }
 }
+//mat slider 
+#blueSlider .mat-slider-thumb {
+  background-color: blue !important;
+}
+
+#blueSlider .mat-slider-track-fill {
+  background-color: blue !important;
+}
+
+#blueSlider .mat-slider-track-background {
+  background-color: lightblue !important; /* Adjust if needed */
+}

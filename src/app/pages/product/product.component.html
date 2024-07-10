@@ -20,7 +20,7 @@
 <section class="default-section-padding">
   <div class="container-xl">
     <div class="row">
-      <div class="col-12 col-lg-5 col-md-6 col-sm-12">
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
         <div class="productImageShowcase">
           <div class="swiper-head bg-white small-device-d-none">
             <div class="vertical-swiper-container">
@@ -60,7 +60,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-7 col-md-6 col-sm-12">
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
         <p
           class="font-lato font-weight-700 font-24 text-black line-height-24 letter-spacing-03 py-1"
         >
@@ -417,25 +417,28 @@
         </div>
       </div>
       <div class="col-12 col-lg-4 col-md-4 col-sm-12">
-        <div *ngFor="let data of [1, 1, 1, 1, 1]" class="reviewFlex py-2">
-          <div>
-            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
-            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
-            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
-            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
-            <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
-          </div>
-          <div class="progressBarWidth">
-            <progressbar [value]="55"></progressbar>
-          </div>
-          <div>
-            <p
-              class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
-            >
-              5
-            </p>
+        <div class="ratingProgressBarContainer">
+          <div *ngFor="let data of [1, 1, 1, 1, 1]" class="reviewFlex py-2">
+            <div>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+            </div>
+            <div class="progressBarWidth">
+              <progressbar [value]="55"></progressbar>
+            </div>
+            <div>
+              <p
+                class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
+              >
+                5
+              </p>
+            </div>
           </div>
         </div>
+      
       </div>
       <div class="col-12 col-lg-4 col-md-4 col-sm-12">
         <div class="fixToCenter height-100perCent">
