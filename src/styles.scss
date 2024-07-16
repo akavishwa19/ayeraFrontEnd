@@ -203,6 +203,9 @@ body {
 .padding-x-2rem {
   padding: 0rem 2rem !important;
 }
+.padding-y-2rem {
+  padding: 2rem 0rem !important;
+}
 .zero-padding-right {
   padding-right: 0 !important;
 }
@@ -238,6 +241,9 @@ body {
 }
 .width-100 {
   width: 100%;
+}
+.width-50 {
+  width: 50%;
 }
 .padding-10 {
   padding: 10px;
@@ -283,6 +289,31 @@ body {
 }
 .text-decoration-none {
   text-decoration: none !important;
+}
+// flex class
+.align-item-baseline{
+align-items: baseline;
+}
+.align-item-center{
+align-items: center;
+}
+.justify-center{
+justify-content: center;
+}
+.justify-space-between{
+justify-content: space-between;
+}
+.justify-space-around{
+justify-content: space-around;
+}
+.justify-space-evenly{
+justify-content: space-evenly;
+}
+.justify-flex-end{
+justify-content: flex-start;
+}
+.justify-flex-start{
+  justify-content: flex-end;
 }
 #mainHeader {
   border-bottom-left-radius: 30px;

@@ -12,13 +12,15 @@ import {MatSliderModule} from "@angular/material/slider";
 import { ProductComponent } from './product/product.component';
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
     HomeComponent,
     ShopComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

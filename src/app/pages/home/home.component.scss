@@ -614,6 +614,10 @@ clip-path: polygon(41% 0, 58% 0, 61% 44%, 64% 74%, 69% 100%, 30% 100%, 34% 76%, 
     width: 100%;
     padding: 10px;
   }
+  .modelImage {
+    width: 100%;
+    overflow: hidden;
+  }
   .offcanvasFlex {
     flex-direction: column;
   }
