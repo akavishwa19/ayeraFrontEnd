@@ -92,7 +92,7 @@
               Mine Diamond Studded Studs Gold Earring
             </p>
             <button
-              class="font-weight-600 font-lato text-white bg-blue-black none-outline border-radius-10px px-4 py-2 my-2"
+              class="font-weight-600 font-lato text-white none-outline border-radius-5px px-4 py-2 my-2 bg_transparent b_r_5"
             >
               Buy Now
             </button>
@@ -113,8 +113,9 @@
 
 <section class="default-section-padding bg-best-sellers">
   <div class="container-xl">
-    <p class="mediaTitle text-align-center pb-1">
-      <i class="fa-solid fa-hand-holding-heart fa-2x text-black"></i>
+    <p class="mediaTitle text-align-center pb-1 d_flex justify-center">
+      <!-- <i class="fa-solid fa-hand-holding-heart fa-2x text-black"></i> -->
+      <img src="/assets/icons/best_seller.svg" />
       <span
         class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2 my-1"
         >BEST SELLERS</span
@@ -124,7 +125,7 @@
       Unmatched quality, unbeatable value: our pieces that thrive over time
     </p>
     <div class="row pt-3">
-      <div class="col-12 col-lg-3 col-md-4 col-sm-12">
+      <!-- <div class="col-12 col-lg-3 col-md-4 col-sm-12">
         <div class="bestSellerSliderContent">
           <div id="verticalTabs">
             <tabset [vertical]="true" [justified]="true" type="pills">
@@ -138,8 +139,8 @@
             </tabset>
           </div>
         </div>
-      </div>
-      <div id="bestSellerSwiper" class="col-12 col-lg-6 col-md-4 col-sm-12">
+      </div> -->
+      <div id="bestSellerSwiper" class="col-12 col-lg-12 col-md-12 col-sm-12">
         <swiper [config]="bestSellerWiper">
           <ng-template swiperSlide="" *ngFor="let product of [1, 1, 1, 1, 1]">
             <div class="hexagonBlock">
@@ -171,7 +172,7 @@
           </ng-template>
         </swiper>
       </div>
-      <div class="col-12 col-lg-3 col-md-4 col-sm-12">
+      <!-- <div class="col-12 col-lg-3 col-md-4 col-sm-12">
         <div class="bestSellerSliderContent">
           <table class="productTable">
             <thead>
@@ -216,11 +217,11 @@
             </thead>
           </table>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="truckFlex pt-4 mt-2">
-      <div>
-        <div><img src="/assets/icons/truck.svg" /></div>
+      <div class="truck_wrapper">
+        <div><img src="/assets/icons/delivery_truck.svg" /></div>
       </div>
       <div>
         <p
@@ -298,11 +299,13 @@
 </section>
 
 <section class="default-section-padding">
-  <div class="mediaTitle d-flex justify-center text-align-center pb-3">
+  <div
+    class="mediaTitle d-flex justify-center text-align-center align-item-center pb-3"
+  >
     <div>
-      <img src="/assets/icons/shopByExperience.svg">
+      <img src="/assets/icons/shopByExperience.svg" />
     </div>
- 
+
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
       >SHOP BY EXPERIENCE</span
@@ -350,8 +353,11 @@
 </section>
 
 <section class="default-section-padding">
-  <p class="mediaTitle text-align-center pb-3">
-    <i class="fa-solid fa-brain fa-2x text-black"></i>
+  <p
+    class="mediaTitle text-align-center d_flex justify-center align-item-center pb-3"
+  >
+    <!-- <i class="fa-solid fa-brain fa-2x text-black"></i> -->
+    <img src="/assets/icons/shop_by_mood.svg" />
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
       >SHOP BY MOODS</span
@@ -391,12 +397,12 @@
       </div>
       <div class="middleTitle mt-5">
         <p
-          class="mediaTitle text-align-center zero-margin-bottom zero-padding-bottom"
+          class="mediaTitle text-align-center justify-center zero-margin-bottom zero-padding-bottom d_flex align-item-center"
         >
           <!-- <i class="fa-solid fa-grip fa-2x text-black"></i> -->
-       
-            <img src="/assets/icons/showMoreCategory.svg">
-           
+
+          <img src="/assets/icons/showMoreCategory.svg" />
+
           <span
             class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
             >SHOP BY CATEGORY</span
@@ -435,8 +441,11 @@
 </section>
 
 <section class="default-section-padding">
-  <p class="mediaTitle text-align-center pb-3">
-    <i class="fa-brands fa-envira fa-2x text-black"></i>
+  <p
+    class="mediaTitle text-align-center justify-center d_flex align-item-center pb-3"
+  >
+    <!-- <i class="fa-brands fa-envira fa-2x text-black"></i> -->
+    <img src="/assets/icons/spotlight.svg" />
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
     >
@@ -483,6 +492,21 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="bg-blue-black py-2 px-3">
+  <div class="advertisementStrip">
+    <marquee direction="left" behavior="scroll" loop="infinite">
+      <div class="marqueeFlex">
+        <p
+          class="text-white font-weight-600 margin-right-10px font-lato font-16 zero-margin-bottom zero-padding-bottom"
+          *ngFor="let x of [1, 1, 1]"
+        >
+          " Sameera Just Bought a Gold Vaddiyanam "
+        </p>
+      </div>
+    </marquee>
   </div>
 </section>
 
@@ -627,8 +651,10 @@
 </section>
 
 <section class="default-section-padding">
-  <p class="mediaTitle text-align-center pb-3">
-    <i class="fa-solid fa-tv fa-2x text-black"></i>
+  <p
+    class="mediaTitle text-align-center d_flex align-item-center justify-center pb-3"
+  >
+    <img src="/assets/icons/customer_love.svg" />
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
       >CUSTOMERS LOVE</span
@@ -681,8 +707,10 @@
 </section>
 
 <section class="default-section-padding">
-  <p class="mediaTitle text-align-center pb-3">
-    <i class="fa-solid fa-tv fa-2x text-black"></i>
+  <p
+    class="mediaTitle text-align-center d_flex align-item-center justify-center pb-3"
+  >
+    <img src="/assets/icons/media_featuring.svg" />
     <span
       class="text-black font-lato font-30 font-weight-700 letter-spacing-04 line-height-48 px-2"
       >MEDIA FEATURING</span
@@ -765,7 +793,7 @@
 </ng-template>
 <ng-template #menOffcanvas let-c="close" let-d="dismiss">
   <div class="offcanvas-body position-relative positionOffcanvasContent">
-      <div
+    <div
       aria-label="Close"
       (click)="c()"
       class="closeOffcanvasLeft position-absolute cursor-pointer"
@@ -817,7 +845,6 @@
         </div>
       </div>
     </div>
-  
   </div>
   <div class="offcanvasWomenButton">
     <div class="womenBtn" (click)="switchToWomen()">

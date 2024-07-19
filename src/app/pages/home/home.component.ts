@@ -187,7 +187,7 @@ export class HomeComponent {
 
   bestSellerWiper: SwiperOptions = {
     slidesPerView: 2,
-    spaceBetween: 1,
+    spaceBetween: 20,
     initialSlide: 2,
     loop: true,
     centeredSlides: true,
@@ -199,23 +199,23 @@ export class HomeComponent {
         spaceBetween: 30,
       },
       600: {
-        slidesPerView: 1.6,
+        slidesPerView: 1,
         spaceBetween: 30,
       },
       768: {
-        slidesPerView: 1.7,
+        slidesPerView: 2,
         spaceBetween: 20,
       },
       991: {
-        slidesPerView: 2,
+        slidesPerView: 3,
         spaceBetween: 30,
       },
       1200: {
-        slidesPerView: 2.5,
+        slidesPerView: 4,
         spaceBetween: 30,
       },
       1440: {
-        slidesPerView: 2,
+        slidesPerView: 5,
         spaceBetween: 20,
       },
     },

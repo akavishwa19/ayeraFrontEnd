@@ -545,6 +545,23 @@ clip-path: polygon(41% 0, 58% 0, 61% 44%, 64% 74%, 69% 100%, 30% 100%, 34% 76%, 
          
     }
 }
+
+
+.truck_wrapper{
+  width: 100px;
+  overflow: hidden;
+}
+
+
+.advertisementStrip {
+  flex-grow: 1;
+}
+.marqueeFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 //media queries
 
 //media query for blissful art

@@ -290,7 +290,23 @@ body {
 .text-decoration-none {
   text-decoration: none !important;
 }
+
+.bg_transparent{
+  background-color: transparent !important;
+}
+
+.border_color_white{
+  border-color: white !important;
+}
+
+.b_r_5{
+  border: 2px solid white !important;
+}
+
 // flex class
+.d_flex{
+  display: flex;
+}
 .align-item-baseline{
 align-items: baseline;
 }
@@ -424,14 +440,14 @@ justify-content: flex-start;
   filter: grayscale(0) !important;
  transition: transform 0.5s ease,
 }
-#bestSellerSwiper  .swiper-slide-next{
-  transform: scale(0.7) !important;
-   transition: transform 0.5s ease,
-}
-#bestSellerSwiper  .swiper-slide-prev{
-  transform: scale(0.7) !important;
- transition: transform 0.5s ease,
-}
+// #bestSellerSwiper  .swiper-slide-next{
+//   transform: scale(0.7) !important;
+//    transition: transform 0.5s ease,
+// }
+// #bestSellerSwiper  .swiper-slide-prev{
+//   transform: scale(0.7) !important;
+//  transition: transform 0.5s ease,
+// }
 //progressbar
 .progress-bar {
   background: #020724 !important;
