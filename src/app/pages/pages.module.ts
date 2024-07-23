@@ -13,6 +13,7 @@ import { ProductComponent } from './product/product.component';
 import {TabsModule} from "ngx-bootstrap/tabs";
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { CartComponent } from './cart/cart.component';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     ShopComponent,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    ComingSoonComponent
   ],
   imports: [
     CommonModule,
