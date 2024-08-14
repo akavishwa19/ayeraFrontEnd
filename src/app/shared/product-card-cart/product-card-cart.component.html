@@ -1,0 +1,52 @@
+<div class="suggestedCardHolder p-4 ">
+  <div class="cardFlex position-relative">
+    <div class="displayImageHolder">
+      <img class="responsiveImage" src="{{ productImage }}" />
+    </div>
+    <div>
+      <p
+        class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black"
+      >
+        {{ productName }}
+      </p>
+      <p
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+      >
+        Product Code: {{ productCode }}
+      </p>
+      <button
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3"
+      >
+        {{ weight }} Grams
+      </button>
+      <div class="bottomInfoFlex pt-3">
+        <p
+          class="text-decoration-line-through font-lato font-14 text-black font-weight-700 letter-spacing-02 line-height-13 text-align-left zero-margin-bottom py-1"
+        >
+          ₹ {{ strikedPrice }}
+        </p>
+        <p
+          class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+        >
+          ₹ {{ price }}
+        </p>
+      </div>
+      <div class="quanityFlex border-radius-5px mt-2">
+        <button (click)="reduceQty()" class="bg-blue-black text-white">
+          <i class="fa-solid fa-minus text-white"></i>
+        </button>
+        <button class="px-2 cursor-not-allowed">
+          <span class="text-black font-18 font-weight-700">
+            {{ quantity }}</span
+          >
+        </button>
+        <button (click)="addQty()" class="bg-blue-black text-white">
+          <i class="fa-solid fa-plus text-white"></i>
+        </button>
+      </div>
+    </div>
+    <div class="cutCard bg-blue-black position-absolute cursor-pointer">
+        <i class="fa-solid fa-xmark text-white"></i>
+      </div>
+  </div>
+</div>

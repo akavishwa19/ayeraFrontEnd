@@ -1,0 +1,68 @@
+<section class="bg-black center-fit w-100vw h-100vh">
+    <div class="cardBlock border-radius-10px">
+      <div class="formComponent bg-white padding-10">
+        <div class="alignFormContentCenter">
+          <div class="width-100">
+            <p
+              class="text-align-center font-weight-700 font-30 line-height-48 font-lato text-black"
+            >
+              Login
+            </p>
+            <form [formGroup]="form">
+            <div class=" loginComp input-group customInputGroup height-60px my-3">
+              <span class="input-group-text bg-white px-3"
+                ><i class="fa-solid fa-circle-user fa-2x"></i
+              ></span>
+              <input
+                id="passwordCustom"
+                type="text"
+                class="form-control"
+                placeholder="Email Id"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                formControlName="email"
+              />
+            
+            
+            </div>
+            <small *ngIf="f['email'].touched && f['email'].invalid && f['email'].errors['required']">email is required</small>
+            <small *ngIf="f['email'].touched && f['email'].invalid && f['email'].errors['email']">email should be of type email</small>
+         
+            <div class="input-group loginComp customInputGroup height-60px my-3">
+              <span class="input-group-text bg-white px-3"
+                ><i class="fa-solid fa-lock fa-2x"></i
+              ></span>
+              <input
+                type="{{inputType}}"
+                class="form-control"
+                placeholder="Password"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                formControlName="password"
+  
+              />
+              <i (click)="togglePasswordType()" *ngIf="inputType==='password'" class="positionEye fa-solid fa-eye fa-2x"></i>
+              <i (click)="togglePasswordType()" *ngIf="inputType==='text'" class="positionEye fa-solid fa-eye-slash fa-2x"></i>
+            </div>
+            <small class="py-2" *ngIf="f['password'].touched && f['password'].invalid && f['password'].errors['required']">password is required</small>
+          </form>
+            <p class="zero-padding-bottom zero-margin-bottom font-lato font-weight-700">New User ? <a routerLink="/auth/sign-up"> Click here </a> to register</p>
+            <button
+            [disabled]="!form.valid"
+              class="height-60px none-outline font-lato font-weight-700 font-20 text-white bg-black border-radius-10px width-100 my-3"
+              (click)="login()"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="rightCardComponent">
+        <div class="imageContainer">
+          <img class="responsiveImage" src="assets/images/ayeraBg.png" />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <p-toast></p-toast>

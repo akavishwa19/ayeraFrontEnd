@@ -1,0 +1,74 @@
+.w-100vw {
+    width: 100vw;
+  }
+  .h-100vh {
+    height: 100vh;
+  }
+  .imageContainer {
+    width: 100%;
+    height: 100%;
+  }
+  .cardBlock {
+    width: 60%;
+    height: 70vh;
+    display: flex;
+    overflow: hidden;
+  }
+  .formComponent {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rightCardComponent {
+    width: 50%;
+  }
+  .center-fit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-control:focus {
+    box-shadow: none !important;
+    border-color: #dee2e6 !important;
+  }
+  .customInputGroup {
+    background: #ffffff !important;
+    border: 1px solid #d9d9d9 !important;
+    box-shadow: 2px 2px 10px 1px rgba(2, 7, 36, 0.25) !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+  }
+  
+  .customInputGroup {
+    width: 100%;
+  }
+  .customInputGroup .form-control::placeholder {
+    font-size: 18px !important;
+    font-family: "Lato", sans-serif !important;
+    font-weight: 700;
+  }
+  .alignFormContentCenter {
+    width:80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loginComp{
+    position: relative;
+  }
+  .positionEye{
+    position: absolute;
+    right:16px;
+    top:50%;
+    transform: translateY(-50%);
+    z-index: 99;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 600px) {
+    .cardBlock {
+      flex-direction: column;
+    }
+  }
+  

@@ -1,0 +1,143 @@
+<app-advertisement-header></app-advertisement-header>
+<app-header></app-header>
+
+
+<section class="default-section-padding">
+<div class="container-xl">
+  <div
+  class="navigation padding-y-2rem width-50 d-flex justify-space-between"
+>
+  <i class="fa-solid font-21 font-weight-700 fa-arrow-left"></i>
+  <p
+    class="font-lato font-21 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24"
+  >
+    Shopping Cart
+  </p>
+</div>
+    <div class="row">
+        <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+          <div class="card flex justify-content-center">
+            <p-stepper>
+                <p-stepperPanel header="Shipping">
+                    <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+                        <div>
+                          <p  class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24">Addresses</p>
+
+                          <div class="tabItem">
+                            <button class="font-lato">
+                              Home
+                            </button>
+                          </div>
+                        </div>
+                        <div class="flex pt-4 justify-content-end">
+                            <p-button 
+                                label="Next" 
+                                icon="pi pi-arrow-right" 
+                                iconPos="right" 
+                                (onClick)="nextCallback.emit()" />
+                        </div>
+                    </ng-template>
+                </p-stepperPanel>
+                <p-stepperPanel header="Make it Special">
+                    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+                        <div class="flex flex-column h-12rem">
+                            <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                                Content II
+                            </div>
+                        </div>
+                        <div class="flex pt-4 justify-content-between">
+                            <p-button 
+                                label="Back" 
+                                icon="pi pi-arrow-left" 
+                                (onClick)="prevCallback.emit()" />
+                            <p-button 
+                                label="Next" 
+                                icon="pi pi-arrow-right" 
+                                iconPos="right" 
+                                (onClick)="nextCallback.emit()" />
+                        </div>
+                    </ng-template>
+                </p-stepperPanel>
+                <p-stepperPanel header="Payment">
+                    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+                        <div class="flex flex-column h-12rem">
+                            <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                                Content III
+                            </div>
+                        </div>
+                        <div class="flex pt-4 justify-content-start">
+                            <p-button 
+                                label="Back" 
+                                icon="pi pi-arrow-left" 
+                                (onClick)="prevCallback.emit()" />
+                        </div>
+                    </ng-template>
+                </p-stepperPanel>
+            </p-stepper>
+        </div>
+        </div>
+        <div class="col-12 col-lg-5 col-md-7 col-sm-12">
+            
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="default-section-padding">
+    <div class="container-xl">
+      <div class="searchResultFlex">
+        <p
+          class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
+        >
+          Frequently Bought Together :
+        </p>
+      </div>
+      <div class="row">
+        <div
+          class="col-12 col-lg-4 col-md-4 col-sm-12"
+          *ngFor="let card of [1, 1, 1]"
+        >
+          <app-suggested-product-card
+            [productImage]="'assets/images/cardImage.png'"
+            [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
+            [productCode]="'64A288075'"
+            [rating]="5"
+            [strikedPrice]="1800"
+            [discount]="10"
+            [price]="1710"
+          >
+          </app-suggested-product-card>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="default-section-padding">
+    <div class="container-xl">
+      <div class="searchResultFlex">
+        <p
+          class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
+        >
+          Recommended Products :
+        </p>
+      </div>
+  
+      <swiper [config]="RecommendedSwiperOptions">
+        <ng-template swiperSlide="" *ngFor="let x of [1, 1, 1, 1]">
+          <app-product-card
+            [islIked]="false"
+            [highlightedTag]="'BEST SELLER'"
+            [productImage]="'assets/images/cardImage.png'"
+            [productName]="'Unclench Oxidized Ring in 925 Silver'"
+            [strikedPrice]="1800"
+            [discount]="10"
+            [price]="1710"
+            [hasSimilarProducts]="false"
+          >
+          </app-product-card>
+        </ng-template>
+      </swiper>
+    </div>
+  </section>
+  
+  <app-footer></app-footer>
