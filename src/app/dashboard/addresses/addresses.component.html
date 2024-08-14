@@ -1,0 +1,376 @@
+<div class="breadCrumb">
+    <p class="menuTitle">My account > Manage Addresses</p>
+</div>
+<div class="tabItem">
+    <div class="addressCapsule">
+      <p
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+      >
+        Home , <span> 600061</span>
+      </p>
+
+      <p
+        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+      >
+        View
+      </p>
+    </div>
+    <div class="addressCapsule">
+      <p
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+      >
+        Work , <span> 600061</span>
+      </p>
+      <p
+        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+      >
+        View
+      </p>
+    </div>
+    <div class="addressCapsule">
+      <p
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+      >
+        Office , <span> 600061</span>
+      </p>
+
+      <p
+        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+      >
+        View
+      </p>
+    </div>
+    <div class="addressCapsule">
+      <p
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+      >
+        Add a new address
+      </p>
+      <div
+        (click)="openBackDropCustomClass(content)"
+        class="cutCard bg-blue-black cursor-pointer"
+      >
+        <i class="fa-solid fa-plus text-white"></i>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4
+        class="modal-title zero-margin-bottom font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24"
+      >
+        Add new address
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >First Name</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <input
+            id="passwordCustom"
+            type="text"
+            class="form-control"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            formControlName="firstName"
+          />
+        </div>
+        <small
+          *ngIf="
+            f['firstName'].touched &&
+            f['firstName'].invalid &&
+            f['firstName'].errors['required']
+          "
+          >firstName is required</small
+        >
+        <small
+          *ngIf="
+            f['firstName'].touched &&
+            f['firstName'].invalid &&
+            f['firstName'].errors['pattern']
+          "
+          >firstName should not contain special characters</small
+        >
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Last Name</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <input
+            id="passwordCustom"
+            type="text"
+            class="form-control"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            formControlName="lastName"
+          />
+        </div>
+        <small
+          *ngIf="
+            f['lastName'].touched &&
+            f['lastName'].invalid &&
+            f['lastName'].errors['required']
+          "
+          >lastName is required</small
+        >
+        <small
+          *ngIf="
+            f['lastName'].touched &&
+            f['lastName'].invalid &&
+            f['lastName'].errors['pattern']
+          "
+          >lastName should not contain special characters</small
+        >
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Address</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <textarea
+            rows="8"
+            id="passwordCustom"
+            type="text"
+            class="form-control"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            formControlName="address"
+          ></textarea>
+        </div>
+        <small
+          *ngIf="
+            f['address'].touched &&
+            f['address'].invalid &&
+            f['address'].errors['required']
+          "
+          >address is required</small
+        >
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Additional Information (optional)</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <textarea
+            rows="8"
+            id="passwordCustom"
+            type="text"
+            class="form-control"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            formControlName="additionalInfo"
+          ></textarea>
+        </div>
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Mobile</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <ngx-intl-tel-input
+            style="width: 100%; height: 100%"
+            class="default-border default-box-shadow border-radius-10px custom"
+            [cssClass]="'custom'"
+            [preferredCountries]="preferredCountries"
+            [enableAutoCountrySelect]="true"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [searchCountryField]="[
+              SearchCountryField.Iso2,
+              SearchCountryField.Name
+            ]"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.India"
+            [maxLength]="10"
+            [phoneValidation]="true"
+            [separateDialCode]="separateDialCode"
+            [customPlaceholder]="'7038618205'"
+            [numberFormat]="PhoneNumberFormat.National"
+            name="mobile"
+            formControlName="mobile"
+          >
+          </ngx-intl-tel-input>
+        </div>
+        <small
+          *ngIf="
+            f['mobile'].touched &&
+            f['mobile'].invalid &&
+            f['mobile'].errors['required']
+          "
+          >mobile is required</small
+        >
+  
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Alternate Mobile</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <ngx-intl-tel-input
+            style="width: 100%; height: 100%"
+            class="default-border default-box-shadow border-radius-10px custom"
+            [cssClass]="'custom'"
+            [preferredCountries]="preferredCountries"
+            [enableAutoCountrySelect]="true"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [searchCountryField]="[
+              SearchCountryField.Iso2,
+              SearchCountryField.Name
+            ]"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.India"
+            [maxLength]="10"
+            [phoneValidation]="true"
+            [separateDialCode]="separateDialCode"
+            [customPlaceholder]="'7038618205'"
+            [numberFormat]="PhoneNumberFormat.National"
+            name="mobile"
+            formControlName="aternateMobile"
+          >
+          </ngx-intl-tel-input>
+        </div>
+        <small
+          *ngIf="
+            f['aternateMobile'].touched &&
+            f['aternateMobile'].invalid &&
+            f['aternateMobile'].errors['required']
+          "
+          >aternateMobile is required</small
+        >
+  
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Country</label
+        >
+        <ng-select
+          [items]="countryList"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          bindLabel="name"
+          bindValue="name"
+          formControlName="country"
+          [searchable]="true"
+          [clearable]="false"
+        >
+        </ng-select>
+        <small
+          *ngIf="
+            f['country'].touched &&
+            f['country'].invalid &&
+            f['country'].errors['required']
+          "
+          >country is required</small
+        >
+  
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >State</label
+        >
+        <ng-select
+          [items]="countryList"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          bindLabel="name"
+          bindValue="name"
+          formControlName="state"
+          [searchable]="true"
+          [clearable]="false"
+        >
+        </ng-select>
+        <small
+          *ngIf="
+            f['state'].touched &&
+            f['state'].invalid &&
+            f['state'].errors['required']
+          "
+          >state is required</small
+        >
+  
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >City</label
+        >
+        <ng-select
+          [items]="countryList"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          bindLabel="name"
+          bindValue="name"
+          formControlName="city"
+          [searchable]="true"
+          [clearable]="false"
+        >
+        </ng-select>
+        <small
+          *ngIf="
+            f['city'].touched && f['city'].invalid && f['city'].errors['required']
+          "
+          >city is required</small
+        >
+  
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Pincode</label
+        >
+        <ng-select
+          [items]="countryList"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          bindLabel="name"
+          bindValue="name"
+          formControlName="pincode"
+          [searchable]="true"
+          [clearable]="false"
+        >
+        </ng-select>
+        <small
+          *ngIf="
+            f['pincode'].touched &&
+            f['pincode'].invalid &&
+            f['pincode'].errors['required']
+          "
+          >pincode is required</small
+        >
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Save this address as</label
+        >
+        <div class="loginComp input-group customInputGroup height-60px mb-3">
+          <input
+            id="passwordCustom"
+            type="text"
+            class="form-control"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            formControlName="addressName"
+          />
+        </div>
+        <small
+          *ngIf="
+            f['addressName'].touched &&
+            f['addressName'].invalid &&
+            f['addressName'].errors['required']
+          "
+          >addressName is required</small
+        >
+        <small
+          *ngIf="
+            f['addressName'].touched &&
+            f['addressName'].invalid &&
+            f['addressName'].errors['pattern']
+          "
+          >addressName should not contain special characters</small
+        >
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
+      >
+        Save Address
+      </button>
+    </div>
+  </ng-template>

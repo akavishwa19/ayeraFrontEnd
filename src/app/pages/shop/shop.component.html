@@ -43,18 +43,39 @@
       <button (click)="open(content)" class="font-lato bg-blue-black none-outline font-16 text-white border-radius-10px font-weight-700 px-4 py-2">Compare 3 products <i class="fa-solid fa-circle-plus padding-left-10px font-18"></i> </button>
     </div>
     <div class="row mt-3">
-      <div class="col-12 col-lg-3 col-md-6 col-sm-12" *ngFor="let x of [1,1,1,1,1,1,1,1,1,1,1,1]">
+      <div class="col-12 col-lg-3 col-md-6 col-sm-12" *ngFor="let item of productList">
+        <ng-container *ngIf="item.type=='simple';else variable">
         <app-product-card
-          [islIked]="false"
-          [highlightedTag]="'BEST SELLER'"
-          [productImage]="'assets/images/cardImage.png'"
-          [productName]="'Unclench Oxidized Ring in 925 Silver'"
-          [strikedPrice]="1800"
-          [discount]="10"
-          [price]="1710"
+          (valueLiked)="detectValueLiked($event)"
+          [productId]="item._id"
+          [islIked]="item.isLiked"
+          [highlightedTag]="item.tags[0].name"
+          [productImage]="imageUrl+item.featuredImage+imageMetaUrl"
+          [productName]="item.name"
+          [strikedPrice]="item.price"
+          [discount]="item.discount"
+          [additionalDiscount]="item.additionalDiscount"
+          [price]="item.sellingPrice"
           [hasSimilarProducts]="true"
         >
         </app-product-card>
+      </ng-container>
+      <ng-template #variable>
+        <app-product-card
+        (valueLiked)="detectValueLiked($event)"
+        [productId]="item._id"
+        [islIked]="item.isLiked"
+        [highlightedTag]="item.tags[0].name"
+        [productImage]="imageUrl+item.featuredImage+imageMetaUrl"
+        [productName]="item.variants[0].name"
+        [strikedPrice]="item.variants[0].price"
+        [discount]="item.variants[0].discount"
+        [additionalDiscount]="item.variants[0].additionalDiscount"
+        [price]="item.variants[0].sellingPrice"
+        [hasSimilarProducts]="true"
+      >
+      </app-product-card>
+    </ng-template>
       </div>
     </div>
   </div>
@@ -68,7 +89,7 @@
     </div>
   </div>
 </section>
-<section class="default-section-padding">
+<!-- <section class="default-section-padding">
   <div class="container-xl ">
     <div class="row">
       <div class="col-12 col-lg-3 col-md-6 col-sm-12" *ngFor="let x of [1,1,1,1,1,1,1,1]">
@@ -86,7 +107,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <app-footer></app-footer>
 

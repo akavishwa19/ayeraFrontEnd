@@ -215,7 +215,7 @@ export class HomeComponent {
         spaceBetween: 30,
       },
       1440: {
-        slidesPerView: 5,
+        slidesPerView: 4,
         spaceBetween: 20,
       },
     },

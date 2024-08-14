@@ -7,6 +7,7 @@ import { ProductCardComponent } from '../shared/product-card/product-card.compon
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { CartAddonsComponent } from './cart-addons/cart-addons.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ComingSoonComponent,
+        component: HomeComponent,
       },
       {
         path: 'home',
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent,
+      },
+      {
+        path: 'cart-add-ons',
+        component: CartAddonsComponent,
       },
     ],
   },

@@ -14,6 +14,14 @@ import {TabsModule} from "ngx-bootstrap/tabs";
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { CartComponent } from './cart/cart.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import {  HttpClientModule } from '@angular/common/http';
+import { CartAddonsComponent } from './cart-addons/cart-addons.component';
+import { StepperModule } from 'primeng/stepper';
+import { ButtonModule } from 'primeng/button';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,8 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     ShopComponent,
     ProductComponent,
     CartComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    CartAddonsComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +41,14 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
     SwiperModule,
     MatSliderModule,
     TabsModule,
-    ProgressbarModule
+    ProgressbarModule,
+    HttpClientModule,
+    StepperModule,
+    ButtonModule,
+    NgxIntlTelInputModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    FileUploadModule 
   ]
 })
 export class PagesModule { }

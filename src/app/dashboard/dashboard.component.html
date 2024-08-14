@@ -1,0 +1,58 @@
+<app-header />
+<section class="default-section-padding">
+  <div class="container-xl specialBorderBottom">
+    <p
+      class="font-lato font-weight-800 font-24 line-height-24 letter-spacing-04 py-3"
+    >
+      Hi Kalish,
+    </p>
+  </div>
+</section>
+<section class="default-section-padding">
+  <div class="container-xl">
+        <div class="row">
+            <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+                <div class="menuBar">
+                    <div class="menuTitle">
+                        <p>My Account</p>
+                    </div>    
+                    <div class="menuChildren mt-3">
+                        <p routerLink="/dashboard/personal-information" routerLinkActive="someColor"> <i class="fa-solid fa-user"></i> <span class="mx-2">Personal Information</span> </p>
+                    </div>
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/customizable-jewellery" routerLinkActive="someColor" > <i class="fa-regular fa-gem"></i> <span class="mx-2">Customizable Jewellery</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/orders" routerLinkActive="someColor"><i class="fa-solid fa-truck"></i><span class="mx-2">My Orders</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/wishlist" routerLinkActive="someColor"><i class="fa-solid fa-heart"></i><span class="mx-2">My Wishlist</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/reviews-and-ratings" routerLinkActive="someColor"><i class="fa-solid fa-star-half-stroke"></i><span class="mx-2">My Reviews & Ratings</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/addresses" routerLinkActive="someColor"> <i class="fa-solid fa-location-dot"></i><span class="mx-2">Manage Addresses</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/reset-password" routerLinkActive="someColor"><i class="fa-solid fa-unlock-keyhole"></i><span class="mx-2">Reset Password</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/affiliates" routerLinkActive="someColor"><i class="fa-solid fa-user-plus"></i><span class="mx-2">Affiliates</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p routerLink="/dashboard/buy-back-jewels" routerLinkActive="someColor"> <i class="fa-solid fa-rotate"></i><span class="mx-2">Buy back jewel</span></p>
+                    </div>   
+                    <div class="menuChildren">
+                        <p ><i class="fa-solid fa-power-off"></i><span class="mx-2">Log out</span></p>
+                    </div>                   
+                </div>
+            </div>
+            <div class="col-12 col-lg-9 col-md-9 col-sm-12">
+                <router-outlet/>
+            </div>
+        </div>
+  </div>
+</section>
+
+<app-footer />

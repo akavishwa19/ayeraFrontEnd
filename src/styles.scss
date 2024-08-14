@@ -221,6 +221,9 @@ body {
 .margin-right-10px {
   margin-right: 10px !important;
 }
+.uppercase{
+  text-transform: uppercase;
+}
 .display-block {
   display: block;
 }
@@ -229,6 +232,9 @@ body {
 }
 .height-50px {
   height: 50px;
+}
+.min-height-50px {
+  min-height: 50px;
 }
 .height-60px {
   height: 60px;
@@ -252,7 +258,7 @@ body {
   cursor: pointer;
 }
 .cursor-not-allowed {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 .rotate-180 {
   transform: rotate(180deg);
@@ -286,6 +292,9 @@ body {
 }
 .text-decoration-line-through {
   text-decoration: line-through;
+}
+.text-decoration-initial{
+  text-decoration: initial !important;
 }
 .text-decoration-none {
   text-decoration: none !important;
@@ -577,6 +586,11 @@ margin: 5px !important;
   background-color: lightblue !important; /* Adjust if needed */
 }
 
+small{
+  color: red;
+  font-weight: 800;
+}
+
 //SOME MEDIA QUERIES FOR UTILITY CLASSES
 @media (max-width: 600px) {
   .offcanvas.offcanvas-start {
@@ -594,4 +608,41 @@ margin: 5px !important;
   .font-27 {
     font-size: 18px !important;
   }
+}
+
+
+//ngx input override
+.iti--allow-dropdown input, .iti--allow-dropdown input[type=text], .iti--allow-dropdown input[type=tel], .iti--separate-dial-code input, .iti--separate-dial-code input[type=text], .iti--separate-dial-code input[type=tel]{
+  border: none !important;
+    // width: 290px !important;
+    width: 100% !important;
+    height: 55px  !important;
+}
+.iti__selected-flag{
+  padding: 0px 10px 0px 18px !important;
+  border-right:1px solid #DEE2E6 !important;
+}
+.iti--allow-dropdown input:focus-visible{
+  border: none !important;
+}
+.iti--allow-dropdown input, .iti--allow-dropdown input[type=text], .iti--allow-dropdown input[type=tel], .iti--separate-dial-code input, .iti--separate-dial-code input[type=text], .iti--separate-dial-code input[type=tel]{
+  padding-left: 72px !important;
+}
+.custom:focus-visible{
+  border: none !important;
+  outline: none !important;
+}
+.p-button{
+  background-color: #020724 !important;
+  border: none !important;
+}
+.ng-select .ng-select-container{
+  border: 1px solid #ffffff !important;
+}
+.menuTitle{
+  font-size: 20px;
+  font-family: 'Lato';
+  font-weight: 600;
+  line-height:24px;
+  padding: 5px 0;
 }

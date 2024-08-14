@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {ExtraOptions, RouterModule, Routes} from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -12,15 +12,23 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
-
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
 ];
 
-const routerOptions:ExtraOptions={
+const routerOptions: ExtraOptions = {
   initialNavigation: 'enabledBlocking',
-  scrollPositionRestoration: 'enabled'
-}
+  scrollPositionRestoration: 'enabled',
+};
 @NgModule({
-  imports: [RouterModule.forRoot(routes,routerOptions)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

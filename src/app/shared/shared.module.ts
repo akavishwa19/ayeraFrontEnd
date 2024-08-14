@@ -13,6 +13,8 @@ import {NgbModalModule, NgbRatingModule} from "@ng-bootstrap/ng-bootstrap";
 import { SuggestedProductCardComponent } from './suggested-product-card/suggested-product-card.component';
 import { CompareProductComponent } from './compare-product/compare-product.component';
 import { ProductInComparisonComponent } from './product-in-comparison/product-in-comparison.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProductCardCartComponent } from './product-card-cart/product-card-cart.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { ProductInComparisonComponent } from './product-in-comparison/product-in
     ProductCardComponent,
     SuggestedProductCardComponent,
     CompareProductComponent,
-    ProductInComparisonComponent
+    ProductInComparisonComponent,
+    ProductCardCartComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { ProductInComparisonComponent } from './product-in-comparison/product-in
     InputSwitchModule,
     FormsModule,
     NgbModalModule,
-    NgbRatingModule
+    NgbRatingModule,
+    HttpClientModule
   ],
     exports: [
         AdvertisementHeaderComponent,
@@ -40,7 +44,8 @@ import { ProductInComparisonComponent } from './product-in-comparison/product-in
         FooterComponent,
         ProductCardComponent,
         SuggestedProductCardComponent,
-        CompareProductComponent
+        CompareProductComponent,
+        ProductCardCartComponent
     ]
 })
 export class SharedModule { }

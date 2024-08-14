@@ -1,143 +1,1155 @@
 <app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 
-
 <section class="default-section-padding">
-<div class="container-xl">
-  <div
-  class="navigation padding-y-2rem width-50 d-flex justify-space-between"
->
-  <i class="fa-solid font-21 font-weight-700 fa-arrow-left"></i>
-  <p
-    class="font-lato font-21 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24"
-  >
-    Shopping Cart
-  </p>
-</div>
+  <div class="container-xl">
+    <div
+      class="navigation padding-y-2rem width-50 d-flex justify-space-between"
+    >
+      <i class="fa-solid font-21 font-weight-700 fa-arrow-left"></i>
+      <p
+        class="font-lato font-21 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24"
+      >
+        Shopping Cart
+      </p>
+    </div>
     <div class="row">
-        <div class="col-12 col-lg-7 col-md-7 col-sm-12">
-          <div class="card flex justify-content-center">
-            <p-stepper>
-                <p-stepperPanel header="Shipping">
-                    <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
-                        <div>
-                          <p  class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24">Addresses</p>
+      <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+        <div class="card flex justify-content-center">
+          <p-stepper>
+            <p-stepperPanel header="Shipping">
+              <ng-template
+                pTemplate="content"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div>
+                  <p
+                    class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 pb-2"
+                  >
+                    Addresses
+                  </p>
 
-                          <div class="tabItem">
-                            <button class="font-lato">
-                              Home
-                            </button>
+                  <div class="tabItem">
+                    <div class="addressCapsule">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                      >
+                        Home , <span> 600061</span>
+                      </p>
+
+                      <p
+                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+                      >
+                        View
+                      </p>
+                    </div>
+                    <div class="addressCapsule">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                      >
+                        Work , <span> 600061</span>
+                      </p>
+                      <p
+                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+                      >
+                        View
+                      </p>
+                    </div>
+                    <div class="addressCapsule">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                      >
+                        Office , <span> 600061</span>
+                      </p>
+
+                      <p
+                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+                      >
+                        View
+                      </p>
+                    </div>
+                    <div class="addressCapsule">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                      >
+                        Add a new address
+                      </p>
+                      <div
+                        (click)="openBackDropCustomClass(content)"
+                        class="cutCard bg-blue-black cursor-pointer"
+                      >
+                        <i class="fa-solid fa-plus text-white"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-3">
+                  <p
+                    class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 pb-2"
+                  >
+                    Shipping Address
+                  </p>
+                  <div class="tabItem">
+                    <div
+                      class="addressCapsule forceActivatedClass cursor-pointer"
+                    >
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        Home
+                      </p>
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        600061
+                      </p>
+                    </div>
+                    <div class="addressCapsule cursor-pointer">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        Work
+                      </p>
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        600061
+                      </p>
+                    </div>
+                    <div class="addressCapsule cursor-pointer">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        Office
+                      </p>
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        600061
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-3">
+                  <p
+                    class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 line-height-24 pb-2"
+                  >
+                    Billing Address
+                  </p>
+                  <div class="tabItem">
+                    <div
+                      class="addressCapsule forceActivatedClass cursor-pointer"
+                    >
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        Home
+                      </p>
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        600061
+                      </p>
+                    </div>
+                    <div class="addressCapsule cursor-pointer">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        Work
+                      </p>
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        600061
+                      </p>
+                    </div>
+                    <div class="addressCapsule cursor-pointer">
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        Office
+                      </p>
+                      <p
+                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      >
+                        600061
+                      </p>
+                    </div>
+                    <p
+                      class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer pt-2 mx-2"
+                    >
+                      *We will not send an invoice to the shipping address
+                    </p>
+
+                    <div class="d-flex pt-2 mx-2">
+                      <input type="checkbox" />
+                      <p
+                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer mx-2"
+                      >
+                        Receive updates on whatsapp 1234567890
+                      </p>
+                    </div>
+                    <p
+                      class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer mx-2"
+                    >
+                      We will be sharing delivery related communication,
+                      precious orders & certification updates. We provide an
+                      interactive whatsapp support.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex pt-4 justify-content-end">
+                  <p-button
+                    label="Continue"
+                    icon="pi pi-arrow-right"
+                    iconPos="right"
+                    (onClick)="nextCallback.emit()"
+                  />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+            <p-stepperPanel header="Make it Special">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-nextCallback="nextCallback"
+                let-index="index"
+              >
+                <div class="flex flex-column h-12rem">
+                  <div
+                    class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
+                  >
+                    <div>
+                      <p
+                        class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 pb-2"
+                      >
+                        Choose a Gift Wrap
+                      </p>
+                      <p
+                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star text-align-center"
+                      >
+                        Aayra’s Orders will come in it’s own Signature Packing
+                      </p>
+                      <div class="gitCardsFlex pt-4">
+                        <div class="giftCardBox" *ngFor="let x of [1, 1, 1]">
+                          <div class="giftCardBoxImageContainer">
+                            <img
+                              class="responsiveImage"
+                              src="/assets/images/giftWrap.png"
+                            />
+                          </div>
+                          <div class="giftCardGrey">
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom text-white text-align-center py-3"
+                            >
+                              Warm Hugs
+                            </p>
                           </div>
                         </div>
-                        <div class="flex pt-4 justify-content-end">
-                            <p-button 
-                                label="Next" 
-                                icon="pi pi-arrow-right" 
-                                iconPos="right" 
-                                (onClick)="nextCallback.emit()" />
+                      </div>
+
+                      <p
+                        class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 py-4"
+                      >
+                        Add a Gift Message (optional)
+                      </p>
+                      <label
+                        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+                        >You can add a personal note With Your Gift</label
+                      >
+                      <textarea class="form-control" rows="4"> </textarea>
+
+                      <p
+                        class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 py-4"
+                      >
+                        Add Personal Engravings (optional)
+                      </p>
+                      <div class="col-12 col-lg-6 col-md-4 col-sm-12">
+                        <div class="labelFlex">
+                          <label
+                            class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+                            >Select Product</label
+                          >
                         </div>
-                    </ng-template>
-                </p-stepperPanel>
-                <p-stepperPanel header="Make it Special">
-                    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
-                        <div class="flex flex-column h-12rem">
-                            <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                                Content II
+                        <ng-select
+                          class="default-border default-box-shadow border-radius-10px padding-10 min-height-50px width-100 mb-3"
+                          [searchable]="true"
+                          [multiple]="true"
+                          [clearable]="true"
+                          appendTo="body"
+                        >
+                          <ng-option
+                            *ngFor="let item of productList"
+                            value="{{ item._id }}"
+                          >
+                            <img
+                              width="30px"
+                              height="30px"
+                              src="{{ imageUrl }}{{ item.featuredImage }}{{
+                                imageMetaUrl
+                              }}"
+                            />
+                            <span class="mx-4">{{ item.productCode }}</span>
+                          </ng-option>
+                        </ng-select>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-lg-12 col-md-4 col-sm-12">
+                          <label
+                            class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+                            >Upload Image</label
+                          >
+                          <div class="file-upload">
+                            <input
+                              (change)="onUpload($event)"
+                              type="file"
+                              id="fileInput"
+                            />
+                            <label for="fileInput">Choose a file</label>
+                            <span id="fileName">No file chosen</span>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-4 col-sm-12 mt-3">
+                          <label
+                            class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+                            >What would you love to express ?</label
+                          >
+                          <div>
+                            <input
+                              class="default-border default-box-shadow border-radius-10px padding-10 min-height-50px width-100 mb-3"
+                              type="text"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-4 col-sm-12 mt-3">
+                          <label
+                            class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+                            >Who is the gift for ?</label
+                          >
+                          <div>
+                            <input
+                              class="default-border default-box-shadow border-radius-10px padding-10 min-height-50px width-100 mb-3"
+                              type="text"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-md-4 col-sm-12 mt-3">
+                          <label
+                            class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+                            >Phone No. of the person whom you want to
+                            gift</label
+                          >
+                          <div>
+                            <div
+                              class="loginComp input-group customInputGroup height-60px mb-3"
+                            >
+                              <ngx-intl-tel-input
+                                style="width: 100%; height: 100%"
+                                class="default-border default-box-shadow border-radius-10px custom"
+                                [cssClass]="'custom'"
+                                [preferredCountries]="preferredCountries"
+                                [enableAutoCountrySelect]="true"
+                                [enablePlaceholder]="true"
+                                [searchCountryFlag]="true"
+                                [searchCountryField]="[
+                                  SearchCountryField.Iso2,
+                                  SearchCountryField.Name
+                                ]"
+                                [selectFirstCountry]="false"
+                                [selectedCountryISO]="CountryISO.India"
+                                [maxLength]="10"
+                                [phoneValidation]="true"
+                                [separateDialCode]="separateDialCode"
+                                [customPlaceholder]="'7038618205'"
+                                [numberFormat]="PhoneNumberFormat.National"
+                                name="mobile"
+                              >
+                              </ngx-intl-tel-input>
                             </div>
+                          </div>
                         </div>
-                        <div class="flex pt-4 justify-content-between">
-                            <p-button 
-                                label="Back" 
-                                icon="pi pi-arrow-left" 
-                                (onClick)="prevCallback.emit()" />
-                            <p-button 
-                                label="Next" 
-                                icon="pi pi-arrow-right" 
-                                iconPos="right" 
-                                (onClick)="nextCallback.emit()" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex pt-4 justify-content-between">
+                  <p-button
+                    label="Back"
+                    icon="pi pi-arrow-left"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button
+                    class="mx-3"
+                    label="Proceed to payment"
+                    icon="pi pi-arrow-right"
+                    iconPos="right"
+                    (onClick)="nextCallback.emit()"
+                  />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+            <p-stepperPanel header="Payment">
+              <ng-template
+                pTemplate="content"
+                let-prevCallback="prevCallback"
+                let-index="index"
+              >
+                <div class="flex flex-column h-12rem">
+                  <div
+                    class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium"
+                  >
+                    <div>
+                      <p
+                        class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 pb-2"
+                      >
+                        Choose a Payment Method
+                      </p>
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="38"
+                              viewBox="0 0 50 38"
+                              fill="none"
+                            >
+                              <path
+                                d="M0 6.33333C0 4.65363 0.65848 3.04272 1.83058 1.85499C3.00269 0.66726 4.5924 0 6.25 0H43.75C45.4076 0 46.9973 0.66726 48.1694 1.85499C49.3415 3.04272 50 4.65363 50 6.33333V9.5H0V6.33333ZM0 15.8333V31.6667C0 33.3464 0.65848 34.9573 1.83058 36.145C3.00269 37.3327 4.5924 38 6.25 38H43.75C45.4076 38 46.9973 37.3327 48.1694 36.145C49.3415 34.9573 50 33.3464 50 31.6667V15.8333H0ZM9.375 22.1667H12.5C13.3288 22.1667 14.1237 22.5003 14.7097 23.0942C15.2958 23.688 15.625 24.4935 15.625 25.3333V28.5C15.625 29.3399 15.2958 30.1453 14.7097 30.7392C14.1237 31.333 13.3288 31.6667 12.5 31.6667H9.375C8.5462 31.6667 7.75134 31.333 7.16529 30.7392C6.57924 30.1453 6.25 29.3399 6.25 28.5V25.3333C6.25 24.4935 6.57924 23.688 7.16529 23.0942C7.75134 22.5003 8.5462 22.1667 9.375 22.1667Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              Credit Card
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Save & Pay via Credit Cards
+                            </p>
+                          </div>
                         </div>
-                    </ng-template>
-                </p-stepperPanel>
-                <p-stepperPanel header="Payment">
-                    <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
-                        <div class="flex flex-column h-12rem">
-                            <div class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                                Content III
-                            </div>
+                        <div>
+                          <div
+                            (click)="mark('1')"
+                            class="radioCircle cursor-pointer"
+                          >
+                            <div id="rc-1" class="blackDot"></div>
+                          </div>
                         </div>
-                        <div class="flex pt-4 justify-content-start">
-                            <p-button 
-                                label="Back" 
-                                icon="pi pi-arrow-left" 
-                                (onClick)="prevCallback.emit()" />
+                      </div>
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="38"
+                              viewBox="0 0 50 38"
+                              fill="none"
+                            >
+                              <path
+                                d="M0 6.33333C0 4.65363 0.65848 3.04272 1.83058 1.85499C3.00269 0.66726 4.5924 0 6.25 0H43.75C45.4076 0 46.9973 0.66726 48.1694 1.85499C49.3415 3.04272 50 4.65363 50 6.33333V9.5H0V6.33333ZM0 15.8333V31.6667C0 33.3464 0.65848 34.9573 1.83058 36.145C3.00269 37.3327 4.5924 38 6.25 38H43.75C45.4076 38 46.9973 37.3327 48.1694 36.145C49.3415 34.9573 50 33.3464 50 31.6667V15.8333H0ZM9.375 22.1667H12.5C13.3288 22.1667 14.1237 22.5003 14.7097 23.0942C15.2958 23.688 15.625 24.4935 15.625 25.3333V28.5C15.625 29.3399 15.2958 30.1453 14.7097 30.7392C14.1237 31.333 13.3288 31.6667 12.5 31.6667H9.375C8.5462 31.6667 7.75134 31.333 7.16529 30.7392C6.57924 30.1453 6.25 29.3399 6.25 28.5V25.3333C6.25 24.4935 6.57924 23.688 7.16529 23.0942C7.75134 22.5003 8.5462 22.1667 9.375 22.1667Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              Debit Card
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Save & Pay via Debit Cards
+                            </p>
+                          </div>
                         </div>
-                    </ng-template>
-                </p-stepperPanel>
-            </p-stepper>
+                        <div>
+                          <div
+                            (click)="mark('2')"
+                            class="radioCircle cursor-pointer"
+                          >
+                            <div id="rc-2" class="blackDot"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="50"
+                              viewBox="0 0 50 50"
+                              fill="none"
+                            >
+                              <path
+                                d="M17.87 0L15.6839 17.5351H20.4821L25.9865 1.01868L17.87 0ZM28.1502 0.90149L22.6121 17.5351L39.3946 17.5464L43.2399 5.98364L28.1502 0.90149ZM15.583 2.10047L7.52242 2.98393L9.10314 17.5351H13.6659L15.583 2.10047ZM2.57848 14.1545C1.28924 14.1545 0.428251 15.1462 0.193946 16.0927C0.0773542 16.566 0.143498 16.9491 0.275785 17.1632C0.406951 17.3661 0.588565 17.5351 1.23318 17.5351H7.07399L6.70404 14.1545H2.57848ZM42.6457 14.1545L41.5247 17.5351H46.8498C46.5583 16.9717 46.435 16.3744 46.5135 15.7772C46.5919 15.1912 46.8161 14.6616 47.1076 14.1545H42.6457ZM0 19.5635V47.3857C0 47.9604 0.31278 48.6365 0.826233 49.1549C1.34081 49.6732 2.01794 49.9887 2.57848 49.9887L45.6278 50C46.1883 50 46.861 49.6845 47.3767 49.1661C47.8924 48.6478 48.2063 47.9716 48.2063 47.3969V39.3962H38.4529C33.5202 39.3962 33.5202 30.156 38.4529 30.156H48.2063V19.5747L0 19.5635ZM38.4529 32.1843C36.2108 32.1843 36.2108 37.3679 38.4529 37.3679H40.9529C39.9439 36.9397 39.2377 35.9368 39.2377 34.7761C39.2377 33.6154 39.9439 32.6125 40.9529 32.1843H38.4529ZM43.1278 32.1843C44.1368 32.6125 44.843 33.6154 44.843 34.7761C44.843 35.9368 44.1368 36.9397 43.1278 37.3679H50V32.1843H43.1278ZM42.0404 33.9873C41.5919 33.9873 41.2556 34.3253 41.2556 34.7761C41.2556 35.2268 41.5919 35.5649 42.0404 35.5649C42.4888 35.5649 42.8251 35.2268 42.8251 34.7761C42.8251 34.3253 42.4888 33.9873 42.0404 33.9873Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              UPI
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Paytm, Phonepe,Google Pay , & more
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <div
+                            (click)="mark('3')"
+                            class="radioCircle cursor-pointer"
+                          >
+                            <div id="rc-3" class="blackDot"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="38"
+                              viewBox="0 0 50 38"
+                              fill="none"
+                            >
+                              <path
+                                d="M0 6.33333C0 4.65363 0.65848 3.04272 1.83058 1.85499C3.00269 0.66726 4.5924 0 6.25 0H43.75C45.4076 0 46.9973 0.66726 48.1694 1.85499C49.3415 3.04272 50 4.65363 50 6.33333V9.5H0V6.33333ZM0 15.8333V31.6667C0 33.3464 0.65848 34.9573 1.83058 36.145C3.00269 37.3327 4.5924 38 6.25 38H43.75C45.4076 38 46.9973 37.3327 48.1694 36.145C49.3415 34.9573 50 33.3464 50 31.6667V15.8333H0ZM9.375 22.1667H12.5C13.3288 22.1667 14.1237 22.5003 14.7097 23.0942C15.2958 23.688 15.625 24.4935 15.625 25.3333V28.5C15.625 29.3399 15.2958 30.1453 14.7097 30.7392C14.1237 31.333 13.3288 31.6667 12.5 31.6667H9.375C8.5462 31.6667 7.75134 31.333 7.16529 30.7392C6.57924 30.1453 6.25 29.3399 6.25 28.5V25.3333C6.25 24.4935 6.57924 23.688 7.16529 23.0942C7.75134 22.5003 8.5462 22.1667 9.375 22.1667Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              Net Banking
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Select from a list of Banks
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <div
+                            (click)="mark('4')"
+                            class="radioCircle cursor-pointer"
+                          >
+                            <div id="rc-4" class="blackDot"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="38"
+                              viewBox="0 0 50 38"
+                              fill="none"
+                            >
+                              <path
+                                d="M0 6.33333C0 4.65363 0.65848 3.04272 1.83058 1.85499C3.00269 0.66726 4.5924 0 6.25 0H43.75C45.4076 0 46.9973 0.66726 48.1694 1.85499C49.3415 3.04272 50 4.65363 50 6.33333V9.5H0V6.33333ZM0 15.8333V31.6667C0 33.3464 0.65848 34.9573 1.83058 36.145C3.00269 37.3327 4.5924 38 6.25 38H43.75C45.4076 38 46.9973 37.3327 48.1694 36.145C49.3415 34.9573 50 33.3464 50 31.6667V15.8333H0ZM9.375 22.1667H12.5C13.3288 22.1667 14.1237 22.5003 14.7097 23.0942C15.2958 23.688 15.625 24.4935 15.625 25.3333V28.5C15.625 29.3399 15.2958 30.1453 14.7097 30.7392C14.1237 31.333 13.3288 31.6667 12.5 31.6667H9.375C8.5462 31.6667 7.75134 31.333 7.16529 30.7392C6.57924 30.1453 6.25 29.3399 6.25 28.5V25.3333C6.25 24.4935 6.57924 23.688 7.16529 23.0942C7.75134 22.5003 8.5462 22.1667 9.375 22.1667Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              Exchange Order
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Only for exchange orders
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <div
+                            (click)="mark('5')"
+                            class="radioCircle cursor-pointer"
+                          >
+                            <div id="rc-5" class="blackDot"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="38"
+                              viewBox="0 0 50 38"
+                              fill="none"
+                            >
+                              <path
+                                d="M0 6.33333C0 4.65363 0.65848 3.04272 1.83058 1.85499C3.00269 0.66726 4.5924 0 6.25 0H43.75C45.4076 0 46.9973 0.66726 48.1694 1.85499C49.3415 3.04272 50 4.65363 50 6.33333V9.5H0V6.33333ZM0 15.8333V31.6667C0 33.3464 0.65848 34.9573 1.83058 36.145C3.00269 37.3327 4.5924 38 6.25 38H43.75C45.4076 38 46.9973 37.3327 48.1694 36.145C49.3415 34.9573 50 33.3464 50 31.6667V15.8333H0ZM9.375 22.1667H12.5C13.3288 22.1667 14.1237 22.5003 14.7097 23.0942C15.2958 23.688 15.625 24.4935 15.625 25.3333V28.5C15.625 29.3399 15.2958 30.1453 14.7097 30.7392C14.1237 31.333 13.3288 31.6667 12.5 31.6667H9.375C8.5462 31.6667 7.75134 31.333 7.16529 30.7392C6.57924 30.1453 6.25 29.3399 6.25 28.5V25.3333C6.25 24.4935 6.57924 23.688 7.16529 23.0942C7.75134 22.5003 8.5462 22.1667 9.375 22.1667Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              Cash on Delivery
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Pay via cash on your doorsteps
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <div
+                            (click)="mark('6')"
+                            class="radioCircle cursor-pointer"
+                          >
+                            <div id="rc-6" class="blackDot"></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p
+                        class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 py-4"
+                      >
+                        Gift Cards
+                      </p>
+
+                      <div class="paymentTileFlex">
+                        <div class="paymentTypeFlex">
+                          <div class="iconHolder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="50"
+                              height="38"
+                              viewBox="0 0 50 38"
+                              fill="none"
+                            >
+                              <path
+                                d="M0 6.33333C0 4.65363 0.65848 3.04272 1.83058 1.85499C3.00269 0.66726 4.5924 0 6.25 0H43.75C45.4076 0 46.9973 0.66726 48.1694 1.85499C49.3415 3.04272 50 4.65363 50 6.33333V9.5H0V6.33333ZM0 15.8333V31.6667C0 33.3464 0.65848 34.9573 1.83058 36.145C3.00269 37.3327 4.5924 38 6.25 38H43.75C45.4076 38 46.9973 37.3327 48.1694 36.145C49.3415 34.9573 50 33.3464 50 31.6667V15.8333H0ZM9.375 22.1667H12.5C13.3288 22.1667 14.1237 22.5003 14.7097 23.0942C15.2958 23.688 15.625 24.4935 15.625 25.3333V28.5C15.625 29.3399 15.2958 30.1453 14.7097 30.7392C14.1237 31.333 13.3288 31.6667 12.5 31.6667H9.375C8.5462 31.6667 7.75134 31.333 7.16529 30.7392C6.57924 30.1453 6.25 29.3399 6.25 28.5V25.3333C6.25 24.4935 6.57924 23.688 7.16529 23.0942C7.75134 22.5003 8.5462 22.1667 9.375 22.1667Z"
+                                fill="#020724"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <p
+                              class="font-lato line-height-24 font-weight-700 font-18 zero-margin-bottom zero-padding-bottom"
+                            >
+                              Have a Gift Card
+                            </p>
+                            <p
+                              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                            >
+                              Avail additional discounts with gift cards
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <p
+                            class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star"
+                          >
+                            Add
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex pt-4 justify-content-start">
+                  <p-button
+                    label="Back"
+                    icon="pi pi-arrow-left"
+                    (onClick)="prevCallback.emit()"
+                  />
+                  <p-button label="Pay now" class="mx-3" />
+                </div>
+              </ng-template>
+            </p-stepperPanel>
+          </p-stepper>
         </div>
+      </div>
+      <div class="col-12 col-lg-5 col-md-7 col-sm-12">
+        <p
+          class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 pb-2 mt-2"
+        >
+          Order Summary (<span>1</span>)
+        </p>
+        <div class="cartProducts">
+          <div class="singleCartProduct m-3">
+            <div class="cartProductImagePreview">
+              <img
+                class="responsiveImage"
+                src="/assets/images/previewedImage.png"
+              />
+            </div>
+            <div>
+              <p
+                class="font-lato font-21 font-weight-700 line-height-24 text-black"
+              >
+                Men's 22KT Gold Ring with Dazzling Cubic Zirconia Stone
+              </p>
+              <p
+                class="font-lato font-18 font-weight-700 line-height-24 test-icon-star"
+              >
+                Product Code: 64A288075
+              </p>
+              <p
+                class="font-lato font-16 font-weight-700 line-height-24 text-black"
+              >
+                Quantity : <span>1</span>
+              </p>
+              <div class="discountedPriceProductCardFlex">
+                <p
+                  class="font-lato font-20 font-weight-700 line-height-24 text-black"
+                >
+                  ₹ <span>43,749</span>
+                </p>
+                <p
+                  class="font-lato font-18 font-weight-700 line-height-24 test-icon-star text-decoration-line-through"
+                >
+                  ₹ <span>43,749</span>
+                </p>
+                <p
+                  class="font-lato font-18 font-weight-700 line-height-24 text-red"
+                >
+                  (<span>3</span>% OFF)
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-12 col-lg-5 col-md-7 col-sm-12">
-            
+
+        <div class="bill">
+          <div class="billItemFlex">
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              Item Total
+            </p>
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            </p>
+          </div>
+          <div class="billItemFlex">
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              You Saved
+            </p>
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            </p>
+          </div>
+          <div class="billItemFlex">
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              Coupon Discount
+            </p>
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            </p>
+          </div>
+          <div class="billItemFlex mb-3">
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              Shipping (standard)
+            </p>
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            </p>
+          </div>
+          <div class="billItemFlex border-top-black">
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom mt-3"
+            >
+              Bill Total
+            </p>
+            <p
+              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+            >
+              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            </p>
+          </div>
         </div>
+        <div class="mt-3 bill">
+          <p class="font-18 font-weight-700 font-lato zero-margin-bottom py-2">
+            Delivery expected by:
+          </p>
+        </div>
+        <div >
+          <p class="font-18 font-weight-700 font-lato zero-margin-bottom py-2 mt-5 text-align-center">
+            Need Help ?
+          </p>
+          <div class="helpFlex mt-3">
+            <div class="socialIconHelp cursor-pointer">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="socialIconHelp cursor-pointer">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div class="socialIconHelp cursor-pointer">
+              <i class="fa-regular fa-envelope"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 </section>
 
-<section class="default-section-padding">
-    <div class="container-xl">
-      <div class="searchResultFlex">
-        <p
-          class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
-        >
-          Frequently Bought Together :
-        </p>
+<app-footer></app-footer>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4
+      class="modal-title zero-margin-bottom font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24"
+    >
+      Add new address
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >First Name</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <input
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="firstName"
+        />
       </div>
-      <div class="row">
-        <div
-          class="col-12 col-lg-4 col-md-4 col-sm-12"
-          *ngFor="let card of [1, 1, 1]"
-        >
-          <app-suggested-product-card
-            [productImage]="'assets/images/cardImage.png'"
-            [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
-            [productCode]="'64A288075'"
-            [rating]="5"
-            [strikedPrice]="1800"
-            [discount]="10"
-            [price]="1710"
-          >
-          </app-suggested-product-card>
-        </div>
+      <small
+        *ngIf="
+          f['firstName'].touched &&
+          f['firstName'].invalid &&
+          f['firstName'].errors['required']
+        "
+        >firstName is required</small
+      >
+      <small
+        *ngIf="
+          f['firstName'].touched &&
+          f['firstName'].invalid &&
+          f['firstName'].errors['pattern']
+        "
+        >firstName should not contain special characters</small
+      >
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Last Name</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <input
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="lastName"
+        />
       </div>
-    </div>
-  </section>
-  
-  <section class="default-section-padding">
-    <div class="container-xl">
-      <div class="searchResultFlex">
-        <p
-          class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
-        >
-          Recommended Products :
-        </p>
+      <small
+        *ngIf="
+          f['lastName'].touched &&
+          f['lastName'].invalid &&
+          f['lastName'].errors['required']
+        "
+        >lastName is required</small
+      >
+      <small
+        *ngIf="
+          f['lastName'].touched &&
+          f['lastName'].invalid &&
+          f['lastName'].errors['pattern']
+        "
+        >lastName should not contain special characters</small
+      >
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Address</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <textarea
+          rows="8"
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="address"
+        ></textarea>
       </div>
-  
-      <swiper [config]="RecommendedSwiperOptions">
-        <ng-template swiperSlide="" *ngFor="let x of [1, 1, 1, 1]">
-          <app-product-card
-            [islIked]="false"
-            [highlightedTag]="'BEST SELLER'"
-            [productImage]="'assets/images/cardImage.png'"
-            [productName]="'Unclench Oxidized Ring in 925 Silver'"
-            [strikedPrice]="1800"
-            [discount]="10"
-            [price]="1710"
-            [hasSimilarProducts]="false"
-          >
-          </app-product-card>
-        </ng-template>
-      </swiper>
-    </div>
-  </section>
-  
-  <app-footer></app-footer>
+      <small
+        *ngIf="
+          f['address'].touched &&
+          f['address'].invalid &&
+          f['address'].errors['required']
+        "
+        >address is required</small
+      >
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Additional Information (optional)</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <textarea
+          rows="8"
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="additionalInfo"
+        ></textarea>
+      </div>
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Mobile</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <ngx-intl-tel-input
+          style="width: 100%; height: 100%"
+          class="default-border default-box-shadow border-radius-10px custom"
+          [cssClass]="'custom'"
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[
+            SearchCountryField.Iso2,
+            SearchCountryField.Name
+          ]"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="CountryISO.India"
+          [maxLength]="10"
+          [phoneValidation]="true"
+          [separateDialCode]="separateDialCode"
+          [customPlaceholder]="'7038618205'"
+          [numberFormat]="PhoneNumberFormat.National"
+          name="mobile"
+          formControlName="mobile"
+        >
+        </ngx-intl-tel-input>
+      </div>
+      <small
+        *ngIf="
+          f['mobile'].touched &&
+          f['mobile'].invalid &&
+          f['mobile'].errors['required']
+        "
+        >mobile is required</small
+      >
+
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Alternate Mobile</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <ngx-intl-tel-input
+          style="width: 100%; height: 100%"
+          class="default-border default-box-shadow border-radius-10px custom"
+          [cssClass]="'custom'"
+          [preferredCountries]="preferredCountries"
+          [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[
+            SearchCountryField.Iso2,
+            SearchCountryField.Name
+          ]"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="CountryISO.India"
+          [maxLength]="10"
+          [phoneValidation]="true"
+          [separateDialCode]="separateDialCode"
+          [customPlaceholder]="'7038618205'"
+          [numberFormat]="PhoneNumberFormat.National"
+          name="mobile"
+          formControlName="aternateMobile"
+        >
+        </ngx-intl-tel-input>
+      </div>
+      <small
+        *ngIf="
+          f['aternateMobile'].touched &&
+          f['aternateMobile'].invalid &&
+          f['aternateMobile'].errors['required']
+        "
+        >aternateMobile is required</small
+      >
+
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Country</label
+      >
+      <ng-select
+        [items]="countryList"
+        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+        bindLabel="name"
+        bindValue="name"
+        formControlName="country"
+        [searchable]="true"
+        [clearable]="false"
+      >
+      </ng-select>
+      <small
+        *ngIf="
+          f['country'].touched &&
+          f['country'].invalid &&
+          f['country'].errors['required']
+        "
+        >country is required</small
+      >
+
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >State</label
+      >
+      <ng-select
+        [items]="countryList"
+        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+        bindLabel="name"
+        bindValue="name"
+        formControlName="state"
+        [searchable]="true"
+        [clearable]="false"
+      >
+      </ng-select>
+      <small
+        *ngIf="
+          f['state'].touched &&
+          f['state'].invalid &&
+          f['state'].errors['required']
+        "
+        >state is required</small
+      >
+
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >City</label
+      >
+      <ng-select
+        [items]="countryList"
+        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+        bindLabel="name"
+        bindValue="name"
+        formControlName="city"
+        [searchable]="true"
+        [clearable]="false"
+      >
+      </ng-select>
+      <small
+        *ngIf="
+          f['city'].touched && f['city'].invalid && f['city'].errors['required']
+        "
+        >city is required</small
+      >
+
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Pincode</label
+      >
+      <ng-select
+        [items]="countryList"
+        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+        bindLabel="name"
+        bindValue="name"
+        formControlName="pincode"
+        [searchable]="true"
+        [clearable]="false"
+      >
+      </ng-select>
+      <small
+        *ngIf="
+          f['pincode'].touched &&
+          f['pincode'].invalid &&
+          f['pincode'].errors['required']
+        "
+        >pincode is required</small
+      >
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Save this address as</label
+      >
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <input
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="addressName"
+        />
+      </div>
+      <small
+        *ngIf="
+          f['addressName'].touched &&
+          f['addressName'].invalid &&
+          f['addressName'].errors['required']
+        "
+        >addressName is required</small
+      >
+      <small
+        *ngIf="
+          f['addressName'].touched &&
+          f['addressName'].invalid &&
+          f['addressName'].errors['pattern']
+        "
+        >addressName should not contain special characters</small
+      >
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
+    >
+      Save Address
+    </button>
+  </div>
+</ng-template>
