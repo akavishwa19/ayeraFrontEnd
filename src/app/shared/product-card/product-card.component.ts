@@ -2,6 +2,8 @@ import {Component, EventEmitter, inject, Input, OnInit, Output, TemplateRef} fro
 import {NgbModal, NgbOffcanvas, OffcanvasDismissReasons} from "@ng-bootstrap/ng-bootstrap";
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-card',
@@ -23,18 +25,22 @@ export class ProductCardComponent implements OnInit{
   @Output() valueLiked:EventEmitter<Object>=new EventEmitter<Object>()
 
   wishlistUrl=environment.baseurl+'/wishlist'
+  productUrl=environment.baseurl+'/product'
+  variantUrl=environment.baseurl+'/variant'
 
   private offcanvasService:NgbOffcanvas = inject(NgbOffcanvas);
   private modalService:NgbModal = inject(NgbModal);
   private http:HttpClient=inject(HttpClient)
   closeResult:string = '';
+  selectedProduct:any={};
+  selectedVariant:any={};
 
-  constructor(){
+  constructor(private router:Router){
 
   }
 
   ngOnInit(): void {
-      console.log(this.islIked,this.productId)
+     
   }
 
   open(content: TemplateRef<any>) {
@@ -45,7 +51,9 @@ export class ProductCardComponent implements OnInit{
       (reason) => {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       },
+    
     );
+    this.getSingleProduct()
   }
   getDismissReason(reason: any): string {
     switch (reason) {
@@ -61,6 +69,25 @@ export class ProductCardComponent implements OnInit{
   handleLike(id:string){
     this.http.post(this.wishlistUrl+'?id='+id,{}).subscribe((res:any)=>{
       this.valueLiked.emit({response:'value changed'})
+    })
+  }
+
+  routeToProduct(){
+    this.router.navigate(['/product',this.productId])
+  }
+
+  getSingleProduct(){
+    this.http.get(this.productUrl+'/single?id='+this.productId).subscribe((res:any)=>{
+      this.selectedProduct=res.data;
+      if(this.selectedProduct.type==='variable'){
+        this.getVariantsByProduct()
+      }
+    })
+  }
+
+  getVariantsByProduct(){
+    this.http.get(this.variantUrl+'/variants-by-product?id='+this.productId).subscribe((res:any)=>{
+      this.selectedVariant=res.data;
     })
   }
 

@@ -646,3 +646,9 @@ small{
   line-height:24px;
   padding: 5px 0;
 }
+button:disabled{
+  cursor: no-drop;
+}
+.breadCrumb{
+  padding-bottom: 14px;
+}

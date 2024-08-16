@@ -1,6 +1,6 @@
-<div class="product-card mt-5 mx-2">
+<div class="product-card mt-5 mx-2 cursor-pointer" >
   <div class="productShowCase position-relative">
-    <div class="productImageContainer">
+    <div class="productImageContainer" (click)="routeToProduct()">
       <img class="responsiveImage" src="{{ productImage }}" />
     </div>
     <div
@@ -15,12 +15,21 @@
       </p>
     </div>
     <div class="position-absolute positionActions m-3">
-      <i (click)="handleLike(productId)" [ngClass]="islIked?'likedColor':'iconColor'" class="fa-solid fa-heart fa-3x cursor-pointer"></i>
-      <i
+      <!-- <i (click)="handleLike(productId)" [ngClass]="islIked?'likedColor':'iconColor'" class="fa-solid fa-heart fa-3x cursor-pointer"></i> -->
+      <svg  (click)="handleLike(productId)" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="33" height="29" viewBox="0 0 33 29" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.4125 0.28124C6.61688 0.28124 4.23906 1.2853 2.57219 3.11624C0.920625 4.92749 0.09375 7.40811 0.09375 10.1534C0.09375 14.9222 2.52187 18.7219 5.60625 21.6772C8.6775 24.6194 12.5406 26.8572 15.7388 28.5306C15.9725 28.6532 16.2323 28.7176 16.4962 28.7184C16.7601 28.7192 17.0203 28.6562 17.2547 28.535C20.455 26.8791 24.3159 24.6237 27.3894 21.6662C30.4737 18.7022 32.9062 14.8894 32.9062 10.1534C32.9062 7.39718 32.075 4.91874 30.4212 3.10749C28.7522 1.28093 26.3744 0.279053 23.5875 0.279053C21.2337 0.279053 19.2869 1.15187 17.8059 2.79687C17.3 3.36709 16.8618 3.99397 16.5 4.66499C16.1382 3.99397 15.7 3.36709 15.1941 2.79687C13.7131 1.15187 11.7663 0.28124 9.4125 0.28124Z"  [attr.fill]="islIked ? 'red' : '#999999'"/>
+        </svg>
+      <!-- <i
         *ngIf="hasSimilarProducts"
         (click)="open(content)"
         class="fa-regular fa-window-maximize fa-3x iconColor cursor-pointer"
-      ></i>
+      ></i> -->
+      <svg  *ngIf="hasSimilarProducts"
+      (click)="open(content)" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="33" height="24" viewBox="0 0 33 24" fill="none">
+        <path d="M26.1016 2.97705H30.6017C31.9272 2.97705 33.0017 4.04339 33.0017 5.35887V18.4589C33.0017 19.7743 31.9272 20.8407 30.6017 20.8407H26.1016" fill="#999999"/>
+        <path d="M21.8995 23.8182H11.0993C9.77372 23.8182 8.69922 22.7518 8.69922 21.4364V2.38182C8.69922 1.06634 9.77372 0 11.0993 0H21.8995C23.2251 0 24.2996 1.06634 24.2996 2.38182V21.4364C24.2996 22.7518 23.2251 23.8182 21.8995 23.8182Z" fill="#999999"/>
+        <path d="M6.90016 20.8407H2.40006C1.07451 20.8407 0 19.7743 0 18.4589V5.35887C0 4.04339 1.07451 2.97705 2.40006 2.97705H6.90016" fill="#999999"/>
+        </svg>
     </div>
   </div>
   <div class="productInfo bg-blue-black px-3 py-2">
@@ -69,43 +78,86 @@
     </p>
     <div class="selectedProductFlex padding-left-10px">
       <div class="showcasedImageContainer">
-        <img class="responsiveImage" src="assets/images/cardImage.png" />
+        <img class="responsiveImage" src="{{ productImage }}" />
       </div>
       <div class="alignInfoCenter">
         <div>
           <p
             class="font-lato font-weight-700 font-20 letter-spacing-04 text-black"
           >
-            Men's 22KT Gold Ring with Dazzling Cubic Zirconia Stone
+          {{ productName }}
           </p>
           <div class="selectedImageInfoFlex">
             <p
               class="font-lato font-weight-700 font-16 letter-spacing-02 text-discount-grey"
             >
-              Product Code:64A288075
+              Product Code:{{selectedProduct.productCode}}
             </p>
             <p
               class="font-lato font-14 text-white font-weight-700 letter-spacing-02 line-height-13 text-align-left zero-margin-bottom py-1"
             >
               ₹ {{ strikedPrice }}
+              <ng-container *ngIf="selectedProduct.type=='simple';else elseBlock">
               <span
+              *ngIf="selectedProduct.additionalDiscount == 0; else elseBlockWithDiscountSimple"
                 class="font-lato font-13 text-discount-grey font-weight-600 letter-spacing-02 line-height-13 px-2"
               >
-                ({{ discount }} % OFF)
+                ({{ selectedProduct.discount }} % OFF)
               </span>
+              <ng-template #elseBlockWithDiscountSimple>
+                <span
+                  class="font-lato font-13 text-discount-grey font-weight-600 letter-spacing-02 line-height-13 px-2"
+                >
+                ( ({{ selectedProduct.discount }} % + {{ selectedProduct.additionalDiscount }} % ) OFF)
+                </span>
+                </ng-template>
+              </ng-container>
+              <ng-template #elseBlock>
+                <span
+                *ngIf="selectedVariant[0].additionalDiscount == 0; else elseBlockWithDiscountVariable"
+                  class="font-lato font-13 text-discount-grey font-weight-600 letter-spacing-02 line-height-13 px-2"
+                >
+                  ({{ selectedVariant[0].discount }} % OFF)
+                </span>
+                <ng-template #elseBlockWithDiscountVariable>
+                  <span
+                    class="font-lato font-13 text-discount-grey font-weight-600 letter-spacing-02 line-height-13 px-2"
+                  >
+                  ( ({{ selectedVariant[0].discount }} % + {{ selectedVariant[0].additionalDiscount }} % ) OFF)
+                  </span>
+                  </ng-template>
+              </ng-template>
             </p>
           </div>
           <div class="selectedImageInfoBottomFlex">
+            <ng-container  *ngIf="selectedProduct.type=='simple';else weightSimple">
             <button
               class="none-outline bg-blue-black text-white border-radius-5px font-lato font-weight-700 px-3 py-1"
             >
-              Metal:91.6, 5.48 Grams
+              Metal:{{selectedProduct.weight}} Grams
             </button>
+          </ng-container>
+          <ng-template #weightSimple>
+            <button
+            class="none-outline bg-blue-black text-white border-radius-5px font-lato font-weight-700 px-3 py-1"
+          >
+            Metal:{{selectedVariant[0].weight}} Grams
+          </button>
+          </ng-template>
+          <ng-container  *ngIf="selectedProduct.type=='simple';else priceSimple">
             <p
               class="font-lato font-weight-700 font-16 letter-spacing-02 text-black"
             >
-              ₹43,749
+              ₹{{selectedProduct.sellingPrice}}
             </p>
+            </ng-container>
+            <ng-template #priceSimple>
+              <p
+              class="font-lato font-weight-700 font-16 letter-spacing-02 text-black"
+            >
+              ₹{{selectedVariant[0].sellingPrice}}
+            </p>
+              </ng-template>
           </div>
         </div>
       </div>

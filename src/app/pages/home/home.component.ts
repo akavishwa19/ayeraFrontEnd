@@ -155,6 +155,9 @@ export class HomeComponent {
     initialSlide: 2,
     loop: true,
     centeredSlides: true,
+    autoplay: {
+      delay: 3000,
+    },
     pagination: true,
     mousewheel: false,
     breakpoints: {
@@ -189,6 +192,9 @@ export class HomeComponent {
     slidesPerView: 2,
     spaceBetween: 20,
     initialSlide: 2,
+    autoplay: {
+      delay: 1500,
+    },
     loop: true,
     centeredSlides: true,
     pagination: false,

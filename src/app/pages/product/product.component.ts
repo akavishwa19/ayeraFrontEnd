@@ -14,6 +14,7 @@ import SwiperCore, {
   SwiperOptions,
   Swiper,
 } from 'swiper';
+import {Location} from '@angular/common'
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -142,7 +143,7 @@ export class ProductComponent implements OnInit {
       },
     },
   };
-  constructor() {}
+  constructor(private location:Location) {}
 
   ngOnInit() {
     this.selectedSize = '20.7';
@@ -160,5 +161,9 @@ export class ProductComponent implements OnInit {
 
   onTab(name: string) {
     // console.log(name)
+  }
+
+  goBack(){
+    this.location.back()
   }
 }

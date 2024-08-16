@@ -226,6 +226,10 @@ th {
   // border: 2px solid #020724;
   border-radius: 20px;
   overflow: hidden;
+  transition: all 0.2s ease;
+}
+.videoBlockHolder:hover{
+  transform: scale(1.1);
 }
 .videoProductInfo{
       border: 2px solid black;

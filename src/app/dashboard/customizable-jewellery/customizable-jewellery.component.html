@@ -1,3 +1,180 @@
 <div class="breadCrumb">
-    <p class="menuTitle">My account > Customizable Jewellery</p>
+  <p class="menuTitle">My account > Customizable Jewellery</p>
+</div>
+<div>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Type of Jewellery</label
+        >
+        <ng-select
+          [items]="jewelleryTypeList"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          bindLabel="name"
+          bindValue="value"
+          formControlName="typeOfJewel"
+          [searchable]="true"
+          [clearable]="false"
+        >
+        </ng-select>
+        <small
+          *ngIf="
+            f['typeOfJewel'].touched &&
+            f['typeOfJewel'].invalid &&
+            f['typeOfJewel'].errors['required']
+          "
+          >field is required</small
+        >
+      </div>
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Stone</label
+        >
+        <ng-select
+          [items]="jewelleryTypeList"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          bindLabel="name"
+          bindValue="value"
+          formControlName="stone"
+          [searchable]="true"
+          [clearable]="false"
+        >
+        </ng-select>
+        <small
+          *ngIf="
+            f['stone'].touched &&
+            f['stone'].invalid &&
+            f['stone'].errors['required']
+          "
+          >field is required</small
+        >
+      </div>
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Product Name</label
+        >
+        <input
+          id="passwordCustom"
+          type="text"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="name"
+        />
+      </div>
+      <small
+        *ngIf="
+          f['name'].touched && f['name'].invalid && f['name'].errors['required']
+        "
+        >field is required</small
+      >
+
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Product Size (L x B)</label
+        >
+        <input
+          id="passwordCustom"
+          type="text"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="size"
+        />
+      </div>
+      <small
+        *ngIf="
+          f['size'].touched && f['size'].invalid && f['size'].errors['required']
+        "
+        >field is required</small
+      >
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Product Colour</label
+        >
+        <input
+          id="passwordCustom"
+          type="text"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="color"
+        />
+      </div>
+      <small
+        *ngIf="
+          f['color'].touched &&
+          f['color'].invalid &&
+          f['color'].errors['required']
+        "
+        >field is required</small
+      >
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Weight in grams</label
+        >
+        <input
+          id="passwordCustom"
+          type="text"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="weight"
+        />
+      </div>
+      <small
+        *ngIf="
+          f['weight'].touched &&
+          f['weight'].invalid &&
+          f['weight'].errors['required']
+        "
+        >field is required</small
+      >
+      <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+        <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Additional Information</label
+      >
+        <textarea
+          rows="8"
+          id="passwordCustom"
+          type="text"
+          class="default-border default-box-shadow border-radius-10px padding-10  width-100 mb-3"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="additionalInformation"
+        ></textarea>
+      </div>
+      <div class="col-12 col-lg-12 col-md-4 col-sm-12">
+        <label
+          class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+          >Upload Image</label
+        >
+        <div class="file-upload">
+          <input
+            (change)="onUpload($event)"
+            type="file"
+            id="fileInput"
+          />
+          <label for="fileInput">Choose a file</label>
+          <span id="fileName">No file chosen</span>
+        </div>
+      </div>
+     
+      </div>
+
+  </form>
+  <button
+  [disabled]="form.invalid"
+  class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px mt-3"
+>
+  Submit
+</button>
 </div>

@@ -106,7 +106,7 @@
     <h4
       class="modal-title zero-margin-bottom font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24"
     >
-      Add new address
+      Edit your details
     </h4>
     <button
       type="button"
@@ -179,42 +179,64 @@
       >
       <label
         class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
-        >Address</label
+        >Gender</label
+      >
+      <ng-select
+        [items]="genderList"
+        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+        bindLabel="name"
+        bindValue="value"
+        formControlName="gender"
+        [searchable]="true"
+        [clearable]="false"
+      >
+      </ng-select>
+      <small
+        *ngIf="
+          f['gender'].touched &&
+          f['gender'].invalid &&
+          f['gender'].errors['required']
+        "
+        >gender is required</small
+      >
+
+      <label
+        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+        >Date of birth</label
       >
       <div class="loginComp input-group customInputGroup height-60px mb-3">
-        <textarea
-          rows="8"
+        <input
           id="passwordCustom"
-          type="text"
+          type="date"
           class="form-control"
           aria-label="Username"
           aria-describedby="basic-addon1"
-          formControlName="address"
-        ></textarea>
+          formControlName="dob"
+        />
       </div>
       <small
         *ngIf="
-          f['address'].touched &&
-          f['address'].invalid &&
-          f['address'].errors['required']
+          f['dob'].touched && f['dob'].invalid && f['dob'].errors['required']
         "
-        >address is required</small
+        >dob is required</small
       >
+
       <label
-        class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
-        >Additional Information (optional)</label
-      >
-      <div class="loginComp input-group customInputGroup height-60px mb-3">
-        <textarea
-          rows="8"
-          id="passwordCustom"
-          type="text"
-          class="form-control"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          formControlName="additionalInfo"
-        ></textarea>
-      </div>
+      class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+      >Anniversary</label
+    >
+    <div class="loginComp input-group customInputGroup height-60px mb-3">
+      <input
+        id="passwordCustom"
+        type="date"
+        class="form-control"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+        formControlName="anniversary"
+      />
+    </div>
+   
+
       <label
         class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
         >Mobile</label
@@ -382,33 +404,26 @@
       >
       <label
         class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
-        >Save this address as</label
+        >Address</label
       >
       <div class="loginComp input-group customInputGroup height-60px mb-3">
-        <input
+        <textarea
+          rows="8"
           id="passwordCustom"
           type="text"
           class="form-control"
           aria-label="Username"
           aria-describedby="basic-addon1"
-          formControlName="addressName"
-        />
+          formControlName="address"
+        ></textarea>
       </div>
       <small
         *ngIf="
-          f['addressName'].touched &&
-          f['addressName'].invalid &&
-          f['addressName'].errors['required']
+          f['address'].touched &&
+          f['address'].invalid &&
+          f['address'].errors['required']
         "
-        >addressName is required</small
-      >
-      <small
-        *ngIf="
-          f['addressName'].touched &&
-          f['addressName'].invalid &&
-          f['addressName'].errors['pattern']
-        "
-        >addressName should not contain special characters</small
+        >address is required</small
       >
     </form>
   </div>
@@ -416,7 +431,7 @@
     <button
       class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
     >
-      Save Address
+      Save Details
     </button>
   </div>
 </ng-template>

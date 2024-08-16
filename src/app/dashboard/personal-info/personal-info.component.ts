@@ -290,19 +290,35 @@ export class PersonalInfoComponent {
     { name: 'Zimbabwe', code: 'ZW' },
   ];
 
+  genderList=[
+    {
+      name:'Male',
+      value:'male'
+    },
+    {
+      name:'Female',
+      value:'female'
+    },
+    {
+      name:'Prefer not to say',
+      value:'preferNotToSay'
+    },
+  ]
+
   form: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
     address: ['', Validators.required],
-    additionalInfo: ['', Validators.required],
     pincode: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required],
     country: ['', Validators.required],
     mobile: ['', Validators.required],
     aternateMobile:['',Validators.required],
-    addressName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    dob:['',Validators.required],
+    gender:['',Validators.required],
+    anniversary:[''],
   });
 
   constructor(
