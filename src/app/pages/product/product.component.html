@@ -27,12 +27,12 @@
               <div class="swiper-wrapper">
                 <swiper [config]="verticalSwiperOptions">
                   //#verticalSwiperRef
-                  <ng-template swiperSlide="" *ngFor="let x of swiperArray">
+                  <ng-template swiperSlide="" *ngFor="let image of product.images">
                     <div class="thumbnailImageSpacing">
                       <div class="thumbnailHolder border-radius-5px">
                         <img
                           class="responsiveImage"
-                          src="assets/images/thumbnailSwiperDisplayImage.png"
+                          src="{{imageUrl}}{{image}}{{imageMetaUrl}}"
                         />
                       </div>
                     </div>
@@ -46,11 +46,11 @@
               <div class="swiper-wrapper">
                 <swiper [config]="previewedSwiperOptions">
                   //[thumbs]="swiperRef"
-                  <ng-template swiperSlide="" *ngFor="let x of swiperArray">
+                  <ng-template swiperSlide="" *ngFor="let item of product.images">
                     <div class="previewedImageHolder">
                       <img
                         class="responsiveImage"
-                        src="assets/images/previewedImage.png"
+                        src="{{imageUrl}}{{item}}{{imageMetaUrl}}"
                       />
                     </div>
                   </ng-template>
@@ -64,12 +64,12 @@
         <p
           class="font-lato font-weight-700 font-24 text-black line-height-24 letter-spacing-03 py-1"
         >
-          Men's 22KT Gold Ring with Dazzling Cubic Zirconia Stone (Rose Gold)
+          {{product.name}}
         </p>
         <p
           class="font-lato font-weight-700 font-20 text-discount-grey line-height-24 letter-spacing-04 py-1"
         >
-          Product Code:<span class="px-2">64A288075</span>
+          Product Code:<span class="px-2">{{product.productCode}}</span>
         </p>
         <div class="alignSHareCenter py-1">
           <i
@@ -243,33 +243,16 @@
     </div>
   </div>
   <div class="container-xl mt-3">
-    <p
+    <div
+      #infoPara
       class="font-lato font-weight-600 letter-spacing-03 line-height-38 font-16"
+      [innerHTML]="product.productDescription"
     >
-      Silver Front Open Ring studded with Green CZ's. Crafted in Oxidised 925
-      Silver. Uniquely handcrafted, no two pieces are exactly alike! Care Tips:
-      The first step is to store your jewellery in a zip lock bag when you're
-      not wearing it. Also, avoid direct contact with chemicals such as
-      perfumes, sanitisers and the likes. Silver Front Open Ring studded with
-      Green CZ's. Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two
-      pieces are exactly alike! Care Tips: The first step is to store your
-      jewellery in a zip lock bag when you're not wearing it. Also, avoid direct
-      contact with chemicals such as perfumes, sanitisers and the likes. Silver
-      Front Open Ring studded with Green CZ's. Crafted in Oxidised 925 Silver.
-      Uniquely handcrafted, no two pieces are exactly alike! Care Tips: The
-      first step is to store your jewellery in a zip lock bag when you're not
-      wearing it. Also, avoid direct contact with chemicals such as perfumes,
-      sanitisers and the likes. Silver Front Open Ring studded with Green CZ's.
-      Crafted in Oxidised 925 Silver. Uniquely handcrafted, no two pieces are
-      exactly alike! Care Tips: The first step is to store your jewellery in a
-      zip lock bag when you're not wearing it. Also, avoid direct contact with
-      chemicals such as perfumes, sanitisers and the likes. Silver Front Open
-      Ring studded with Green CZ's. Crafted in Oxidised 925 Silver. Uniquely
-      handcrafted, no two pieces are exactly alike! Care Tips: The first step is
-      to store your jewellery in a zip lock bag when you're not wearing it.
-      Also, avoid direct contact with chemicals such as perfumes, sanitisers and
-      the likes.
-    </p>
+    <div>
+      
+    </div>
+
+  </div>
   </div>
 </section>
 

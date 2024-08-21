@@ -15,6 +15,9 @@ import SwiperCore, {
   Swiper,
 } from 'swiper';
 import {Location} from '@angular/common'
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -25,8 +28,16 @@ SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 })
 export class ProductComponent implements OnInit {
   @ViewChild('verticalSwiperRef') swiperRef: ElementRef;
+  @ViewChild('infoPara') paraRef:ElementRef;
+
+  productUrl = environment.baseurl + '/product';
+  imageUrl: string = environment.imageUrl;
+  imageMetaUrl: string = environment.imageMetaUrl;
+
 
   swiperArray: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  pId:string='';
+  product:any={}
 
   sizeArray: any[] = [
     {
@@ -143,11 +154,15 @@ export class ProductComponent implements OnInit {
       },
     },
   };
-  constructor(private location:Location) {}
+  constructor(private location:Location,private activatedRoute:ActivatedRoute,private http:HttpClient) {
+    const passedId=this.activatedRoute.snapshot.paramMap.get('id')
+    this.pId=passedId
+  }
 
   ngOnInit() {
     this.selectedSize = '20.7';
     this.selectedColor = '#ECC15D';
+    this.getProduct()
   }
 
   onSizeChange(size: string): void {
@@ -160,10 +175,27 @@ export class ProductComponent implements OnInit {
   }
 
   onTab(name: string) {
-    // console.log(name)
+    if(name=='Jewellery Care'){
+      this.paraRef.nativeElement.innerHTML=this.product.jewelleryCare
+    }
+    else if (name=='Product Description'){
+      this.paraRef.nativeElement.innerHTML=this.product.productDescription
+    }
+    else if (name=='Jewellery Disclaimer'){
+      this.paraRef.nativeElement.innerHTML=this.product.jewelleryDisclaimer
+    }
+    else if (name=='Shipping Information'){
+      this.paraRef.nativeElement.innerHTML=this.product.shippingInformation
+    }
   }
 
   goBack(){
     this.location.back()
+  }
+
+  getProduct(){
+    this.http.get(this.productUrl+'/main-product?id='+this.pId).subscribe((res:any)=>{
+      this.product=res.data
+    })
   }
 }

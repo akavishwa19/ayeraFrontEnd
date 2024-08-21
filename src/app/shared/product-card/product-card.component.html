@@ -165,18 +165,38 @@
     <div class="row mt-3">
       <div
         class="col-12 col-lg-4 col-md-6 col-sm-12"
-        *ngFor="let x of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]"
+        *ngFor="let item of similarProductsArray"
       >
-        <app-product-card
-          [islIked]="false"
-          [highlightedTag]="'BEST SELLER'"
-          [productImage]="'assets/images/cardImage.png'"
-          [productName]="'Unclench Oxidized Ring in 925 Silver'"
-          [strikedPrice]="1800"
-          [discount]="10"
-          [price]="1710"
+      <ng-container *ngIf="item.type == 'simple'; else variable">
+        <app-product-card   
+          [productId]="item?._id"
+          [islIked]="item?.isLiked"
+          [highlightedTag]="item?.similar_products?.tags[0].name"
+          [productImage]="imageUrl + item.similar_products.featuredImage + imageMetaUrl"
+          [productName]="item.similar_products.name"
+          [strikedPrice]="item.similar_products.price"
+          [discount]="item.similar_products.discount"
+          [additionalDiscount]="item.similar_products.additionalDiscount"
+          [price]="item.similar_products.sellingPrice"
+          [hasSimilarProducts]="false"
         >
         </app-product-card>
+      </ng-container>
+      <ng-template #variable>
+        <app-product-card
+          [productId]="item?._id"
+          [islIked]="item?.isLiked"
+          [highlightedTag]="item.similar_products.tags[0]?.name"
+          [productImage]="imageUrl + item?.similar_products?.featuredImage + imageMetaUrl"
+          [productName]="item?.similar_products?.variants[0]?.name"
+          [strikedPrice]="item?.similar_products?.variants[0]?.price"
+          [discount]="item?.similar_products?.variants[0]?.discount"
+          [additionalDiscount]="item?.similar_products?.variants[0]?.additionalDiscount"
+          [price]="item?.similar_products?.variants[0]?.sellingPrice"
+          [hasSimilarProducts]="false"
+        >
+        </app-product-card>
+      </ng-template>
       </div>
     </div>
     <div

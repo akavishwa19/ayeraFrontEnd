@@ -4,11 +4,18 @@
 <section class="default-section-padding">
   <div class="container-xl">
     <div class="shopCategoriesHolderFlex width-100">
-      <div class="shopCategoryBlock" *ngFor="let category of [1,1,1,1,1,1,1,1]">
+      <div
+        class="shopCategoryBlock"
+        *ngFor="let category of [1, 1, 1, 1, 1, 1, 1, 1]"
+      >
         <div class="shopCategoryImageHolder">
-          <img src="assets/images/hsopCategoryImage.png">
+          <img src="assets/images/hsopCategoryImage.png" />
         </div>
-        <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24">Necklaces</p>
+        <p
+          class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24"
+        >
+          Necklaces
+        </p>
       </div>
     </div>
   </div>
@@ -17,65 +24,117 @@
   <div class="container-xl">
     <div class="filterFlex">
       <div class="leftFilterFlex">
-      <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2">Bracelets</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2">Bracelets</button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2">Bracelets</button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+        >
+          Bracelets
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+        >
+          Bracelets
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+        >
+          Bracelets
+        </button>
       </div>
       <div class="rightFilterFlex">
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2">Sort by <i class="fa-solid fa-arrow-right-arrow-left padding-left-10px zero-padding-right "></i></button>
-        <button class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2">Filter by <i class="fa-solid fa-sliders padding-left-10px zero-padding-right "></i></button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+        >
+          Sort by
+          <i
+            class="fa-solid fa-arrow-right-arrow-left padding-left-10px zero-padding-right"
+          ></i>
+        </button>
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+        >
+          Filter by
+          <i
+            class="fa-solid fa-sliders padding-left-10px zero-padding-right"
+          ></i>
+        </button>
       </div>
     </div>
     <div class="priceSelectionFlex pt-5">
-      <p class="font-lato font-18 font-weight-700 letter-spacing-02 line-height-19 zero-margin-bottom zero-padding-bottom">Buy by Price Range</p>
+      <p
+        class="font-lato font-18 font-weight-700 letter-spacing-02 line-height-19 zero-margin-bottom zero-padding-bottom"
+      >
+        Buy by Price Range
+      </p>
       <div class="rangeSlider">
-        <mat-slider min="0" max="50000" step="1500" showTickMarks discrete color="accent" id="blueSlider"   [displayWith]="formatLabel">
-          <input matSliderThumb>
+        <mat-slider
+          min="0"
+          max="50000"
+          step="1500"
+          showTickMarks
+          discrete
+          color="accent"
+          id="blueSlider"
+          [displayWith]="formatLabel"
+        >
+          <input matSliderThumb />
         </mat-slider>
       </div>
     </div>
   </div>
 </section>
 <section class="default-section-padding">
-  <div class="container-xl ">
+  <div class="container-xl">
     <div class="searchResultFlex py-2">
-      <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom">2054 Patterns </p>
-      <button (click)="open(content)" class="font-lato bg-blue-black none-outline font-16 text-white border-radius-10px font-weight-700 px-4 py-2">Compare 3 products <i class="fa-solid fa-circle-plus padding-left-10px font-18"></i> </button>
+      <p
+        class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
+      >
+        2054 Patterns
+      </p>
+      <button
+        (click)="open(content)"
+        class="font-lato bg-blue-black none-outline font-16 text-white border-radius-10px font-weight-700 px-4 py-2"
+      >
+        Compare 3 products
+        <i class="fa-solid fa-circle-plus padding-left-10px font-18"></i>
+      </button>
     </div>
     <div class="row mt-3">
-      <div class="col-12 col-lg-3 col-md-6 col-sm-12" *ngFor="let item of productList">
-        <ng-container *ngIf="item.type=='simple';else variable">
-        <app-product-card
-          (valueLiked)="detectValueLiked($event)"
-          [productId]="item._id"
-          [islIked]="item.isLiked"
-          [highlightedTag]="item.tags[0].name"
-          [productImage]="imageUrl+item.featuredImage+imageMetaUrl"
-          [productName]="item.name"
-          [strikedPrice]="item.price"
-          [discount]="item.discount"
-          [additionalDiscount]="item.additionalDiscount"
-          [price]="item.sellingPrice"
-          [hasSimilarProducts]="true"
-        >
-        </app-product-card>
-      </ng-container>
-      <ng-template #variable>
-        <app-product-card
-        (valueLiked)="detectValueLiked($event)"
-        [productId]="item._id"
-        [islIked]="item.isLiked"
-        [highlightedTag]="item.tags[0].name"
-        [productImage]="imageUrl+item.featuredImage+imageMetaUrl"
-        [productName]="item.variants[0].name"
-        [strikedPrice]="item.variants[0].price"
-        [discount]="item.variants[0].discount"
-        [additionalDiscount]="item.variants[0].additionalDiscount"
-        [price]="item.variants[0].sellingPrice"
-        [hasSimilarProducts]="true"
+      <div
+        class="col-12 col-lg-3 col-md-6 col-sm-12"
+        *ngFor="let item of productList"
       >
-      </app-product-card>
-    </ng-template>
+        <ng-container *ngIf="item.type == 'simple'; else variable">
+          <app-product-card
+            (valueLiked)="detectValueLiked($event)"
+            [productId]="item._id"
+            [islIked]="item.isLiked"
+            [highlightedTag]="item.tags[0].name"
+            [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+            [productName]="item.name"
+            [strikedPrice]="item.price"
+            [discount]="item.discount"
+            [additionalDiscount]="item.additionalDiscount"
+            [price]="item.sellingPrice"
+            [hasSimilarProducts]="true"
+          >
+          </app-product-card>
+        </ng-container>
+        <ng-template #variable>
+          <app-product-card
+            (valueLiked)="detectValueLiked($event)"
+            [productId]="item._id"
+            [islIked]="item.isLiked"
+            [highlightedTag]="item.tags[0].name"
+            [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+            [productName]="item.variants[0].name"
+            [strikedPrice]="item.variants[0].price"
+            [discount]="item.variants[0].discount"
+            [additionalDiscount]="item.variants[0].additionalDiscount"
+            [price]="item.variants[0].sellingPrice"
+            [hasSimilarProducts]="true"
+          >
+          </app-product-card>
+        </ng-template>
       </div>
     </div>
   </div>
@@ -83,9 +142,21 @@
 <section class="default-section-padding">
   <div class="container-xl">
     <div class="bannerWithBg width-100">
-      <p class="font-lato font-weight-800 letter-spacing-02 line-height-38 text-white font-30 py-1">Customize Your Jewels as you Wish</p>
-      <p class="font-lato font-weight-800 letter-spacing-02 line-height-38 text-white font-30 py-1">Buy Customized jewels from Ayraa </p>
-      <button class="none-outline border-radius-10px font-lato font-16 line-height-19 font-weight-700 text-black px-4 py-2 mt-2">Customize</button>
+      <p
+        class="font-lato font-weight-800 letter-spacing-02 line-height-38 text-white font-30 py-1"
+      >
+        Customize Your Jewels as you Wish
+      </p>
+      <p
+        class="font-lato font-weight-800 letter-spacing-02 line-height-38 text-white font-30 py-1"
+      >
+        Buy Customized jewels from Ayraa
+      </p>
+      <button
+        class="none-outline border-radius-10px font-lato font-16 line-height-19 font-weight-700 text-black px-4 py-2 mt-2"
+      >
+        Customize
+      </button>
     </div>
   </div>
 </section>
@@ -114,7 +185,10 @@
 <ng-template #content let-offcanvas>
   <div class="offcanvas-body position-relative">
     <app-compare-product></app-compare-product>
-    <div (click)="offcanvas.dismiss('Cross click')" class="closeOffcanvas position-absolute cursor-pointer">
+    <div
+      (click)="offcanvas.dismiss('Cross click')"
+      class="closeOffcanvas position-absolute cursor-pointer"
+    >
       <i class="fa-solid fa-x text-black font-weight-700 font-14"></i>
     </div>
   </div>
