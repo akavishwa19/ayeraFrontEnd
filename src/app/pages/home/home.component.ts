@@ -1,4 +1,13 @@
-import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  inject,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import {
   NgbOffcanvas,
   NgbOffcanvasRef,
@@ -12,6 +21,7 @@ import SwiperCore, {
   SwiperOptions,
   Swiper,
 } from 'swiper';
+import { environment } from '../../../environments/environment';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 @Component({
@@ -19,7 +29,14 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, AfterViewInit {
+  bannerUrl = environment.baseurl + '/banners';
+  categoryUrl = environment.baseurl + '/categories';
+  testimonialUrl = environment.baseurl + '/testimonials';
+  tagUrl = environment.baseurl + '/tags';
+  imageUrl: string = environment.imageUrl;
+  imageMetaUrl: string = environment.imageMetaUrl;
+
   private offcanvasService: NgbOffcanvas = inject(NgbOffcanvas);
   private modalService: NgbModal = inject(NgbModal);
   closeResult: string = '';
@@ -29,6 +46,17 @@ export class HomeComponent {
   offcanvasRef?: NgbOffcanvasRef;
   offcanvasRef2?: NgbOffcanvasRef;
 
+  selectedCategoryId: string = '';
+  homeHeroBanner: any = {};
+  homeSliderBanner: any = [];
+  menCategories: any[] = [];
+  womenCategories: any[] = [];
+  secondaryCategorisList: any[] = [];
+  featuredTestimnials: any[] = [];
+  featuredProductSlider: any[] = [];
+  slabList: any[] = [];
+  shopByCategoryList: any[] = [];
+  featuredTagsList: any[] = [];
   mediaImages: string[] = [
     'assets/images/yourStory.png',
     'assets/images/etNow.png',
@@ -122,9 +150,9 @@ export class HomeComponent {
     centeredSlides: true,
     pagination: true,
     mousewheel: false,
-    on: {
-      slideChange: (swiper) => this.onSlideChange(swiper),
-    },
+    // on: {
+    //   slideChange: (swiper) => this.onSlideChange(swiper),
+    // },
     breakpoints: {
       400: {
         slidesPerView: 1,
@@ -191,7 +219,6 @@ export class HomeComponent {
   bestSellerWiper: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 20,
-    initialSlide: 2,
     autoplay: {
       delay: 1500,
     },
@@ -228,6 +255,54 @@ export class HomeComponent {
   };
   currentOffcanvas: NgbOffcanvasRef;
 
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.getHeroBanner();
+    this.getSliderBanner();
+    this.getFeaturedMenWomenCategories();
+    this.getTestimonials();
+    this.fetchShopByCategoriesList();
+    this.fetchFeaturedTags();
+  }
+
+  ngAfterViewInit(): void {
+    this.fetchAllSecondaryCategories();
+  }
+
+  getHeroBanner() {
+    this.http
+      .get(this.bannerUrl + '/home-hero-banner')
+      .subscribe((res: any) => {
+        this.homeHeroBanner = res.data;
+      });
+  }
+
+  getSliderBanner() {
+    this.http
+      .get(this.bannerUrl + '/home-slider-banners')
+      .subscribe((res: any) => {
+        this.homeSliderBanner = res.data;
+      });
+  }
+
+  getFeaturedMenWomenCategories() {
+    this.http
+      .get(this.categoryUrl + '/featured-men-women-categories')
+      .subscribe((res: any) => {
+        this.menCategories = res.data.menCategories;
+        this.womenCategories = res.data.womenCategories;
+      });
+  }
+
+  getTestimonials() {
+    this.http
+      .get(this.testimonialUrl + '/featured-testimonials')
+      .subscribe((res: any) => {
+        this.featuredTestimnials = res.data;
+      });
+  }
+
   onSlideChange(swiper: Swiper) {
     this.activeIndex = swiper.activeIndex;
     console.log('hi', this.activeIndex);
@@ -235,6 +310,7 @@ export class HomeComponent {
 
   onTab(name: string) {}
   indentName(name: string) {
+    
     return name.replaceAll(' ', '<br>');
   }
 
@@ -307,5 +383,107 @@ export class HomeComponent {
     } else {
       this.open(this.womenOffcanvas);
     }
+  }
+
+  addSelectPatch(i: number = 0, id: string) {
+    const collection: HTMLCollection = <HTMLCollection>(
+      document.getElementsByClassName('commonBtnClass')
+    );
+
+    for (let element of Array.from(collection)) {
+      element.classList.remove('customCategoryButton');
+    }
+
+    const element: HTMLElement = <HTMLElement>(
+      document.getElementById(`catBtn${i}`)
+    );
+
+    console.log('active element', element, collection);
+    element?.classList.add('customCategoryButton');
+    this.fetchSlabs(id);
+  }
+
+  addSelectPatchPriceSlab(i: number = 0, price: number) {
+    const collection: HTMLCollection = <HTMLCollection>(
+      document.getElementsByClassName('commonBtnClassPrice')
+    );
+    for (let element of Array.from(collection)) {
+      element.classList.remove('customCategoryButton');
+    }
+
+    const element: HTMLElement = <HTMLElement>(
+      document.getElementById(`priceSlabBtn${i}`)
+    );
+    console.log(i);
+    element?.classList.add('customCategoryButton');
+    console.log(price);
+
+    let maxVal = price;
+    let minVal = 0;
+
+    if (i > 0) {
+      minVal = this.slabList[i - 1];
+    }
+
+    this.fetchSlabCorrespondingProducts(
+      minVal,
+      maxVal,
+      this.selectedCategoryId
+    );
+  }
+
+  fetchSlabCorrespondingProducts(min, max, id) {
+    this.http
+      .get(
+        this.categoryUrl +
+          '/products-by-slab?minPrice=' +
+          min +
+          '&maxPrice=' +
+          max +
+          '&id=' +
+          id
+      )
+      .subscribe((res: any) => {
+        this.featuredProductSlider = res.data;
+      });
+  }
+
+  fetchAllSecondaryCategories() {
+    this.http
+      .get(this.categoryUrl + '/all-secondary-category')
+      .subscribe((res: any) => {
+        this.secondaryCategorisList = res.data;
+        this.addSelectPatch(0, res.data[0]._id);
+      });
+  }
+
+  fetchSlabs(id: string) {
+    this.http
+      .get(this.categoryUrl + '/secondary-slabs?id=' + id)
+      .subscribe((res: any) => {
+        this.slabList = res.data;
+        this.selectedCategoryId = id;
+        this.addSelectPatchPriceSlab(0, res.data[0]);
+      });
+  }
+
+  fetchShopByCategoriesList() {
+    this.http.get(this.categoryUrl + '/tertiary-home').subscribe((res: any) => {
+      this.shopByCategoryList = res.data;
+    });
+  }
+
+  fetchFeaturedTags() {
+    this.http.get(this.tagUrl + '/featured-tags').subscribe((res: any) => {
+      this.featuredTagsList = res.data;
+      for (let i = 0; i < this.featuredTagsList.length; i++) {
+        if (i % 2 == 0) {
+          this.featuredTagsList[i].down = true;
+        } else {
+          this.featuredTagsList[i].down = false;
+        }
+      }
+      console.log(this.featuredTagsList)
+    });
   }
 }

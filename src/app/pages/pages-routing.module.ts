@@ -23,7 +23,7 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'shop',
+        path: 'shop/:type/:slug',
         component: ShopComponent,
       },
       {

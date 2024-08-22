@@ -11,9 +11,10 @@
 }
 .categoryItemHolder{
   display:flex;
-  justify-content:center;
+  justify-content:flex-start;
   align-items: center;
   gap:90px;
+  padding-left:10px;
 }
 @media (min-width: 400px ) and (max-width: 600px) {
   .categoryItemHolder{

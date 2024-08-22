@@ -69,8 +69,8 @@
 }
 
 .positionOffcanvasContent {
+  padding: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .blockFlex {
@@ -85,7 +85,7 @@
   width: 220px;
 }
 .swiperBlock {
-  background-color: #daa49a;
+
   padding: 20px;
   border-radius: 30px;
   display: flex;
@@ -137,6 +137,8 @@
 .testimonialUserHolder {
   border-radius: 25px;
   overflow: hidden;
+  width: 340px;
+  height: 340px;
 }
 .blissfulArtCard {
   width: 80%;
@@ -262,6 +264,7 @@ th {
 .shopByMoodBtn {
   border-radius: 20px;
   border: 2px solid #020724;
+  text-transform: uppercase;
 }
 .btnHolderFOrShopByMood {
   display: flex;
@@ -313,7 +316,8 @@ th {
 }
 .shopCategoriesHolderFlex {
   display: flex;
-  justify-content: space-between;
+  gap:50px;
+  justify-content: center;
   align-items: center;
   overflow-x: auto;
 }
@@ -555,6 +559,10 @@ clip-path: polygon(41% 0, 58% 0, 61% 44%, 64% 74%, 69% 100%, 30% 100%, 34% 76%, 
   width: 100px;
   overflow: hidden;
 }
+.customCategoryButton{
+  background: #020724 !important;
+  color: #ffffff;
+}
 
 
 .advertisementStrip {
@@ -563,6 +571,19 @@ clip-path: polygon(41% 0, 58% 0, 61% 44%, 64% 74%, 69% 100%, 30% 100%, 34% 76%, 
 .marqueeFlex {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.categoryTabHeadings{
+  display: flex;
+  justify-content: center;
+  gap:30px;
+}
+
+.noProductTemplateBlock{
+  min-height: 470px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 

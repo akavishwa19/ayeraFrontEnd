@@ -23,7 +23,9 @@
           <!-- <i
             class="fa-solid fa-user text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->
-          <div routerLink="/auth/login" class="cursor-pointer"><img src="/assets/icons/profile.svg" /></div>
+          <div routerLink="/auth/login" class="cursor-pointer">
+            <img src="/assets/icons/profile.svg" />
+          </div>
           <i
             class="fa-solid fa-heart text-black font-30 small-device-d-none cursor-pointer"
           ></i>
@@ -34,13 +36,19 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid pt-2 socialIcons">
+    <div class="container-fluid px-3  pt-2 socialIcons">
       <div class="categoryItemHolder medium-device-d-none">
-        <div
-          class="categoryItem font-18 font-lato font-weight-700 cursor-pointer"
-          *ngFor="let name of featuredCategoryList"
+        <!-- <div
+          class="categoryItem font-18 font-lato font-weight-700 cursor-pointer uppercase"
         >
-          {{ name }}
+          All Jewellery
+        </div> -->
+        <div
+          class="categoryItem font-18 font-lato font-weight-700 cursor-pointer uppercase"
+          *ngFor="let category of featuredCategoryList"
+          (click)="routeToShop(category.slug)"
+        >
+          {{ category.name }}
         </div>
       </div>
     </div>

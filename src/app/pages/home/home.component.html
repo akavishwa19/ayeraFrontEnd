@@ -6,7 +6,7 @@
     <div class="bannerImageContainer">
       <img
         class="responsiveImage-contain"
-        src="assets/images/ayeraHomeBanner.png"
+        src="{{ imageUrl }}{{ homeHeroBanner.image }}{{ imageMetaUrl }}"
       />
     </div>
   </div>
@@ -17,7 +17,7 @@
     <div
       class="modelImage border-top-right-30 border-bottom-right-30 position-relative"
     >
-      <div (mouseenter)="toggleOffcanvas('women')" class="imageHolderModel">
+      <div (click)="toggleOffcanvas('women')" class="imageHolderModel">
         <img
           class="responsiveImage"
           src="assets/images/femaleModel.png"
@@ -59,7 +59,7 @@
     <div
       class="modelImage border-top-left-30 border-bottom-left-30 position-relative"
     >
-      <div (mouseenter)="toggleOffcanvas('men')" class="imageHolderModel">
+      <div (click)="toggleOffcanvas('men')" class="imageHolderModel">
         <img
           class="responsiveImage"
           src="assets/images/maleModel.png"
@@ -77,31 +77,34 @@
 
 <section class="default-section-padding">
   <swiper [config]="featuredProductsSwiper">
-    <ng-template swiperSlide="" *ngFor="let x of [1, 1, 1, 1, 1, 1, 1, 1, 1]">
-      <div class="swiperBlock">
+    <ng-template swiperSlide="" *ngFor="let slide of homeSliderBanner">
+      <div
+        [ngStyle]="{ 'background-color': slide.backgroundColor }"
+        class="swiperBlock"
+      >
         <div class="swiperBlockFlex">
           <div class="limitWidth">
             <p
               class="font-weight-800 font-lato font-50 letter-spacing-04 text-black line-height-60"
             >
-              NEW ARRIVALS
+              {{ slide.title }}
             </p>
             <p
               class="font-weight-600 font-lato font-18 text-black line-height-24 py-1"
             >
-              Mine Diamond Studded Studs Gold Earring
+              {{ slide.subTitle }}
             </p>
             <button
               class="font-weight-600 font-lato text-white none-outline border-radius-5px px-4 py-2 my-2 bg_transparent b_r_5"
             >
-              Buy Now
+              {{ slide.buttonText }}
             </button>
           </div>
           <div class="productImage">
             <div class="productImageHolder">
               <img
                 class="responsiveImage"
-                src="assets/images/productShowcaseSwiper.png"
+                src="{{ imageUrl }}{{ slide.image }}{{ imageMetaUrl }}"
               />
             </div>
           </div>
@@ -125,40 +128,37 @@
       Unmatched quality, unbeatable value: our pieces that thrive over time
     </p>
     <div class="row pt-3">
-      <!-- <div class="col-12 col-lg-3 col-md-4 col-sm-12">
-        <div class="bestSellerSliderContent">
-          <div id="verticalTabs">
-            <tabset [vertical]="true" [justified]="true" type="pills">
-              <tab
-                *ngFor="let tab of jewelleryTab"
-                [heading]="tab.name"
-                (click)="onTab(tab.name)"
-                (selectTab)="onTab(tab.name)"
-              >
-              </tab>
-            </tabset>
-          </div>
-        </div>
-      </div> -->
+      <div class="categoryTabHeadings py-2 mb-4">
+        <ng-container *ngFor="let category of secondaryCategorisList; let i = index">
+          <button
+            class="none-outline border-radius-10px font-lato font-weight-700 line-height-24 letter-spacing-02 commonBtnClass bg-white  mx-2 px-4 py-1"
+            id="catBtn{{ i }}"
+            (click)="addSelectPatch(i,category._id)"
+          >
+            {{category.name}}
+          </button>
+        </ng-container>
+      </div>
       <div id="bestSellerSwiper" class="col-12 col-lg-12 col-md-12 col-sm-12">
+        <ng-container *ngIf="featuredProductSlider.length!=0;else noProductFoundTemplate">
         <swiper [config]="bestSellerWiper">
-          <ng-template swiperSlide="" *ngFor="let product of [1, 1, 1, 1, 1]">
+          <ng-template swiperSlide="" *ngFor="let product of featuredProductSlider">
             <div class="hexagonBlock">
               <div class="hexagon position-relative">
                 <div class="bestSellerImage">
-                  <img src="assets/images/bestSellerJewellery.png" />
+                  <img src="{{imageUrl}}{{product.featuredImage}}{{imageMetaUrl}}" />
                 </div>
               </div>
               <div class="sellerPriceFlex">
                 <p
                   class="font-lato text-black text-align-center font-weight-800 line-height-19"
                 >
-                  Cute Evil Eye Adjustable Ring - Rose Gold
+                 {{product.name}}
                 </p>
                 <p
                   class="font-lato text-black text-align-center font-weight-800 line-height-19"
                 >
-                  ₹ 1250
+                  ₹ {{product.price}}
                 </p>
               </div>
               <div class="alignBtnCenter">
@@ -171,53 +171,13 @@
             </div>
           </ng-template>
         </swiper>
+      </ng-container>
+      <ng-template #noProductFoundTemplate>
+        <div class="noProductTemplateBlock">
+        <p class="font-20 font-lato font-weight-700 text-align-center zero-margin-bottom zero-padding-bottom ">NO PRODUCTS FOUND</p>
       </div>
-      <!-- <div class="col-12 col-lg-3 col-md-4 col-sm-12">
-        <div class="bestSellerSliderContent">
-          <table class="productTable">
-            <thead>
-              <p class="p-2 text-white font-20 text-align-center">
-                CATEGORY ANALYTICS
-              </p>
-              <tr>
-                <th>
-                  <p
-                    class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
-                  >
-                    PRODUCT
-                  </p>
-                </th>
-                <th>
-                  <p
-                    class="text-align-left zero-padding-bottom zero-margin-bottom text-white font-18 letter-spacing-08"
-                  >
-                    QTY. SOLD
-                  </p>
-                </th>
-              </tr>
-              <tr *ngFor="let row of [1, 1, 1, 1, 1, 1]">
-                <td>
-                  <p
-                    class="text-align-left zero-padding-bottom zero-margin-bottom text-white"
-                  >
-                    Cute Evil Eye Adjustable Ring - Rose Gold
-                  </p>
-                </td>
-                <td>
-                  <p
-                    class="text-align-center zero-padding-bottom zero-margin-bottom text-white"
-                  >
-                    65
-                  </p>
-                </td>
-              </tr>
-              <tr class="width-100 text-align-center">
-                <i class="fa-solid text-white p-2 font-20 fa-chevron-down"></i>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div> -->
+      </ng-template>
+      </div>
     </div>
     <div class="truckFlex pt-4 mt-2">
       <div class="truck_wrapper">
@@ -236,47 +196,15 @@
         </p>
       </div>
       <div>
+        <ng-container *ngFor="let price of slabList; let i = index">
         <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
+        id="priceSlabBtn{{ i }}"
+        (click)="addSelectPatchPriceSlab(i,price)"
+          class="none-outline border-radius-10px font-lato font-weight-700 line-height-24 commonBtnClassPrice letter-spacing-02 bg-white mx-2 px-4 py-1"
         >
-          ₹ 500
+          ₹ {{price}}
         </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
-
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white mx-2 px-4 py-1"
-        >
-          ₹ 500
-        </button>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -371,17 +299,17 @@
         [ngStyle]="{
           'flex-direction': card.down ? 'column' : 'column-reverse'
         }"
-        *ngFor="let card of shopByMood"
+        *ngFor="let card of featuredTagsList"
       >
         <div class="imageContainerMood">
-          <img class="responsiveImage" src="assets/images/shopByMoods.png" />
+          <img class="responsiveImage" src="{{imageUrl}}{{card.image}}{{imageMetaUrl}}" />
         </div>
 
         <div class="btnHolderFOrShopByMood">
           <button
             [ngClass]="card.down ? 'beforeTick' : 'afterTick'"
             [innerHTML]="indentName(card.name)"
-            class="shopByMoodBtn font-lato font-weight-700 bg-white text-black px-3 py-2 my-3 position-relative"
+            class="shopByMoodBtn uppsercase font-lato font-weight-700 bg-white text-black px-3 py-2 my-3 position-relative"
           ></button>
         </div>
       </div>
@@ -419,19 +347,19 @@
           (mouseenter)="hoverClass(i)"
           (mouseleave)="removeHoverClass(i)"
           class="shopCategoryBlock cursor-pointer"
-          *ngFor="let category of [1, 1, 1, 1, 1, 1, 1, 1]; index as i"
+          *ngFor="let category of shopByCategoryList; index as i"
         >
           <div id="border{{ i }}" class="shopCategoryImageHolder">
             <img
-              class="responsiveImage"
-              src="assets/images/hsopCategoryImage.png"
+              class="responsiveImage-contain"
+              src="{{imageUrl}}{{category.image}}{{imageMetaUrl}}"
             />
           </div>
           <div id="textPad{{ i }}" class="py-2 position-relative">
             <p
               class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom"
             >
-              Necklaces
+              {{category.name}}
             </p>
           </div>
         </div>
@@ -661,14 +589,14 @@
     >
   </p>
   <swiper [config]="testimonialSlider">
-    <ng-template swiperSlide="" *ngFor="let card of [1, 1, 1, 1, 1, 1, 1]">
+    <ng-template swiperSlide="" *ngFor="let card of featuredTestimnials">
       <div class="col-12 col-lg-12">
         <div class="testimonialCard">
           <div class="width-100 centerCardHeading">
             <button
               class="px-2 py-1 border-radius-5px font-weight-800 font-16 text-align-center text-white font-lato bg-blue-black"
             >
-              Swetha
+              {{ card.name }}
             </button>
           </div>
           <div class="row py-3">
@@ -676,28 +604,20 @@
               <div class="testimonialUserHolder">
                 <img
                   class="responsiveImage"
-                  src="assets/images/testimonialUser.png"
+                  src="{{ imageUrl }}{{ card.image }}{{ imageMetaUrl }}"
                 />
               </div>
             </div>
             <div class="col-12 col-lg-6 col-md-6 col-sm-12">
               <p class="font-14 font-lato font-weight-600 line-height-24 mt-3">
-                I always adored magnificent designs and finally made a purchase
-                online (very well designed website) that turned out to be a
-                pleasant experience. The customer carewas extremely supportive,
-                prompt and patient. I ordered emerald beads necklace and an
-                amethyst beads necklace that look stunningly beautiful and
-                elegant. I also used emerald necklace as choker which looked
-                very pretty. I absolutely appreciate their idea of sending
-                tomato seeds for plantation. Looking forward to shop again in
-                future. ❤️
+                {{ card.description }}
               </p>
             </div>
           </div>
           <div class="width-100 centerCardHeading">
             <i
               class="fa fa-star fa-2x px-1"
-              *ngFor="let star of [1, 1, 1, 1, 1]"
+              *ngFor="let star of [].constructor(card.rating)"
             ></i>
           </div>
         </div>
@@ -729,7 +649,7 @@
 <app-footer></app-footer>
 
 <ng-template #womenOffcanvas let-c="close" let-d="dismiss">
-  <div class="offcanvas-body position-relative positionOffcanvasContent">
+  <div class="offcanvas-body positionOffcanvasContent">
     <div>
       <div class="offcanvasFlex">
         <div
@@ -758,18 +678,18 @@
           <div class="CategoryCirclesFlex">
             <div
               class="padding-x-2rem cursor-pointer"
-              *ngFor="let data of [1, 1, 1, 1, 1, 1, 1, 1]"
+              *ngFor="let data of womenCategories"
             >
               <div class="categoryCircle overflow-hidden">
                 <img
                   class="responsiveImage"
-                  src="assets/images/categoryImage.png"
+                  src="{{ imageUrl }}{{ data.image }}{{ imageMetaUrl }}"
                 />
               </div>
               <p
                 class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24"
               >
-                RINGS
+                {{ data.name }}
               </p>
             </div>
           </div>
@@ -807,7 +727,7 @@
         >
           <div class="imageHolderModel">
             <img
-              class="responsiveImage"
+              class="responsiveImage-contain"
               src="assets/images/maleModel.png"
               alt="femaleModel"
             />
@@ -827,18 +747,18 @@
           <div class="CategoryCirclesFlex">
             <div
               class="padding-x-2rem cursor-pointer"
-              *ngFor="let data of [1, 1, 1, 1, 1, 1, 1, 1]"
+              *ngFor="let data of menCategories"
             >
               <div class="categoryCircle overflow-hidden">
                 <img
-                  class="responsiveImage"
-                  src="assets/images/categoryImage.png"
+                  class="responsiveImage-contain"
+                  src="{{ imageUrl }}{{ data.image }}{{ imageMetaUrl }}"
                 />
               </div>
               <p
                 class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24"
               >
-                RINGS
+                {{ data.name }}
               </p>
             </div>
           </div>
