@@ -22,6 +22,7 @@ import SwiperCore, {
   Swiper,
 } from 'swiper';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 @Component({
@@ -67,80 +68,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     'assets/images/indiaToday.png',
     'assets/images/timesNow.png',
   ];
-  jewelleryTab: any[] = [
-    {
-      name: 'Temple Jewellery',
-    },
-    {
-      name: 'Office Jewellery',
-    },
-    {
-      name: 'Fancy Jewellery',
-    },
-    {
-      name: 'Couple Jewellery',
-    },
-    {
-      name: 'Kids Jewellery',
-    },
-    {
-      name: 'Mens Jewellery',
-    },
-    {
-      name: 'GenZ Jewellery',
-    },
-    {
-      name: 'Temple Jewellery',
-    },
-    {
-      name: 'Office Jewellery',
-    },
-    {
-      name: 'Fancy Jewellery',
-    },
-    {
-      name: 'Couple Jewellery',
-    },
-    {
-      name: 'Kids Jewellery',
-    },
-    {
-      name: 'Mens Jewellery',
-    },
-    {
-      name: 'GenZ Jewellery',
-    },
-  ];
-  shopByMood: any[] = [
-    {
-      down: true,
-      name: 'BRIDES MINDSET',
-    },
-    {
-      down: false,
-      name: 'ROMANTIC DATE',
-    },
-    {
-      down: true,
-      name: 'BLACK JANE',
-    },
-    {
-      down: false,
-      name: 'PRINCESS MODE',
-    },
-    {
-      down: true,
-      name: 'HOUSEWIFE ROUTINE',
-    },
-    {
-      down: false,
-      name: 'BRIDES MINDSET',
-    },
-    {
-      down: true,
-      name: 'ROMANTIC DATE',
-    },
-  ];
+
+
 
   featuredProductsSwiper: SwiperOptions = {
     slidesPerView: 2,
@@ -150,9 +79,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     centeredSlides: true,
     pagination: true,
     mousewheel: false,
-    // on: {
-    //   slideChange: (swiper) => this.onSlideChange(swiper),
-    // },
     breakpoints: {
       400: {
         slidesPerView: 1,
@@ -255,7 +181,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
   currentOffcanvas: NgbOffcanvasRef;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router:Router) {}
 
   ngOnInit() {
     this.getHeroBanner();
@@ -485,5 +411,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
       console.log(this.featuredTagsList)
     });
+  }
+
+  routeToShop(slug:string){
+    this.currentOffcanvas?.dismiss();
+    this.router.navigate(['/shop/tertiary/',slug])
+   
   }
 }

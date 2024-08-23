@@ -67,3 +67,12 @@
 #blueSlider .mat-slider-track-background {
   background-color: lightblue !important; /* Adjust if needed */
 }
+.noProducts{
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(227, 229, 237);
+  margin: 10px;
+  border-radius: 20px;
+}

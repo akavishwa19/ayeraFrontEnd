@@ -748,8 +748,9 @@
             <div
               class="padding-x-2rem cursor-pointer"
               *ngFor="let data of menCategories"
+              (click)="routeToShop(data.slug)"
             >
-              <div class="categoryCircle overflow-hidden">
+              <div class="categoryCircle overflow-hidden"      >
                 <img
                   class="responsiveImage-contain"
                   src="{{ imageUrl }}{{ data.image }}{{ imageMetaUrl }}"
@@ -757,7 +758,9 @@
               </div>
               <p
                 class="text-align-center py-3 font-lato font-weight-600 font-16 line-height-24"
+                
               >
+              
                 {{ data.name }}
               </p>
             </div>

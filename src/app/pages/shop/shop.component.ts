@@ -6,6 +6,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -21,11 +22,25 @@ export class ShopComponent implements OnInit {
   private modalService: NgbModal = inject(NgbModal);
   closeResult: string = '';
   productList: any[] = [];
+  passedProductFetchType:string='';
+  passedSlug:string='';
+  slugId:string='';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router:Router,private activatedRoute:ActivatedRoute) {
+    this.passedSlug=this.activatedRoute.snapshot.paramMap.get('slug')
+    this.passedProductFetchType=this.activatedRoute.snapshot.paramMap.get('product-fetch-type')   
+  }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.fetchBasicRequirements(this.passedProductFetchType,this.passedSlug)
+
+  }
+
+  fetchBasicRequirements(fetchType,slug){
+    this.http.get(this.productUrl+'/basic-fetch-requirements?type='+fetchType+'&slug='+slug).subscribe((res:any)=>{
+      this.slugId=res.data._id;
+      this.getProducts();
+    })
   }
 
   formatLabel(value: number): string {
@@ -62,7 +77,7 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    this.http.get(this.productUrl + '/products').subscribe((res: any) => {
+    this.http.get(this.productUrl + '/products?type='+this.passedProductFetchType+'&id='+this.slugId).subscribe((res: any) => {
       this.productList = res.data;
     });
   }
