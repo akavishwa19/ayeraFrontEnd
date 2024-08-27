@@ -6,16 +6,25 @@
     <div class="shopCategoriesHolderFlex width-100">
       <div
         class="shopCategoryBlock"
-        *ngFor="let category of [1, 1, 1, 1, 1, 1, 1, 1]"
+        (click)="hoverClass(i)"
+        class="shopCategoryBlock cursor-pointer"
+        *ngFor="let category of childCategoryList; let i = index"
       >
-        <div class="shopCategoryImageHolder">
-          <img src="assets/images/hsopCategoryImage.png" />
+        <div id="border{{ i }}" class="shopCategoryImageHolder">
+          <div class="categoryCircle overflow-hidden">
+            <img
+              class="responsiveImage-contain"
+              [src]="imageUrl + category.image + imageMetaUrl"
+            />
+          </div>
         </div>
-        <p
-          class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24"
-        >
-          Necklaces
-        </p>
+        <div id="textPad{{ i }}" class="py-2 textClass position-relative">
+          <p
+            class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom"
+          >
+            {{ category.name }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -24,20 +33,24 @@
   <div class="container-xl">
     <div class="filterFlex">
       <div class="leftFilterFlex">
+        <ng-container *ngFor="let tag of tagList.slice(0, 5)">
+          <button
+            class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+            (click)="markTag(tag._id)"
+            [ngClass]="tag?.ticked ? 'tickedClass' : 'untickedClass'"
+          >
+            {{ tag.name }}
+          </button>
+        </ng-container>
         <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+          id="moreTagsSelector"
+          class="none-outline border-radius-10px tickedClass font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+          (click)="setMoreTags()"
         >
-          Bracelets
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-        >
-          Bracelets
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-        >
-          Bracelets
+          More
+          <i
+            class="fa-solid fa-chevron-down padding-left-10px zero-padding-right"
+          ></i>
         </button>
       </div>
       <div class="rightFilterFlex">
@@ -57,7 +70,27 @@
             class="fa-solid fa-sliders padding-left-10px zero-padding-right"
           ></i>
         </button>
+        <button
+          [disabled]="filterBoolean"
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+        >
+          Clear filters
+          <i
+            class="fa-regular fa-circle-xmark padding-left-10px zero-padding-right"
+          ></i>
+        </button>
       </div>
+    </div>
+    <div *ngIf="moreTags" class="moreTags pt-3">
+      <ng-container *ngFor="let tag of tagList.slice(5)">
+        <button
+          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+          (click)="markTag(tag._id)"
+          [ngClass]="tag?.ticked ? 'tickedClass' : 'untickedClass'"
+        >
+          {{ tag.name }}
+        </button>
+      </ng-container>
     </div>
     <div class="priceSelectionFlex pt-5">
       <p
@@ -65,20 +98,20 @@
       >
         Buy by Price Range
       </p>
-      <div class="rangeSlider">
-        <mat-slider
-          min="0"
-          max="50000"
-          step="1500"
-          showTickMarks
-          discrete
-          color="accent"
-          id="blueSlider"
-          [displayWith]="formatLabel"
-        >
-          <input matSliderThumb />
-        </mat-slider>
-      </div>
+
+      <mat-slider
+        min="0"
+        max="50000"
+        step="1500"
+        showTickMarks
+        discrete
+        color="accent"
+        id="blueSlider"
+        [displayWith]="formatLabel"
+      >
+        <input value="2000" matSliderStartThumb />
+        <input value="50000" matSliderEndThumb />
+      </mat-slider>
     </div>
   </div>
 </section>
@@ -99,50 +132,54 @@
       </button>
     </div>
     <div class="row mt-3">
-      <ng-container *ngIf="productList.length!=0;else noProductsFound">
-      <div
-        class="col-12 col-lg-3 col-md-6 col-sm-12"
-        *ngFor="let item of productList"
-      >
-        <ng-container *ngIf="item.type == 'simple'; else variable">
-          <app-product-card
-            (valueLiked)="detectValueLiked($event)"
-            [productId]="item._id"
-            [islIked]="item.isLiked"
-            [highlightedTag]="item.tags[0].name"
-            [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
-            [productName]="item.name"
-            [strikedPrice]="item.price"
-            [discount]="item.discount"
-            [additionalDiscount]="item.additionalDiscount"
-            [price]="item.sellingPrice"
-            [hasSimilarProducts]="true"
+      <ng-container *ngIf="productList.length != 0; else noProductsFound">
+        <div
+          class="col-12 col-lg-3 col-md-6 col-sm-12"
+          *ngFor="let item of productList"
+        >
+          <ng-container *ngIf="item.type == 'simple'; else variable">
+            <app-product-card
+              (valueLiked)="detectValueLiked($event)"
+              [productId]="item._id"
+              [islIked]="item.isLiked"
+              [highlightedTag]="item.tags[0].name"
+              [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+              [productName]="item.name"
+              [strikedPrice]="item.price"
+              [discount]="item.discount"
+              [additionalDiscount]="item.additionalDiscount"
+              [price]="item.sellingPrice"
+              [hasSimilarProducts]="true"
+            >
+            </app-product-card>
+          </ng-container>
+          <ng-template #variable>
+            <app-product-card
+              (valueLiked)="detectValueLiked($event)"
+              [productId]="item._id"
+              [islIked]="item.isLiked"
+              [highlightedTag]="item.tags[0].name"
+              [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+              [productName]="item.variants[0].name"
+              [strikedPrice]="item.variants[0].price"
+              [discount]="item.variants[0].discount"
+              [additionalDiscount]="item.variants[0].additionalDiscount"
+              [price]="item.variants[0].sellingPrice"
+              [hasSimilarProducts]="true"
+            >
+            </app-product-card>
+          </ng-template>
+        </div>
+      </ng-container>
+      <ng-template #noProductsFound>
+        <div class="noProducts">
+          <p
+            class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
           >
-          </app-product-card>
-        </ng-container>
-        <ng-template #variable>
-          <app-product-card
-            (valueLiked)="detectValueLiked($event)"
-            [productId]="item._id"
-            [islIked]="item.isLiked"
-            [highlightedTag]="item.tags[0].name"
-            [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
-            [productName]="item.variants[0].name"
-            [strikedPrice]="item.variants[0].price"
-            [discount]="item.variants[0].discount"
-            [additionalDiscount]="item.variants[0].additionalDiscount"
-            [price]="item.variants[0].sellingPrice"
-            [hasSimilarProducts]="true"
-          >
-          </app-product-card>
-        </ng-template>
-      </div>
-    </ng-container>
-    <ng-template #noProductsFound>
-      <div class="noProducts">
-        <p class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom ">NO PRODUCTS FOUND</p>
-      </div>
-    </ng-template>
+            NO PRODUCTS FOUND
+          </p>
+        </div>
+      </ng-template>
     </div>
   </div>
 </section>
