@@ -4,7 +4,7 @@
   align-items: center;
   overflow-x: auto;
 }
-.categoryImageHolder{
+.categoryImageHolder {
   width: 160px;
   height: 160px;
   border-radius: 50%;
@@ -24,7 +24,7 @@
 }
 .rightFilterFlex {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 .priceSelectionFlex {
   display: flex;
@@ -81,11 +81,32 @@
   margin: 10px;
   border-radius: 20px;
 }
-.tickedClass{
+.tickedClass {
   background-color: #020724 !important;
   color: #ffffff !important;
 }
-.moreTags{
+.moreTags {
   display: flex;
   gap: 20px;
+}
+
+.customBorderClass{
+  border-bottom: 1px solid #D9D9D9;
+}
+.filterFlexShop{
+  min-width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.infoFlexFilters{
+  display: flex;
+  gap:8px;
+  align-items: center;
+}
+.rangeFlex{
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
 }

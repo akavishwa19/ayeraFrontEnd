@@ -29,7 +29,7 @@
     </div>
   </div>
 </section>
-<section class="default-section-padding">
+<section class="default-section-padding" id="changePButtonsStyles">
   <div class="container-xl">
     <div class="filterFlex">
       <div class="leftFilterFlex">
@@ -54,23 +54,216 @@
         </button>
       </div>
       <div class="rightFilterFlex">
-        <button
+        <p-button
+          (onClick)="op.toggle($event)"
+          label="Filter"
+          icon="pi pi-filter"
+        />
+        <p-overlayPanel #op>
+          <div
+            class="filterFlexShop customBorderClass"
+            (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed"
+          >
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Categories
+            </p>
+            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+          </div>
+          <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div
+              class="px-1 py-2 infoFlexFilters customBorderClass"
+              *ngFor="let item of childCategoryList"
+            >
+              <input type="checkbox" />
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+              >
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
+          <div
+            (click)="collapse2.toggle()"
+            [attr.aria-expanded]="!isCollapsed2"
+            class="filterFlexShop customBorderClass"
+          >
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Color
+            </p>
+            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+          </div>
+          <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+            <div
+              class="px-1 py-2 infoFlexFilters customBorderClass"
+              *ngFor="let item of colorVariationsList"
+            >
+              <input type="checkbox" />
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+              >
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
+          <div
+            (click)="collapse3.toggle()"
+            [attr.aria-expanded]="!isCollapsed3"
+            class="filterFlexShop customBorderClass"
+          >
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Size
+            </p>
+            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+          </div>
+          <div #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+            <div
+              class="px-1 py-2 infoFlexFilters customBorderClass"
+              *ngFor="let item of sizeVariationsList"
+            >
+              <input type="checkbox" />
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+              >
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
+          <div
+            (click)="collapse4.toggle()"
+            [attr.aria-expanded]="!isCollapsed4"
+            class="filterFlexShop customBorderClass"
+          >
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Product Type
+            </p>
+            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+          </div>
+          <div #collapse4="ngbCollapse" [(ngbCollapse)]="isCollapsed4">
+            <div
+              class="px-1 py-2 infoFlexFilters customBorderClass"
+              *ngFor="let item of productTypeList"
+            >
+              <input type="checkbox" />
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+              >
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
+          <div
+            (click)="collapse5.toggle()"
+            [attr.aria-expanded]="!isCollapsed5"
+            class="filterFlexShop"
+          >
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Patterns
+            </p>
+            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+          </div>
+          <div #collapse5="ngbCollapse" [(ngbCollapse)]="isCollapsed5">
+            <div
+              class="px-1 py-2 infoFlexFilters customBorderClass"
+              *ngFor="let item of patternList"
+            >
+              <input type="checkbox" />
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+              >
+                {{ item.name }}
+              </p>
+            </div>
+          </div>
+        </p-overlayPanel>
+        <!-- <div class="filterOptions">
+            <div>
+              <p>Categories</p>
+            </div>
+            <div>
+              <p>Color</p>
+            </div>
+            <div>
+              <p>Size</p>
+            </div>
+            <div>
+              <p>Product Type</p>
+            </div>
+            <div>
+              <p>Pattern</p>
+            </div>
+          </div> -->
+
+        <!-- <button
           class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
         >
           Sort by
           <i
             class="fa-solid fa-arrow-right-arrow-left padding-left-10px zero-padding-right"
           ></i>
-        </button>
-        <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-        >
-          Filter by
-          <i
-            class="fa-solid fa-sliders padding-left-10px zero-padding-right"
-          ></i>
-        </button>
-        <button
+        </button> -->
+
+        <p-button
+          (onClick)="sort.toggle($event)"
+          label="Sort By"
+          icon="pi pi-sort-alt"
+        />
+        <p-overlayPanel #sort>
+          <div class="filterFlexShop customBorderClass">
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Price (High-Low)
+            </p>
+          </div>
+          <div class="filterFlexShop customBorderClass">
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Price (Low-High)
+            </p>
+          </div>
+          <div class="filterFlexShop customBorderClass">
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Rating (High-Low)
+            </p>
+          </div>
+          <div class="filterFlexShop customBorderClass">
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Rating (Low-High)
+            </p>
+          </div>
+          <div class="filterFlexShop customBorderClass">
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Latest
+            </p>
+          </div>
+          <div class="filterFlexShop">
+            <p
+              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+            >
+              Oldest
+            </p>
+          </div>
+        </p-overlayPanel>
+
+        <!-- <button
           [disabled]="filterBoolean"
           class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
         >
@@ -78,7 +271,12 @@
           <i
             class="fa-regular fa-circle-xmark padding-left-10px zero-padding-right"
           ></i>
-        </button>
+        </button> -->
+        <p-button
+          [disabled]="true"
+          label="Clear Filters"
+          icon="pi pi-times-circle"
+        />
       </div>
     </div>
     <div *ngIf="moreTags" class="moreTags pt-3">
@@ -96,8 +294,10 @@
       <p
         class="font-lato font-18 font-weight-700 letter-spacing-02 line-height-19 zero-margin-bottom zero-padding-bottom"
       >
-        Buy by Price Range
+        Buy by Price Range :
       </p>
+     
+      <div class="rangeFlex">
 
       <mat-slider
         min="0"
@@ -112,6 +312,15 @@
         <input value="2000" matSliderStartThumb />
         <input value="50000" matSliderEndThumb />
       </mat-slider>
+      <button
+     
+      class="none-outline border-radius-10px tickedClass font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+     
+    >
+      GO
+    
+    </button>
+  </div>
     </div>
   </div>
 </section>

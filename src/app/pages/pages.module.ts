@@ -5,7 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
-import {NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbCollapseModule, NgbModalModule} from "@ng-bootstrap/ng-bootstrap";
 import {SwiperModule} from "swiper/angular";
 import { ShopComponent } from './shop/shop.component';
 import {MatSliderModule} from "@angular/material/slider";
@@ -22,6 +22,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FileUploadModule } from 'primeng/fileupload';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     NgxIntlTelInputModule,
     ReactiveFormsModule,
     NgSelectModule,
-    FileUploadModule 
+    FileUploadModule ,
+    OverlayPanelModule,
+    NgbCollapseModule 
   ]
 })
 export class PagesModule { }

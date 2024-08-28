@@ -7,6 +7,7 @@ import {
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-shop',
@@ -17,6 +18,9 @@ export class ShopComponent implements OnInit {
   productUrl = environment.baseurl + '/product';
   categoryUrl = environment.baseurl + '/categories';
   tagsUrl = environment.baseurl + '/tags';
+  attributeUrl = environment.baseurl + '/attribute';
+  patternUrl = environment.baseurl + '/pattern';
+  productTypeUrl = environment.baseurl + '/productType';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
 
@@ -31,11 +35,34 @@ export class ShopComponent implements OnInit {
   passedProductFetchType: string = '';
   passedSlug: string = '';
   slugId: string = '';
+  colorVariationsList: any = ([] = []);
+  sizeVariationsList: any = ([] = []);
+  productTypeList: any[] = [];
+  patternList: any[] = [];
+  isCollapsed = true;
+  isCollapsed2 = true;
+  isCollapsed3 = true;
+  isCollapsed4 = true;
+  isCollapsed5 = true;
+
+  form:FormGroup=this.fb.group({
+    childCategories:[null],
+    tags:[null],
+    colors:[null],
+    sizes:[null],
+    productType:[null],
+    patterns:[null],
+    sortBy:[null],
+    sortOrder:[null],
+    minPrice:[null],
+    maxPrice:[null]
+  })
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private fb:FormBuilder
   ) {
     this.passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.passedProductFetchType =
@@ -44,6 +71,10 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchBasicRequirements(this.passedProductFetchType, this.passedSlug);
+    this.getColorVariations();
+    this.getSizeVariations();
+    this.fetchPatternList();
+    this.fetchProductTypeList();
   }
 
   fetchBasicRequirements(fetchType, slug) {
@@ -61,6 +92,18 @@ export class ShopComponent implements OnInit {
         this.fetchAllTags();
         this.getProducts();
       });
+  }
+
+  fetchPatternList() {
+    this.http.get(this.patternUrl).subscribe((res: any) => {
+      this.patternList = res.data;
+    });
+  }
+
+  fetchProductTypeList() {
+    this.http.get(this.productTypeUrl).subscribe((res: any) => {
+      this.productTypeList = res.data;
+    });
   }
 
   fetchChildCategories() {
@@ -121,6 +164,22 @@ export class ShopComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.productList = res.data;
+      });
+  }
+
+  getColorVariations() {
+    this.http
+      .get(this.attributeUrl + '/color-variations')
+      .subscribe((res: any) => {
+        this.colorVariationsList = res.data;
+      });
+  }
+
+  getSizeVariations() {
+    this.http
+      .get(this.attributeUrl + '/size-variations')
+      .subscribe((res: any) => {
+        this.sizeVariationsList = res.data;
       });
   }
 
@@ -193,22 +252,20 @@ export class ShopComponent implements OnInit {
   }
 
   setMoreTags() {
+    console.log(this.form.value)
     const element: HTMLElement = <HTMLElement>(
       document.getElementById('moreTagsSelector')
     );
-    if(this.moreTags){
-      this.moreTags=false;
+    if (this.moreTags) {
+      this.moreTags = false;
       element.innerHTML = `More    <i
       class="fa-solid fa-chevron-down padding-left-10px zero-padding-right"
     ></i>`;
-    }
-    else{
-    this.moreTags = true; 
-    element.innerHTML = `Less    <i
+    } else {
+      this.moreTags = true;
+      element.innerHTML = `Less    <i
           class="fa-solid fa-chevron-up padding-left-10px zero-padding-right"
         ></i>`;
-      }
+    }
   }
-
-  
 }

@@ -671,3 +671,29 @@ button:disabled{
   // clip-path: polygon(40% 0, 60% 0, 68% 61%, 75% 100%, 25% 100%, 31% 59%);
 clip-path: polygon(41% 0, 58% 0, 61% 44%, 64% 74%, 69% 100%, 30% 100%, 34% 76%, 37% 44%);
 }
+
+#changePButtonsStyles .p-button {
+  border-radius: 10px !important;
+  font-family: "Lato", sans-serif !important;
+}
+.p-overlaypanel .p-overlaypanel-content{
+  padding: 5px !important;
+}
+.p-button:focus{
+  box-shadow: none !important;
+}
+html .mat-accent {
+  --mdc-circular-progress-active-indicator-color:#020724 !important ;
+}
+html .mat-accent {
+  --mat-slider-ripple-color: #020724;
+  --mat-slider-hover-state-layer-color: rgba(255, 64, 129, 0.05);
+  --mat-slider-focus-state-layer-color: rgb(0 0 0 / 20%);
+  --mdc-slider-handle-color: #020724;
+  --mdc-slider-focus-handle-color: #020724;
+  --mdc-slider-hover-handle-color: #020724;
+  --mdc-slider-active-track-color: #020724;
+  --mdc-slider-inactive-track-color: #020724;
+  --mdc-slider-with-tick-marks-inactive-container-color: #020724;
+  --mdc-slider-with-tick-marks-active-container-color: white;
+}
