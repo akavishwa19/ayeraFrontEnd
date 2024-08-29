@@ -35,6 +35,9 @@ export class ShopComponent implements OnInit {
   passedProductFetchType: string = '';
   passedSlug: string = '';
   slugId: string = '';
+  categoryFilterArray = [];
+  tagFilterArray = [];
+  colorFilterArray:any=[]
   colorVariationsList: any = ([] = []);
   sizeVariationsList: any = ([] = []);
   productTypeList: any[] = [];
@@ -45,28 +48,35 @@ export class ShopComponent implements OnInit {
   isCollapsed4 = true;
   isCollapsed5 = true;
 
-  form:FormGroup=this.fb.group({
-    childCategories:[null],
-    tags:[null],
-    colors:[null],
-    sizes:[null],
-    productType:[null],
-    patterns:[null],
-    sortBy:[null],
-    sortOrder:[null],
-    minPrice:[null],
-    maxPrice:[null]
-  })
+  form: FormGroup = this.fb.group({
+    childCategories: [null],
+    tags: [null],
+    colors: [null],
+    sizes: [null],
+    productType: [null],
+    patterns: [null],
+    sortBy: [null],
+    sortOrder: [null],
+    minPrice: [0],
+    maxPrice: [30000],
+  });
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private fb:FormBuilder
+    private fb: FormBuilder
   ) {
     this.passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.passedProductFetchType =
       this.activatedRoute.snapshot.paramMap.get('product-fetch-type');
+
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.form.patchValue({
+        childCategories: params['childCategories'],
+      });
+      this.applyFilters();
+    });
   }
 
   ngOnInit(): void {
@@ -75,6 +85,18 @@ export class ShopComponent implements OnInit {
     this.getSizeVariations();
     this.fetchPatternList();
     this.fetchProductTypeList();
+  }
+
+  handleCheckBoxChangeForChildCategories(event: any, index, id) {
+    this.hoverClass(index, id);
+  }
+
+  handleColorCheckbox(event:any,id:string){
+    const singleColor=this.colorVariationsList.find((x)=>x._id==id)
+    if(event.target.checked){
+      this.colorFilterArray.push(id)
+      this.colorVariationsList
+    }
   }
 
   fetchBasicRequirements(fetchType, slug) {
@@ -187,41 +209,50 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
-  hoverClass(i) {
-    let htmlCollection: HTMLCollection = <HTMLCollection>(
-      document.getElementsByClassName('shopCategoryImageHolder')
-    );
-    let htmlCollectionText: HTMLCollection = <HTMLCollection>(
-      document.getElementsByClassName('textClass')
-    );
+  hoverClass(i, index) {
+    const findElement = this.childCategoryList.find((x) => x._id == index);
 
-    for (let element of Array.from(htmlCollection)) {
-      if (element instanceof HTMLElement) {
-        element.style.border = 'none';
-      }
+    if (findElement.checked == true) {
+      const specialBorderElement: HTMLElement = document.getElementById(
+        'border' + i
+      );
+      specialBorderElement.style.border = 'none';
+
+      const textBorder: HTMLElement = document.getElementById('textPad' + i);
+      textBorder.style.background = '#ffffff';
+      textBorder.style.color = '#020724';
+      textBorder.style.borderRadius = '17px';
+      textBorder.classList.remove('mt-4');
+      textBorder.classList.remove('mirrorBody');
+      findElement.checked = false;
+
+      this.categoryFilterArray = this.categoryFilterArray.filter(
+        (x) => x != index
+      );
+    } else {
+      const specialBorderElement: HTMLElement = document.getElementById(
+        'border' + i
+      );
+
+      specialBorderElement.style.border = '15px solid #020724';
+
+      const textBorder: HTMLElement = document.getElementById('textPad' + i);
+      textBorder.style.background = '#020724';
+      textBorder.style.color = '#ffffff';
+      textBorder.style.borderRadius = '17px';
+      textBorder.classList.add('mt-4');
+      textBorder.classList.add('mirrorBody');
+      findElement.checked = true;
+
+      this.categoryFilterArray.push(index);
     }
 
-    for (let element of Array.from(htmlCollectionText)) {
-      if (element instanceof HTMLElement) {
-        element.style.color = '#020724';
-        element.style.background = '#ffffff';
-        element.classList.remove('mt-4');
-        element.classList.remove('mirrorBody');
-      }
-    }
+    this.form.patchValue({ childCategories: this.categoryFilterArray });
+    console.log(this.form.value.childCategories);
 
-    const specialBorderElement: HTMLElement = document.getElementById(
-      'border' + i
-    );
-    specialBorderElement.style.border = '15px solid #020724';
-
-    const textBorder: HTMLElement = document.getElementById('textPad' + i);
-    textBorder.style.background = '#020724';
-    textBorder.style.color = '#ffffff';
-    textBorder.style.borderRadius = '17px';
-    textBorder.classList.add('mt-4');
-    textBorder.classList.add('mirrorBody');
+    // this.applyFilters()
   }
+
   removeHoverClass(i) {
     const specialBorderElement: HTMLElement = document.getElementById(
       'border' + i
@@ -237,22 +268,33 @@ export class ShopComponent implements OnInit {
   fetchAllTags() {
     this.http.get(this.tagsUrl).subscribe((res: any) => {
       this.tagList = res.data;
+      // this.tagList = this.tagList.map((x) => {
+      //   return {
+      //     ...x,
+      //     ticked: false,
+      //   };
+      // });
     });
   }
 
   markTag(id: string) {
     let singleTag = this.tagList.find((x) => x._id == id);
 
-    if (singleTag?.ticked) {
+    if (singleTag?.ticked == true) {
+      this.tagFilterArray = this.tagFilterArray.filter((x) => x != id);
       singleTag.ticked = false;
     } else {
+      this.tagFilterArray.push(id);
       singleTag.ticked = true;
-      this.filterBoolean = true;
     }
+
+    this.form.patchValue({
+      tags: this.tagFilterArray,
+    });
   }
 
   setMoreTags() {
-    console.log(this.form.value)
+
     const element: HTMLElement = <HTMLElement>(
       document.getElementById('moreTagsSelector')
     );
@@ -267,5 +309,24 @@ export class ShopComponent implements OnInit {
           class="fa-solid fa-chevron-up padding-left-10px zero-padding-right"
         ></i>`;
     }
+  }
+
+  applyFilters() {
+
+    console.log(this.form.value)
+
+    // const queryParams = {
+    //   childCategories: this.form.get('childCategories')?.value || null,
+    // };
+
+    // Object.keys(queryParams).forEach(
+    //   (key) => queryParams[key] === null && delete queryParams[key]
+    // );
+
+    // this.router.navigate([], {
+    //   relativeTo: this.activatedRoute,
+    //   queryParams: queryParams,
+    //   queryParamsHandling: 'merge',
+    // });
   }
 }

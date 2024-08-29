@@ -697,3 +697,7 @@ html .mat-accent {
   --mdc-slider-with-tick-marks-inactive-container-color: #020724;
   --mdc-slider-with-tick-marks-active-container-color: white;
 }
+
+input[type="checkbox"]{
+  accent-color: #020724;
+}

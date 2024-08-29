@@ -6,7 +6,7 @@
     <div class="shopCategoriesHolderFlex width-100">
       <div
         class="shopCategoryBlock"
-        (click)="hoverClass(i)"
+        (click)="hoverClass(i, category._id)"
         class="shopCategoryBlock cursor-pointer"
         *ngFor="let category of childCategoryList; let i = index"
       >
@@ -75,9 +75,15 @@
           <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
             <div
               class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of childCategoryList"
+              *ngFor="let item of childCategoryList; let i = index"
             >
-              <input type="checkbox" />
+              <input
+                (change)="
+                  handleCheckBoxChangeForChildCategories($event, i, item._id)
+                "
+                type="checkbox"
+                [checked]="item.checked"
+              />
               <p
                 class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
               >
@@ -100,9 +106,9 @@
           <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
             <div
               class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of colorVariationsList"
+              *ngFor="let item of colorVariationsList;let i=index"
             >
-              <input type="checkbox" />
+              <input type="checkbox" [checked]="item.marked" (click)="handleColorCheckbox($event,item._id)" />
               <p
                 class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
               >
@@ -186,32 +192,6 @@
             </div>
           </div>
         </p-overlayPanel>
-        <!-- <div class="filterOptions">
-            <div>
-              <p>Categories</p>
-            </div>
-            <div>
-              <p>Color</p>
-            </div>
-            <div>
-              <p>Size</p>
-            </div>
-            <div>
-              <p>Product Type</p>
-            </div>
-            <div>
-              <p>Pattern</p>
-            </div>
-          </div> -->
-
-        <!-- <button
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-        >
-          Sort by
-          <i
-            class="fa-solid fa-arrow-right-arrow-left padding-left-10px zero-padding-right"
-          ></i>
-        </button> -->
 
         <p-button
           (onClick)="sort.toggle($event)"
@@ -263,15 +243,6 @@
           </div>
         </p-overlayPanel>
 
-        <!-- <button
-          [disabled]="filterBoolean"
-          class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-        >
-          Clear filters
-          <i
-            class="fa-regular fa-circle-xmark padding-left-10px zero-padding-right"
-          ></i>
-        </button> -->
         <p-button
           [disabled]="true"
           label="Clear Filters"
@@ -290,38 +261,38 @@
         </button>
       </ng-container>
     </div>
-    <div class="priceSelectionFlex pt-5">
-      <p
-        class="font-lato font-18 font-weight-700 letter-spacing-02 line-height-19 zero-margin-bottom zero-padding-bottom"
-      >
-        Buy by Price Range :
-      </p>
-     
-      <div class="rangeFlex">
+    <form [formGroup]="form">
+      <div class="priceSelectionFlex pt-5">
+        <p
+          class="font-lato font-18 font-weight-700 letter-spacing-02 line-height-19 zero-margin-bottom zero-padding-bottom"
+        >
+          Buy by Price Range :
+        </p>
 
-      <mat-slider
-        min="0"
-        max="50000"
-        step="1500"
-        showTickMarks
-        discrete
-        color="accent"
-        id="blueSlider"
-        [displayWith]="formatLabel"
-      >
-        <input value="2000" matSliderStartThumb />
-        <input value="50000" matSliderEndThumb />
-      </mat-slider>
-      <button
-     
-      class="none-outline border-radius-10px tickedClass font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-     
-    >
-      GO
-    
-    </button>
-  </div>
-    </div>
+        <div class="rangeFlex">
+          <mat-slider
+            min="0"
+            max="50000"
+            step="1500"
+            showTickMarks
+            discrete
+            color="accent"
+            id="blueSlider"
+            [displayWith]="formatLabel"
+          >
+            <input formControlName="minPrice" matSliderStartThumb />
+            <input formControlName="maxPrice" matSliderEndThumb />
+          </mat-slider>
+
+          <button
+            class="none-outline border-radius-10px tickedClass font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
+            (click)="applyFilters()"
+          >
+            GO
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </section>
 <section class="default-section-padding">
@@ -330,7 +301,7 @@
       <p
         class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
       >
-        2054 Patterns
+        2054 Results
       </p>
       <button
         (click)="open(content)"
