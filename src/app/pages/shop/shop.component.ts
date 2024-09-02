@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, TemplateRef } from '@angular/core';
+import { Component, inject, OnInit, TemplateRef, NgZone } from '@angular/core';
 import {
   NgbModal,
   NgbOffcanvas,
@@ -37,10 +37,10 @@ export class ShopComponent implements OnInit {
   slugId: string = '';
   categoryFilterArray = [];
   tagFilterArray = [];
-  colorFilterArray:any=[];
-  sizeFilterArray:any[]=[];
-  productTypeFilterArray:any[]=[];
-  patternFilterArray:any[]=[];
+  colorFilterArray: any = [];
+  sizeFilterArray: any[] = [];
+  productTypeFilterArray: any[] = [];
+  patternFilterArray: any[] = [];
   colorVariationsList: any = ([] = []);
   sizeVariationsList: any = ([] = []);
   productTypeList: any[] = [];
@@ -50,38 +50,45 @@ export class ShopComponent implements OnInit {
   isCollapsed3 = true;
   isCollapsed4 = true;
   isCollapsed5 = true;
-  sortList:any=[
+  sortList: any = [
     {
-      label:' Price (High-Low)',
-      order:1,
-      field:'price'
+      label: ' Price (High-Low)',
+      order: 1,
+      field: 'price',
+      marked: false,
     },
     {
-      label:'Price (Low-High)',
-      order:-1,
-      field:'price'
+      label: 'Price (Low-High)',
+      order: -1,
+      field: 'price',
+      marked: false,
     },
     {
-      label:' Rating (High-Low)',
-      order:1,
-      field:'rating'
+      label: ' Rating (High-Low)',
+      order: 1,
+      field: 'rating',
+      marked: false,
     },
     {
-      label:' Rating (Low-High)',
-      order:-1,
-      field:'rating'
+      label: ' Rating (Low-High)',
+      order: -1,
+      field: 'rating',
+      marked: false,
     },
     {
-      label:'Latest',
-      order:1,
-      field:'createdAt'
+      label: 'Latest',
+      order: 1,
+      field: 'createdAt',
+      marked: false,
     },
     {
-      label:'Oldest',
-      order:-1,
-      field:'createdAt'
+      label: 'Oldest',
+      order: -1,
+      field: 'createdAt',
+      marked: false,
     },
-  ]
+  ];
+  getProductBoolean: boolean = false;
 
   form: FormGroup = this.fb.group({
     childCategories: [null],
@@ -90,7 +97,12 @@ export class ShopComponent implements OnInit {
     sizes: [null],
     productType: [null],
     patterns: [null],
-    sortValue: [null],
+    sortValue: this.fb.group({
+      label: [''],
+      order: [0],
+      field: [''],
+      marked: [false],
+    }),
     minPrice: [0],
     maxPrice: [30000],
   });
@@ -99,18 +111,18 @@ export class ShopComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ngZone: NgZone
   ) {
     this.passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.passedProductFetchType =
       this.activatedRoute.snapshot.paramMap.get('product-fetch-type');
 
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.form.patchValue({
-        childCategories: params['childCategories'],
-      });
-      this.applyFilters();
-    });
+    // this.activatedRoute.queryParams.subscribe((params) => {
+    //   this.form.patchValue({
+    //     childCategories: params['childCategories'],
+    //   });
+    // });
   }
 
   ngOnInit(): void {
@@ -119,66 +131,125 @@ export class ShopComponent implements OnInit {
     this.getSizeVariations();
     this.fetchPatternList();
     this.fetchProductTypeList();
+
+    this.form.valueChanges.subscribe((filters) => {
+      const queryParams = this.buildQueryParams(filters);
+      this.updateQueryParams(queryParams);
+    });
+
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.form.patchValue(this.parseQueryParams(params)), { emitEvent: false };
+      if (this.getProductBoolean) {
+        this.getProducts();
+      }
+    });
   }
 
-  handleSorter(item){
+  buildQueryParams(filters: any) {
+    console.log(filters);
+    const queryParams: any = { ...filters };
+
+    queryParams.sortLabel = filters.sortValue.label;
+    queryParams.sortOrder = filters.sortValue.order;
+    queryParams.sortField = filters.sortValue.field;
+
+    delete queryParams.sortValue;
+
+    console.log('qp :', queryParams);
+
+    return queryParams;
+  }
+
+  updateQueryParams(queryParams: any) {
+    this.ngZone.run(() => {
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        queryParams: queryParams,
+        queryParamsHandling: 'merge',
+      });
+    });
+  }
+
+  parseQueryParams(params: any) {
+    const filters = { ...params };
+
+    filters.sortValue = {
+      label: params.sortLabel,
+      order: params.sortOrder,
+      field: params.sortField,
+      marked: false,
+    };
+
+    delete filters.sortLabel;
+    delete filters.sortOrder;
+    delete filters.sortField;
+
+    return filters;
+  }
+
+  handleSorter(item) {
+    this.sortList = this.sortList.map((x) => {
+      return {
+        ...x,
+        marked: x === item,
+      };
+    });
+
+    console.log(this.sortList);
+
     this.form.patchValue({
-      sortValue:item
-    })
+      sortValue: item,
+    });
   }
 
   handleCheckBoxChangeForChildCategories(event: any, index, id) {
     this.hoverClass(index, id);
   }
 
-  handleSizeCheckbox(event:any,id:string){
-    if(event.target.checked){
-      this.sizeFilterArray.push(id)
-    }
-    else{
-      this.sizeFilterArray=this.sizeFilterArray.filter((x)=>x!=id)
+  handleSizeCheckbox(event: any, id: string) {
+    if (event.target.checked) {
+      this.sizeFilterArray.push(id);
+    } else {
+      this.sizeFilterArray = this.sizeFilterArray.filter((x) => x != id);
     }
     this.form.patchValue({
-      sizes:this.sizeFilterArray
-    })
+      sizes: this.sizeFilterArray,
+    });
   }
 
-  handleProductTypeCheckBox(event:any,id:string){
-    if(event.target.checked){
-      this.productTypeFilterArray.push(id)
-    }
-    else{
-      this.productTypeFilterArray=this.productTypeFilterArray.filter((x)=>x!=id)
+  handleProductTypeCheckBox(event: any, id: string) {
+    if (event.target.checked) {
+      this.productTypeFilterArray.push(id);
+    } else {
+      this.productTypeFilterArray = this.productTypeFilterArray.filter(
+        (x) => x != id
+      );
     }
     this.form.patchValue({
-      productType:this.productTypeFilterArray
-    })
+      productType: this.productTypeFilterArray,
+    });
   }
 
-  handlePatternCheckbox(event:any,id:string){
-    if(event.target.checked){
-      this.patternFilterArray.push(id)
-    }
-    else{
-      this.patternFilterArray=this.patternFilterArray.filter((x)=>x!=id)
+  handlePatternCheckbox(event: any, id: string) {
+    if (event.target.checked) {
+      this.patternFilterArray.push(id);
+    } else {
+      this.patternFilterArray = this.patternFilterArray.filter((x) => x != id);
     }
     this.form.patchValue({
-      patterns:this.patternFilterArray
-    })
+      patterns: this.patternFilterArray,
+    });
   }
 
-  handleColorCheckbox(event:any,id:string){
-
-    if(event.target.checked){
-      this.colorFilterArray.push(id)
-    }
-    else{
-      this.colorFilterArray=this.colorFilterArray.filter((x)=>x!=id)
+  handleColorCheckbox(event: any, id: string) {
+    if (event.target.checked) {
+      this.colorFilterArray.push(id);
+    } else {
+      this.colorFilterArray = this.colorFilterArray.filter((x) => x != id);
     }
     this.form.patchValue({
-      colors:this.colorFilterArray
-    })
-    console.log(this.colorFilterArray)
+      colors: this.colorFilterArray,
+    });
   }
 
   fetchBasicRequirements(fetchType, slug) {
@@ -187,7 +258,7 @@ export class ShopComponent implements OnInit {
         this.productUrl +
           '/basic-fetch-requirements?type=' +
           fetchType +
-          '&slug=' +
+          '&slug=' + 
           slug
       )
       .subscribe((res: any) => {
@@ -257,7 +328,27 @@ export class ShopComponent implements OnInit {
     }
   }
 
+  modifyCurrentUrl(url: string) {
+
+    let index = -1;
+    let finalUrl;
+
+    for (let i = 0; i < url.length; i++) {
+      index++;
+      if (url[i] == '?') {      
+       finalUrl=url.substring(index + 1);
+        break;
+      }
+    }
+
+    return finalUrl;
+  }
+
   getProducts() {
+    console.log('currentPageLocation:', this.router.url);
+    const filterParams=this.modifyCurrentUrl(this.router.url)
+    console.log('modified url:',filterParams)
+
     this.http
       .get(
         this.productUrl +
@@ -268,6 +359,7 @@ export class ShopComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.productList = res.data;
+        this.getProductBoolean = true;
       });
   }
 
@@ -330,9 +422,6 @@ export class ShopComponent implements OnInit {
     }
 
     this.form.patchValue({ childCategories: this.categoryFilterArray });
-    console.log(this.form.value.childCategories);
-
-    // this.applyFilters()
   }
 
   removeHoverClass(i) {
@@ -376,7 +465,6 @@ export class ShopComponent implements OnInit {
   }
 
   setMoreTags() {
-
     const element: HTMLElement = <HTMLElement>(
       document.getElementById('moreTagsSelector')
     );
@@ -394,21 +482,20 @@ export class ShopComponent implements OnInit {
   }
 
   applyFilters() {
+    console.log(this.form.value);
 
-    console.log(this.form.value)
+    const queryParams = {
+      childCategories: this.form.get('childCategories')?.value || null,
+    };
 
-    // const queryParams = {
-    //   childCategories: this.form.get('childCategories')?.value || null,
-    // };
+    Object.keys(queryParams).forEach(
+      (key) => queryParams[key] === null && delete queryParams[key]
+    );
 
-    // Object.keys(queryParams).forEach(
-    //   (key) => queryParams[key] === null && delete queryParams[key]
-    // );
-
-    // this.router.navigate([], {
-    //   relativeTo: this.activatedRoute,
-    //   queryParams: queryParams,
-    //   queryParamsHandling: 'merge',
-    // });
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
   }
 }

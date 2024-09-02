@@ -91,7 +91,7 @@
 }
 
 .customBorderClass{
-  border-bottom: 1px solid #D9D9D9;
+
 }
 .filterFlexShop{
   min-width: 200px;
@@ -99,6 +99,8 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  padding: 5px 5px 0;
+  border-bottom: 1px solid #D9D9D9;
 }
 .infoFlexFilters{
   display: flex;
@@ -109,4 +111,7 @@
   display: flex;
   flex-grow: 1;
   align-items: center;
+}
+.filterFlexShop:last-child{
+  border-bottom: none !important;
 }
