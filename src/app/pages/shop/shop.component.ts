@@ -37,7 +37,10 @@ export class ShopComponent implements OnInit {
   slugId: string = '';
   categoryFilterArray = [];
   tagFilterArray = [];
-  colorFilterArray:any=[]
+  colorFilterArray:any=[];
+  sizeFilterArray:any[]=[];
+  productTypeFilterArray:any[]=[];
+  patternFilterArray:any[]=[];
   colorVariationsList: any = ([] = []);
   sizeVariationsList: any = ([] = []);
   productTypeList: any[] = [];
@@ -47,6 +50,38 @@ export class ShopComponent implements OnInit {
   isCollapsed3 = true;
   isCollapsed4 = true;
   isCollapsed5 = true;
+  sortList:any=[
+    {
+      label:' Price (High-Low)',
+      order:1,
+      field:'price'
+    },
+    {
+      label:'Price (Low-High)',
+      order:-1,
+      field:'price'
+    },
+    {
+      label:' Rating (High-Low)',
+      order:1,
+      field:'rating'
+    },
+    {
+      label:' Rating (Low-High)',
+      order:-1,
+      field:'rating'
+    },
+    {
+      label:'Latest',
+      order:1,
+      field:'createdAt'
+    },
+    {
+      label:'Oldest',
+      order:-1,
+      field:'createdAt'
+    },
+  ]
 
   form: FormGroup = this.fb.group({
     childCategories: [null],
@@ -55,8 +90,7 @@ export class ShopComponent implements OnInit {
     sizes: [null],
     productType: [null],
     patterns: [null],
-    sortBy: [null],
-    sortOrder: [null],
+    sortValue: [null],
     minPrice: [0],
     maxPrice: [30000],
   });
@@ -87,16 +121,64 @@ export class ShopComponent implements OnInit {
     this.fetchProductTypeList();
   }
 
+  handleSorter(item){
+    this.form.patchValue({
+      sortValue:item
+    })
+  }
+
   handleCheckBoxChangeForChildCategories(event: any, index, id) {
     this.hoverClass(index, id);
   }
 
+  handleSizeCheckbox(event:any,id:string){
+    if(event.target.checked){
+      this.sizeFilterArray.push(id)
+    }
+    else{
+      this.sizeFilterArray=this.sizeFilterArray.filter((x)=>x!=id)
+    }
+    this.form.patchValue({
+      sizes:this.sizeFilterArray
+    })
+  }
+
+  handleProductTypeCheckBox(event:any,id:string){
+    if(event.target.checked){
+      this.productTypeFilterArray.push(id)
+    }
+    else{
+      this.productTypeFilterArray=this.productTypeFilterArray.filter((x)=>x!=id)
+    }
+    this.form.patchValue({
+      productType:this.productTypeFilterArray
+    })
+  }
+
+  handlePatternCheckbox(event:any,id:string){
+    if(event.target.checked){
+      this.patternFilterArray.push(id)
+    }
+    else{
+      this.patternFilterArray=this.patternFilterArray.filter((x)=>x!=id)
+    }
+    this.form.patchValue({
+      patterns:this.patternFilterArray
+    })
+  }
+
   handleColorCheckbox(event:any,id:string){
-    const singleColor=this.colorVariationsList.find((x)=>x._id==id)
+
     if(event.target.checked){
       this.colorFilterArray.push(id)
-      this.colorVariationsList
     }
+    else{
+      this.colorFilterArray=this.colorFilterArray.filter((x)=>x!=id)
+    }
+    this.form.patchValue({
+      colors:this.colorFilterArray
+    })
+    console.log(this.colorFilterArray)
   }
 
   fetchBasicRequirements(fetchType, slug) {

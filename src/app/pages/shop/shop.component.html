@@ -199,11 +199,11 @@
           icon="pi pi-sort-alt"
         />
         <p-overlayPanel #sort>
-          <div class="filterFlexShop customBorderClass">
+          <div class="filterFlexShop customBorderClass" *ngFor="let item of sortList" (click)="handleSorter(item)">
             <p
               class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
             >
-              Price (High-Low)
+             {{item.label}}
             </p>
           </div>
           <div class="filterFlexShop customBorderClass">
