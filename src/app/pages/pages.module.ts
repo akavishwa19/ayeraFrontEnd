@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FileUploadModule } from 'primeng/fileupload';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -52,7 +52,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     NgSelectModule,
     FileUploadModule ,
     OverlayPanelModule,
-    NgbCollapseModule 
+    NgbCollapseModule ,
+    MatPaginatorModule
   ]
 })
 export class PagesModule { }

@@ -220,9 +220,11 @@
         </p-overlayPanel>
 
         <p-button
+          class="cursor-pointer"
           [disabled]="true"
           label="Clear Filters"
           icon="pi pi-times-circle"
+          (onClick)="clearFilters()"
         />
       </div>
     </div>
@@ -260,12 +262,12 @@
             <input formControlName="maxPrice" matSliderEndThumb />
           </mat-slider>
 
-          <button
+          <!-- <button
             class="none-outline border-radius-10px tickedClass font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
             (click)="applyFilters()"
           >
             GO
-          </button>
+          </button> -->
         </div>
       </div>
     </form>
@@ -277,7 +279,7 @@
       <p
         class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
       >
-        2054 Results
+        {{productCount}} Results
       </p>
       <button
         (click)="open(content)"

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Aayra';
+  showDiv:boolean=false;
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event: any) {
+    if (window.pageYOffset > 0) {
+      this.showDiv = true;
+    } else {
+      this.showDiv = false;
+    }
+  }
+
+  scrollTop(){
+    window.scroll(0,0)
+  } 
 }

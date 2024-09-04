@@ -1,2 +1,8 @@
 <ngx-loading-bar [includeSpinner]="false" [height]="'5px'" [color]="'#CCCDD3'"></ngx-loading-bar>
 <router-outlet></router-outlet>
+
+<div *ngIf="showDiv" class="positionBtnFixed">
+    <button class="goTopBtn" (click)="scrollTop()">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+  </div>

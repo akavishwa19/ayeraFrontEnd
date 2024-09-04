@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-shop',
@@ -53,14 +54,14 @@ export class ShopComponent implements OnInit {
   sortList: any = [
     {
       label: ' Price (High-Low)',
-      order: 1,
-      field: 'price',
+      order: -1,
+      field: 'sellingPrice',
       marked: false,
     },
     {
       label: 'Price (Low-High)',
-      order: -1,
-      field: 'price',
+      order: 1,
+      field: 'sellingPrice',
       marked: false,
     },
     {
@@ -77,26 +78,27 @@ export class ShopComponent implements OnInit {
     },
     {
       label: 'Latest',
-      order: 1,
+      order: -1,
       field: 'createdAt',
       marked: false,
     },
     {
       label: 'Oldest',
-      order: -1,
+      order: 1,
       field: 'createdAt',
       marked: false,
     },
   ];
   getProductBoolean: boolean = false;
+  productCount: number = 0;
 
   form: FormGroup = this.fb.group({
-    childCategories: [null],
-    tags: [null],
-    colors: [null],
-    sizes: [null],
-    productType: [null],
-    patterns: [null],
+    childCategories: [],
+    tags: [],
+    colors: [],
+    sizes: [],
+    productType: [],
+    patterns: [],
     sortValue: this.fb.group({
       label: [''],
       order: [0],
@@ -112,7 +114,8 @@ export class ShopComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private location: Location
   ) {
     this.passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.passedProductFetchType =
@@ -145,8 +148,15 @@ export class ShopComponent implements OnInit {
     });
   }
 
+  clearFilters() {
+    console.log(this.router.url);
+    let currentUrl = this.router.url;
+    let redirectUrl = currentUrl.split('?')[0];
+    console.log(redirectUrl);
+    this.router.navigateByUrl(redirectUrl);
+  }
+
   buildQueryParams(filters: any) {
-    console.log(filters);
     const queryParams: any = { ...filters };
 
     queryParams.sortLabel = filters.sortValue.label;
@@ -154,9 +164,6 @@ export class ShopComponent implements OnInit {
     queryParams.sortField = filters.sortValue.field;
 
     delete queryParams.sortValue;
-
-    console.log('qp :', queryParams);
-
     return queryParams;
   }
 
@@ -258,7 +265,7 @@ export class ShopComponent implements OnInit {
         this.productUrl +
           '/basic-fetch-requirements?type=' +
           fetchType +
-          '&slug=' + 
+          '&slug=' +
           slug
       )
       .subscribe((res: any) => {
@@ -329,14 +336,13 @@ export class ShopComponent implements OnInit {
   }
 
   modifyCurrentUrl(url: string) {
-
     let index = -1;
     let finalUrl;
 
     for (let i = 0; i < url.length; i++) {
       index++;
-      if (url[i] == '?') {      
-       finalUrl=url.substring(index + 1);
+      if (url[i] == '?') {
+        finalUrl = url.substring(index + 1);
         break;
       }
     }
@@ -345,20 +351,20 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts() {
-    console.log('currentPageLocation:', this.router.url);
-    const filterParams=this.modifyCurrentUrl(this.router.url)
-    console.log('modified url:',filterParams)
-
+    const filterParams = this.modifyCurrentUrl(this.router.url);
     this.http
       .get(
         this.productUrl +
-          '/products?type=' +
+          '/products/' +
           this.passedProductFetchType +
-          '&id=' +
-          this.slugId
+          '/' +
+          this.slugId +
+          '?' +
+          filterParams
       )
       .subscribe((res: any) => {
-        this.productList = res.data;
+        this.productList = res.data.data;
+        this.productCount = res.data.count;
         this.getProductBoolean = true;
       });
   }
@@ -482,8 +488,6 @@ export class ShopComponent implements OnInit {
   }
 
   applyFilters() {
-    console.log(this.form.value);
-
     const queryParams = {
       childCategories: this.form.get('childCategories')?.value || null,
     };
