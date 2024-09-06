@@ -23,6 +23,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FileUploadModule } from 'primeng/fileupload';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FileUploadModule ,
     OverlayPanelModule,
     NgbCollapseModule ,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgbAccordionModule,
+    NgbRatingModule
   ]
 })
 export class PagesModule { }

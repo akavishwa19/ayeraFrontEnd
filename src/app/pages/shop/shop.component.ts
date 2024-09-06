@@ -46,11 +46,12 @@ export class ShopComponent implements OnInit {
   sizeVariationsList: any = ([] = []);
   productTypeList: any[] = [];
   patternList: any[] = [];
-  isCollapsed = true;
-  isCollapsed2 = true;
-  isCollapsed3 = true;
-  isCollapsed4 = true;
-  isCollapsed5 = true;
+  isCollapsed = false;
+  isCollapsed2 = false;
+  isCollapsed3 = false;
+  isCollapsed4 = false;
+  isCollapsed5 = false;
+  isCollapsed6 = false;
   sortList: any = [
     {
       label: ' Price (High-Low)',
@@ -91,6 +92,7 @@ export class ShopComponent implements OnInit {
   ];
   getProductBoolean: boolean = false;
   productCount: number = 0;
+  topCategoriesBoolean:boolean=true;
 
   form: FormGroup = this.fb.group({
     childCategories: [],
@@ -146,6 +148,10 @@ export class ShopComponent implements OnInit {
         this.getProducts();
       }
     });
+  }
+
+  toggleTopCategories(){
+    this.topCategoriesBoolean=!this.topCategoriesBoolean;
   }
 
   clearFilters() {

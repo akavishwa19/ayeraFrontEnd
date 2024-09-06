@@ -16,6 +16,20 @@
   gap:90px;
   padding-left:10px;
 }
+.aayraHeaderLogoHolder{
+  width: 60px;
+  cursor: pointer;
+}
+
+.aayraHeaderLogoHolder  img{
+  
+}
+
+.aayraLogoFlex{
+  display: flex;
+  gap:20px;
+  align-items: center;
+}
 @media (min-width: 400px ) and (max-width: 600px) {
   .categoryItemHolder{
     display:none;

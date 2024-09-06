@@ -301,7 +301,7 @@
         }"
         *ngFor="let card of featuredTagsList"
       >
-        <div class="imageContainerMood">
+        <div (click)="routeToShopViaTags(card._id)" class="imageContainerMood cursor-pointer">
           <img class="responsiveImage" src="{{imageUrl}}{{card.image}}{{imageMetaUrl}}" />
         </div>
 

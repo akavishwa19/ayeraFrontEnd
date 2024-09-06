@@ -73,7 +73,7 @@
   background-color: lightblue !important; /* Adjust if needed */
 }
 .noProducts {
-  min-height: 300px;
+  min-height: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,6 +88,11 @@
 .moreTags {
   display: flex;
   gap: 20px;
+}
+.priceFilterDisplayFlex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .customBorderClass{
@@ -106,6 +111,8 @@
   display: flex;
   gap:8px;
   align-items: center;
+  padding-bottom: 0 !important;
+  padding-left: 8px !important;
 }
 .rangeFlex{
   display: flex;
@@ -114,4 +121,20 @@
 }
 .filterFlexShop:last-child{
   border-bottom: none !important;
+}
+.forcePaddingLeft{
+  padding-left:8px !important;
+}
+.downwardsArrow{
+  width: 45px;
+  height: 40px;
+  background-color: #020724;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
 }

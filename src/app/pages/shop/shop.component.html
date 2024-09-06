@@ -1,9 +1,9 @@
 <app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 
-<section class="default-section-padding">
-  <div class="container-xl">
-    <div class="shopCategoriesHolderFlex width-100">
+<section class="default-section-padding position-relative">
+  <div class="container-xl ">
+    <div *ngIf="topCategoriesBoolean" class="shopCategoriesHolderFlex width-100">
       <div
         class="shopCategoryBlock"
         (click)="hoverClass(i, category._id)"
@@ -27,9 +27,13 @@
         </div>
       </div>
     </div>
+    <div (click)="toggleTopCategories()" class="downwardsArrow">
+      <i *ngIf="!topCategoriesBoolean" class="fa-solid fa-caret-down text-white fa-2x"></i>
+      <i *ngIf="topCategoriesBoolean" class="fa-solid fa-caret-up text-white fa-2x"></i>
+    </div>
   </div>
 </section>
-<section class="default-section-padding" id="changePButtonsStyles">
+<section class="default-section-padding">
   <div class="container-xl">
     <div class="filterFlex">
       <div class="leftFilterFlex">
@@ -55,149 +59,6 @@
       </div>
       <div class="rightFilterFlex">
         <p-button
-          (onClick)="op.toggle($event)"
-          label="Filter"
-          icon="pi pi-filter"
-        />
-        <p-overlayPanel #op>
-          <div
-            class="filterFlexShop customBorderClass"
-            (click)="collapse.toggle()"
-            [attr.aria-expanded]="!isCollapsed"
-          >
-            <p
-              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
-            >
-              Categories
-            </p>
-            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
-          </div>
-          <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-            <div
-              class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of childCategoryList; let i = index"
-            >
-              <input
-                (change)="
-                  handleCheckBoxChangeForChildCategories($event, i, item._id)
-                "
-                type="checkbox"
-                [checked]="item.checked"
-              />
-              <p
-                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
-              >
-                {{ item.name }}
-              </p>
-            </div>
-          </div>
-          <div
-            (click)="collapse2.toggle()"
-            [attr.aria-expanded]="!isCollapsed2"
-            class="filterFlexShop customBorderClass"
-          >
-            <p
-              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
-            >
-              Color
-            </p>
-            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
-          </div>
-          <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
-            <div
-              class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of colorVariationsList; let i = index"
-            >
-              <input
-                type="checkbox"
-                [checked]="item.marked"
-                (click)="handleColorCheckbox($event, item._id)"
-              />
-              <p
-                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
-              >
-                {{ item.name }}
-              </p>
-            </div>
-          </div>
-          <div
-            (click)="collapse3.toggle()"
-            [attr.aria-expanded]="!isCollapsed3"
-            class="filterFlexShop customBorderClass"
-          >
-            <p
-              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
-            >
-              Size
-            </p>
-            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
-          </div>
-          <div #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
-            <div
-              class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of sizeVariationsList"
-            >
-              <input (click)="handleSizeCheckbox($event,item._id)" type="checkbox" />
-              <p
-                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
-              >
-                {{ item.name }}
-              </p>
-            </div>
-          </div>
-          <div
-            (click)="collapse4.toggle()"
-            [attr.aria-expanded]="!isCollapsed4"
-            class="filterFlexShop customBorderClass"
-          >
-            <p
-              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
-            >
-              Product Type
-            </p>
-            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
-          </div>
-          <div #collapse4="ngbCollapse" [(ngbCollapse)]="isCollapsed4">
-            <div
-              class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of productTypeList"
-            >
-              <input (click)="handleProductTypeCheckBox($event,item._id)" type="checkbox" />
-              <p
-                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
-              >
-                {{ item.name }}
-              </p>
-            </div>
-          </div>
-          <div
-            (click)="collapse5.toggle()"
-            [attr.aria-expanded]="!isCollapsed5"
-            class="filterFlexShop"
-          >
-            <p
-              class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
-            >
-              Patterns
-            </p>
-            <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
-          </div>
-          <div #collapse5="ngbCollapse" [(ngbCollapse)]="isCollapsed5">
-            <div
-              class="px-1 py-2 infoFlexFilters customBorderClass"
-              *ngFor="let item of patternList"
-            >
-              <input (click)="handlePatternCheckbox($event,item._id)" type="checkbox" />
-              <p
-                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
-              >
-                {{ item.name }}
-              </p>
-            </div>
-          </div>
-        </p-overlayPanel>
-
-        <p-button
           (onClick)="sort.toggle($event)"
           label="Sort By"
           icon="pi pi-sort-alt"
@@ -207,7 +68,9 @@
             class="filterFlexShop"
             *ngFor="let item of sortList"
             [ngClass]="
-              item.marked===true ? 'bg-blue-black text-white' : 'bg-white text-black'
+              item.marked === true
+                ? 'bg-blue-black text-white'
+                : 'bg-white text-black'
             "
             (click)="handleSorter(item)"
           >
@@ -239,38 +102,6 @@
         </button>
       </ng-container>
     </div>
-    <form [formGroup]="form">
-      <div class="priceSelectionFlex pt-5">
-        <p
-          class="font-lato font-18 font-weight-700 letter-spacing-02 line-height-19 zero-margin-bottom zero-padding-bottom"
-        >
-          Buy by Price Range :
-        </p>
-
-        <div class="rangeFlex">
-          <mat-slider
-            min="0"
-            max="50000"
-            step="1500"
-            showTickMarks
-            discrete
-            color="accent"
-            id="blueSlider"
-            [displayWith]="formatLabel"
-          >
-            <input formControlName="minPrice" matSliderStartThumb />
-            <input formControlName="maxPrice" matSliderEndThumb />
-          </mat-slider>
-
-          <!-- <button
-            class="none-outline border-radius-10px tickedClass font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2"
-            (click)="applyFilters()"
-          >
-            GO
-          </button> -->
-        </div>
-      </div>
-    </form>
   </div>
 </section>
 <section class="default-section-padding">
@@ -279,7 +110,7 @@
       <p
         class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom"
       >
-        {{productCount}} Results
+        {{ productCount }} Results
       </p>
       <button
         (click)="open(content)"
@@ -287,57 +118,269 @@
       >
         Compare 3 products
         <i class="fa-solid fa-circle-plus padding-left-10px font-18"></i>
-      </button>
+      </button>      
     </div>
-    <div class="row mt-3">
-      <ng-container *ngIf="productList.length != 0; else noProductsFound">
-        <div
-          class="col-12 col-lg-3 col-md-6 col-sm-12"
-          *ngFor="let item of productList"
-        >
-          <ng-container *ngIf="item.type == 'simple'; else variable">
-            <app-product-card
-              (valueLiked)="detectValueLiked($event)"
-              [productId]="item._id"
-              [islIked]="item.isLiked"
-              [highlightedTag]="item.tags[0].name"
-              [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
-              [productName]="item.name"
-              [strikedPrice]="item.price"
-              [discount]="item.discount"
-              [additionalDiscount]="item.additionalDiscount"
-              [price]="item.sellingPrice"
-              [hasSimilarProducts]="true"
+    
+    <div class="row mt-3" id="changePButtonsStyles">
+      <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+        <div class="mt-5">
+          <div class="">
+            <div
+              class="filterFlexShop customBorderClass"
+              (click)="collapse.toggle()"
+              [attr.aria-expanded]="!isCollapsed"
             >
-            </app-product-card>
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+              >
+                Categories
+              </p>
+              <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+            </div>
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+              <div
+                class="px-1 py-2 infoFlexFilters customBorderClass"
+                *ngFor="let item of childCategoryList; let i = index"
+              >
+                <input
+                  (change)="
+                    handleCheckBoxChangeForChildCategories($event, i, item._id)
+                  "
+                  type="checkbox"
+                  [checked]="item.checked"
+                />
+                <p
+                  class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                >
+                  {{ item.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <div
+              class="filterFlexShop customBorderClass"
+              (click)="collapse6.toggle()"
+              [attr.aria-expanded]="!isCollapsed6"
+            >
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+              >
+                Buy By Price Range
+              </p>
+              <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+            </div>
+            <div #collapse6="ngbCollapse" [(ngbCollapse)]="isCollapsed6">
+              <div class="forcePaddingLeft">
+                <form [formGroup]="form">
+                  <mat-slider
+                    min="0"
+                    max="50000"
+                    color="accent"
+                    id="blueSlider"
+                    [displayWith]="formatLabel"
+                  >
+                    <input formControlName="minPrice" matSliderStartThumb />
+                    <input formControlName="maxPrice" matSliderEndThumb />
+                  </mat-slider>
+                </form>
+                <div class="priceFilterDisplayFlex">
+                  <p
+                    class="font-lato font-14 font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                  >
+                    From: <span class="mx-2">₹ {{ form.value.minPrice }}</span>
+                  </p>
+                  <p
+                    class="font-lato font-14 font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                  >
+                    To: <span class="mx-2">₹ {{ form.value.maxPrice }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <div
+              class="filterFlexShop customBorderClass"
+              (click)="collapse2.toggle()"
+              [attr.aria-expanded]="!isCollapsed2"
+            >
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+              >
+                Colors
+              </p>
+              <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+            </div>
+            <div #collapse2="ngbCollapse" [(ngbCollapse)]="isCollapsed2">
+              <div
+                class="px-1 py-2 infoFlexFilters customBorderClass"
+                *ngFor="let item of colorVariationsList; let i = index"
+              >
+                <input
+                  type="checkbox"
+                  [checked]="item.marked"
+                  (click)="handleColorCheckbox($event, item._id)"
+                />
+                <p
+                  class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                >
+                  {{ item.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <div
+              class="filterFlexShop customBorderClass"
+              (click)="collapse3.toggle()"
+              [attr.aria-expanded]="!isCollapsed3"
+            >
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+              >
+                Sizes
+              </p>
+              <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+            </div>
+            <div #collapse3="ngbCollapse" [(ngbCollapse)]="isCollapsed3">
+              <div
+                class="px-1 py-2 infoFlexFilters customBorderClass"
+                *ngFor="let item of sizeVariationsList"
+              >
+                <input
+                  (click)="handleSizeCheckbox($event, item._id)"
+                  type="checkbox"
+                />
+                <p
+                  class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                >
+                  {{ item.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <div
+              class="filterFlexShop customBorderClass"
+              (click)="collapse4.toggle()"
+              [attr.aria-expanded]="!isCollapsed4"
+            >
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+              >
+                Product Type
+              </p>
+              <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+            </div>
+            <div #collapse4="ngbCollapse" [(ngbCollapse)]="isCollapsed4">
+              <div
+                class="px-1 py-2 infoFlexFilters customBorderClass"
+                *ngFor="let item of productTypeList"
+              >
+                <input
+                  (click)="handleProductTypeCheckBox($event, item._id)"
+                  type="checkbox"
+                />
+                <p
+                  class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                >
+                  {{ item.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <div
+              class="filterFlexShop customBorderClass"
+              (click)="collapse5.toggle()"
+              [attr.aria-expanded]="!isCollapsed5"
+            >
+              <p
+                class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white px-1 py-2 zero-padding-bottom"
+              >
+                Patterns
+              </p>
+              <i class="fa-solid fa-caret-down text-black mx-2 font-14"></i>
+            </div>
+            <div #collapse5="ngbCollapse" [(ngbCollapse)]="isCollapsed5">
+              <div
+                class="px-1 py-2 infoFlexFilters customBorderClass"
+                *ngFor="let item of patternList"
+              >
+                <input
+                  (click)="handlePatternCheckbox($event, item._id)"
+                  type="checkbox"
+                />
+                <p
+                  class="font-lato font-weight-700 font-16 text-black zero-margin-bottom line-height-24 letter-spacing-02 bg-white zero-padding-bottom"
+                >
+                  {{ item.name }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-9 col-md-9 col-sm-12">
+        <div class="row">
+          <ng-container *ngIf="productList.length != 0; else noProductsFound">
+            <div
+              class="col-12 col-lg-4 col-md-6 col-sm-12"
+              *ngFor="let item of productList"
+            >
+              <ng-container *ngIf="item.type == 'simple'; else variable">
+                <app-product-card
+                  (valueLiked)="detectValueLiked($event)"
+                  [productId]="item._id"
+                  [islIked]="item.isLiked"
+                  [highlightedTag]="item.tags[0].name"
+                  [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+                  [productName]="item.name"
+                  [strikedPrice]="item.price"
+                  [discount]="item.discount"
+                  [additionalDiscount]="item.additionalDiscount"
+                  [price]="item.sellingPrice"
+                  [hasSimilarProducts]="true"
+                  [slug]="item.slug"
+                >
+                </app-product-card>
+              </ng-container>
+              <ng-template #variable>
+                <app-product-card
+                  (valueLiked)="detectValueLiked($event)"
+                  [productId]="item._id"
+                  [islIked]="item.isLiked"
+                  [highlightedTag]="item.tags[0].name"
+                  [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+                  [productName]="item.variants[0].name"
+                  [strikedPrice]="item.variants[0].price"
+                  [discount]="item.variants[0].discount"
+                  [additionalDiscount]="item.variants[0].additionalDiscount"
+                  [price]="item.variants[0].sellingPrice"
+                  [hasSimilarProducts]="true"
+                  [slug]="item.slug"
+                >
+                </app-product-card>
+              </ng-template>
+            </div>
           </ng-container>
-          <ng-template #variable>
-            <app-product-card
-              (valueLiked)="detectValueLiked($event)"
-              [productId]="item._id"
-              [islIked]="item.isLiked"
-              [highlightedTag]="item.tags[0].name"
-              [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
-              [productName]="item.variants[0].name"
-              [strikedPrice]="item.variants[0].price"
-              [discount]="item.variants[0].discount"
-              [additionalDiscount]="item.variants[0].additionalDiscount"
-              [price]="item.variants[0].sellingPrice"
-              [hasSimilarProducts]="true"
-            >
-            </app-product-card>
+          <ng-template #noProductsFound>
+            <div class="noProducts">
+              <p
+                class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+              >
+                NO PRODUCTS FOUND
+              </p>
+            </div>
           </ng-template>
         </div>
-      </ng-container>
-      <ng-template #noProductsFound>
-        <div class="noProducts">
-          <p
-            class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
-          >
-            NO PRODUCTS FOUND
-          </p>
-        </div>
-      </ng-template>
+      </div>
     </div>
   </div>
 </section>

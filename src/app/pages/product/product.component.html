@@ -1,17 +1,24 @@
-<app-advertisement-header></app-advertisement-header>
+<!-- <app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 <section class="default-section-padding">
   <div class="container-xl">
     <div class="breadcrumb">
-      <i (click)="goBack()" class="fa-solid fa-arrow-left fa-2x cursor-pointer"></i>
+      <i
+        (click)="goBack()"
+        class="fa-solid fa-arrow-left fa-2x cursor-pointer"
+      ></i>
       <p
         class="font-lato font-weight-700 text-black font-14 letter-spacing-04 zero-padding-bottom zero-margin-bottom line-height-19"
       >
-        <span> All Jewelleries </span>
+        <span class="cursor-pointer" routerLink="/"> Home </span>
         <span> > </span>
-        <span> Rings </span>
+        <span> {{ product.primary.name }} </span>
         <span> > </span>
-        <span> Unclench Oxidized Ring</span>
+        <span> {{ product.secondary.name }} </span>
+        <span> > </span>
+        <span> {{ product.tertiary.name }} </span>
+        <span> > </span>
+        <span> {{ product.quaternary.name }} </span>
       </p>
     </div>
   </div>
@@ -27,12 +34,15 @@
               <div class="swiper-wrapper">
                 <swiper [config]="verticalSwiperOptions">
                   //#verticalSwiperRef
-                  <ng-template swiperSlide="" *ngFor="let image of product.images">
+                  <ng-template
+                    swiperSlide=""
+                    *ngFor="let image of product.images"
+                  >
                     <div class="thumbnailImageSpacing">
                       <div class="thumbnailHolder border-radius-5px">
                         <img
                           class="responsiveImage"
-                          src="{{imageUrl}}{{image}}{{imageMetaUrl}}"
+                          src="{{ imageUrl }}{{ image }}{{ imageMetaUrl }}"
                         />
                       </div>
                     </div>
@@ -46,11 +56,14 @@
               <div class="swiper-wrapper">
                 <swiper [config]="previewedSwiperOptions">
                   //[thumbs]="swiperRef"
-                  <ng-template swiperSlide="" *ngFor="let item of product.images">
+                  <ng-template
+                    swiperSlide=""
+                    *ngFor="let item of product.images"
+                  >
                     <div class="previewedImageHolder">
                       <img
                         class="responsiveImage"
-                        src="{{imageUrl}}{{item}}{{imageMetaUrl}}"
+                        src="{{ imageUrl }}{{ item }}{{ imageMetaUrl }}"
                       />
                     </div>
                   </ng-template>
@@ -64,12 +77,12 @@
         <p
           class="font-lato font-weight-700 font-24 text-black line-height-24 letter-spacing-03 py-1"
         >
-          {{product.name}}
+          {{ product.name }}
         </p>
         <p
           class="font-lato font-weight-700 font-20 text-discount-grey line-height-24 letter-spacing-04 py-1"
         >
-          Product Code:<span class="px-2">{{product.productCode}}</span>
+          Product Code:<span class="px-2">{{ product.productCode }}</span>
         </p>
         <div class="alignSHareCenter py-1">
           <i
@@ -242,17 +255,35 @@
       </tabset>
     </div>
   </div>
-  <div class="container-xl mt-3">
+  <div class="container-xl mt-3" id="faqAccordianSections">
     <div
+      *ngIf="!showFaqs"
       #infoPara
       class="font-lato font-weight-600 letter-spacing-03 line-height-38 font-16"
       [innerHTML]="product.productDescription"
     >
-    <div>
-      
+      <div></div>
     </div>
-
-  </div>
+    <div *ngIf="showFaqs">
+      <div *ngFor="let items of product.faqs" ngbAccordion>
+        <div ngbAccordionItem [collapsed]="true">
+          <h2 ngbAccordionHeader>
+            <button ngbAccordionButton>{{ items.question }}</button>
+          </h2>
+          <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+              <ng-template>
+                <p
+                  class="font-lato font-16 font-weight-600 zero-margin-bottom zero-padding-bottom"
+                >
+                  {{ items.answer }}
+                </p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -296,17 +327,22 @@
 <section class="default-section-padding bh-section-grey">
   <div class="container-xl">
     <div class="badgeFlex">
-      <div class="singleBadge" *ngFor="let x of [1, 1, 1, 1]">
-        <i class="fa-solid fa-award text-black fa-5x"></i>
+      <div class="singleBadge" *ngFor="let item of product.benefits">
+        <div class="benefitIconHolder">
+          <img
+            class="responsiveImage-contain"
+            src="{{ imageUrl }}{{ item.icon }}{{ imageMetaUrl }}"
+          />
+        </div>
         <p
           class="text-black font-lato font-weight-700 line-height-19 font-16 py-2 letter-spacing-02 zero-margin-bottom"
         >
-          925 Sterling Silver
+          {{ item.title }}
         </p>
         <p
           class="text-black font-lato font-weight-600 line-height-19 font-13 letter-spacing-02"
         >
-          (Tested and Stamped, yep!)
+          {{ item.subTitle }}
         </p>
       </div>
     </div>
@@ -343,7 +379,7 @@
 
 <section class="default-section-padding">
   <app-compare-product></app-compare-product>
-</section>
+</section> -->
 
 <section class="default-section-padding">
   <div class="container-xl">
@@ -421,12 +457,12 @@
             </div>
           </div>
         </div>
-      
       </div>
       <div class="col-12 col-lg-4 col-md-4 col-sm-12">
         <div class="fixToCenter height-100perCent">
           <div>
             <button
+              (click)="open(content)"
               class="reviewShadows none-outline mx-2 my-3 border-radius-10px bg-blue-black text-white px-5 py-3 font-weight-700 letter-spacing-04 display-block"
             >
               Write a Review
@@ -468,15 +504,11 @@
           </div>
           <div
             class="py-2 my-2 commentBorderBottom"
-            *ngFor="let comment of [1, 1, 1, 1, 1]"
+            *ngFor="let review of reviews"
           >
             <div class="comment">
               <div>
-                <i class="fa-solid fa-star test-icon-star"></i>
-                <i class="fa-solid fa-star test-icon-star"></i>
-                <i class="fa-solid fa-star test-icon-star"></i>
-                <i class="fa-solid fa-star test-icon-star"></i>
-                <i class="fa-solid fa-star test-icon-star"></i>
+                <i *ngFor="let _ of [].constructor(review.rating); let i = index" class="fa-solid fa-star test-icon-star"></i>               
               </div>
               <div class="commentFlex py-2">
                 <div class="userImageHolder">
@@ -488,15 +520,22 @@
                 <p
                   class="font-lato font-weight-700 font-16 line-height-19 zero-margin-bottom zero-padding-bottom text-black"
                 >
-                  Suhash Vishwakarma
+                  {{review.uid.username}} <span *ngIf="review.isVerified"><i class="fa-regular fa-circle-check mx-1"></i></span>
                 </p>
               </div>
               <p
                 class="font-18 font-lato font-weight-700 text-black line-height-24"
               >
-                I loved the quality of the products I received. The packaging
-                was minimal and cute. I enjoyed it.
+                {{review.message}}
               </p>
+              <div class="imagesFlexReview">
+                <div *ngFor="let productImages of review.images" class="reviewedProductImageHolder m-2">
+                  <img   class="responsiveImage" src="{{imageUrl}}{{productImages}}{{imageMetaUrl}}"/>
+                </div>
+              </div>
+              <div class="otherHelpRelatedParts">
+                <button class="helpfulBtn">Helpful</button>
+              </div>
             </div>
           </div>
         </tab>
@@ -507,3 +546,75 @@
 </section>
 
 <app-footer></app-footer>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <p
+      class="font-20 font-lato text-black zero-margin-bottom zero-padding-bottom font-weight-700"
+    >
+      Write a review
+    </p>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="reviewForm">
+      <div class="mb-3">
+        <div class="row">
+          <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+            <label>Rating:</label>
+            <div class="ratingHolder">
+              <ngb-rating formControlName="rating" class="styleStars" />
+            </div>
+          </div>
+          <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+            <label>Message:</label>
+            <textarea
+              formControlName="message"
+              class="width-100 p-2"
+              rows="5"
+            ></textarea>
+          </div>
+          <div class="col-12 col-lg-12 col-md-4 col-sm-12">
+            <label
+              class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
+              >Upload Image</label
+            >
+            <div class="file-upload">
+              <input (change)="onUpload($event)" type="file" id="fileInput" />
+              <label for="fileInput">Choose a file</label>
+              <span id="fileName">No file chosen</span>
+            </div>
+            <div
+              *ngIf="uploadedProductImages.length > 0"
+              class="uploadedImagesFlex mt-2"
+            >
+              <div *ngFor="let image of uploadedProductImages">
+                <div class="uploadedImageHolder m-2">
+                  <img class="responsiveImage" src="{{ imageUrl }}{{ image }}{{ imageMetaUrl }}" />
+                  <div (click)="removeImage(image)" class="crossImage">
+                    <i class="fa-regular fa-circle-xmark text-white"></i>
+                  </div>
+                </div>             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      [disabled]="reviewForm.invalid"
+      type="button"
+      class="saveReviewBtn"
+      (click)="saveReview()"
+    >
+      Submit
+    </button>
+  </div>
+</ng-template>

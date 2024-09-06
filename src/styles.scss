@@ -702,3 +702,25 @@ html .mat-accent {
 input[type="checkbox"]{
   accent-color: #020724;
 }
+
+#faqAccordianSections h2{
+  margin: 0 !important;
+}
+.accordion-button{
+  padding: 10px 20px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  font-family: "Lato", sans-serif !important;
+  text-transform: capitalize !important;
+}
+.accordion-button:focus{
+  box-shadow: none !important;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #F0F0F0 !important;
+}
+.styleStars{
+  color: #020724 !important;
+  font-size: 25px !important;
+  margin: 0 5px 0 0;
+}

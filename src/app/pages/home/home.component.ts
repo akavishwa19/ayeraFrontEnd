@@ -418,4 +418,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/shop/tertiary/',slug])
    
   }
+
+  routeToShopViaTags(id:string){
+    this.currentOffcanvas?.dismiss();
+    this.router.navigate(['/shop/primary/',])
+  }
 }

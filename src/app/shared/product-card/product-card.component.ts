@@ -32,6 +32,7 @@ export class ProductCardComponent implements OnInit {
   @Input() additionalDiscount: number = 0;
   @Input() price: number = 0;
   @Input() hasSimilarProducts: boolean = false;
+  @Input() slug: string = '';
 
   @Output() valueLiked: EventEmitter<Object> = new EventEmitter<Object>();
 
@@ -94,7 +95,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   routeToProduct() {
-    this.router.navigate(['/product', this.productId]);
+    this.router.navigate(['/product', this.slug]);
   }
 
   getSingleProduct() {
