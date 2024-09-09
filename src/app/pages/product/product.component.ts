@@ -42,16 +42,32 @@ export class ProductComponent implements OnInit {
   productUrl = environment.baseurl + '/product';
   ratingUrl = environment.baseurl + '/rating';
   uploadUrl: string = environment.baseurl + '/upload';
+  helpFulUrl: string = environment.baseurl + '/helpful';
+  questionAnswerUrl: string = environment.baseurl + '/ques';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
 
   private modalService = inject(NgbModal);
+  helpfulBoolean: boolean = false;
   closeResult = '';
   uploadedProductImages: any[] = [];
   swiperArray: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-  reviews:any[]=[];
+  reviews: any[] = [];
+  questions: any[] = [];
   pId: string = '';
   passedSlug: string = '';
+  ratingOverview:any={
+    totalRatings:Number,
+    ratings:{
+      1:Number,
+      2:Number,
+      3:Number,
+      4:Number,
+      5:Number,
+    },
+  
+  };
+  averageRating:string=''
   product: any = {
     primary: {
       name: String,
@@ -107,6 +123,57 @@ export class ProductComponent implements OnInit {
     {
       name: 'FAQs',
     },
+  ];
+  sortValueReviews: string = '';
+  sortOrderReviews: number = null;
+
+  reviweSorterArray: any[] = [
+    {
+      id: 1,
+      label: 'Highest',
+      value: 'rating',
+      order: -1,
+      checked: false,
+    },
+    {
+      id: 2,
+      label: 'Lowest',
+      value: 'rating',
+      order: 1,
+      checked: false,
+    },
+    {
+      id: 3,
+      label: 'Most Recent',
+      value: 'createdAt',
+      order: -1,
+      checked: false,
+    },
+    {
+      id: 4,
+      label: 'Most Helpful',
+      value: 'foundHelpfulCount',
+      order: -1,
+      checked: false,
+    },
+  ];
+
+  qAndASorterArray: any[] = [
+    {
+      id: 1,
+      label: 'Answered',
+      value: 'answer',
+      order: -1,
+      checked: false,
+    },
+    {
+      id: 2,
+      label: 'Most Recent',
+      value: 'createdAt',
+      order: -1,
+      checked: false,
+    },
+   
   ];
 
   selectedSize: string = '20.7';
@@ -185,10 +252,15 @@ export class ProductComponent implements OnInit {
   };
 
   reviewForm: FormGroup = this.fb.group({
-    productId:[],
+    productId: [],
     rating: [null, Validators.required],
     message: [null, Validators.required],
     images: [null],
+  });
+
+  qAndAform: FormGroup = this.fb.group({
+    question: [null, Validators.required],
+    product_id:[null]
   });
 
   constructor(
@@ -212,11 +284,11 @@ export class ProductComponent implements OnInit {
 
   onSizeChange(size: string): void {
     this.selectedSize = size;
-    // console.log(this.selectedSize)
+   
   }
   onColorChange(color: string): void {
     this.selectedColor = color;
-    // console.log(this.selectedColor)
+  
   }
 
   open(content: TemplateRef<any>) {
@@ -267,11 +339,12 @@ export class ProductComponent implements OnInit {
       .get(this.productUrl + '/product-by-slug?slug=' + this.passedSlug)
       .subscribe((res: any) => {
         this.pId = res.data._id;
-        this.reviewForm.patchValue({
-          productId:this.pId
-        })
+        // this.reviewForm.patchValue({
+        //   productId:this.pId
+        // })
         this.getProduct();
         this.fetchRatings();
+        this.fetchQuestions();
       });
   }
 
@@ -334,6 +407,7 @@ export class ProductComponent implements OnInit {
   saveReview() {
     this.reviewForm.patchValue({
       images: this.uploadedProductImages,
+      productId: this.pId,
     });
 
     this.http
@@ -343,21 +417,100 @@ export class ProductComponent implements OnInit {
         this.sucess('Review posted succesfully');
         this.uploadedProductImages = [];
         this.reviewForm.reset();
-        this.fetchRatings()
+        this.fetchRatings();
       });
   }
 
-  removeImage(image:string){
-    this.uploadedProductImages=this.uploadedProductImages.filter((x)=>x!=image)
+  saveQuestion(){
+    this.qAndAform.patchValue({
+      product_id: this.pId,
+    });
+
+    this.http
+    .post(this.questionAnswerUrl+'/user', this.qAndAform.value)
+    .subscribe((res: any) => {
+      this.modalService.dismissAll();
+      this.sucess('Question posted succesfully');
+      this.qAndAform.reset();
+    });
+
   }
 
-  fetchRatings(){
-    this.http.get(this.ratingUrl+'/reviews-by-product?pId='+this.pId).subscribe((res:any)=>{
-      this.reviews=res.data
+  removeImage(image: string) {
+    this.uploadedProductImages = this.uploadedProductImages.filter(
+      (x) => x != image
+    );
+  }
+
+  fetchRatings() {
+    this.http
+      .get(
+        this.ratingUrl +
+          '/reviews-by-product?pId=' +
+          this.pId +
+          '&sortValue=' +
+          this.sortValueReviews +
+          '&sortOrder=' +
+          this.sortOrderReviews
+      )
+      .subscribe((res: any) => {
+        this.reviews = res.data;
+        this.fetchReviewOverview();
+      });
+  }
+
+  upvoteHelpful(id: string) {
+    this.http
+      .post(this.helpFulUrl + '?pId=' + this.pId + '&ratingId=' + id, {})
+      .subscribe((res: any) => {
+        this.fetchRatings();
+      });
+  }
+  sortReviews(item) {
+    this.reviweSorterArray = this.reviweSorterArray.map((x) => {
+      return {
+        ...x,
+        checked: false,
+      };
+    });
+
+    let single = this.reviweSorterArray.find((x) => x.id == item.id);
+
+    if (single?.checked == true) {
+      single.checked = false;
+      this.sortOrderReviews = null;
+      this.sortValueReviews = '';
+    } else {
+      single.checked = true;
+      this.sortValueReviews = item.value;
+      this.sortOrderReviews = item.order;
+    }
+
+    this.fetchRatings();
+  }
+
+  fetchReviewOverview(){
+    this.http.get(this.ratingUrl+'/review-overview?pId='+this.pId).subscribe((res:any)=>{
+      this.ratingOverview=res.data.details;
+      console.log(this.ratingOverview)
+      this.averageRating=res.data.average;
     })
   }
 
-  lineUnlikeReview(id:string){
-    
+  progressValue(current,total){
+    const decimalVal=(current/total)*100;
+    return decimalVal
   }
+
+  openLg(content: TemplateRef<any>) {
+		this.modalService.open(content, { size: 'lg' });
+	}
+
+  fetchQuestions(){
+    this.http.get(this.questionAnswerUrl+'/questions-by-product?pId='+this.pId).subscribe((res:any)=>{
+      this.questions=res.data;
+    })
+  }
+
+
 }

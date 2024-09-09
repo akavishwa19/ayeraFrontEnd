@@ -25,6 +25,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     NgbCollapseModule ,
     MatPaginatorModule,
     NgbAccordionModule,
-    NgbRatingModule
+    NgbRatingModule,
+    ToastModule
   ]
 })
 export class PagesModule { }

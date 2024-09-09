@@ -379,7 +379,7 @@
 
 <section class="default-section-padding">
   <app-compare-product></app-compare-product>
-</section> -->
+</section>
 
 <section class="default-section-padding">
   <div class="container-xl">
@@ -408,7 +408,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <section class="default-section-padding">
   <div class="container-xl">
     <p
@@ -430,14 +430,14 @@
             <p
               class="font-lato font-weight-700 font-20 line-height-24 text-black text-align-center"
             >
-              5 out of 5 Based on 4 Reviews
+              {{averageRating}} out of 5 Based on {{ratingOverview.totalRatings}} Reviews
             </p>
           </div>
         </div>
       </div>
       <div class="col-12 col-lg-4 col-md-4 col-sm-12">
         <div class="ratingProgressBarContainer">
-          <div *ngFor="let data of [1, 1, 1, 1, 1]" class="reviewFlex py-2">
+          <div class="reviewFlex py-2">
             <div>
               <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
               <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
@@ -446,13 +446,89 @@
               <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
             </div>
             <div class="progressBarWidth">
-              <progressbar [value]="55"></progressbar>
+              <progressbar [value]="progressValue(ratingOverview.ratings['5'],ratingOverview.totalRatings)"></progressbar>
             </div>
             <div>
               <p
                 class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
               >
-                5
+               5
+              </p>
+            </div>
+          </div>
+          <div class="reviewFlex py-2">
+            <div>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x text-discount-grey"></i>
+            </div>
+            <div class="progressBarWidth">
+              <progressbar [value]="progressValue(ratingOverview.ratings['4'],ratingOverview.totalRatings)"></progressbar>
+            </div>
+            <div>
+              <p
+                class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
+              >
+               4
+              </p>
+            </div>
+          </div>
+          <div class="reviewFlex py-2">
+            <div>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+            </div>
+            <div class="progressBarWidth">
+              <progressbar [value]="progressValue(ratingOverview.ratings['3'],ratingOverview.totalRatings)"></progressbar>
+            </div>
+            <div>
+              <p
+                class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
+              >
+               3
+              </p>
+            </div>
+          </div>
+          <div class="reviewFlex py-2">
+            <div>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+            </div>
+            <div class="progressBarWidth">
+              <progressbar [value]="progressValue(ratingOverview.ratings['2'],ratingOverview.totalRatings)"></progressbar>
+            </div>
+            <div>
+              <p
+                class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
+              >
+               2
+              </p>
+            </div>
+          </div>
+          <div class="reviewFlex py-2">
+            <div>
+              <i class="fa-solid fa-star padding-right-10px fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+              <i class="fa-solid fa-star padding-right-10px text-discount-grey fa-2x"></i>
+            </div>
+            <div class="progressBarWidth">
+              <progressbar [value]="progressValue(ratingOverview.ratings['1'],ratingOverview.totalRatings)"></progressbar>
+            </div>
+            <div>
+              <p
+                class="font-lato font-weight-700 font-20 line-height-24 zero-padding-bottom zero-margin-bottom"
+              >
+               1
               </p>
             </div>
           </div>
@@ -469,8 +545,9 @@
             </button>
             <button
               class="none-outline reviewShadows mx-2 my-3 border-radius-10px bg-white text-black px-5 py-3 font-weight-700 letter-spacing-04 display-block"
+              (click)="openLg(contentQuestion)"
             >
-              Ask Questions
+              Ask a Question
             </button>
           </div>
         </div>
@@ -480,27 +557,17 @@
       <tabset type="pills">
         <tab heading="Reviews">
           <div class="mt-4 pb-4 commentBorderBottom">
+            <ng-container *ngFor="let item of reviweSorterArray">
             <button
+            (click)="sortReviews(item)"
               style="margin-left: 0 !important"
-              class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2"
+              [ngClass]="item.checked?'text-white bg-blue-black':' text-black bg-white'"
+              class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 px-4 py-2 mx-2"
             >
-              Highest
+              {{item.label}}
             </button>
-            <button
-              class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2"
-            >
-              Lowest
-            </button>
-            <button
-              class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2"
-            >
-              Most Recent
-            </button>
-            <button
-              class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 bg-white px-4 py-2 mx-2"
-            >
-              Most Helpful
-            </button>
+          </ng-container>
+            
           </div>
           <div
             class="py-2 my-2 commentBorderBottom"
@@ -534,12 +601,66 @@
                 </div>
               </div>
               <div class="otherHelpRelatedParts">
-                <button class="helpfulBtn">Helpful</button>
+                <p class="font-13 font-lato font-weight-500 " *ngIf="review.foundHelpfulCount>0">{{review.foundHelpfulCount}} people found this helpful</p>
+                <button (click)="upvoteHelpful(review._id)" *ngIf="!review.hasAlreadyVoted;else afterHelpFulView" class="helpfulBtn">Helpful</button>
+                <ng-template #afterHelpFulView>
+                  <button class="helpfulBtn"><i class="fa-regular fa-circle-check text-discount-grey"></i> Thank you for your feedback.</button>
+                </ng-template>
+               
+                <span class="font-14 font-lato font-weight-600 text-black mx-3 cursor-pointer">Report</span>
               </div>
             </div>
           </div>
         </tab>
-        <tab heading="Questions">Pills content 2</tab>
+        <tab heading="Questions">
+
+          <div class="mt-4 pb-4 commentBorderBottom">
+            <ng-container *ngFor="let item of qAndASorterArray">
+            <button
+            (click)="sortReviews(item)"
+              style="margin-left: 0 !important"
+              [ngClass]="item.checked?'text-white bg-blue-black':' text-black bg-white'"
+              class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 px-4 py-2 mx-2"
+            >
+              {{item.label}}
+            </button>
+          </ng-container>
+            
+          </div>
+          <div
+            class="py-2 my-2 commentBorderBottom"
+            *ngFor="let question of questions"
+          >
+            <div class="comment">
+            
+              <div class="commentFlex py-2">
+                <div class="userImageHolder">
+                  <img
+                    class="responsiveImage"
+                    src="assets/images/userImage.png"
+                  />
+                </div>
+                <p
+                  class="font-lato font-weight-700 font-16 line-height-19 zero-margin-bottom zero-padding-bottom text-black"
+                >
+                  {{question.user_id.username}} 
+                </p>
+              </div>
+              <p
+                class="font-16 font-lato font-weight-700 text-black line-height-24"
+              >
+                Q : {{question.question}}
+              </p>
+              <p
+              class="font-16 font-lato font-weight-600 text-black line-height-24"
+            >
+              A : <span *ngIf="">{{question.question}} </span>
+            </p>
+            
+            </div>
+          </div>
+
+        </tab>
       </tabset>
     </div>
   </div>
@@ -618,3 +739,49 @@
     </button>
   </div>
 </ng-template>
+
+<ng-template #contentQuestion let-modal>
+  <div class="modal-header">
+    <p
+      class="font-20 font-lato text-black zero-margin-bottom zero-padding-bottom font-weight-700"
+    >
+      Ask a question
+    </p>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="qAndAform">
+      <div class="mb-3">
+        <div class="row">
+          
+          <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-3">
+            <label>Question:</label>
+            <textarea
+              formControlName="question"
+              class="width-100 p-2"
+              rows="5"
+            ></textarea>
+          </div>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      [disabled]="qAndAform.invalid"
+      type="button"
+      class="saveReviewBtn"
+      (click)="saveQuestion()"
+    >
+      Submit
+    </button>
+  </div>
+</ng-template>
+
+<p-toast></p-toast>
