@@ -127,6 +127,9 @@ export class ProductComponent implements OnInit {
   sortValueReviews: string = '';
   sortOrderReviews: number = null;
 
+  sortValueQuestions: string = '';
+  sortOrderQuestions: number = null;
+
   reviweSorterArray: any[] = [
     {
       id: 1,
@@ -432,6 +435,7 @@ export class ProductComponent implements OnInit {
       this.modalService.dismissAll();
       this.sucess('Question posted succesfully');
       this.qAndAform.reset();
+      this.fetchQuestions()
     });
 
   }
@@ -489,6 +493,29 @@ export class ProductComponent implements OnInit {
     this.fetchRatings();
   }
 
+  sortQuestions(item){
+    this.qAndASorterArray = this.qAndASorterArray.map((x) => {
+      return {
+        ...x,
+        checked: false,
+      };
+    });
+
+    let single = this.qAndASorterArray.find((x) => x.id == item.id);
+
+    if (single?.checked == true) {
+      single.checked = false;
+      this.sortOrderQuestions = null;
+      this.sortValueQuestions = '';
+    } else {
+      single.checked = true;
+      this.sortValueQuestions = item.value;
+      this.sortOrderQuestions = item.order;
+    }
+
+    this.fetchQuestions();
+  }
+
   fetchReviewOverview(){
     this.http.get(this.ratingUrl+'/review-overview?pId='+this.pId).subscribe((res:any)=>{
       this.ratingOverview=res.data.details;
@@ -507,7 +534,7 @@ export class ProductComponent implements OnInit {
 	}
 
   fetchQuestions(){
-    this.http.get(this.questionAnswerUrl+'/questions-by-product?pId='+this.pId).subscribe((res:any)=>{
+    this.http.get(this.questionAnswerUrl+'/questions-by-product?pId='+this.pId+'&sortValue='+this.sortValueQuestions+'&sortOrder='+this.sortOrderQuestions).subscribe((res:any)=>{
       this.questions=res.data;
     })
   }

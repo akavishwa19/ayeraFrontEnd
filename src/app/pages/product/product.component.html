@@ -1,4 +1,4 @@
-<!-- <app-advertisement-header></app-advertisement-header>
+<app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 <section class="default-section-padding">
   <div class="container-xl">
@@ -408,7 +408,7 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
 <section class="default-section-padding">
   <div class="container-xl">
     <p
@@ -617,7 +617,7 @@
           <div class="mt-4 pb-4 commentBorderBottom">
             <ng-container *ngFor="let item of qAndASorterArray">
             <button
-            (click)="sortReviews(item)"
+            (click)="sortQuestions(item)"
               style="margin-left: 0 !important"
               [ngClass]="item.checked?'text-white bg-blue-black':' text-black bg-white'"
               class="none-outline border-radius-10px customCategoryButton font-lato font-weight-700 line-height-24 letter-spacing-02 px-4 py-2 mx-2"
@@ -654,7 +654,7 @@
               <p
               class="font-16 font-lato font-weight-600 text-black line-height-24"
             >
-              A : <span *ngIf="">{{question.question}} </span>
+              A : <span *ngIf="question.status;else unanswered">{{question.answer}} </span> <ng-template #unanswered><span>the question will be answered soon</span></ng-template>
             </p>
             
             </div>
