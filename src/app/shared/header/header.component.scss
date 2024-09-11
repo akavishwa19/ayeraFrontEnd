@@ -13,24 +13,36 @@
   display:flex;
   justify-content:flex-start;
   align-items: center;
-  gap:90px;
+  gap:40px;
   padding-left:10px;
 }
 .aayraHeaderLogoHolder{
-  width: 60px;
+  width: 80px;
   cursor: pointer;
 }
-
-.aayraHeaderLogoHolder  img{
-  
+.border-radius-10{
+  border-radius: 10px !important;
+}
+.postionTopHeader{
+  top:50px;
+}
+.closePanel{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
 }
 
 .aayraLogoFlex{
   display: flex;
   gap:20px;
   align-items: center;
+  overflow: hidden;
 }
 @media (min-width: 400px ) and (max-width: 600px) {
+  .aayraHeaderLogoHolder{
+    width:60px;
+  }
   .categoryItemHolder{
     display:none;
   }
@@ -58,4 +70,19 @@
   .medium-device-d-none{
     display:none;
   }
+}
+// .dropdown:hover .dropdown-menu {
+//   display: block;
+//   margin-top: 0; 
+// }
+.dropdown-menu{
+  background-color: #CCCDD3;
+  margin-top: 20px !important;
+  margin-left: -10px !important;
+}
+.dropdown-item{
+  padding: 8px 0;
+}
+.dropdown-item:hover{
+  background-color: #CCCDD3;
 }

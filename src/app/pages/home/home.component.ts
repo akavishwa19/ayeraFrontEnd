@@ -23,6 +23,10 @@ import SwiperCore, {
 } from 'swiper';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 SwiperCore.use([Navigation, Pagination, Autoplay]);
 @Component({
@@ -68,8 +72,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     'assets/images/indiaToday.png',
     'assets/images/timesNow.png',
   ];
-
-
 
   featuredProductsSwiper: SwiperOptions = {
     slidesPerView: 2,
@@ -181,7 +183,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
   currentOffcanvas: NgbOffcanvasRef;
 
-  constructor(private http: HttpClient,private router:Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.getHeroBanner();
@@ -190,10 +192,84 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.getTestimonials();
     this.fetchShopByCategoriesList();
     this.fetchFeaturedTags();
+    this.headerAnimation();
+    this.loadFromRIght();
+    this.loadFromLeft();
+    this.emerge()
   }
 
   ngAfterViewInit(): void {
     this.fetchAllSecondaryCategories();
+  }
+
+  headerAnimation() {
+    gsap.fromTo(
+      '.bannerImageContainer',
+      {
+        y: 0,
+      },
+      {
+        y: -450,
+        scrollTrigger: {
+          toggleActions: 'restart restart none none',
+          scrub: 7,
+        },   
+        duration: 4,
+        immediateRender:false
+      }
+    );
+  }
+
+  loadFromRIght(){
+    gsap.fromTo(
+      '.loadFromRight',
+      {
+        x: 200,
+      },
+      {
+        x:0,
+        scrollTrigger: {
+          toggleActions: 'play restart none none',
+        },   
+        duration: 0.5,
+        immediateRender:false
+      }
+    );
+  }
+
+  loadFromLeft(){
+    gsap.fromTo(
+      '.loadFromLeft',
+      {
+        x: -200,
+      },
+      {
+        x:0,
+        scrollTrigger: {
+          toggleActions: 'play restart none none',
+        },   
+        duration: 0.5,
+        immediateRender:false
+      }
+    );
+  }
+  emerge(){
+    gsap.fromTo(
+      '.emerge',
+      {
+        y: 200,
+      },
+      {
+        y:0,
+        scrollTrigger: {
+          toggleActions: 'complete restart none none',
+          start: 'top top',
+          end: 'bottom top',
+        },   
+        duration: 0.5,
+        immediateRender:false
+      }
+    );
   }
 
   getHeroBanner() {
@@ -236,7 +312,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onTab(name: string) {}
   indentName(name: string) {
-    
     return name.replaceAll(' ', '<br>');
   }
 
@@ -409,18 +484,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.featuredTagsList[i].down = false;
         }
       }
-      console.log(this.featuredTagsList)
+      console.log(this.featuredTagsList);
     });
   }
 
-  routeToShop(slug:string){
+  routeToShop(slug: string) {
     this.currentOffcanvas?.dismiss();
-    this.router.navigate(['/shop/tertiary/',slug])
-   
+    this.router.navigate(['/shop/tertiary/', slug]);
   }
 
-  routeToShopViaTags(id:string){
+  routeToShopViaTags(id: string) {
     this.currentOffcanvas?.dismiss();
-    this.router.navigate(['/shop/primary/',])
+    this.router.navigate(['/shop/primary/']);
   }
 }

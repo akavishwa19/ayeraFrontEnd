@@ -1,16 +1,28 @@
-<section class="bg-blue-black pb-2">
-  <div class="bg-light-grey py-3 mx-2" id="mainHeader">
+<section class="bg-blue-black pb-2 positionFixed width-100 postionTopHeader" >
+  <div class=" mx-2" id="mainHeader">
     <div class="container-fluid">
-      <div class="headerFlex py-3 px-3">
+      <div class="headerFlex py-2 px-3">
         <div class="aayraLogoFlex">
           <div routerLink="/" class="aayraHeaderLogoHolder">
             <img class="responsiveImage-contain" src="/assets/images/headerLogoAayra.png">
           </div>
-          <i  class="fa-solid fa-bars-staggered font-40 cursor-pointer"></i>
+          <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="50" height="39" viewBox="0 0 67 51" fill="none">
+            <path d="M3 3L43 3" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            <path d="M3.01562 24.5H64.0484" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            <path d="M24.0156 48.5H64.0156" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <div
+            class="categoryItem font-20 text-white font-lato font-weight-700 cursor-pointer uppercase mx-2 small-device-d-none"
+            *ngFor="let category of featuredCategoryList"
+            (mouseenter)="fetchByPrimary(category._id)"
+            (click)="routeToShop(category.slug)"
+          >
+            {{ category.name }}
+          </div>
         </div>
       
         <div class="rightPart">
-          <div class="input-group">
+          <div class="input-group small-device-d-none">
             <span class="input-group-text bg-white"
               ><i class="fa-solid fa-magnifying-glass"></i
             ></span>
@@ -33,7 +45,7 @@
             <img src="/assets/icons/profile.svg" />
           </div>
           <i
-            class="fa-solid fa-heart text-black font-30 small-device-d-none cursor-pointer"
+            class="fa-solid text-white fa-heart text-black font-30 small-device-d-none cursor-pointer"
           ></i>
           <!-- <i
             class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
@@ -42,21 +54,30 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid px-3  pt-2 socialIcons">
+    <div class="container-fluid px-3 bg-light-grey py-3 mt-1 socialIcons border-radius-10 small-device-d-none position-relative">
       <div class="categoryItemHolder medium-device-d-none">
-        <!-- <div
-          class="categoryItem font-18 font-lato font-weight-700 cursor-pointer uppercase"
+        <div
+          class="categoryItem font-18 font-lato font-weight-800 cursor-pointer uppercase"
         >
           All Jewellery
-        </div> -->
-        <div
-          class="categoryItem font-18 font-lato font-weight-700 cursor-pointer uppercase"
-          *ngFor="let category of featuredCategoryList"
-          (click)="routeToShop(category.slug)"
-        >
-          {{ category.name }}
         </div>
+        <div
+        class="categoryItem font-18 font-lato font-weight-800 cursor-pointer uppercase dropdown-toggle"
+        data-bs-toggle="dropdown" aria-expanded="false"
+        *ngFor="let item of secondaryCategoryList"
+        (click)="fetchBySecondary(item._id)"
+      >
+       {{item.name}}
       </div>
+      <ul  class="dropdown-menu p-2">
+        <li *ngFor="let category of tertiaryCategoryList"><a class="dropdown-item font-17 font-lato font-weight-800 cursor-pointer uppercase" >{{category.name}}</a></li>
+      </ul>
+      </div>
+      <!-- <div class="closePanel cursor-pointer">
+        <i class="fa-regular fa-circle-xmark fa-2x "></i>
+      </div> -->
+
     </div>
+    
   </div>
 </section>

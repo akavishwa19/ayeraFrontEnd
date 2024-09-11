@@ -1,8 +1,8 @@
 <app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 
-<section class="default-section-padding bg-blue-black">
-  <div class="height-80vh customBannerHome">
+<section class="default-section-padding bg-blue-black firstSection">
+  <div class="height-80vh customBannerHome overflow-hidden">
     <div class="bannerImageContainer">
       <img
         class="responsiveImage-contain"
@@ -12,10 +12,14 @@
   </div>
 </section>
 
+<section class="default-section-padding">
+    
+</section>
+
 <section id="modifiedOffcanvas" class="default-section-padding">
   <div class="expandableBanner">
     <div
-      class="modelImage border-top-right-30 border-bottom-right-30 position-relative"
+      class="modelImage border-top-right-30 border-bottom-right-30 position-relative loadFromLeft"
     >
       <div (click)="toggleOffcanvas('women')" class="imageHolderModel">
         <img
@@ -57,7 +61,7 @@
     </div>
 
     <div
-      class="modelImage border-top-left-30 border-bottom-left-30 position-relative"
+      class="modelImage border-top-left-30 border-bottom-left-30 position-relative loadFromRight"
     >
       <div (click)="toggleOffcanvas('men')" class="imageHolderModel">
         <img
@@ -76,6 +80,7 @@
 </section>
 
 <section class="default-section-padding">
+  <div class="emerge">
   <swiper [config]="featuredProductsSwiper">
     <ng-template swiperSlide="" *ngFor="let slide of homeSliderBanner">
       <div
@@ -112,6 +117,7 @@
       </div>
     </ng-template>
   </swiper>
+</div>
 </section>
 
 <section class="default-section-padding bg-best-sellers">

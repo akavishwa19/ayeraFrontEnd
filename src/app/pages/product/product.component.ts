@@ -388,7 +388,6 @@ export class ProductComponent implements OnInit {
       .post(this.uploadUrl, formData, httpOptions)
       .subscribe((res: any) => {
         this.uploadedProductImages.push(res.data.filename);
-        console.log(this.uploadedProductImages);
       });
   }
 

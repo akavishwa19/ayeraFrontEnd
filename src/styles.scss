@@ -89,6 +89,9 @@ body {
 .font-16 {
   font-size: 16px !important;
 }
+.font-17 {
+  font-size: 17px !important;
+}
 .font-18 {
   font-size: 18px !important;
 }
@@ -254,6 +257,9 @@ body {
 .padding-10 {
   padding: 10px;
 }
+.firstSection{
+  padding-top: 220px !important;
+}
 .cursor-pointer {
   cursor: pointer;
 }
@@ -381,6 +387,10 @@ justify-content: flex-start;
 }
 .position-absolute {
   position: absolute;
+}
+.positionFixed{
+  position: fixed;
+  z-index: 10;
 }
 //toggle button prime ng
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
