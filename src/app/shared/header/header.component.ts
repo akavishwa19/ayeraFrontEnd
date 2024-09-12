@@ -22,7 +22,7 @@ export class HeaderComponent implements  OnInit{
   constructor(private http:HttpClient,private router:Router) {
   }
   ngOnInit() {
-    console.log(this.router.url)
+
     this.fetchPrimaryCategories()
     if(this.router.url=='/'){
       this.headerLogoAnimation()

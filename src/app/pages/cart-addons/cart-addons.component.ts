@@ -394,7 +394,6 @@ export class CartAddonsComponent {
   onUpload(event:any){
     const fileInput:HTMLInputElement = <HTMLInputElement>document.getElementById('fileInput');
     const fileName = document.getElementById('fileName');
-    console.log(fileInput,fileName)   
  
         if (fileInput.files.length > 0) {
             fileName.textContent = fileInput.files[0].name;

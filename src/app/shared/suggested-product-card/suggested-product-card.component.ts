@@ -13,6 +13,7 @@ export class SuggestedProductCardComponent {
   @Input() strikedPrice:number=0;
   @Input() discount:number=0;
   @Input() price:number=0;
+  @Input() additionalDiscount:number=0;
 
 
 }

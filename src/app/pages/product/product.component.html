@@ -24,7 +24,7 @@
   </div>
 </section>
 
-<section class="default-section-padding">
+<section class="default-section-padding zero-padding-top">
   <div class="container-xl">
     <div class="row">
       <div class="col-12 col-lg-6 col-md-6 col-sm-12">
@@ -98,28 +98,34 @@
           <p
             class="font-lato font-27 font-weight-700 text-black line-height-24 zero-margin-bottom zero-padding-bottom"
           >
-            ₹ 1711
+            ₹ {{product.sellingPrice}}
           </p>
           <p
             class="font-lato font-18 font-weight-700 text-black line-height-24 zero-margin-bottom zero-padding-bottom text-decoration-line-through"
           >
-            ₹ 1800
+            ₹ {{product.price}}
           </p>
-          <p
-            class="font-lato font-18 font-weight-700 text-black line-height-24 zero-margin-bottom zero-padding-bottom text-decoration-line-through"
-          >
-            ₹ 2000
-          </p>
-          <p
+
+          <ng-container *ngIf="product.additionalDiscount==0;else withAdditionalDiscount">
+            <p
             class="font-lato font-16 font-weight-700 text-red line-height-24 zero-margin-bottom zero-padding-bottom"
           >
-            (5% OFF )
+            {{product.discount}} % OFF 
           </p>
+          </ng-container>
+          <ng-template #withAdditionalDiscount>
+            <p
+            class="font-lato font-16 font-weight-700 text-red line-height-24 zero-margin-bottom zero-padding-bottom"
+          >
+            ({{product.discount}}+{{product.additionalDiscount}}) % OFF 
+          </p>
+            </ng-template>
+      
         </div>
         <small class="font-lato font-weight-700"
           >(Inclusive of all taxes)</small
         >
-        <p
+        <!-- <p
           class="py-2 font-lato font-18 font-weight-700 text-black line-height-24"
         >
           Size:
@@ -136,7 +142,7 @@
             />
             <label for="{{ radio.value }}">{{ radio.value }} mm</label>
           </div>
-        </div>
+        </div> -->
         <div class="weightFlex py-2">
           <div class="pt-2">
             <p
@@ -147,7 +153,7 @@
             <p
               class="font-lato font-weight-700 text-black line-height-24 font-18"
             >
-              5.48 Grams
+              {{product.weight}} Grams
             </p>
           </div>
           <div>
@@ -160,6 +166,7 @@
             >
           </div>
         </div>
+        <ng-container *ngIf="product.type=='variant'">
         <p
           class="py-1 font-lato font-18 font-weight-700 text-black line-height-24"
         >
@@ -186,23 +193,42 @@
             </p>
           </div>
         </div>
+      </ng-container>
         <p
           class="pt-1 font-lato font-18 font-weight-700 text-black line-height-24"
         >
           Buy It With :
         </p>
+        <ng-container *ngIf="product.buyItWithVariants.length==0; else variable">
         <div class="col-12 col-lg-7 col-md-7 col-sm-12">
           <app-suggested-product-card
-            [productImage]="'assets/images/cardImage.png'"
-            [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
-            [productCode]="'64A288075'"
+            [productImage]="imageUrl+product.buyItWith[0].featuredImage+imageMetaUrl"
+            [productName]="product.buyItWith[0].name"
+            [productCode]="product.buyItWith[0].productCode"
             [rating]="5"
-            [strikedPrice]="1800"
-            [discount]="10"
-            [price]="1710"
+            [strikedPrice]="product.buyItWith[0].price"
+            [discount]="product.buyItWith[0].discount"
+            [additionalDiscount]="product.buyItWith[0].additionalDiscount"
+            [price]="product.buyItWith[0].sellingPrice"
           >
           </app-suggested-product-card>
         </div>
+        </ng-container>
+        <ng-template #variable>
+          <div class="col-12 col-lg-7 col-md-7 col-sm-12">
+            <app-suggested-product-card
+            [productImage]="imageUrl+product.buyItWith[0].featuredImage+imageMetaUrl"
+            [productName]="product.buyItWithVariants[0].name"
+            [productCode]="product.buyItWith[0].productCode"
+            [rating]="5"
+            [strikedPrice]="product.buyItWithVariants[0].price"
+            [discount]="product.buyItWithVariants[0].discount"
+            [additionalDiscount]="product.buyItWithVariants[0].additionalDiscount"
+            [price]="product.buyItWithVariants[0].sellingPrice"
+            >
+            </app-suggested-product-card>
+          </div>
+        </ng-template>
         <p
           class="pt-2 font-lato font-18 font-weight-700 text-black line-height-24"
         >
@@ -299,18 +325,35 @@
     <div class="row">
       <div
         class="col-12 col-lg-4 col-md-4 col-sm-12"
-        *ngFor="let card of [1, 1, 1]"
+        *ngFor="let card of product.frequentlyBoughtTogether.slice(0,3)"
       >
+      <ng-container *ngIf="card.type!='variable';else simpleFrequent">
         <app-suggested-product-card
-          [productImage]="'assets/images/cardImage.png'"
-          [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
-          [productCode]="'64A288075'"
-          [rating]="5"
-          [strikedPrice]="1800"
-          [discount]="10"
-          [price]="1710"
-        >
-        </app-suggested-product-card>
+        [productImage]="imageUrl+card.featuredImage+imageMetaUrl"
+        [productName]="card.name"
+        [productCode]="card.productCode"
+        [rating]="5"
+        [strikedPrice]="card.price"
+        [discount]="card.discount"
+        [additionalDiscount]="card.additionalDiscount"
+        [price]="card.sellingPrice"
+      >
+      </app-suggested-product-card>
+      </ng-container>
+      <ng-template #simpleFrequent>
+        <app-suggested-product-card
+        [productImage]="imageUrl+card.featuredImage+imageMetaUrl"
+        [productName]="card.variants[0].name"
+        [productCode]="card.productCode"
+        [rating]="5"
+        [strikedPrice]="card.variants[0].price"
+        [discount]="card.variants[0].discount"
+        [additionalDiscount]="card.variants[0].additionalDiscount"
+        [price]="card.variants[0].sellingPrice"
+      >
+      </app-suggested-product-card>
+      </ng-template>
+        
       </div>
     </div>
   </div>
@@ -319,7 +362,7 @@
 <section class="default-section-padding">
   <div class="container-xl">
     <div class="bannerContainer">
-      <img class="responsiveImage" src="assets/images/productBanner.png" />
+      <img class="responsiveImage" [src]="imageUrl+product.bannerImage+imageMetaUrl" />
     </div>
   </div>
 </section>
@@ -360,18 +403,36 @@
     </div>
 
     <swiper [config]="RecommendedSwiperOptions">
-      <ng-template swiperSlide="" *ngFor="let x of [1, 1, 1, 1]">
-        <app-product-card
-          [islIked]="false"
-          [highlightedTag]="'BEST SELLER'"
-          [productImage]="'assets/images/cardImage.png'"
-          [productName]="'Unclench Oxidized Ring in 925 Silver'"
-          [strikedPrice]="1800"
-          [discount]="10"
-          [price]="1710"
+      <ng-template swiperSlide="" *ngFor="let card of product.similarProducts">
+        <ng-container *ngIf="card.type=='simple';else variableSwiper">
+          <app-product-card
+          [islIked]="card.liked" 
+          [productImage]="imageUrl+card.featuredImage+imageMetaUrl"
+          [productName]="card.name"
+          [strikedPrice]="card.price"
+          [discount]="card.discount"
+          [additionalDiscount]="card.additionalDiscount"
+          [price]="card.sellingPrice"
+          [hasSimilarProducts]="false"
+          [productId]="card._id"
+        >
+        </app-product-card>
+        </ng-container>
+        <ng-template #variableSwiper>
+          <app-product-card
+          [islIked]="card.liked"
+          [productId]="card._id"
+          [additionalDiscount]="card.similarProductVariant[0].additionalDiscount"
+          [productImage]="imageUrl+card.featuredImage+imageMetaUrl"
+          [productName]="card.name"
+          [strikedPrice]="card.similarProductVariant[0].price"
+          [discount]="card.similarProductVariant[0].discount"
+          [price]="card.similarProductVariant[0].price"
           [hasSimilarProducts]="false"
         >
         </app-product-card>
+        </ng-template>
+   
       </ng-template>
     </swiper>
   </div>

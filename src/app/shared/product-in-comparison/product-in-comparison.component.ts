@@ -81,11 +81,11 @@ export class ProductInComparisonComponent implements OnInit{
   };
 
   ngOnInit() {
-    console.log(this.productData)
+
   }
 
   removeProduct(){
-    console.log(this.productData)
+
     this.productData.name='';
     this.productChange.emit(null)
   }

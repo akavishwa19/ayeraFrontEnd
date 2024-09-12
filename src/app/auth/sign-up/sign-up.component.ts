@@ -90,7 +90,7 @@ export class SignUpComponent {
         this.form.reset()
       },
       (error) => {
-        console.log(error);
+
         this.error(error.error.message);
       }
     );

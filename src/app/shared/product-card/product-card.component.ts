@@ -122,7 +122,7 @@ export class ProductCardComponent implements OnInit {
     this.http
       .get(this.productUrl + '/similar-products?id=' + this.productId)
       .subscribe((res: any) => {
-        console.log('my products:', res.data);
+
         this.similarProductsArray = res.data;
       });
   }

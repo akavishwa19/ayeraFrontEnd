@@ -81,6 +81,92 @@ export class ProductComponent implements OnInit {
     quaternary: {
       name: String,
     },
+    buyItWith:[
+      {
+        name:String
+      },
+      {
+        featuredImage:String
+      },
+      {
+        productCode:String
+      },
+      {
+        price:Number
+      },
+      {
+        discount:Number
+      },
+      {
+        additionalDiscount:Number
+      },
+      {
+        sellingPrice:Number
+      },
+    ],
+    buyItWithVariants:[
+      {
+        name:String
+      },
+      {
+        featuredImage:String
+      },
+      {
+        productCode:String
+      },
+      {
+        price:Number
+      },
+      {
+        discount:Number
+      },
+      {
+        additionalDiscount:Number
+      },
+      {
+        sellingPrice:Number
+      },
+    ],
+    frequentlyBoughtTogether:[
+      {
+        additionalDiscount:Number,
+        discount:Number,
+        price:Number,
+        sellingPrice:Number,
+        type:String,
+        variants:[
+          {
+            name:String,
+            additionalDiscount:Number,
+            discount:Number,
+            price:Number,
+            sellingPrice:Number,
+          }
+        ]
+      }
+    ],
+    similarProducts:[
+      {
+        _id:String,
+        additionalDiscount:Number,
+        featuredImage:String,
+        liked:Boolean,
+        name:String,
+        price:Number,
+        sellingPrice:Number,
+        type:String,
+        similarProductVariant:[
+          {
+            _id:String,
+            additionalDiscount:Number,
+            discount:Number,
+            name:String,
+            price:Number,
+            sellingPrice:Number
+          }
+        ]
+      }
+    ]
   };
   showFaqs: boolean = false;
 
@@ -351,6 +437,10 @@ export class ProductComponent implements OnInit {
       });
   }
 
+  detectValueLiked(event: any) {
+    this.getProduct();
+  }
+
   getProduct() {
     this.http
       .get(this.productUrl + '/main-product?id=' + this.pId)
@@ -365,7 +455,7 @@ export class ProductComponent implements OnInit {
     );
     const fileName = document.getElementById('fileName');
     this.photoUpload(event);
-    console.log(fileInput, fileName);
+
 
     if (fileInput.files.length > 0) {
       fileName.textContent = fileInput.files[0].name;
@@ -518,7 +608,7 @@ export class ProductComponent implements OnInit {
   fetchReviewOverview(){
     this.http.get(this.ratingUrl+'/review-overview?pId='+this.pId).subscribe((res:any)=>{
       this.ratingOverview=res.data.details;
-      console.log(this.ratingOverview)
+
       this.averageRating=res.data.average;
     })
   }

@@ -72,6 +72,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     'assets/images/indiaToday.png',
     'assets/images/timesNow.png',
   ];
+  homeVideoBanner:any={
+    video:String
+  };
 
   featuredProductsSwiper: SwiperOptions = {
     slidesPerView: 2,
@@ -195,7 +198,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.headerAnimation();
     this.loadFromRIght();
     this.loadFromLeft();
-    this.emerge()
+    this.emerge();
+    this.getVideoBanner();
   }
 
   ngAfterViewInit(): void {
@@ -262,7 +266,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       {
         y:0,
         scrollTrigger: {
-          toggleActions: 'complete restart none none',
+          toggleActions: 'play restart none none',
           start: 'top top',
           end: 'bottom top',
         },   
@@ -288,6 +292,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
   }
 
+  getVideoBanner(){
+    this.http.get(this.bannerUrl+'/home-video-banner').subscribe((res:any)=>{
+      this.homeVideoBanner=res.data;
+    })
+  }
+
   getFeaturedMenWomenCategories() {
     this.http
       .get(this.categoryUrl + '/featured-men-women-categories')
@@ -307,7 +317,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   onSlideChange(swiper: Swiper) {
     this.activeIndex = swiper.activeIndex;
-    console.log('hi', this.activeIndex);
   }
 
   onTab(name: string) {}
@@ -399,7 +408,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       document.getElementById(`catBtn${i}`)
     );
 
-    console.log('active element', element, collection);
     element?.classList.add('customCategoryButton');
     this.fetchSlabs(id);
   }
@@ -415,9 +423,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const element: HTMLElement = <HTMLElement>(
       document.getElementById(`priceSlabBtn${i}`)
     );
-    console.log(i);
+
     element?.classList.add('customCategoryButton');
-    console.log(price);
+
 
     let maxVal = price;
     let minVal = 0;
@@ -484,7 +492,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.featuredTagsList[i].down = false;
         }
       }
-      console.log(this.featuredTagsList);
+
     });
   }
 

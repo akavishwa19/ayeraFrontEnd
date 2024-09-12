@@ -155,10 +155,10 @@ export class ShopComponent implements OnInit {
   }
 
   clearFilters() {
-    console.log(this.router.url);
+
     let currentUrl = this.router.url;
     let redirectUrl = currentUrl.split('?')[0];
-    console.log(redirectUrl);
+
     this.router.navigateByUrl(redirectUrl);
   }
 
@@ -208,7 +208,7 @@ export class ShopComponent implements OnInit {
       };
     });
 
-    console.log(this.sortList);
+
 
     this.form.patchValue({
       sortValue: item,
