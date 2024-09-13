@@ -1,4 +1,4 @@
-<div class="suggestedCardHolder p-4 ">
+<div class="suggestedCardHolder p-4 mb-3">
   <div class="cardFlex position-relative">
     <div class="displayImageHolder">
       <img class="responsiveImage" src="{{ productImage }}" />
@@ -15,7 +15,7 @@
         Product Code: {{ productCode }}
       </p>
       <button
-        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3"
+        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 cursor-default"
       >
         {{ weight }} Grams
       </button>
@@ -32,7 +32,7 @@
         </p>
       </div>
       <div class="quanityFlex border-radius-5px mt-2">
-        <button (click)="reduceQty()" class="bg-blue-black text-white">
+        <button [disabled]="quantity<=1" (click)="updateQty('decrement')" class="bg-blue-black text-white">
           <i class="fa-solid fa-minus text-white"></i>
         </button>
         <button class="px-2 cursor-not-allowed">
@@ -40,13 +40,15 @@
             {{ quantity }}</span
           >
         </button>
-        <button (click)="addQty()" class="bg-blue-black text-white">
+        <button (click)="updateQty('increment')" class="bg-blue-black text-white">
           <i class="fa-solid fa-plus text-white"></i>
         </button>
       </div>
     </div>
-    <div class="cutCard bg-blue-black position-absolute cursor-pointer">
+    <div (click)="removeFromCart()" class="cutCard bg-blue-black position-absolute cursor-pointer">
         <i class="fa-solid fa-xmark text-white"></i>
       </div>
   </div>
 </div>
+
+<p-toast></p-toast>

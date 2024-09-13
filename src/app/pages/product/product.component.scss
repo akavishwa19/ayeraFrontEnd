@@ -315,3 +315,20 @@ label {
   border-radius: 6px;
   font-weight: 600;
 }
+.colorBlock{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.colorChecked{
+  border-color: #0d1a3d;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

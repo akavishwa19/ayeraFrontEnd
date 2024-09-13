@@ -25,6 +25,7 @@ import {
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -34,9 +35,15 @@ SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
   styleUrl: './cart-addons.component.scss',
 })
 export class CartAddonsComponent {
+
+  cartUrl:string=environment.baseurl+'/cart';
+  addressUrl:string=environment.baseurl+'/address';
+  authUrl = environment.baseurl + '/users';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
 
+  billDetails:any={};
+  cartCount:number=0;
   productList = [
     {
       _id: '66b491093659d7ad14a8d1cb',
@@ -59,6 +66,11 @@ export class CartAddonsComponent {
       productCode: '2408RXFMG',
     },
   ];
+  cartCards:any[]=[];
+  addressBoolean:Boolean=false;
+  addressList:any[]=[];
+  shippingAddressList:any[]=[];
+  billingAddressList:any[]=[];
   private modalService = inject(NgbModal);
   RecommendedSwiperOptions: SwiperOptions = {
     spaceBetween: 4.2,
@@ -90,7 +102,9 @@ export class CartAddonsComponent {
       },
     },
   };
-  authUrl = environment.baseurl + '/users';
+  selectedShippingAddress:string='';
+  selectedBillingAddress:string='';
+
 
   inputType: string = 'password';
   PhoneNumberFormat = PhoneNumberFormat;
@@ -359,14 +373,20 @@ export class CartAddonsComponent {
     state: ['', Validators.required],
     country: ['', Validators.required],
     mobile: ['', Validators.required],
-    aternateMobile:['',Validators.required],
+    alternateMobile:['',Validators.required],
     addressName: ['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
   });
 
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private http:HttpClient
   ) {}
+
+  ngOnInit(){
+    this.getAddresses();
+    this.fetchCart()
+  }
 
   get f() {
     return this.form.controls;
@@ -387,8 +407,87 @@ export class CartAddonsComponent {
     });
   }
 
+  addAddress(){
+    this.form.patchValue({
+      mobile:this.form.controls['mobile'].value.e164Number,
+      alternateMobile:this.form.controls['alternateMobile'].value.e164Number,
+    })
+    this.http.post(this.addressUrl,this.form.value).subscribe((res:any)=>{
+      this.form.reset();
+      this.modalService.dismissAll();
+      this.getAddresses();
+      this.sucess('address added succesfully')
+    })
+  }
+
+  getAddresses(){
+    this.http.get(this.addressUrl+'/by-user').subscribe((res:any)=>{
+      this.addressList=res.data;
+      this.updateOtherAddresses()
+    })
+  }
+
+  updateOtherAddresses(){
+    this.billingAddressList=this.addressList.map((x)=>{
+      return{
+        ...x,
+        checked:false
+      }
+    });
+    this.shippingAddressList=this.addressList.map((x)=>{
+      return{
+        ...x,
+        checked:false
+      }
+    });
+  }
+
+  markBillingAddress(id:string){
+    this.billingAddressList=this.billingAddressList.map((x)=>{
+      return {
+        ...x,
+        checked:false
+      }
+    })
+    const findSingle=this.billingAddressList.find((x)=>x._id==id)
+    if (findSingle) {
+      findSingle.checked = true;
+    }
+    this.selectedBillingAddress=id
+
+  }
+
+  markShippingAddress(id:string){
+    this.shippingAddressList=this.shippingAddressList.map((x)=>{
+      return {
+        ...x,
+        checked:false
+      }
+    })
+    const findSingle=this.shippingAddressList.find((x)=>x._id==id)
+    if (findSingle) {
+      findSingle.checked = true;
+    }
+    this.selectedShippingAddress=id
+
+  }
+
+  singleAddress(id){
+    this.http.get(this.addressUrl+'/single?id='+id).subscribe((res:any)=>{
+      this.form.patchValue(res.data);
+
+    })
+  }
+
   openBackDropCustomClass(content: TemplateRef<any>) {
+    this.addressBoolean=false;
     this.modalService.open(content, { backdropClass: 'light-blue-backdrop' });
+  }
+
+  openBackDropCustomClassWithId(content: TemplateRef<any>,id:string) {
+    this.addressBoolean=true;
+    this.modalService.open(content, { backdropClass: 'light-blue-backdrop' });
+    this.singleAddress(id)
   }
 
   onUpload(event:any){
@@ -411,5 +510,25 @@ export class CartAddonsComponent {
   }
     const element:HTMLElement=<HTMLElement>document.getElementById(`rc-${val}`)
     element.style.background='#020724'
+  }
+
+  fetchBill(){
+    this.http.get(this.cartUrl+'/bill').subscribe((res:any)=>{
+      this.billDetails=res.data;
+    })
+  }
+
+  fetchCart(){
+    this.http.get(this.cartUrl).subscribe((res:any)=>{
+      this.cartCards=res.data;
+      this.fetchBill();
+      this.getCartCount();
+    })
+  }
+
+  getCartCount(){
+    this.http.get(this.cartUrl+'/cart-count').subscribe((res:any)=>{
+      this.cartCount=res.data
+    })
   }
 }

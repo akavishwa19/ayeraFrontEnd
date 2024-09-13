@@ -15,6 +15,7 @@ import { CompareProductComponent } from './compare-product/compare-product.compo
 import { ProductInComparisonComponent } from './product-in-comparison/product-in-comparison.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCardCartComponent } from './product-card-cart/product-card-cart.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProductCardCartComponent } from './product-card-cart/product-card-cart.
     NgbModalModule,
     NgbRatingModule,
     HttpClientModule,
+    ToastModule
   ],
   exports: [
     AdvertisementHeaderComponent,

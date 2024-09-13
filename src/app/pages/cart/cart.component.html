@@ -15,16 +15,57 @@
     <div class="">
       <div class="row">
         <div class="col-12 col-lg-7">
-          <app-product-card-cart
-            [productImage]="'assets/images/cardImage.png'"
-            [productName]="'Men\'s 22KT Gold Ring with Dazzling '"
-            [productCode]="'64A288075'"
-            [strikedPrice]="1800"
-            [discount]="10"
-            [price]="1710"
-          >
-          </app-product-card-cart>
+          <ng-container *ngIf="cartCards.length>0;else noCartProducts">
+          <ng-container *ngFor="let card of cartCards">
+            <ng-container *ngIf="card.variantId == null; else withVariant">
+              <app-product-card-cart
+              (cartChange)="updateCart($event)"
+                [cardId]="card._id"
+                [variantId]="card.variantId"
+                [productId]="card.productId._id"
+                [productImage]="
+                  imageUrl + card.productId.featuredImage + imageMetaUrl
+                "
+                [productName]="card.productId.name"
+                [productCode]="card.productId.productCode"
+                [strikedPrice]="card.productId.price"
+                [weight]="card.productId.weight"
+                [quantity]="card.quantity"
+                [price]="card.productId.sellingPrice"
+              >
+              </app-product-card-cart>
+            </ng-container>
+            <ng-template #withVariant>
+              <app-product-card-cart
+              (cartChange)="updateCart($event)"
+                [cardId]="card._id"
+                [variantId]="card.variantId"
+                [productId]="card.productId._id"
+                [productImage]="
+                  imageUrl + card.variantId.images[0] + imageMetaUrl
+                "
+                [productName]="card.variantId.name"
+                [productCode]="card.productId.productCode"
+                [strikedPrice]="card.variantId.price"
+                [weight]="card.variantId.weight"
+                [quantity]="card.quantity"
+                [price]="card.variantId.sellingPrice"
+              >
+              </app-product-card-cart>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+        <ng-template #noCartProducts>
+          <div class="noProducts">
+            <p
+              class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+            >
+              NO PRODUCTS FOUND
+            </p>
+          </div>
+        </ng-template>
         </div>
+
         <div class="col-12 col-lg-5">
           <div class="appliedCoupons mb-2">
             <div class="couponNameFlex">
@@ -93,7 +134,7 @@
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
-                <i class="fa-solid fa-indian-rupee-sign"></i> 0
+                <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.itemTotal}}
               </p>
             </div>
             <div class="billItemFlex">
@@ -129,7 +170,7 @@
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
-                <i class="fa-solid fa-indian-rupee-sign"></i> 0
+                <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.shippingPrice}}
               </p>
             </div>
             <div class="billItemFlex border-top-black">
@@ -141,7 +182,7 @@
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
-                <i class="fa-solid fa-indian-rupee-sign"></i> 0
+                <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.priceToPay}}
               </p>
             </div>
           </div>
@@ -155,7 +196,7 @@
           </div>
           <div class="submitCheckouts mt-3">
             <a
-            routerLink="/shop"
+              routerLink="/shop"
               class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 cursor-pointer text-black"
               >Continue Shopping</a
             >
@@ -244,7 +285,11 @@
   </div>
   <div class="modal-body-coupon-list py-2 px-4">
     <div>
-      <div class="coupon bg-white cursor-pointer" *ngFor="let x of [1,1,1] " (click)="modal.dismiss('Cross click')">
+      <div
+        class="coupon bg-white cursor-pointer"
+        *ngFor="let x of [1, 1, 1]"
+        (click)="modal.dismiss('Cross click')"
+      >
         <div class="row rowZeroPadding height-100perCent">
           <div
             class="col-12 col-lg-4 coupon-grey rowZeroPadding height-100perCent"

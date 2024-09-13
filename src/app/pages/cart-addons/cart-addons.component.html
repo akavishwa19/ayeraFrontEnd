@@ -1,12 +1,12 @@
 <app-advertisement-header></app-advertisement-header>
 <app-header></app-header>
 
-<section class="default-section-padding">
+<section class="default-section-padding firstSection">
   <div class="container-xl">
     <div
       class="navigation padding-y-2rem width-50 d-flex justify-space-between"
     >
-      <i class="fa-solid font-21 font-weight-700 fa-arrow-left"></i>
+      <i class="fa-solid font-21 font-weight-700 fa-arrow-left cursor-pointer"></i>
       <p
         class="font-lato font-21 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24"
       >
@@ -31,44 +31,21 @@
                   </p>
 
                   <div class="tabItem">
-                    <div class="addressCapsule">
+                    <div class="addressCapsule" *ngFor="let address of addressList">
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
                       >
-                        Home , <span> 600061</span>
+                       {{address.addressName}} , <span> {{address.pincode}}</span>
                       </p>
 
                       <p
                         class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+                        (click)="openBackDropCustomClassWithId(content,address._id)"
                       >
                         View
                       </p>
                     </div>
-                    <div class="addressCapsule">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
-                      >
-                        Work , <span> 600061</span>
-                      </p>
-                      <p
-                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
-                      >
-                        View
-                      </p>
-                    </div>
-                    <div class="addressCapsule">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
-                      >
-                        Office , <span> 600061</span>
-                      </p>
-
-                      <p
-                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
-                      >
-                        View
-                      </p>
-                    </div>
+             
                     <div class="addressCapsule">
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
@@ -92,41 +69,21 @@
                   </p>
                   <div class="tabItem">
                     <div
-                      class="addressCapsule forceActivatedClass cursor-pointer"
+                    *ngFor="let address of shippingAddressList"
+                    [ngClass]="address.checked?'forceActivatedClass':''"
+                    (click)="markShippingAddress(address._id)"
+                      class="addressCapsule  cursor-pointer"
                     >
                       <p
+               
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        Home
+                        {{address.addressName}}
                       </p>
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        600061
-                      </p>
-                    </div>
-                    <div class="addressCapsule cursor-pointer">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        Work
-                      </p>
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        600061
-                      </p>
-                    </div>
-                    <div class="addressCapsule cursor-pointer">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        Office
-                      </p>
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        600061
+                        {{address.pincode}}
                       </p>
                     </div>
                   </div>
@@ -139,43 +96,24 @@
                   </p>
                   <div class="tabItem">
                     <div
-                      class="addressCapsule forceActivatedClass cursor-pointer"
+                    *ngFor="let address of billingAddressList"
+                    [ngClass]="address.checked?'forceActivatedClass':''"
+                      (click)="markBillingAddress(address._id)"
+                      class="addressCapsule cursor-pointer"
                     >
                       <p
+                      
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        Home
+                        {{address.addressName}}
                       </p>
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        600061
+                        {{address.pincode}}
                       </p>
                     </div>
-                    <div class="addressCapsule cursor-pointer">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        Work
-                      </p>
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        600061
-                      </p>
-                    </div>
-                    <div class="addressCapsule cursor-pointer">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        Office
-                      </p>
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        600061
-                      </p>
-                    </div>
+                    
                     <p
                       class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer pt-2 mx-2"
                     >
@@ -183,7 +121,7 @@
                     </p>
 
                     <div class="d-flex pt-2 mx-2">
-                      <input type="checkbox" />
+                      <input type="checkbox" [checked]="true" />
                       <p
                         class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer mx-2"
                       >
@@ -201,6 +139,7 @@
                 </div>
                 <div class="flex pt-4 justify-content-end">
                   <p-button
+                  [disabled]="selectedBillingAddress=='' && selectedShippingAddress==''"
                     label="Continue"
                     icon="pi pi-arrow-right"
                     iconPos="right"
@@ -697,51 +636,92 @@
         <p
           class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 pb-2 mt-2"
         >
-          Order Summary (<span>1</span>)
+          Order Summary (<span>{{cartCount}}</span>)
         </p>
         <div class="cartProducts">
-          <div class="singleCartProduct m-3">
-            <div class="cartProductImagePreview">
-              <img
-                class="responsiveImage"
-                src="/assets/images/previewedImage.png"
-              />
-            </div>
-            <div>
-              <p
-                class="font-lato font-21 font-weight-700 line-height-24 text-black"
-              >
-                Men's 22KT Gold Ring with Dazzling Cubic Zirconia Stone
-              </p>
-              <p
-                class="font-lato font-18 font-weight-700 line-height-24 test-icon-star"
-              >
-                Product Code: 64A288075
-              </p>
-              <p
-                class="font-lato font-16 font-weight-700 line-height-24 text-black"
-              >
-                Quantity : <span>1</span>
-              </p>
-              <div class="discountedPriceProductCardFlex">
-                <p
-                  class="font-lato font-20 font-weight-700 line-height-24 text-black"
-                >
-                  ₹ <span>43,749</span>
-                </p>
-                <p
-                  class="font-lato font-18 font-weight-700 line-height-24 test-icon-star text-decoration-line-through"
-                >
-                  ₹ <span>43,749</span>
-                </p>
-                <p
-                  class="font-lato font-18 font-weight-700 line-height-24 text-red"
-                >
-                  (<span>3</span>% OFF)
-                </p>
+          <ng-container *ngFor="let card of cartCards">
+            <ng-container *ngIf="card.variantId == null; else withVariant">
+              <div class="singleCartProduct m-3 pb-3" >
+                <div class="cartProductImagePreview">
+                  <img
+                    class="responsiveImage"
+                    [src]="imageUrl+card.productId.featuredImage + imageMetaUrl"
+                  />
+                </div>
+                <div class="growOne">
+                  <p
+                    class="font-lato font-21 font-weight-700 line-height-24 text-black capitalize"
+                  >
+                  {{card.productId.name}}
+                  </p>
+                  <p
+                    class="font-lato font-18 font-weight-700 line-height-24 test-icon-star"
+                  >
+                    Product Code: {{card.productId.productCode}}
+                  </p>
+                  <p
+                    class="font-lato font-16 font-weight-700 line-height-24 text-black"
+                  >
+                    Quantity : <span>{{card.quantity}}</span>
+                  </p>
+                  <div class="discountedPriceProductCardFlex">
+                    <p
+                      class="font-lato font-20 font-weight-700 line-height-24 text-black"
+                    >
+                      ₹ <span>{{card.productId.sellingPrice}}</span>
+                    </p>
+                    <p
+                      class="font-lato font-18 font-weight-700 line-height-24 test-icon-star text-decoration-line-through"
+                    >
+                      ₹ <span>{{card.productId.price}}</span>
+                    </p>
+                    
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </ng-container>
+            <ng-template  #withVariant>
+              <div class="singleCartProduct m-3 pb-3" >
+                <div class="cartProductImagePreview">
+                  <img
+                    class="responsiveImage"
+                    [src]="imageUrl+card.variantId.images[0] + imageMetaUrl"
+                  />
+                </div>
+                <div class="growOne">
+                  <p
+                    class="font-lato font-21 font-weight-700 line-height-24 text-black capitalize"
+                  >
+                  {{card.variantId.name}}
+                  </p>
+                  <p
+                    class="font-lato font-18 font-weight-700 line-height-24 test-icon-star"
+                  >
+                    Product Code: {{card.productId.productCode}}
+                  </p>
+                  <p
+                    class="font-lato font-16 font-weight-700 line-height-24 text-black"
+                  >
+                    Quantity : <span>{{card.quantity}}</span>
+                  </p>
+                  <div class="discountedPriceProductCardFlex">
+                    <p
+                      class="font-lato font-20 font-weight-700 line-height-24 text-black"
+                    >
+                      ₹ <span>{{card.variantId.sellingPrice}}</span>
+                    </p>
+                    <p
+                      class="font-lato font-18 font-weight-700 line-height-24 test-icon-star text-decoration-line-through"
+                    >
+                      ₹ <span>{{card.variantId.price}}</span>
+                    </p>
+                    
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          
+        </ng-container>
         </div>
 
         <div class="bill">
@@ -754,7 +734,7 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+              <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.itemTotal}}
             </p>
           </div>
           <div class="billItemFlex">
@@ -790,7 +770,7 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+              <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.shippingPrice}}
             </p>
           </div>
           <div class="billItemFlex border-top-black">
@@ -802,7 +782,7 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+              <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.priceToPay}}
             </p>
           </div>
         </div>
@@ -1011,17 +991,17 @@
           [customPlaceholder]="'7038618205'"
           [numberFormat]="PhoneNumberFormat.National"
           name="mobile"
-          formControlName="aternateMobile"
+          formControlName="alternateMobile"
         >
         </ngx-intl-tel-input>
       </div>
       <small
         *ngIf="
-          f['aternateMobile'].touched &&
-          f['aternateMobile'].invalid &&
-          f['aternateMobile'].errors['required']
+          f['alternateMobile'].touched &&
+          f['alternateMobile'].invalid &&
+          f['alternateMobile'].errors['required']
         "
-        >aternateMobile is required</small
+        >alternateMobile is required</small
       >
 
       <label
@@ -1051,16 +1031,16 @@
         class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
         >State</label
       >
-      <ng-select
-        [items]="countryList"
-        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
-        bindLabel="name"
-        bindValue="name"
-        formControlName="state"
-        [searchable]="true"
-        [clearable]="false"
-      >
-      </ng-select>
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+      <input
+      id="passwordCustom"
+      type="text"
+      class="form-control"
+      aria-label="Username"
+      aria-describedby="basic-addon1"
+      formControlName="state"
+    />
+    </div>
       <small
         *ngIf="
           f['state'].touched &&
@@ -1074,16 +1054,16 @@
         class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
         >City</label
       >
-      <ng-select
-        [items]="countryList"
-        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
-        bindLabel="name"
-        bindValue="name"
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <input
+        id="passwordCustom"
+        type="text"
+        class="form-control"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
         formControlName="city"
-        [searchable]="true"
-        [clearable]="false"
-      >
-      </ng-select>
+      />
+      </div>
       <small
         *ngIf="
           f['city'].touched && f['city'].invalid && f['city'].errors['required']
@@ -1095,16 +1075,16 @@
         class="display-block font-lato font-14 font-weight-700 line-height-24 letter-spacing-04 pb-1"
         >Pincode</label
       >
-      <ng-select
-        [items]="countryList"
-        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
-        bindLabel="name"
-        bindValue="name"
+      <div class="loginComp input-group customInputGroup height-60px mb-3">
+        <input
+        id="passwordCustom"
+        type="number"
+        class="form-control"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
         formControlName="pincode"
-        [searchable]="true"
-        [clearable]="false"
-      >
-      </ng-select>
+      />
+      </div>
       <small
         *ngIf="
           f['pincode'].touched &&
@@ -1147,6 +1127,8 @@
   </div>
   <div class="modal-footer">
     <button
+    *ngIf="!addressBoolean"
+    (click)="addAddress()"
       class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
     >
       Save Address

@@ -176,7 +176,7 @@
   box-shadow: 2px 2px 10px 1px rgba(2, 7, 36, 0.25);
   border-radius: 20px;
   overflow: hidden;
-  flex-grow: 1;
+
 }
 .discountedPriceProductCardFlex {
   display: flex;
@@ -197,4 +197,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 2px 2px 10px 1px rgba(2, 7, 36, 0.25);
+}
+.growOne{
+  flex-grow: 1 !important;
 }

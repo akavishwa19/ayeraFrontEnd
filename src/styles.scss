@@ -230,6 +230,9 @@ body {
 .uppercase{
   text-transform: uppercase;
 }
+.capitalize{
+  text-transform: capitalize;
+}
 .display-block {
   display: block;
 }
@@ -262,6 +265,9 @@ body {
 }
 .firstSection{
   padding-top: 220px !important;
+}
+.cursor-default {
+  cursor: default !important;
 }
 .cursor-pointer {
   cursor: pointer;
@@ -736,4 +742,13 @@ input[type="checkbox"]{
   color: #020724 !important;
   font-size: 25px !important;
   margin: 0 5px 0 0;
+}
+.noProducts {
+  min-height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(227, 229, 237);
+  margin: 10px;
+  border-radius: 20px;
 }

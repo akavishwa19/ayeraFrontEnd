@@ -75,7 +75,7 @@
       </div>
       <div class="col-12 col-lg-6 col-md-6 col-sm-12">
         <p
-          class="font-lato font-weight-700 font-24 text-black line-height-24 letter-spacing-03 py-1"
+          class="font-lato capitalize font-weight-700 font-24 text-black line-height-24 letter-spacing-03 py-1"
         >
           {{ product.name }}
         </p>
@@ -166,30 +166,21 @@
             >
           </div>
         </div>
-        <ng-container *ngIf="product.type=='variant'">
+        <ng-container *ngIf="product.type=='variable'">
         <p
           class="py-1 font-lato font-18 font-weight-700 text-black line-height-24"
         >
-          Colour:
+          Colour(s):
         </p>
         <div class="color-options">
-          <div *ngFor="let color of colorArray">
-            <input
-              type="radio"
-              id="{{ color.value }}"
-              name="color"
-              [value]="color.value"
-              [checked]="color.value === selectedColor"
-              (change)="onColorChange(color.value)"
-            />
-            <label
-              [style.background-color]="color.value"
-              [for]="color.value"
-            ></label>
+            <div *ngFor="let color of colorArray">
+              <div (click)="selectColor(color.attributeVariation._id,color._id)" class="colorBlock" [ngClass]="color.attributeVariation.checked?'colorChecked':''" [ngStyle]="{'background-color': color.attributeVariation.name}">
+
+              </div>
             <p
-              class="text-align-center font-10 font-lato font-weight-700 text-black line-height-13"
+              class="text-align-center font-12 pt-2 font-lato font-weight-700 text-black line-height-13"
             >
-              {{ color.name }}
+            {{color.attributeVariation.name}}
             </p>
           </div>
         </div>
@@ -256,6 +247,7 @@
           </div>
           <div class="col-12 col-lg-6 col-md-6 col-sm-12">
             <button
+            (click)="addToCart()"
               class="width-100 cartBtn text-black bg-white font-lato font-20 font-weight-700 border-radius-10px letter-spacing-02 line-height-24 py-3"
             >
               Add To Cart
@@ -406,6 +398,7 @@
       <ng-template swiperSlide="" *ngFor="let card of product.similarProducts">
         <ng-container *ngIf="card.type=='simple';else variableSwiper">
           <app-product-card
+          (valueLiked)="detectValueLiked($event)"
           [islIked]="card.liked" 
           [productImage]="imageUrl+card.featuredImage+imageMetaUrl"
           [productName]="card.name"
@@ -420,6 +413,7 @@
         </ng-container>
         <ng-template #variableSwiper>
           <app-product-card
+          (valueLiked)="detectValueLiked($event)"
           [islIked]="card.liked"
           [productId]="card._id"
           [additionalDiscount]="card.similarProductVariant[0].additionalDiscount"
@@ -491,7 +485,7 @@
             <p
               class="font-lato font-weight-700 font-20 line-height-24 text-black text-align-center"
             >
-              {{averageRating}} out of 5 Based on {{ratingOverview.totalRatings}} Reviews
+              {{averageRating || 0}} out of 5 Based on {{ratingOverview.totalRatings}} Reviews
             </p>
           </div>
         </div>

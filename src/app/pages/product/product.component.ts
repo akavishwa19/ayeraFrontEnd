@@ -44,6 +44,7 @@ export class ProductComponent implements OnInit {
   uploadUrl: string = environment.baseurl + '/upload';
   helpFulUrl: string = environment.baseurl + '/helpful';
   questionAnswerUrl: string = environment.baseurl + '/ques';
+  cartUrl: string = environment.baseurl + '/cart';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
 
@@ -55,19 +56,20 @@ export class ProductComponent implements OnInit {
   reviews: any[] = [];
   questions: any[] = [];
   pId: string = '';
+  currentVariantId: string = null;
   passedSlug: string = '';
-  ratingOverview:any={
-    totalRatings:Number,
-    ratings:{
-      1:Number,
-      2:Number,
-      3:Number,
-      4:Number,
-      5:Number,
+  variantByAttribute: any = {};
+  ratingOverview: any = {
+    totalRatings: Number,
+    ratings: {
+      1: Number,
+      2: Number,
+      3: Number,
+      4: Number,
+      5: Number,
     },
-  
   };
-  averageRating:string=''
+  averageRating: string = '';
   product: any = {
     primary: {
       name: String,
@@ -81,92 +83,92 @@ export class ProductComponent implements OnInit {
     quaternary: {
       name: String,
     },
-    buyItWith:[
+    buyItWith: [
       {
-        name:String
+        name: String,
       },
       {
-        featuredImage:String
+        featuredImage: String,
       },
       {
-        productCode:String
+        productCode: String,
       },
       {
-        price:Number
+        price: Number,
       },
       {
-        discount:Number
+        discount: Number,
       },
       {
-        additionalDiscount:Number
+        additionalDiscount: Number,
       },
       {
-        sellingPrice:Number
-      },
-    ],
-    buyItWithVariants:[
-      {
-        name:String
-      },
-      {
-        featuredImage:String
-      },
-      {
-        productCode:String
-      },
-      {
-        price:Number
-      },
-      {
-        discount:Number
-      },
-      {
-        additionalDiscount:Number
-      },
-      {
-        sellingPrice:Number
+        sellingPrice: Number,
       },
     ],
-    frequentlyBoughtTogether:[
+    buyItWithVariants: [
       {
-        additionalDiscount:Number,
-        discount:Number,
-        price:Number,
-        sellingPrice:Number,
-        type:String,
-        variants:[
+        name: String,
+      },
+      {
+        featuredImage: String,
+      },
+      {
+        productCode: String,
+      },
+      {
+        price: Number,
+      },
+      {
+        discount: Number,
+      },
+      {
+        additionalDiscount: Number,
+      },
+      {
+        sellingPrice: Number,
+      },
+    ],
+    frequentlyBoughtTogether: [
+      {
+        additionalDiscount: Number,
+        discount: Number,
+        price: Number,
+        sellingPrice: Number,
+        type: String,
+        variants: [
           {
-            name:String,
-            additionalDiscount:Number,
-            discount:Number,
-            price:Number,
-            sellingPrice:Number,
-          }
-        ]
-      }
+            name: String,
+            additionalDiscount: Number,
+            discount: Number,
+            price: Number,
+            sellingPrice: Number,
+          },
+        ],
+      },
     ],
-    similarProducts:[
+    similarProducts: [
       {
-        _id:String,
-        additionalDiscount:Number,
-        featuredImage:String,
-        liked:Boolean,
-        name:String,
-        price:Number,
-        sellingPrice:Number,
-        type:String,
-        similarProductVariant:[
+        _id: String,
+        additionalDiscount: Number,
+        featuredImage: String,
+        liked: Boolean,
+        name: String,
+        price: Number,
+        sellingPrice: Number,
+        type: String,
+        similarProductVariant: [
           {
-            _id:String,
-            additionalDiscount:Number,
-            discount:Number,
-            name:String,
-            price:Number,
-            sellingPrice:Number
-          }
-        ]
-      }
-    ]
+            _id: String,
+            additionalDiscount: Number,
+            discount: Number,
+            name: String,
+            price: Number,
+            sellingPrice: Number,
+          },
+        ],
+      },
+    ],
   };
   showFaqs: boolean = false;
 
@@ -186,11 +188,11 @@ export class ProductComponent implements OnInit {
   ];
 
   colorArray: any[] = [
-    { name: 'Gold', value: '#ECC15D' },
-    { name: 'Rose', value: '#BF7D7B' },
-    { name: 'Brass', value: '#DDC69A' },
-    { name: 'Silver', value: '#B1B1B1' },
-    { name: 'Oxidised', value: '#858585' },
+    {
+      attributeVariation: {
+        name: String,
+      },
+    },
   ];
 
   productTabs: any[] = [
@@ -262,7 +264,6 @@ export class ProductComponent implements OnInit {
       order: -1,
       checked: false,
     },
-   
   ];
 
   selectedSize: string = '20.7';
@@ -349,7 +350,7 @@ export class ProductComponent implements OnInit {
 
   qAndAform: FormGroup = this.fb.group({
     question: [null, Validators.required],
-    product_id:[null]
+    product_id: [null],
   });
 
   constructor(
@@ -373,11 +374,6 @@ export class ProductComponent implements OnInit {
 
   onSizeChange(size: string): void {
     this.selectedSize = size;
-   
-  }
-  onColorChange(color: string): void {
-    this.selectedColor = color;
-  
   }
 
   open(content: TemplateRef<any>) {
@@ -445,7 +441,79 @@ export class ProductComponent implements OnInit {
     this.http
       .get(this.productUrl + '/main-product?id=' + this.pId)
       .subscribe((res: any) => {
-        this.product = res.data;
+        this.product = res.data.product;
+        // this.colorArray
+        if (this.product.type == 'variable') {
+          this.colorArray = res.data.variationData;
+          this.colorArray = this.colorArray.map((item) => {
+            return {
+              ...item,
+              attributeVariation: {
+                ...item.attributeVariation,
+                checked: false,
+              },
+            };
+          });
+
+          this.selectColor(
+            this.colorArray[0].attributeVariation._id,
+            this.colorArray[0]._id
+          );
+        }
+      });
+  }
+
+  addToCart() {
+    this.http
+      .post(this.cartUrl, {
+        productId: this.pId,
+        variantId: this.currentVariantId,
+      })
+      .subscribe(
+        (res: any) => {
+          this.sucess('Product added to cart');
+        },
+        (error) => {
+          this.error(error.error.message);
+        }
+      );
+  }
+
+  selectColor(id: string, variantId: string) {
+    this.currentVariantId = variantId;
+    this.colorArray = this.colorArray.map((item) => {
+      return {
+        ...item,
+        attributeVariation: {
+          ...item.attributeVariation,
+          checked: false,
+        },
+      };
+    });
+    const findSingle = this.colorArray.find(
+      (x) => x.attributeVariation._id == id
+    );
+    if (findSingle) {
+      findSingle.attributeVariation.checked = true;
+      this.findVariantById(id);
+    }
+    console.log('product:', this.pId, 'variant:', this.currentVariantId);
+  }
+
+  findVariantById(id) {
+    this.http
+      .get(this.productUrl + '/variation-by-attribute-id?id=' + id)
+      .subscribe((res: any) => {
+        this.variantByAttribute = res.data;
+        this.product.name = this.variantByAttribute.name;
+        this.product.sellingPrice = this.variantByAttribute.sellingPrice;
+        this.product.price = this.variantByAttribute.price;
+        this.product.discount = this.variantByAttribute.discount;
+        this.product.additionalDiscount =
+          this.variantByAttribute.additionalDiscount;
+        this.product.weight = this.variantByAttribute.weight;
+        this.product.images = this.variantByAttribute.images;
+        this.product.bannerImage = this.variantByAttribute.bannerImage;
       });
   }
 
@@ -455,7 +523,6 @@ export class ProductComponent implements OnInit {
     );
     const fileName = document.getElementById('fileName');
     this.photoUpload(event);
-
 
     if (fileInput.files.length > 0) {
       fileName.textContent = fileInput.files[0].name;
@@ -513,20 +580,19 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  saveQuestion(){
+  saveQuestion() {
     this.qAndAform.patchValue({
       product_id: this.pId,
     });
 
     this.http
-    .post(this.questionAnswerUrl+'/user', this.qAndAform.value)
-    .subscribe((res: any) => {
-      this.modalService.dismissAll();
-      this.sucess('Question posted succesfully');
-      this.qAndAform.reset();
-      this.fetchQuestions()
-    });
-
+      .post(this.questionAnswerUrl + '/user', this.qAndAform.value)
+      .subscribe((res: any) => {
+        this.modalService.dismissAll();
+        this.sucess('Question posted succesfully');
+        this.qAndAform.reset();
+        this.fetchQuestions();
+      });
   }
 
   removeImage(image: string) {
@@ -582,7 +648,7 @@ export class ProductComponent implements OnInit {
     this.fetchRatings();
   }
 
-  sortQuestions(item){
+  sortQuestions(item) {
     this.qAndASorterArray = this.qAndASorterArray.map((x) => {
       return {
         ...x,
@@ -605,28 +671,38 @@ export class ProductComponent implements OnInit {
     this.fetchQuestions();
   }
 
-  fetchReviewOverview(){
-    this.http.get(this.ratingUrl+'/review-overview?pId='+this.pId).subscribe((res:any)=>{
-      this.ratingOverview=res.data.details;
+  fetchReviewOverview() {
+    this.http
+      .get(this.ratingUrl + '/review-overview?pId=' + this.pId)
+      .subscribe((res: any) => {
+        this.ratingOverview = res.data.details;
 
-      this.averageRating=res.data.average;
-    })
+        this.averageRating = res.data.average;
+      });
   }
 
-  progressValue(current,total){
-    const decimalVal=(current/total)*100;
-    return decimalVal
+  progressValue(current, total) {
+    const decimalVal = (current / total) * 100;
+    return decimalVal;
   }
 
   openLg(content: TemplateRef<any>) {
-		this.modalService.open(content, { size: 'lg' });
-	}
-
-  fetchQuestions(){
-    this.http.get(this.questionAnswerUrl+'/questions-by-product?pId='+this.pId+'&sortValue='+this.sortValueQuestions+'&sortOrder='+this.sortOrderQuestions).subscribe((res:any)=>{
-      this.questions=res.data;
-    })
+    this.modalService.open(content, { size: 'lg' });
   }
 
-
+  fetchQuestions() {
+    this.http
+      .get(
+        this.questionAnswerUrl +
+          '/questions-by-product?pId=' +
+          this.pId +
+          '&sortValue=' +
+          this.sortValueQuestions +
+          '&sortOrder=' +
+          this.sortOrderQuestions
+      )
+      .subscribe((res: any) => {
+        this.questions = res.data;
+      });
+  }
 }
