@@ -49,6 +49,7 @@ export class ProductComponent implements OnInit {
   imageMetaUrl: string = environment.imageMetaUrl;
 
   private modalService = inject(NgbModal);
+
   helpfulBoolean: boolean = false;
   closeResult = '';
   uploadedProductImages: any[] = [];
@@ -478,6 +479,8 @@ export class ProductComponent implements OnInit {
         }
       );
   }
+
+
 
   selectColor(id: string, variantId: string) {
     this.currentVariantId = variantId;

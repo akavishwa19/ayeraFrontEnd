@@ -3,29 +3,56 @@
 </div>
 
 <div class="col-12 col-lg-6 col-md-8 col-sm-12">
-    <div class="suggestedCardHolder p-4 mt-5">
-      <div class="cardFlex">
-        <div class="displayImageHolder">
-          <img class="responsiveImage" src="assets/images/cardImage.png" />
+  <ng-container *ngIf="wishlist.length>0;else noProducts">
+    <div class="suggestedCardHolder p-4 pb-4 mb-4" *ngFor="let item of wishlist">
+      <ng-container *ngIf="item.variant.length>0;else normalProduct">
+        <div class="cardFlex">
+          <div class="displayImageHolder">
+            <img class="responsiveImage" [src]="imageUrl+item.variant[0].images[0]+imageMetaUrl" />
+          </div>
+          <div>
+            <p
+              class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+            >
+              {{item.variant[0].name}}
+            </p>
+            <p
+              class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+            >
+              Product Code: {{item.productLookup[0].productCode}}
+            </p>
+            <p
+              class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+            >
+              ₹ {{item.variant[0].sellingPrice}}
+            </p>
+          </div>
         </div>
-        <div>
-          <p
-            class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black"
-          >
-            Men\'s 22KT Gold Ring with Dazzling
-          </p>
-          <p
-            class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
-          >
-            Product Code: 64A288075
-          </p>
-          <p
-            class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
-          >
-            ₹ 0
-          </p>
+      </ng-container>
+      <ng-template #normalProduct>
+        <div class="cardFlex">
+          <div class="displayImageHolder">
+            <img class="responsiveImage" [src]="imageUrl+item.productLookup[0].featuredImage+imageMetaUrl" />
+          </div>
+          <div>
+            <p
+              class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+            >
+            {{item.productLookup[0].name}}
+            </p>
+            <p
+              class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+            >
+            Product Code: {{item.productLookup[0].productCode}}
+            </p>
+            <p
+              class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+            >
+              ₹ {{item.productLookup[0].sellingPrice}}
+            </p>
+          </div>
         </div>
-      </div>
+      </ng-template>
       <div class="bottomInfoFlex pt-3">
         <div>
           <button
@@ -41,4 +68,14 @@
         </div>
       </div>
     </div>
+  </ng-container>
+  <ng-template #noProducts>
+    <div class="noProducts">
+      <p
+        class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+      >
+        NO PRODUCTS FOUND
+      </p>
+    </div>
+  </ng-template>
   </div>

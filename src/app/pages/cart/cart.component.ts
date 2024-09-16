@@ -20,6 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { Location } from '@angular/common';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -87,7 +88,7 @@ export class CartComponent {
   ];
   billDetails:any={};
 
-  constructor(private http:HttpClient,  private messageService: MessageService){
+  constructor(private http:HttpClient,  private messageService: MessageService,private location:Location){
 
   }
 
@@ -130,6 +131,10 @@ export class CartComponent {
     this.http.get(this.cartUrl+'/bill').subscribe((res:any)=>{
       this.billDetails=res.data;
     })
+  }
+
+  goBack(){
+    this.location.back()
   }
 
 }

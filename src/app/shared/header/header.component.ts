@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap/gsap-core';
@@ -13,16 +13,19 @@ import { gsap } from 'gsap/gsap-core';
 export class HeaderComponent implements  OnInit{
 
   categoryUrl:string=environment.baseurl+'/categories';
+  cartUrl: string = environment.baseurl + '/cart';
+
 
   featuredCategoryList:any[]=[];
   secondaryCategoryList:any[]=[];
   tertiaryCategoryList:any[]=[];
   closePanelBoolean:boolean=false;
+  cartCount:number=0;
 
   constructor(private http:HttpClient,private router:Router) {
   }
   ngOnInit() {
-
+    this.getCartCount()
     this.fetchPrimaryCategories()
     if(this.router.url=='/'){
       this.headerLogoAnimation()
@@ -67,6 +70,12 @@ export class HeaderComponent implements  OnInit{
   fetchBySecondary(id:string){
     this.http.get(this.categoryUrl+'/tertiary-category?id='+id).subscribe((res:any)=>{
       this.tertiaryCategoryList=res.data
+    })
+  }
+
+  getCartCount(){
+    this.http.get(this.cartUrl+'/cart-count').subscribe((res:any)=>{
+      this.cartCount=res.data
     })
   }
 

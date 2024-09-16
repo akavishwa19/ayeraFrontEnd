@@ -26,6 +26,7 @@ import {
 } from 'ngx-intl-tel-input';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -39,9 +40,11 @@ export class CartAddonsComponent {
   cartUrl:string=environment.baseurl+'/cart';
   addressUrl:string=environment.baseurl+'/address';
   authUrl = environment.baseurl + '/users';
+  orderUrl = environment.baseurl + '/orders';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
 
+  selectedPaymentMode='Cash on delivery'
   billDetails:any={};
   cartCount:number=0;
   productList = [
@@ -380,7 +383,8 @@ export class CartAddonsComponent {
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
-    private http:HttpClient
+    private http:HttpClient,
+    private location:Location
   ) {}
 
   ngOnInit(){
@@ -530,5 +534,22 @@ export class CartAddonsComponent {
     this.http.get(this.cartUrl+'/cart-count').subscribe((res:any)=>{
       this.cartCount=res.data
     })
+  }
+
+  scrollUp(){
+    window.scroll(0,0)
+  }
+
+  goBack(){
+    this.location.back()
+  }
+
+  checkOut(){
+    this.http.post(this.orderUrl+'/checkout',{billingAddress:this.selectedBillingAddress,shippingAddress:this.selectedShippingAddress,paymentMode:this.selectedPaymentMode,netPrice:this.billDetails.priceToPay}).subscribe((res:any)=>{
+      this.sucess('Order placed successfully')
+    },
+  (error)=>{
+    this.error(error.error.message)
+  })
   }
 }

@@ -50,7 +50,11 @@
           <!-- <i
             class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->
-          <div routerLink="/cart" class="cursor-pointer"><img src="/assets/icons/cart.svg" /></div>
+          <div routerLink="/cart" class="cursor-pointer position-relative"><img src="/assets/icons/cart.svg" /> 
+            <div class="badge">
+              <span class="font-18 font-weight-700 font-lato text-white ">{{cartCount}}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

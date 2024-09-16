@@ -7,11 +7,21 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RoleAccessService {
-  loggedIn=new BehaviorSubject<boolean>(false);
-  loggedIn$=this.loggedIn.asObservable();
+  usersUrl = environment.baseurl + '/users';
 
-  constructor(){
+  responseObject: any = {};
+  userSubject = new BehaviorSubject<any>(null);
 
+  constructor(private http: HttpClient) {}
+
+  getLoggedInUser() {
+    this.http.get(this.usersUrl + '/find-user').subscribe((res: any) => {
+      this.userSubject.next(res.data);
+    });
+  }
+
+  getUserDetails() {
+    return this.userSubject.asObservable();
   }
 
 }

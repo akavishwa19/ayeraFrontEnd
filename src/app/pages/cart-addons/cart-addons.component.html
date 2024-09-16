@@ -6,7 +6,10 @@
     <div
       class="navigation padding-y-2rem width-50 d-flex justify-space-between"
     >
-      <i class="fa-solid font-21 font-weight-700 fa-arrow-left cursor-pointer"></i>
+      <i
+      (click)="goBack()"
+        class="fa-solid font-21 font-weight-700 fa-arrow-left cursor-pointer"
+      ></i>
       <p
         class="font-lato font-21 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24"
       >
@@ -31,21 +34,40 @@
                   </p>
 
                   <div class="tabItem">
-                    <div class="addressCapsule" *ngFor="let address of addressList">
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                    <ng-container
+                      *ngIf="addressList.length > 0; else noAddresses"
+                    >
+                      <div
+                        class="addressCapsule"
+                        *ngFor="let address of addressList"
                       >
-                       {{address.addressName}} , <span> {{address.pincode}}</span>
-                      </p>
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                        >
+                          {{ address.addressName }} ,
+                          <span> {{ address.pincode }}</span>
+                        </p>
 
-                      <p
-                        class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
-                        (click)="openBackDropCustomClassWithId(content,address._id)"
-                      >
-                        View
-                      </p>
-                    </div>
-             
+                        <p
+                          class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+                          (click)="
+                            openBackDropCustomClassWithId(content, address._id)
+                          "
+                        >
+                          View
+                        </p>
+                      </div>
+                    </ng-container>
+                    <ng-template #noAddresses>
+                      <div class="addressCapsule forceBgGrey">
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                        >
+                          You have no saved addresses
+                        </p>
+                      </div>
+                    </ng-template>
+
                     <div class="addressCapsule">
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
@@ -65,55 +87,78 @@
                   <p
                     class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24 pb-2"
                   >
-                    Shipping Address
+                    Choose a shipping address
                   </p>
                   <div class="tabItem">
-                    <div
-                    *ngFor="let address of shippingAddressList"
-                    [ngClass]="address.checked?'forceActivatedClass':''"
-                    (click)="markShippingAddress(address._id)"
-                      class="addressCapsule  cursor-pointer"
+                    <ng-container *ngIf="shippingAddressList.length>0;else noShippingAddress">
+                      <div
+                      *ngFor="let address of shippingAddressList"
+                      [ngClass]="address.checked ? 'forceActivatedClass' : ''"
+                      (click)="markShippingAddress(address._id)"
+                      class="addressCapsule cursor-pointer"
                     >
                       <p
-               
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        {{address.addressName}}
+                        {{ address.addressName }}
                       </p>
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        {{address.pincode}}
+                        {{ address.pincode }}
                       </p>
                     </div>
+                    </ng-container>
+                    <ng-template #noShippingAddress>
+                      <div class="addressCapsule forceBgGrey">
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                        >
+                          Please add an address to chose from
+                        </p> 
+                      </div>
+                    </ng-template>
+              
                   </div>
                 </div>
                 <div class="pt-3">
                   <p
                     class="font-lato font-18 font-weight-700 text-align-center letter-spacing-02 line-height-24 pb-2"
                   >
-                    Billing Address
+                    Choose a billing address
                   </p>
-                  <div class="tabItem">
-                    <div
-                    *ngFor="let address of billingAddressList"
-                    [ngClass]="address.checked?'forceActivatedClass':''"
+                  <div class="tabItem"> 
+                    <ng-container *ngIf="billingAddressList.length>0;else noBillingAddress">
+                      <div
+                      *ngFor="let address of billingAddressList"
+                      [ngClass]="address.checked ? 'forceActivatedClass' : ''"
                       (click)="markBillingAddress(address._id)"
                       class="addressCapsule cursor-pointer"
                     >
                       <p
-                      
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        {{address.addressName}}
+                        {{ address.addressName }}
                       </p>
                       <p
                         class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
                       >
-                        {{address.pincode}}
+                        {{ address.pincode }}
                       </p>
                     </div>
-                    
+                    </ng-container>
+
+                    <ng-template #noBillingAddress>
+                      <div class="addressCapsule forceBgGrey">
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
+                        >
+                          Please add an address to chose from
+                        </p> 
+                      </div>
+                    </ng-template>
+                 
+
                     <p
                       class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer pt-2 mx-2"
                     >
@@ -139,10 +184,14 @@
                 </div>
                 <div class="flex pt-4 justify-content-end">
                   <p-button
-                  [disabled]="selectedBillingAddress=='' && selectedShippingAddress==''"
+                    [disabled]="
+                      selectedBillingAddress == '' ||
+                      selectedShippingAddress == ''
+                    "
                     label="Continue"
                     icon="pi pi-arrow-right"
                     iconPos="right"
+                    (onClick)="scrollUp()"
                     (onClick)="nextCallback.emit()"
                   />
                 </div>
@@ -316,6 +365,7 @@
                   <p-button
                     label="Back"
                     icon="pi pi-arrow-left"
+                    (onClick)="scrollUp()"
                     (onClick)="prevCallback.emit()"
                   />
                   <p-button
@@ -323,6 +373,7 @@
                     label="Proceed to payment"
                     icon="pi pi-arrow-right"
                     iconPos="right"
+                    (onClick)="scrollUp()"
                     (onClick)="nextCallback.emit()"
                   />
                 </div>
@@ -623,9 +674,10 @@
                   <p-button
                     label="Back"
                     icon="pi pi-arrow-left"
+                
                     (onClick)="prevCallback.emit()"
                   />
-                  <p-button label="Pay now" class="mx-3" />
+                  <p-button (onClick)="checkOut()" label="Checkout" class="mx-3" />
                 </div>
               </ng-template>
             </p-stepperPanel>
@@ -636,92 +688,92 @@
         <p
           class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 pb-2 mt-2"
         >
-          Order Summary (<span>{{cartCount}}</span>)
+          Order Summary (<span>{{ cartCount }}</span
+          >)
         </p>
         <div class="cartProducts">
           <ng-container *ngFor="let card of cartCards">
             <ng-container *ngIf="card.variantId == null; else withVariant">
-              <div class="singleCartProduct m-3 pb-3" >
+              <div class="singleCartProduct m-3 pb-3">
                 <div class="cartProductImagePreview">
                   <img
                     class="responsiveImage"
-                    [src]="imageUrl+card.productId.featuredImage + imageMetaUrl"
+                    [src]="
+                      imageUrl + card.productId.featuredImage + imageMetaUrl
+                    "
                   />
                 </div>
                 <div class="growOne">
                   <p
                     class="font-lato font-21 font-weight-700 line-height-24 text-black capitalize"
                   >
-                  {{card.productId.name}}
+                    {{ card.productId.name }}
                   </p>
                   <p
                     class="font-lato font-18 font-weight-700 line-height-24 test-icon-star"
                   >
-                    Product Code: {{card.productId.productCode}}
+                    Product Code: {{ card.productId.productCode }}
                   </p>
                   <p
                     class="font-lato font-16 font-weight-700 line-height-24 text-black"
                   >
-                    Quantity : <span>{{card.quantity}}</span>
+                    Quantity : <span>{{ card.quantity }}</span>
                   </p>
                   <div class="discountedPriceProductCardFlex">
                     <p
                       class="font-lato font-20 font-weight-700 line-height-24 text-black"
                     >
-                      ₹ <span>{{card.productId.sellingPrice}}</span>
+                      ₹ <span>{{ card.productId.sellingPrice }}</span>
                     </p>
                     <p
                       class="font-lato font-18 font-weight-700 line-height-24 test-icon-star text-decoration-line-through"
                     >
-                      ₹ <span>{{card.productId.price}}</span>
+                      ₹ <span>{{ card.productId.price }}</span>
                     </p>
-                    
                   </div>
                 </div>
               </div>
             </ng-container>
-            <ng-template  #withVariant>
-              <div class="singleCartProduct m-3 pb-3" >
+            <ng-template #withVariant>
+              <div class="singleCartProduct m-3 pb-3">
                 <div class="cartProductImagePreview">
                   <img
                     class="responsiveImage"
-                    [src]="imageUrl+card.variantId.images[0] + imageMetaUrl"
+                    [src]="imageUrl + card.variantId.images[0] + imageMetaUrl"
                   />
                 </div>
                 <div class="growOne">
                   <p
                     class="font-lato font-21 font-weight-700 line-height-24 text-black capitalize"
                   >
-                  {{card.variantId.name}}
+                    {{ card.variantId.name }}
                   </p>
                   <p
                     class="font-lato font-18 font-weight-700 line-height-24 test-icon-star"
                   >
-                    Product Code: {{card.productId.productCode}}
+                    Product Code: {{ card.productId.productCode }}
                   </p>
                   <p
                     class="font-lato font-16 font-weight-700 line-height-24 text-black"
                   >
-                    Quantity : <span>{{card.quantity}}</span>
+                    Quantity : <span>{{ card.quantity }}</span>
                   </p>
                   <div class="discountedPriceProductCardFlex">
                     <p
                       class="font-lato font-20 font-weight-700 line-height-24 text-black"
                     >
-                      ₹ <span>{{card.variantId.sellingPrice}}</span>
+                      ₹ <span>{{ card.variantId.sellingPrice }}</span>
                     </p>
                     <p
                       class="font-lato font-18 font-weight-700 line-height-24 test-icon-star text-decoration-line-through"
                     >
-                      ₹ <span>{{card.variantId.price}}</span>
+                      ₹ <span>{{ card.variantId.price }}</span>
                     </p>
-                    
                   </div>
                 </div>
               </div>
             </ng-template>
-          
-        </ng-container>
+          </ng-container>
         </div>
 
         <div class="bill">
@@ -734,7 +786,8 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.itemTotal}}
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              {{ billDetails.itemTotal }}
             </p>
           </div>
           <div class="billItemFlex">
@@ -770,7 +823,8 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.shippingPrice}}
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              {{ billDetails.shippingPrice }}
             </p>
           </div>
           <div class="billItemFlex border-top-black">
@@ -782,7 +836,8 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.priceToPay}}
+              <i class="fa-solid fa-indian-rupee-sign"></i>
+              {{ billDetails.priceToPay }}
             </p>
           </div>
         </div>
@@ -791,8 +846,10 @@
             Delivery expected by:
           </p>
         </div>
-        <div >
-          <p class="font-18 font-weight-700 font-lato zero-margin-bottom py-2 mt-5 text-align-center">
+        <div>
+          <p
+            class="font-18 font-weight-700 font-lato zero-margin-bottom py-2 mt-5 text-align-center"
+          >
             Need Help ?
           </p>
           <div class="helpFlex mt-3">
@@ -1032,15 +1089,15 @@
         >State</label
       >
       <div class="loginComp input-group customInputGroup height-60px mb-3">
-      <input
-      id="passwordCustom"
-      type="text"
-      class="form-control"
-      aria-label="Username"
-      aria-describedby="basic-addon1"
-      formControlName="state"
-    />
-    </div>
+        <input
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="state"
+        />
+      </div>
       <small
         *ngIf="
           f['state'].touched &&
@@ -1056,13 +1113,13 @@
       >
       <div class="loginComp input-group customInputGroup height-60px mb-3">
         <input
-        id="passwordCustom"
-        type="text"
-        class="form-control"
-        aria-label="Username"
-        aria-describedby="basic-addon1"
-        formControlName="city"
-      />
+          id="passwordCustom"
+          type="text"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="city"
+        />
       </div>
       <small
         *ngIf="
@@ -1077,13 +1134,13 @@
       >
       <div class="loginComp input-group customInputGroup height-60px mb-3">
         <input
-        id="passwordCustom"
-        type="number"
-        class="form-control"
-        aria-label="Username"
-        aria-describedby="basic-addon1"
-        formControlName="pincode"
-      />
+          id="passwordCustom"
+          type="number"
+          class="form-control"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+          formControlName="pincode"
+        />
       </div>
       <small
         *ngIf="
@@ -1127,11 +1184,13 @@
   </div>
   <div class="modal-footer">
     <button
-    *ngIf="!addressBoolean"
-    (click)="addAddress()"
+      *ngIf="!addressBoolean"
+      (click)="addAddress()"
       class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
     >
       Save Address
     </button>
   </div>
 </ng-template>
+
+<p-toast/>

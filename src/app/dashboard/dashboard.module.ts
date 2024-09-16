@@ -16,6 +16,7 @@ import { SharedModule } from "../shared/shared.module";
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgxIntlTelInputModule,
     ReactiveFormsModule,
     NgSelectModule,
+    HttpClientModule
 ]
 })
 export class DashboardModule { }

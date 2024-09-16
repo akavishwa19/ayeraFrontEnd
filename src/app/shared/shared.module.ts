@@ -5,7 +5,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { SharedComponent } from './shared.component';
 import { AdvertisementHeaderComponent } from './advertisement-header/advertisement-header.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
@@ -16,6 +16,7 @@ import { ProductInComparisonComponent } from './product-in-comparison/product-in
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCardCartComponent } from './product-card-cart/product-card-cart.component';
 import { ToastModule } from 'primeng/toast';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { ToastModule } from 'primeng/toast';
     NgbModalModule,
     NgbRatingModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   exports: [
     AdvertisementHeaderComponent,
