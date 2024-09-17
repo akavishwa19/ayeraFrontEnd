@@ -11,6 +11,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { CartTriggerService } from './services/cart-trigger.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
   providers: [
     provideAnimationsAsync(),
     MessageService,
+    CartTriggerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

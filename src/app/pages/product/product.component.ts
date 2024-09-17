@@ -27,6 +27,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { CartTriggerService } from '../../services/cart-trigger.service';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -360,7 +361,8 @@ export class ProductComponent implements OnInit {
     private http: HttpClient,
     private config: NgbRatingConfig,
     private fb: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private triggerService:CartTriggerService
   ) {
     config.max = 5;
     const passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
@@ -473,6 +475,8 @@ export class ProductComponent implements OnInit {
       .subscribe(
         (res: any) => {
           this.sucess('Product added to cart');
+          // this.triggerService.triggerHeaderGetCall()
+          this.triggerService.triggerHeaderGetCall();
         },
         (error) => {
           this.error(error.error.message);

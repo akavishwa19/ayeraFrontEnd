@@ -21,6 +21,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
+import { CartTriggerService } from '../../services/cart-trigger.service';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -88,7 +89,7 @@ export class CartComponent {
   ];
   billDetails:any={};
 
-  constructor(private http:HttpClient,  private messageService: MessageService,private location:Location){
+  constructor(private http:HttpClient,  private messageService: MessageService,private location:Location,private triggerService:CartTriggerService){
 
   }
 
@@ -113,6 +114,7 @@ export class CartComponent {
 
   fetchCart(){
     this.http.get(this.cartUrl).subscribe((res:any)=>{
+      this.triggerService.triggerHeaderGetCall()
       this.cartCards=res.data;
       this.fetchBill();
     })
