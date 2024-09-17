@@ -47,3 +47,20 @@ i {
   align-items: center;
   margin:auto;
 }
+.imageHolderSearchResponse{
+  max-width: 120px;
+  max-height: 120px;
+  overflow: hidden;
+  box-shadow: 2px 2px 10px 1px rgba(2, 7, 36, 0.2509803922);
+  border-radius: 10px;
+}
+.itemCard{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap:15px;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px 1px rgba(2, 7, 36, 0.2509803922);
+  margin-bottom: 20px;
+}

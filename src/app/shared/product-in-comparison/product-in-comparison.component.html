@@ -1,51 +1,97 @@
 <div class="suggestedCardHolder p-4 mt-5">
-  <ng-container *ngIf="productData.name!=='';else elseBlock">
-    <div  class="cardFlex position-relative">
+  <ng-container *ngIf="activeProduct !== null; else elseBlock">
+    <div class="cardFlex position-relative">
       <div class="displayImageHolder">
-        <img class="responsiveImage" src="{{productData.image}}">
+        <ng-container
+          *ngIf="productData?.variants?.length > 0; else otherImage"
+        >
+          <img
+            class="responsiveImage"
+            [src]="
+              imageUrl + productData?.variants[0]?.images[0] + imageMetaUrl
+            "
+          />
+        </ng-container>
+        <ng-template #otherImage>
+          <img
+            class="responsiveImage"
+            [src]="imageUrl + productData.featuredImage + imageMetaUrl"
+          />
+        </ng-template>
       </div>
       <div>
-        <p class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black">{{productData.name}}</p>
-        <p class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey">Product Code: {{productData.productCode}}</p>
-        <i *ngFor="let x of [].constructor(productData.rating)" class="fa-solid fa-star px-1"></i>
-        <span class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black">{{productData.rating}} star</span>
+        <p
+          class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+        >
+          {{ activeProduct.name }}
+        </p>
+        <p
+          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+        >
+          Product Code: {{ productData.productCode }}
+        </p>
+
+        <span
+          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black"
+        >
+          Rated: {{ productData.averageRating | number : "1.2-2" }}
+        </span>
       </div>
-      <div (click)="removeProduct()" class="cutCard bg-blue-black position-absolute cursor-pointer">
+      <div
+        (click)="removeProduct()"
+        class="cutCard bg-blue-black position-absolute cursor-pointer"
+      >
         <i class="fa-solid fa-xmark text-white"></i>
       </div>
     </div>
     <div class="bottomInfoFlex pt-3">
       <div>
-        <p class="text-decoration-line-through font-lato font-14 text-black font-weight-700 letter-spacing-02 line-height-13 text-align-left zero-margin-bottom py-1 ">₹ {{productData.strikedPrice}}
-          <span class="font-lato text-decoration-none font-13 text-black font-weight-600 letter-spacing-02 line-height-13 px-2">
-        ({{productData.discount}} % OFF)
-      </span>
+        <p
+          class="text-decoration-line-through font-lato font-14 text-black font-weight-700 letter-spacing-02 line-height-13 text-align-left zero-margin-bottom py-1"
+        >
+          ₹ {{ activeProduct.price }}
         </p>
-        <p class=" text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom">₹ {{productData.price}}</p>
+        <p
+          class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+        >
+          ₹ {{ activeProduct.sellingPrice }}
+        </p>
       </div>
-      <button  class="none-outline font-lato font-18 font-weight-700 bg-white text-black border-radius-10px px-3 py-2">
-        Add To Cart
-      </button>
     </div>
   </ng-container>
   <ng-template #elseBlock>
     <div class="width-100 elseContainer">
       <div>
-      <div (click)="open(content)" class="roundHolderToAddProduct bg-blue-black cursor-pointer">
-        <i class="fa-solid fa-plus text-white fa-2x"></i>
-      </div>
-      <p class="text-black font-lato font-weight-700 font-16 letter-spacing-04 pt-3">Add Product to Compare</p>
+        <div
+          (click)="open(content)"
+          class="roundHolderToAddProduct bg-blue-black cursor-pointer"
+        >
+          <i class="fa-solid fa-plus text-white fa-2x"></i>
+        </div>
+        <p
+          class="text-black font-lato font-weight-700 font-16 letter-spacing-04 pt-3"
+        >
+          Add Product to Compare
+        </p>
       </div>
     </div>
   </ng-template>
-
 </div>
 
 <ng-template #content let-modal>
   <div class="modal-header">
-		<p class="zero-margin-bottom zero-padding-bottom font-lato font-weight-700 text-black font-18">Search products to compare</p>
-		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-	</div>
+    <p
+      class="zero-margin-bottom zero-padding-bottom font-lato font-weight-700 text-black font-18"
+    >
+      Search products to compare
+    </p>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
   <div class="modal-body">
     <!-- <button (click)="addType(0)" class="m-2">add type 1</button>
     <br>
@@ -55,24 +101,86 @@
     <div class="row">
       <div class="col-12 col-lg-12 col-md-12 col-sm-12">
         <label
-        class="display-block font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 pb-2"
-        >Product name</label
-      >
-      <input
-        type="text"
-        class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
-      />
+          class="display-block font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 pb-2"
+          >Product name</label
+        >
+        <input
+          type="text"
+          class="default-border default-box-shadow border-radius-10px padding-10 height-50px width-100 mb-3"
+          [(ngModel)]="searchTerm"
+          (input)="fetchBySearchTerm()"
+        />
       </div>
     </div>
     <div class="productsList">
-      <p class="font-lato font-16 font-weight-600  ">Found {{0}} items</p>
+      <p class="font-lato font-16 font-weight-600">Found {{ count }} items</p>
     </div>
-    <div class="row">
-      <div class="col-12 col-lg-3 col-md-4 col-sm-6">
-
+    <ng-container *ngIf="searchResponse.length > 0; else noResults">
+      <div class="row">
+        <ng-container *ngFor="let item of searchResponse">
+          <div class="col-12 col-lg-4 col-md-4 col-sm-6">
+            <ng-container *ngIf="item.variants.length == 0; else withVariant">
+              <div class="itemCard" (click)="addType(item)">
+                <div class="imageHolderSearchResponse">
+                  <img
+                    class="responsiveImage"
+                    [src]="imageUrl + item.featuredImage + imageMetaUrl"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-lato font-18 font-weight-600 text-black capitalize"
+                  >
+                    {{ item.name }}
+                  </p>
+                  <p class="font-lato font-16 font-weight-600 text-black">
+                    ₹ {{ item.sellingPrice }}
+                  </p>
+                  <p
+                    class="font-lato font-14 font-weight-600 text-black text-decoration-line-through"
+                  >
+                    ₹ {{ item.price }}
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #withVariant>
+              <div class="itemCard" (click)="addType(item)">
+                <div class="imageHolderSearchResponse">
+                  <img
+                    class="responsiveImage"
+                    [src]="imageUrl + item.variants[0].images[0] + imageMetaUrl"
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-lato font-18 font-weight-600 text-black capitalize"
+                  >
+                    {{ item.variants[0].name }}
+                  </p>
+                  <p class="font-lato font-16 font-weight-600 text-black">
+                    ₹ {{ item.variants[0].sellingPrice }}
+                  </p>
+                  <p
+                    class="font-lato font-14 font-weight-600 text-black text-decoration-line-through"
+                  >
+                    ₹ {{ item.variants[0].price }}
+                  </p>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+        </ng-container>
       </div>
-    </div>
-    
+    </ng-container>
+    <ng-template #noResults>
+      <div class="noProducts">
+        <p
+          class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom width-100"
+        >
+          NO PRODUCTS FOUND
+        </p>
+      </div>
+    </ng-template>
   </div>
-
 </ng-template>

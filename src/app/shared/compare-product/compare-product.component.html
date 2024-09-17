@@ -13,7 +13,7 @@
   </div>
   <div class="comparedTable my-4">
     <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Price</p>
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Price (₹)</p>
     </div>
     <div class="tableBody ">
       <div class="tableBodyFlex ">
@@ -25,102 +25,6 @@
         </div>
         <div class="tableBodySingle py-4">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.price || '-'}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Colour</p>
-    </div>
-    <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.color || '-'}}</p>
-        </div>
-        <div class="tableBodySingle centerCellBorder py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.color || '-'}}</p>
-        </div>
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.color || '-'}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Size</p>
-    </div>
-    <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.size || '-'}}</p>
-        </div>
-        <div class="tableBodySingle centerCellBorder py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.size || '-'}}</p>
-        </div>
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.size || '-'}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Weight in grams</p>
-    </div>
-    <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.weight || '-'}}</p>
-        </div>
-        <div class="tableBodySingle centerCellBorder py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.weight || '-'}}</p>
-        </div>
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.weight || '-'}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Length in cms</p>
-    </div>
-    <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.length || '-'}}</p>
-        </div>
-        <div class="tableBodySingle centerCellBorder py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.length || '-'}}</p>
-        </div>
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.length || '-'}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Breadth in cms</p>
-    </div>
-    <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.breadth || '-'}}</p>
-        </div>
-        <div class="tableBodySingle centerCellBorder py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.breadth || '-'}}</p>
-        </div>
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.breadth || '-'}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="tableHead">
-      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Stone Size</p>
-    </div>
-    <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.stoneSize || '-'}}</p>
-        </div>
-        <div class="tableBodySingle centerCellBorder py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.stoneSize || '-'}}</p>
-        </div>
-        <div class="tableBodySingle py-4">
-          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.stoneSize || '-'}}</p>
         </div>
       </div>
     </div>
@@ -140,5 +44,88 @@
         </div>
       </div>
     </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Weight (grams) </p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.weight || '-'}} </p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.weight || '-'}} </p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.weight || '-'}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Length</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.length || '-'}} <span *ngIf="renderedArray[0]?.length!=' '">{{renderedArray[0]?.dimensionUnit || ' '}}</span></p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.length || '-'}} <span *ngIf="renderedArray[1]?.length!=' '">{{renderedArray[1]?.dimensionUnit || ' '}}</span></p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.length || '-'}} <span *ngIf="renderedArray[2]?.length!=' '">{{renderedArray[2]?.dimensionUnit || ' '}}</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Width</p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.width || '-'}} <span *ngIf="renderedArray[0]?.width!=' '">{{renderedArray[0]?.dimensionUnit || ' '}}</span></p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.width || '-'}} <span *ngIf="renderedArray[1]?.width!=' '">{{renderedArray[1]?.dimensionUnit || ' '}}</span></p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.width || '-'}} <span *ngIf="renderedArray[2]?.width!=' '">{{renderedArray[2]?.dimensionUnit || ' '}}</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Height </p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.height || ' '}} <span *ngIf="renderedArray[0]?.height!=' '">{{renderedArray[0]?.dimensionUnit || ' '}}</span> </p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.height || ' '}} <span *ngIf="renderedArray[1]?.height!=' '">{{renderedArray[1]?.dimensionUnit || ' '}}</span> </p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.height || ' '}} <span *ngIf="renderedArray[2]?.height!=' '">{{renderedArray[2]?.dimensionUnit || ' '}}</span> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tableHead">
+      <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Average rating(out of 5) </p>
+    </div>
+    <div class="tableBody ">
+      <div class="tableBodyFlex ">
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{productRating[0] | number:'1.2-2' || '0'}}  </p>
+        </div>
+        <div class="tableBodySingle centerCellBorder py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{productRating[1] | number:'1.2-2' || '0'}} </p>
+        </div>
+        <div class="tableBodySingle py-4">
+          <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{productRating[2] | number:'1.2-2' || '0'}}  </p>
+        </div>
+      </div>
+    </div>
+
+  
   </div>
 </div>
