@@ -49,11 +49,7 @@ export class ProductCardComponent implements OnInit {
   selectedProduct: any = {};
   selectedVariant: any[] = [{}];
   similarProductsArray: any[] = [
-    {
-      similar_products:[
-        {}
-      ]
-    }
+
    
   ];
 
@@ -103,6 +99,7 @@ export class ProductCardComponent implements OnInit {
       .get(this.productUrl + '/single?id=' + this.productId)
       .subscribe((res: any) => {
         this.selectedProduct = res.data;
+        console.log('selected product:',this.selectedProduct)
         if (this.selectedProduct.type === 'variable') {
           this.getVariantsByProduct();
         }
@@ -124,6 +121,7 @@ export class ProductCardComponent implements OnInit {
       .subscribe((res: any) => {
 
         this.similarProductsArray = res.data;
+        console.log('similar products array:',this.similarProductsArray)
       });
   }
 }

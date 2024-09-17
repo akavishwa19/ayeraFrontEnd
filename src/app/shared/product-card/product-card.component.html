@@ -171,13 +171,13 @@
         <app-product-card   
           [productId]="item?._id"
           [islIked]="item?.isLiked"
-          [highlightedTag]="item?.similar_products?.tags[0].name"
-          [productImage]="imageUrl + item.similar_products.featuredImage + imageMetaUrl"
-          [productName]="item.similar_products.name"
-          [strikedPrice]="item.similar_products.price"
-          [discount]="item.similar_products.discount"
-          [additionalDiscount]="item.similar_products.additionalDiscount"
-          [price]="item.similar_products.sellingPrice"
+          [highlightedTag]="item?.tags[0].name"
+          [productImage]="imageUrl + item.featuredImage + imageMetaUrl"
+          [productName]="item.name"
+          [strikedPrice]="item.price"
+          [discount]="item.discount"
+          [additionalDiscount]="item.additionalDiscount"
+          [price]="item.sellingPrice"
           [hasSimilarProducts]="false"
         >
         </app-product-card>
@@ -186,13 +186,13 @@
         <app-product-card
           [productId]="item?._id"
           [islIked]="item?.isLiked"
-          [highlightedTag]="item.similar_products.tags[0]?.name"
-          [productImage]="imageUrl + item?.similar_products?.featuredImage + imageMetaUrl"
-          [productName]="item?.similar_products?.variants[0]?.name"
-          [strikedPrice]="item?.similar_products?.variants[0]?.price"
-          [discount]="item?.similar_products?.variants[0]?.discount"
-          [additionalDiscount]="item?.similar_products?.variants[0]?.additionalDiscount"
-          [price]="item?.similar_products?.variants[0]?.sellingPrice"
+          [highlightedTag]="item.tags[0]?.name"
+          [productImage]="imageUrl + item?.variants[0]?.images[0] + imageMetaUrl"
+          [productName]="item?.variants[0]?.name"
+          [strikedPrice]="item?.variants[0]?.price"
+          [discount]="item?.variants[0]?.discount"
+          [additionalDiscount]="item?.variants[0]?.additionalDiscount"
+          [price]="item?.variants[0]?.sellingPrice"
           [hasSimilarProducts]="false"
         >
         </app-product-card>

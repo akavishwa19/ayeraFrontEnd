@@ -122,12 +122,6 @@ export class ShopComponent implements OnInit {
     this.passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
     this.passedProductFetchType =
       this.activatedRoute.snapshot.paramMap.get('product-fetch-type');
-
-    // this.activatedRoute.queryParams.subscribe((params) => {
-    //   this.form.patchValue({
-    //     childCategories: params['childCategories'],
-    //   });
-    // });
   }
 
   ngOnInit(): void {
