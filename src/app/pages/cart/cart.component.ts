@@ -137,4 +137,11 @@ export class CartComponent {
     this.location.back()
   }
 
+  deleteCart(){
+    this.http.delete(this.cartUrl+'/empty-cart').subscribe((res:any)=>{
+      this.sucess('cart items removed succesfully');
+      this.fetchCart()
+    })
+  }
+
 }

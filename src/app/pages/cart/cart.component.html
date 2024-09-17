@@ -5,7 +5,10 @@
     <div
       class="navigation padding-y-2rem width-50 d-flex justify-space-between"
     >
-      <i (click)="goBack()" class="fa-solid font-21 font-weight-700 fa-arrow-left cursor-pointer "></i>
+      <i
+        (click)="goBack()"
+        class="fa-solid font-21 font-weight-700 fa-arrow-left cursor-pointer"
+      ></i>
       <p
         class="font-lato font-21 font-weight-700 text-align-center letter-spacing-02 text-black line-height-24"
       >
@@ -15,55 +18,61 @@
     <div class="">
       <div class="row">
         <div class="col-12 col-lg-7">
-          <ng-container *ngIf="cartCards.length>0;else noCartProducts">
-          <ng-container *ngFor="let card of cartCards">
-            <ng-container *ngIf="card.variantId == null; else withVariant">
-              <app-product-card-cart
-              (cartChange)="updateCart($event)"
-                [cardId]="card._id"
-                [variantId]="card.variantId"
-                [productId]="card.productId._id"
-                [productImage]="
-                  imageUrl + card.productId.featuredImage + imageMetaUrl
-                "
-                [productName]="card.productId.name"
-                [productCode]="card.productId.productCode"
-                [strikedPrice]="card.productId.price"
-                [weight]="card.productId.weight"
-                [quantity]="card.quantity"
-                [price]="card.productId.sellingPrice"
-              >
-              </app-product-card-cart>
+          <ng-container *ngIf="cartCards.length > 0; else noCartProducts">
+            <ng-container *ngFor="let card of cartCards">
+              <ng-container *ngIf="card.variantId == null; else withVariant">
+                <app-product-card-cart
+                  (cartChange)="updateCart($event)"
+                  [cardId]="card._id"
+                  [variantId]="card.variantId"
+                  [productId]="card.productId._id"
+                  [productImage]="
+                    imageUrl + card.productId.featuredImage + imageMetaUrl
+                  "
+                  [productName]="card.productId.name"
+                  [productCode]="card.productId.productCode"
+                  [strikedPrice]="card.productId.price"
+                  [weight]="card.productId.weight"
+                  [quantity]="card.quantity"
+                  [price]="card.productId.sellingPrice"
+                >
+                </app-product-card-cart>
+              </ng-container>
+              <ng-template #withVariant>
+                <app-product-card-cart
+                  (cartChange)="updateCart($event)"
+                  [cardId]="card._id"
+                  [variantId]="card.variantId"
+                  [productId]="card.productId._id"
+                  [productImage]="
+                    imageUrl + card.variantId.images[0] + imageMetaUrl
+                  "
+                  [productName]="card.variantId.name"
+                  [productCode]="card.productId.productCode"
+                  [strikedPrice]="card.variantId.price"
+                  [weight]="card.variantId.weight"
+                  [quantity]="card.quantity"
+                  [price]="card.variantId.sellingPrice"
+                >
+                </app-product-card-cart>
+              </ng-template>
             </ng-container>
-            <ng-template #withVariant>
-              <app-product-card-cart
-              (cartChange)="updateCart($event)"
-                [cardId]="card._id"
-                [variantId]="card.variantId"
-                [productId]="card.productId._id"
-                [productImage]="
-                  imageUrl + card.variantId.images[0] + imageMetaUrl
-                "
-                [productName]="card.variantId.name"
-                [productCode]="card.productId.productCode"
-                [strikedPrice]="card.variantId.price"
-                [weight]="card.variantId.weight"
-                [quantity]="card.quantity"
-                [price]="card.variantId.sellingPrice"
-              >
-              </app-product-card-cart>
-            </ng-template>
+            <button
+            class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
+            (click)="deleteCart()"
+          >
+           Clear Cart
+          </button>
           </ng-container>
-        </ng-container>
-        <ng-template #noCartProducts>
-          <div class="noProducts">
-            <p
-              class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
-            >
-              NO PRODUCTS FOUND
-            </p>
-          </div>
-        </ng-template>
+          <ng-template #noCartProducts>
+            <div class="noProducts">
+              <p
+                class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+              >
+                NO PRODUCTS FOUND
+              </p>
+            </div>
+          </ng-template>
         </div>
 
         <div class="col-12 col-lg-5">
@@ -134,7 +143,8 @@
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
-                <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.itemTotal}}
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                {{ billDetails.itemTotal }}
               </p>
             </div>
             <div class="billItemFlex">
@@ -170,7 +180,8 @@
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
-                <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.shippingPrice}}
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                {{ billDetails.shippingPrice }}
               </p>
             </div>
             <div class="billItemFlex border-top-black">
@@ -182,7 +193,8 @@
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
-                <i class="fa-solid fa-indian-rupee-sign"></i> {{billDetails.priceToPay}}
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                {{ billDetails.priceToPay }}
               </p>
             </div>
           </div>
