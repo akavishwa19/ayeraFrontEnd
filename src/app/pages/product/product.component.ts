@@ -509,7 +509,7 @@ export class ProductComponent implements OnInit {
 
   findVariantById(id) {
     this.http
-      .get(this.productUrl + '/variation-by-attribute-id?id=' + id)
+      .get(this.productUrl + '/variation-by-attribute-id?id=' + id+'&pId='+this.pId)
       .subscribe((res: any) => {
         this.variantByAttribute = res.data;
         this.product.name = this.variantByAttribute.name;

@@ -41,9 +41,12 @@ export class CartAddonsComponent {
   addressUrl:string=environment.baseurl+'/address';
   authUrl = environment.baseurl + '/users';
   orderUrl = environment.baseurl + '/orders';
+  couponUrl:string=environment.baseurl+'/coupon';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
 
+  selectedCouponId:string='';
+  selectedCoupon:any={};
   selectedPaymentMode='Cash on delivery'
   billDetails:any={};
   cartCount:number=0;
@@ -69,11 +72,36 @@ export class CartAddonsComponent {
       productCode: '2408RXFMG',
     },
   ];
-  cartCards:any[]=[];
+  cartCards:any[]=[
+    {
+      coupon:{
+        couponCode:String,
+        description:String
+      },
+      productId:{
+        featuredImage:String,
+        name:String,
+        productCode:String,
+
+      },
+      variantId:{
+        images:[String],
+        name:String,
+        
+      }
+    }
+  ];
+  couponBoolean:boolean=false;
   addressBoolean:Boolean=false;
   addressList:any[]=[];
   shippingAddressList:any[]=[];
   billingAddressList:any[]=[];
+  coupons:any[]=[
+    {
+      couponCode:String,
+      description:String
+    }
+  ];
   private modalService = inject(NgbModal);
   RecommendedSwiperOptions: SwiperOptions = {
     spaceBetween: 4.2,
@@ -364,6 +392,7 @@ export class CartAddonsComponent {
     { name: 'Zambia', code: 'ZM' },
     { name: 'Zimbabwe', code: 'ZW' },
   ];
+  searchQuery:string='';
 
   form: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -389,7 +418,8 @@ export class CartAddonsComponent {
 
   ngOnInit(){
     this.getAddresses();
-    this.fetchCart()
+    this.fetchCart();
+    this.fetchCoupons();
   }
 
   get f() {
@@ -552,4 +582,38 @@ export class CartAddonsComponent {
     this.error(error.error.message)
   })
   }
+
+  fetchCoupons(){
+    this.http.get(this.couponUrl+'/fetch-available-coupons?searchQuery='+this.searchQuery).subscribe((res:any)=>{
+      this.coupons=res.data;
+      // this.selectedCoupon=this.coupons[0]._id;
+      // console.log(this.coupons)
+      this.selectedCouponId=this.coupons[0]._id;
+    })
+  }
+
+  applyCoupon(id:string){
+    this.couponBoolean=true;
+    this.selectedCouponId=id;
+    this.fetchCouponById(id)
+  }
+
+  fetchCouponById(id:string){
+    this.http.get(this.couponUrl + '/selected-coupon?id='+id).subscribe((res:any)=>{
+      this.selectedCoupon=res.data;
+    })
+  }
+
+  applySelectedCoupon(){
+    this.http.put(this.couponUrl+'/apply-coupon?couponId='+this.selectedCouponId,{}).subscribe((res:any)=>{
+      this.fetchCart()
+    })
+  }
+
+  removeSelectedCoupon(){
+    this.http.put(this.couponUrl+'/remove-coupon',{}).subscribe((res:any)=>{
+      this.fetchCart()
+    })
+  }
+
 }

@@ -18,7 +18,7 @@ import { CartAddonsComponent } from './cart-addons/cart-addons.component';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FileUploadModule } from 'primeng/fileupload';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -59,7 +59,8 @@ import { ToastModule } from 'primeng/toast';
     MatPaginatorModule,
     NgbAccordionModule,
     NgbRatingModule,
-    ToastModule
+    ToastModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

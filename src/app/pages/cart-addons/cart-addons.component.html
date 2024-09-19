@@ -7,7 +7,7 @@
       class="navigation padding-y-2rem width-50 d-flex justify-space-between"
     >
       <i
-      (click)="goBack()"
+        (click)="goBack()"
         class="fa-solid font-21 font-weight-700 fa-arrow-left cursor-pointer"
       ></i>
       <p
@@ -90,24 +90,29 @@
                     Choose a shipping address
                   </p>
                   <div class="tabItem">
-                    <ng-container *ngIf="shippingAddressList.length>0;else noShippingAddress">
-                      <div
-                      *ngFor="let address of shippingAddressList"
-                      [ngClass]="address.checked ? 'forceActivatedClass' : ''"
-                      (click)="markShippingAddress(address._id)"
-                      class="addressCapsule cursor-pointer"
+                    <ng-container
+                      *ngIf="
+                        shippingAddressList.length > 0;
+                        else noShippingAddress
+                      "
                     >
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      <div
+                        *ngFor="let address of shippingAddressList"
+                        [ngClass]="address.checked ? 'forceActivatedClass' : ''"
+                        (click)="markShippingAddress(address._id)"
+                        class="addressCapsule cursor-pointer"
                       >
-                        {{ address.addressName }}
-                      </p>
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        {{ address.pincode }}
-                      </p>
-                    </div>
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                        >
+                          {{ address.addressName }}
+                        </p>
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                        >
+                          {{ address.pincode }}
+                        </p>
+                      </div>
                     </ng-container>
                     <ng-template #noShippingAddress>
                       <div class="addressCapsule forceBgGrey">
@@ -115,10 +120,9 @@
                           class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
                         >
                           Please add an address to chose from
-                        </p> 
+                        </p>
                       </div>
                     </ng-template>
-              
                   </div>
                 </div>
                 <div class="pt-3">
@@ -127,25 +131,30 @@
                   >
                     Choose a billing address
                   </p>
-                  <div class="tabItem"> 
-                    <ng-container *ngIf="billingAddressList.length>0;else noBillingAddress">
-                      <div
-                      *ngFor="let address of billingAddressList"
-                      [ngClass]="address.checked ? 'forceActivatedClass' : ''"
-                      (click)="markBillingAddress(address._id)"
-                      class="addressCapsule cursor-pointer"
+                  <div class="tabItem">
+                    <ng-container
+                      *ngIf="
+                        billingAddressList.length > 0;
+                        else noBillingAddress
+                      "
                     >
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                      <div
+                        *ngFor="let address of billingAddressList"
+                        [ngClass]="address.checked ? 'forceActivatedClass' : ''"
+                        (click)="markBillingAddress(address._id)"
+                        class="addressCapsule cursor-pointer"
                       >
-                        {{ address.addressName }}
-                      </p>
-                      <p
-                        class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
-                      >
-                        {{ address.pincode }}
-                      </p>
-                    </div>
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                        >
+                          {{ address.addressName }}
+                        </p>
+                        <p
+                          class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 zero-margin-bottom zero-padding-bottom"
+                        >
+                          {{ address.pincode }}
+                        </p>
+                      </div>
                     </ng-container>
 
                     <ng-template #noBillingAddress>
@@ -154,10 +163,9 @@
                           class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-black zero-margin-bottom zero-padding-bottom"
                         >
                           Please add an address to chose from
-                        </p> 
+                        </p>
                       </div>
                     </ng-template>
-                 
 
                     <p
                       class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer pt-2 mx-2"
@@ -674,10 +682,13 @@
                   <p-button
                     label="Back"
                     icon="pi pi-arrow-left"
-                
                     (onClick)="prevCallback.emit()"
                   />
-                  <p-button (onClick)="checkOut()" label="Checkout" class="mx-3" />
+                  <p-button
+                    (onClick)="checkOut()"
+                    label="Checkout"
+                    class="mx-3"
+                  />
                 </div>
               </ng-template>
             </p-stepperPanel>
@@ -691,6 +702,7 @@
           Order Summary (<span>{{ cartCount }}</span
           >)
         </p>
+
         <div class="cartProducts">
           <ng-container *ngFor="let card of cartCards">
             <ng-container *ngIf="card.variantId == null; else withVariant">
@@ -776,7 +788,101 @@
           </ng-container>
         </div>
 
-        <div class="bill">
+
+        <ng-container *ngIf="cartCards[0].coupon==null;else withoutCoupon">
+          <div class="appliedCoupons mb-2 mt-3">
+            <ng-container *ngIf="couponBoolean; else firstCoupon">
+              <div class="couponNameFlex">
+                <div class="discountBox">
+                  <i class="fa-solid fa-percent"></i>
+                </div>
+                <div>
+                  <p
+                    class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+                  >
+                    {{ selectedCoupon.couponCode }}
+                  </p>
+                  <p
+                    class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
+                  >
+                    {{ selectedCoupon.description }}
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #firstCoupon>
+              <div class="couponNameFlex">
+                <div class="discountBox">
+                  <i class="fa-solid fa-percent"></i>
+                </div>
+                <div>
+                  <p
+                    class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+                  >
+                    {{ coupons[0].couponCode }}
+                  </p>
+                  <p
+                    class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
+                  >
+                    {{ coupons[0].description }}
+                  </p>
+                </div>
+              </div>
+            </ng-template>
+  
+            <div (click)="applySelectedCoupon()">
+              <p
+                class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+              >
+                Apply
+              </p>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #withoutCoupon>
+          <div class="appliedCoupons mb-2 mt-3">
+          <div class="couponNameFlex">
+            <div class="discountBox">
+              <i class="fa-solid fa-percent"></i>
+            </div>
+            <div>
+              <p
+                class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+              >
+                {{ cartCards[0].coupon.couponCode }}
+              </p>
+              <p
+                class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
+              >
+                {{ cartCards[0].coupon.description }}
+              </p>
+            </div>
+          </div>
+          <div (click)="removeSelectedCoupon()">
+            <p
+              class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
+            >
+              Remove
+            </p>
+          </div>
+          </div>
+        </ng-template>
+
+      
+        <button
+          (click)="openBackDropCustomClass(coupon)"
+          class="moreCoupons cursor-pointer width-100"
+          [disabled]="cartCards[0].coupon!=null"
+          [ngClass]="cartCards[0].coupon==null?'':'cursor-not-allowed'"
+        >
+          <p
+            class="font-18 font-weight-700 text-white font-lato zero-margin-bottom zero-padding-bottom width=100 text-align-center"
+          >
+            Apply More Coupons
+          </p>
+        </button>
+
+        <div class="bill mt-3">
           <div class="billItemFlex">
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
@@ -799,7 +905,7 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            <i class="fa-solid fa-indian-rupee-sign"></i>  {{ billDetails.couponDiscount }}
             </p>
           </div>
           <div class="billItemFlex">
@@ -811,19 +917,19 @@
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i> 0
+            <i class="fa-solid fa-minus mx-2 "></i> <i class="fa-solid fa-indian-rupee-sign"></i>  {{ billDetails.couponDiscount }}
             </p>
           </div>
           <div class="billItemFlex mb-3">
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              Shipping (standard)
+            Shipping (standard)
             </p>
             <p
               class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
             >
-              <i class="fa-solid fa-indian-rupee-sign"></i>
+            <i class="fa-solid fa-plus mx-2 "></i>  <i class=" fa-solid fa-indian-rupee-sign"></i>
               {{ billDetails.shippingPrice }}
             </p>
           </div>
@@ -846,6 +952,7 @@
             Delivery expected by:
           </p>
         </div>
+
         <div>
           <p
             class="font-18 font-weight-700 font-lato zero-margin-bottom py-2 mt-5 text-align-center"
@@ -1193,4 +1300,84 @@
   </div>
 </ng-template>
 
-<p-toast/>
+<ng-template #coupon let-modal>
+  <div class="modal-header">
+    <h4
+      class="modal-title zero-margin-bottom font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24"
+    >
+      Apply Coupon
+    </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <input
+      class="couponInput"
+      [(ngModel)]="searchQuery"
+      (input)="fetchCoupons()"
+      placeholder="Enter Coupon Code"
+    />
+  </div>
+  <div class="modal-body-coupon-list py-2 px-4">
+    <div>
+      <ng-container *ngIf="coupons.length > 0; else noCoupons">
+        <div
+          class="coupon bg-white cursor-pointer"
+          (click)="applyCoupon(coupon._id)"
+          *ngFor="let coupon of coupons"
+          (click)="modal.dismiss('Cross click')"
+        >
+          <div class="row rowZeroPadding height-100perCent">
+            <div
+              class="col-12 col-lg-4 coupon-grey rowZeroPadding height-100perCent"
+            >
+              <p
+                class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+              >
+                {{ coupon.couponCode }}
+              </p>
+            </div>
+            <div class="col-12 col-lg-8 rowZeroPadding height-100perCent">
+              <div class="couponTextInfo">
+                <div>
+                  <p
+                    class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+                  >
+                    {{ coupon.couponCode }}
+                  </p>
+                  <p
+                    class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
+                  >
+                    Valid till {{ coupon.validTo | date }}
+                  </p>
+                </div>
+                <div>
+                  <p
+                    class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
+                  >
+                    {{ coupon.description }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noCoupons>
+        <div class="noProducts">
+          <p
+            class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+          >
+            NO COUPONS FOUND
+          </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ng-template>
+
+<p-toast />

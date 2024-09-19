@@ -76,43 +76,9 @@
         </div>
 
         <div class="col-12 col-lg-5">
-          <div class="appliedCoupons mb-2">
-            <div class="couponNameFlex">
-              <div class="discountBox">
-                <i class="fa-solid fa-percent"></i>
-              </div>
-              <div>
-                <p
-                  class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
-                >
-                  FLAT 1000
-                </p>
-                <p
-                  class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
-                >
-                  Save upto ₹1000 on this Order
-                </p>
-              </div>
-            </div>
-            <div>
-              <p
-                class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom test-icon-star cursor-pointer"
-              >
-                Apply
-              </p>
-            </div>
-          </div>
-          <div
-            (click)="openBackDropCustomClass(content)"
-            class="moreCoupons cursor-pointer"
-          >
-            <p
-              class="font-18 font-weight-700 text-white font-lato zero-margin-bottom zero-padding-bottom width=100 text-align-center"
-            >
-              Apply More Coupons
-            </p>
-          </div>
-          <div class="pincodeInfo my-4">
+          
+          
+          <!-- <div class="pincodeInfo mb-4">
             <div class="couponNameFlex">
               <div class="discountBox">
                 <i class="fa-solid fa-location-crosshairs"></i>
@@ -132,7 +98,7 @@
                 Change Pincode
               </p>
             </div>
-          </div>
+          </div> -->
           <div class="bill">
             <div class="billItemFlex">
               <p
@@ -147,12 +113,12 @@
                 {{ billDetails.itemTotal }}
               </p>
             </div>
-            <div class="billItemFlex">
+            <!-- <div class="billItemFlex">
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
                 You Saved
-              </p>
+              </p>  
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
@@ -170,7 +136,7 @@
               >
                 <i class="fa-solid fa-indian-rupee-sign"></i> 0
               </p>
-            </div>
+            </div> -->
             <div class="billItemFlex mb-3">
               <p
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
@@ -278,66 +244,4 @@
 
 <app-footer></app-footer>
 
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4
-      class="modal-title zero-margin-bottom font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24"
-    >
-      Apply Coupon
-    </h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <input class="couponInput" placeholder="Enter Coupon Code" />
-  </div>
-  <div class="modal-body-coupon-list py-2 px-4">
-    <div>
-      <div
-        class="coupon bg-white cursor-pointer"
-        *ngFor="let x of [1, 1, 1]"
-        (click)="modal.dismiss('Cross click')"
-      >
-        <div class="row rowZeroPadding height-100perCent">
-          <div
-            class="col-12 col-lg-4 coupon-grey rowZeroPadding height-100perCent"
-          >
-            <p
-              class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
-            >
-              FLAT 1000
-            </p>
-          </div>
-          <div class="col-12 col-lg-8 rowZeroPadding height-100perCent">
-            <div class="couponTextInfo">
-              <div>
-                <p
-                  class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
-                >
-                  FLAT 1000
-                </p>
-                <p
-                  class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
-                >
-                  Valid till May 29 2024
-                </p>
-              </div>
-              <div>
-                <p
-                  class="font-16 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom pt-1"
-                >
-                  Flat 1000 off on Preset jewellery (No Minimum bill value
-                  required)
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
+
