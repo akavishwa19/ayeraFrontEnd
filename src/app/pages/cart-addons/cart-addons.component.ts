@@ -27,6 +27,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -413,7 +414,8 @@ export class CartAddonsComponent {
     private fb: FormBuilder,
     private messageService: MessageService,
     private http:HttpClient,
-    private location:Location
+    private location:Location,
+    private router:Router
   ) {}
 
   ngOnInit(){
@@ -575,8 +577,11 @@ export class CartAddonsComponent {
   }
 
   checkOut(){
-    this.http.post(this.orderUrl+'/checkout',{billingAddress:this.selectedBillingAddress,shippingAddress:this.selectedShippingAddress,paymentMode:this.selectedPaymentMode,netPrice:this.billDetails.priceToPay}).subscribe((res:any)=>{
-      this.sucess('Order placed successfully')
+    this.http.post(this.orderUrl+'/checkout',{billingAddress:this.selectedBillingAddress,shippingAddress:this.selectedShippingAddress,paymentMode:this.selectedPaymentMode}).subscribe((res:any)=>{
+
+      this.router.navigate(['/'])
+      this.sucess('Order placed successfully');
+      
     },
   (error)=>{
     this.error(error.error.message)

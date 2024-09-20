@@ -110,7 +110,31 @@
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
                 <i class="fa-solid fa-indian-rupee-sign"></i>
-                {{ billDetails.itemTotal }}
+                {{ billDetails.itemTotal || 0 }}
+              </p>
+            </div>
+            <div class="billItemFlex">
+              <p
+                class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+              >
+                You Saved
+              </p>
+              <p
+                class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+              >
+              <i class="fa-solid fa-indian-rupee-sign"></i>  {{ billDetails.couponDiscount || 0 }}
+              </p>
+            </div>
+            <div class="billItemFlex">
+              <p
+                class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+              >
+                Coupon Discount
+              </p>
+              <p
+                class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
+              >
+              <i class="fa-solid fa-minus mx-2 "></i> <i class="fa-solid fa-indian-rupee-sign"></i>  {{ billDetails.couponDiscount ||0 }}
               </p>
             </div>
             <!-- <div class="billItemFlex">
@@ -147,7 +171,7 @@
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
                 <i class="fa-solid fa-indian-rupee-sign"></i>
-                {{ billDetails.shippingPrice }}
+                {{ billDetails.shippingPrice || 0 }}
               </p>
             </div>
             <div class="billItemFlex border-top-black">
@@ -160,12 +184,13 @@
                 class="font-18 font-weight-700 font-lato zero-margin-bottom zero-padding-bottom"
               >
                 <i class="fa-solid fa-indian-rupee-sign"></i>
-                {{ billDetails.priceToPay }}
+                {{ billDetails.priceToPay || 0 }}
               </p>
             </div>
           </div>
           <div class="submitCheckouts mt-5">
             <button
+            [disabled]="cartCards.length<=0"
               class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-white bg-blue-black px-3 py-2 border-radius-5px"
               routerLink="/cart-add-ons"
             >
