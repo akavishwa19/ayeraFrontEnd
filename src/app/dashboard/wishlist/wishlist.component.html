@@ -57,10 +57,12 @@
         <div>
           <button
             class="none-outline font-lato font-18 font-weight-700 bg-white bg-blue-black border-radius-10px px-3 py-2 mx-2"
+            (click)="remove(item.product)"
           >
             Remove
           </button>
           <button
+          (click)="addToCart(item.product,item?.variant[0]?._id)"
             class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
           >
             Add to cart
@@ -79,3 +81,7 @@
     </div>
   </ng-template>
   </div>
+
+  <p-toast>
+
+  </p-toast>

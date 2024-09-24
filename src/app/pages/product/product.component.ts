@@ -17,7 +17,7 @@ import SwiperCore, {
   Swiper,
 } from 'swiper';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {
@@ -362,7 +362,8 @@ export class ProductComponent implements OnInit {
     private config: NgbRatingConfig,
     private fb: FormBuilder,
     private messageService: MessageService,
-    private triggerService:CartTriggerService
+    private triggerService: CartTriggerService,
+    private router: Router
   ) {
     config.max = 5;
     const passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
@@ -476,7 +477,7 @@ export class ProductComponent implements OnInit {
         (res: any) => {
           this.sucess('Product added to cart');
           // this.triggerService.triggerHeaderGetCall()
-          this.triggerService.triggerHeaderGetCall();
+          this.triggerService.get_cart_count();
         },
         (error) => {
           this.error(error.error.message);
@@ -484,7 +485,24 @@ export class ProductComponent implements OnInit {
       );
   }
 
-
+  addToCartAndBuy() {
+    this.http
+      .post(this.cartUrl, {
+        productId: this.pId,
+        variantId: this.currentVariantId,
+      })
+      .subscribe(
+        (res: any) => {
+          this.sucess('Product added to cart');
+          // this.triggerService.triggerHeaderGetCall()
+          this.triggerService.get_cart_count();
+          this.router.navigate(['/cart']);
+        },
+        (error) => {
+          this.error(error.error.message);
+        }
+      );
+  }
 
   selectColor(id: string, variantId: string) {
     this.currentVariantId = variantId;
@@ -509,7 +527,13 @@ export class ProductComponent implements OnInit {
 
   findVariantById(id) {
     this.http
-      .get(this.productUrl + '/variation-by-attribute-id?id=' + id+'&pId='+this.pId)
+      .get(
+        this.productUrl +
+          '/variation-by-attribute-id?id=' +
+          id +
+          '&pId=' +
+          this.pId
+      )
       .subscribe((res: any) => {
         this.variantByAttribute = res.data;
         this.product.name = this.variantByAttribute.name;

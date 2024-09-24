@@ -170,6 +170,10 @@
   width: 400px;
   overflow: hidden;
 }
+.productImageHolder{
+  overflow: hidden;
+  max-height: 350px;
+}
 .hexagon {
   background: url("/assets/images/hexagonContainer.png") no-repeat;
   object-fit: contain;
@@ -232,10 +236,10 @@ th {
   // border: 2px solid #020724;
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 .videoBlockHolder:hover{
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .videoProductInfo{
       border: 2px solid black;
@@ -258,12 +262,15 @@ th {
 }
 .videoHolder {
   width: 100%;
+  height: 300px ;
 }
 .imageContainerMood {
-  width: 330px;
-  height: 450px;
+  width: 250px;
+  height: 380px;
   overflow: hidden;
   border-radius: 30px;
+  display: block;
+  margin: auto;
 }
 .shopByMoodBtn {
   border-radius: 20px;
@@ -275,7 +282,7 @@ th {
   justify-content: center;
 }
 .shopByMoodCard {
-  width: 330px;
+  width: 300px;
   display: flex;
 }
 .flex-direction-column {

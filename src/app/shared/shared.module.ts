@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductCardComponent } from './product-card/product-card.component';
-import { NgbModalModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbModalModule, NgbOffcanvasModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { SuggestedProductCardComponent } from './suggested-product-card/suggested-product-card.component';
 import { CompareProductComponent } from './compare-product/compare-product.component';
 import { ProductInComparisonComponent } from './product-in-comparison/product-in-comparison.component';
@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductCardCartComponent } from './product-card-cart/product-card-cart.component';
 import { ToastModule } from 'primeng/toast';
 import { NgSelectModule } from '@ng-select/ng-select';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     HttpClientModule,
     ToastModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    NgbOffcanvasModule,
+    NgbCollapseModule
   ],
   exports: [
     AdvertisementHeaderComponent,

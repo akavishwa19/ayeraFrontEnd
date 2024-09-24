@@ -28,6 +28,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import moment from 'moment';
 
 SwiperCore.use([Navigation, Pagination, Autoplay, Thumbs, Mousewheel]);
 
@@ -47,10 +48,15 @@ export class CartAddonsComponent {
   imageMetaUrl: string = environment.imageMetaUrl;
 
   selectedCouponId:string='';
+  intervalId:any;
   selectedCoupon:any={};
   selectedPaymentMode='Cash on delivery'
   billDetails:any={};
   cartCount:number=0;
+  responseHoldTime:any;
+  
+  minutes: any = 0;
+  seconds: any = 0;
   productList = [
     {
       _id: '66b491093659d7ad14a8d1cb',
@@ -136,6 +142,7 @@ export class CartAddonsComponent {
   };
   selectedShippingAddress:string='';
   selectedBillingAddress:string='';
+  expiryTime:any;
 
 
   inputType: string = 'password';
@@ -422,6 +429,8 @@ export class CartAddonsComponent {
     this.getAddresses();
     this.fetchCart();
     this.fetchCoupons();
+    this.holdStock();
+    this.updateStock();
   }
 
   get f() {
@@ -618,6 +627,40 @@ export class CartAddonsComponent {
   removeSelectedCoupon(){
     this.http.put(this.couponUrl+'/remove-coupon',{}).subscribe((res:any)=>{
       this.fetchCart()
+    })
+  }
+
+  holdStock(){
+    this.http.post(this.orderUrl+'/hold',{}).subscribe((res:any)=>{
+      this.responseHoldTime=res.data.holdTime;
+      console.log(this.responseHoldTime)
+      this.expiryTime=moment().add(this.responseHoldTime, 'minutes');
+      this.intervalId=setInterval(() => {
+        this.changeTimer();
+      }, 1000);
+    })
+  }
+
+  changeTimer(){
+    let now = moment();
+    const diffInSeconds = this.expiryTime.diff(now, 'seconds');
+    if (diffInSeconds <= 0) {
+      console.log(diffInSeconds)
+      this.minutes = 0;
+      this.seconds = 0;
+      clearTimeout(this.intervalId);
+      this.router.navigate(['/cart'])
+      return; 
+    }
+    this.minutes = Math.floor(diffInSeconds / 60);
+    this.minutes=this.minutes.toString().padStart(2,"0");
+    this.seconds = diffInSeconds % 60;
+    this.seconds=this.seconds.toString().padStart(2,"0");
+  }
+
+  updateStock(){
+    this.http.post(this.orderUrl+'/update-stock',{}).subscribe((res:any)=>{
+
     })
   }
 

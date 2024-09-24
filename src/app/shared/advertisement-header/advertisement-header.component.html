@@ -1,4 +1,4 @@
-<section class="bg-blue-black py-2 px-3 width-100 positionFixed">
+<section [ngClass]="{'fade-in-out bg-blue-black': true, 'hidden': isHidden , 'bg-transparent':false}" class="py-2 px-3 width-100 positionFixed">
   <div class="blockHolder">
     <div class="socialIcons">
       <i class="fa-brands fa-facebook-f text-white font-21 cursor-pointer"></i>

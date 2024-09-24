@@ -20,7 +20,7 @@
       </div>
   </section> -->
 
-<section id="modifiedOffcanvas" class="default-section-padding">
+<!-- <section id="modifiedOffcanvas" class="default-section-padding">
   <div class="expandableBanner">
     <div
       class="modelImage border-top-right-30 border-bottom-right-30 position-relative loadFromLeft"
@@ -81,7 +81,7 @@
       </p>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="default-section-padding">
   <div class="emerge">
@@ -90,6 +90,7 @@
       <div
         [ngStyle]="{ 'background-color': slide.backgroundColor }"
         class="swiperBlock"
+      
       >
         <div class="swiperBlockFlex">
           <div class="limitWidth">
@@ -104,6 +105,7 @@
               {{ slide.subTitle }}
             </p>
             <button
+            (click)="navigateToReference(slide.refUrl)"
               class="font-weight-600 font-lato text-white none-outline border-radius-5px px-4 py-2 my-2 bg_transparent b_r_5"
             >
               {{ slide.buttonText }}
@@ -173,6 +175,7 @@
               </div>
               <div class="alignBtnCenter">
                 <button
+                (click)="routeToProduct(product.slug)"
                   class="shadowedBtn bg-blue-black text-white border-radius-10px px-3 py-2"
                 >
                   View More
@@ -354,6 +357,7 @@
     <div class="container-xl py-4">
       <div class="shopCategoriesHolderFlex width-100">
         <div
+          (click)="routeToShop(category.slug)"
           (mouseenter)="hoverClass(i)"
           (mouseleave)="removeHoverClass(i)"
           class="shopCategoryBlock cursor-pointer"

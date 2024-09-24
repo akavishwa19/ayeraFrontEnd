@@ -150,13 +150,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   bestSellerWiper: SwiperOptions = {
     slidesPerView: 2,
     spaceBetween: 20,
-    autoplay: {
-      delay: 1500,
-    },
+    // autoplay: {      
+    //   delay: 1500,
+    // },
     loop: true,
     centeredSlides: true,
     pagination: false,
     mousewheel: false,
+  
     breakpoints: {
       400: {
         slidesPerView: 1,
@@ -266,7 +267,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       {
         y:0,
         scrollTrigger: {
-          toggleActions: 'play restart none none',
+          toggleActions: 'play none none none',
           start: 'top top',
           end: 'bottom top',
         },   
@@ -328,7 +329,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const specialBorderElement: HTMLElement = document.getElementById(
       'border' + i
     );
-    specialBorderElement.style.border = '15px solid #020724';
+    specialBorderElement.style.border = '10px solid #020724';
 
     const textBorder: HTMLElement = document.getElementById('textPad' + i);
     textBorder.style.background = '#020724';
@@ -504,5 +505,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   routeToShopViaTags(id: string) {
     this.currentOffcanvas?.dismiss();
     this.router.navigate(['/shop/primary/']);
+  }
+
+  routeToProduct(slug:string){
+    this.router.navigate(['/product/'+slug])
+  }
+
+  navigateToReference(url){
+    window.open(url)
   }
 }

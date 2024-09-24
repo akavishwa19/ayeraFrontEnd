@@ -114,7 +114,7 @@ export class CartComponent {
 
   fetchCart(){
     this.http.get(this.cartUrl).subscribe((res:any)=>{
-      this.triggerService.triggerHeaderGetCall()
+      this.triggerService.get_cart_count()
       this.cartCards=res.data;
       this.fetchBill();
     })

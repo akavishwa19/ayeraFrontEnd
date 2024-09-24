@@ -119,12 +119,17 @@ export class ShopComponent implements OnInit {
     private ngZone: NgZone,
     private location: Location
   ) {
-    this.passedSlug = this.activatedRoute.snapshot.paramMap.get('slug');
-    this.passedProductFetchType =
-      this.activatedRoute.snapshot.paramMap.get('product-fetch-type');
+
   }
 
   ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((params)=> {
+      this.passedSlug = params.get('slug');
+      this.passedProductFetchType = params.get('product-fetch-type');
+      this.fetchBasicRequirements(this.passedProductFetchType, this.passedSlug);         
+
+    })
+
     this.fetchBasicRequirements(this.passedProductFetchType, this.passedSlug);
     this.getColorVariations();
     this.getSizeVariations();

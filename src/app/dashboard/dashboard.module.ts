@@ -17,6 +17,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgxIntlTelInputModule,
     ReactiveFormsModule,
     NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule
 ]
 })
 export class DashboardModule { }

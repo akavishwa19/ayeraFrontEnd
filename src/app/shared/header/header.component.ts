@@ -5,11 +5,16 @@ import {
   CreateEffectOptions,
   Input,
   OnInit,
+  HostListener,
+  inject,
+  TemplateRef,
 } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap/gsap-core';
 import { CartTriggerService } from '../../services/cart-trigger.service';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-header',
@@ -20,11 +25,19 @@ export class HeaderComponent implements OnInit {
   categoryUrl: string = environment.baseurl + '/categories';
   cartUrl: string = environment.baseurl + '/cart';
 
+  private offcanvasService = inject(NgbOffcanvas);
+
+  allCategories:any[]=[]
   featuredCategoryList: any[] = [];
   secondaryCategoryList: any[] = [];
   tertiaryCategoryList: any[] = [];
   closePanelBoolean: boolean = false;
-  cartCount: number = 0;
+  cartCount = this.triggerService.countSignal;
+  isHidden = false;
+  lastScrollTop = 0;
+  timeOutId:any;
+  isCollapsed = false;
+
 
   constructor(
     private http: HttpClient,
@@ -42,17 +55,20 @@ export class HeaderComponent implements OnInit {
     // }, options);
   }
   ngOnInit() {
-    this.getCartCount();
-    this.triggerService.triggerGetCall$.subscribe((trigger)=>{
-      if(trigger){
-        this.getCartCount();
-      }
-    })
+
+    this.triggerService.get_cart_count()
 
     this.fetchPrimaryCategories();
-    if (this.router.url == '/') {
-      this.headerLogoAnimation();
-    }
+    this.fetchAllCategories()
+    // if (this.router.url == '/') {
+    //   this.headerLogoAnimation();
+    // }
+  }
+
+  to_open : string = '';
+  toggleCollapse(id : string){
+    this.to_open = id;
+    this.isCollapsed=!this.isCollapsed
   }
 
   headerLogoAnimation() {
@@ -86,12 +102,26 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/shop/primary/', slug]);
   }
 
+  openPanel(){
+    clearTimeout(this.timeOutId)
+    this.closePanelBoolean=true;
+  }
+
+  closePanel(){
+    this.timeOutId=setTimeout(()=>{
+      this.closePanelBoolean=false
+    },1500)
+ 
+  }
+
   fetchByPrimary(id: string) {
+    this.openPanel()
     this.http
       .get(this.categoryUrl + '/secondary-category?id=' + id)
       .subscribe((res: any) => {
         this.secondaryCategoryList = res.data;
-        this.closePanelBoolean = true;
+      
+
       });
   }
 
@@ -108,4 +138,28 @@ export class HeaderComponent implements OnInit {
       this.cartCount = res.data;
     });
   }
+
+  fetchAllCategories(){
+    this.http.get(this.categoryUrl+'/all-categories').subscribe((res:any)=>{
+      this.allCategories=res.data;
+    })
+  }
+
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event) {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > this.lastScrollTop) {
+      // Scroll down
+      this.isHidden = true;
+    } else {
+      // Scroll up
+      this.isHidden = false;
+    }
+    this.lastScrollTop = st <= 0 ? 0 : st;
+  }
+
+  openEnd(content: TemplateRef<any>) {
+		this.offcanvasService.open(content);
+	}
 }

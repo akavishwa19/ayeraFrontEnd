@@ -1,4 +1,4 @@
-<section class="bg-blue-black pb-2 positionFixed width-100 postionTopHeader" >
+<section  [ngClass]="{'fade-in-out bg-blue-black': true, 'hidden': isHidden , 'bg-transparent':false}" class="fixed-top " class=" pb-2 positionFixed width-100 postionTopHeader" >
   <div class=" mx-2" id="mainHeader">
     <div class="container-fluid">
       <div class="headerFlex py-2 px-3">
@@ -6,7 +6,7 @@
           <div routerLink="/" class="aayraHeaderLogoHolder">
             <img class="responsiveImage-contain" src="/assets/images/headerLogoAayra.png">
           </div>
-          <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="50" height="39" viewBox="0 0 67 51" fill="none">
+          <svg (click)="openEnd(content)" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="50" height="39" viewBox="0 0 67 51" fill="none">
             <path d="M3 3L43 3" stroke="white" stroke-width="5" stroke-linecap="round"/>
             <path d="M3.01562 24.5H64.0484" stroke="white" stroke-width="5" stroke-linecap="round"/>
             <path d="M24.0156 48.5H64.0156" stroke="white" stroke-width="5" stroke-linecap="round"/>
@@ -15,6 +15,7 @@
             class="categoryItem font-20 text-white font-lato font-weight-700 cursor-pointer uppercase mx-2 small-device-d-none"
             *ngFor="let category of featuredCategoryList"
             (mouseenter)="fetchByPrimary(category._id)"
+            (mouseleave)="closePanel()"
             (click)="routeToShop(category.slug)"
           >
             {{ category.name }}
@@ -55,13 +56,13 @@
           ></i> -->
           <div routerLink="/cart" class="cursor-pointer position-relative"><img src="assets/icons/cart.svg" /> 
             <div class="badge">
-              <span class="font-18 font-weight-700 font-lato text-white ">{{cartCount}}</span>
+              <span class="font-18 font-weight-700 font-lato text-white ">{{cartCount()}}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="container-fluid px-3 bg-light-grey py-3 mt-1 socialIcons border-radius-10 small-device-d-none position-relative">
+    <div *ngIf="closePanelBoolean"   (mouseenter)="openPanel()"   (mouseleave)="closePanel()" class="container-fluid px-3 bg-light-grey py-3 mt-1 socialIcons border-radius-10 small-device-d-none position-relative">
       <div class="categoryItemHolder medium-device-d-none">
         <div
           class="categoryItem font-18 font-lato font-weight-800 cursor-pointer uppercase"
@@ -88,3 +89,38 @@
     
   </div>
 </section>
+
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title zero-margin-bottom zero-padding-bottom font-lato font-weight-600 font-21  text-black">ALL CATEGORIES</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<div class="row">
+      <ng-container *ngFor="let primary of allCategories">
+        <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+          <p class="text-black font-20 font-weight-700 " >{{primary.name}}</p>
+          <ng-container *ngFor="let secondary of primary.secondary">
+            <div (click)="toggleCollapse(secondary._id)" class="secondaryCategories" >
+              <p class="font-16 font-weight-600">{{secondary.name}} <i *ngIf="secondary.tertiary.length>0" class="fa-solid fa-angle-down font-14 mx-2"></i></p>
+              <ng-container *ngFor="let tertiary of secondary.tertiary">
+                <div *ngIf="isCollapsed && to_open == secondary._id " class="tertiaryCategories" >
+                  <p class="font-16 font-weight-600"> {{tertiary.name}} <i *ngIf="tertiary.quaternary.length>0" class="fa-solid fa-angle-down font-14 mx-2"></i></p>
+                  <ng-container *ngFor="let quaternary of tertiary.quaternary">
+                    <div class="quaternaryCategories" >
+                      <p class="font-16 font-weight-600">{{quaternary.name}} </p>
+                    </div>
+                  </ng-container>
+                 
+                </div>
+              </ng-container>
+              
+            </div>
+          </ng-container>
+          
+        </div>
+
+      </ng-container>
+    </div>
+	</div>
+</ng-template>
