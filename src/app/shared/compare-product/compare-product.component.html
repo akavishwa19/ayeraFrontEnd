@@ -1,126 +1,154 @@
 <div class="container-xl">
   <p class="font-lato font-18 font-weight-700 letter-spacing-02 text-black line-height-24 zero-padding-bottom zero-margin-bottom">Compare Products : </p>
   <div class="row">
-    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+    <div class="col-12 col-lg-3 col-md-4 col-sm-12">
+      
+    </div>
+    <div class="col-12 col-lg-3 col-md-4 col-sm-12">
       <app-product-in-comparison (productChange)="handleChange($event,0)"  ></app-product-in-comparison>
     </div>
-    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+    <div class="col-12 col-lg-3 col-md-4 col-sm-12">
       <app-product-in-comparison (productChange)="handleChange($event,1)" ></app-product-in-comparison>
     </div>
-    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+    <div class="col-12 col-lg-3 col-md-4 col-sm-12">
       <app-product-in-comparison (productChange)="handleChange($event,2)" ></app-product-in-comparison>
     </div>
   </div>
   <div class="comparedTable my-4">
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Price (₹)</p>
-    </div>
+    </div> -->
     <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+      <div class="tableBodyFlex backgroundGreyCell ">
+        <div class=" py-2 propertyBox rightCellBorder">
+     
+            <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Price (₹)
+       
+        </div>
+        <div class="tableBodySingle  py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.price || '-'}}</p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.price || '-'}}</p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.price || '-'}}</p>
         </div>
       </div>
     </div>
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Discount %</p>
-    </div>
+    </div> -->
     <div class="tableBody ">
       <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+        <div class=" py-2 propertyBox rightCellBorder">
+        
+            <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Discount %
+        
+        </div>
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.discount || '-'}}</p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.discount || '-'}}</p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.discount || '-'}}</p>
         </div>
       </div>
     </div>
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Weight (grams) </p>
-    </div>
+    </div> -->
     <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+      <div class="tableBodyFlex backgroundGreyCell ">
+        <div class=" py-2 propertyBox rightCellBorder">
+          <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Weight (grams) </p>
+        </div>
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.weight || '-'}} </p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.weight || '-'}} </p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.weight || '-'}} </p>
         </div>
       </div>
     </div>
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Length</p>
-    </div>
+    </div> -->
     <div class="tableBody ">
       <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+        <div class=" py-2 propertyBox rightCellBorder">
+          <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Length</p>
+        </div>
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.length || '-'}} <span *ngIf="renderedArray[0]?.length!=' '">{{renderedArray[0]?.dimensionUnit || ' '}}</span></p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.length || '-'}} <span *ngIf="renderedArray[1]?.length!=' '">{{renderedArray[1]?.dimensionUnit || ' '}}</span></p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.length || '-'}} <span *ngIf="renderedArray[2]?.length!=' '">{{renderedArray[2]?.dimensionUnit || ' '}}</span></p>
         </div>
       </div>
     </div>
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Width</p>
-    </div>
+    </div> -->
     <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+      <div class="tableBodyFlex backgroundGreyCell">
+        <div class=" py-2 propertyBox rightCellBorder">
+          <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Width</p>
+        </div>
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.width || '-'}} <span *ngIf="renderedArray[0]?.width!=' '">{{renderedArray[0]?.dimensionUnit || ' '}}</span></p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.width || '-'}} <span *ngIf="renderedArray[1]?.width!=' '">{{renderedArray[1]?.dimensionUnit || ' '}}</span></p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.width || '-'}} <span *ngIf="renderedArray[2]?.width!=' '">{{renderedArray[2]?.dimensionUnit || ' '}}</span></p>
         </div>
       </div>
     </div>
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Height </p>
-    </div>
+    </div> -->
     <div class="tableBody ">
       <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+        <div class=" py-2 propertyBox rightCellBorder">
+          <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Height </p>
+        </div>
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[0]?.height || ' '}} <span *ngIf="renderedArray[0]?.height!=' '">{{renderedArray[0]?.dimensionUnit || ' '}}</span> </p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{renderedArray[1]?.height || ' '}} <span *ngIf="renderedArray[1]?.height!=' '">{{renderedArray[1]?.dimensionUnit || ' '}}</span> </p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{renderedArray[2]?.height || ' '}} <span *ngIf="renderedArray[2]?.height!=' '">{{renderedArray[2]?.dimensionUnit || ' '}}</span> </p>
         </div>
       </div>
     </div>
 
-    <div class="tableHead">
+    <!-- <div class="tableHead">
       <p class="text-align-center text-white py-3 zero-margin-bottom zero-padding-bottom">Average rating(out of 5) </p>
-    </div>
+    </div> -->
     <div class="tableBody ">
-      <div class="tableBodyFlex ">
-        <div class="tableBodySingle py-4">
+      <div class="tableBodyFlex backgroundGreyCell">
+        <div class=" py-2 propertyBox rightCellBorder">
+          <p class="px-3 text-black py-3 zero-margin-bottom zero-padding-bottom ">Average rating(out of 5) </p>
+        </div>
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{productRating[0] | number:'1.2-2' || '0'}}  </p>
         </div>
-        <div class="tableBodySingle centerCellBorder py-4">
+        <div class="tableBodySingle centerCellBorder py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom ">{{productRating[1] | number:'1.2-2' || '0'}} </p>
         </div>
-        <div class="tableBodySingle py-4">
+        <div class="tableBodySingle py-2">
           <p class="text-align-center zero-margin-bottom zero-padding-bottom">{{productRating[2] | number:'1.2-2' || '0'}}  </p>
         </div>
       </div>

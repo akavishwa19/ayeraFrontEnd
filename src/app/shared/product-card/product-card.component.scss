@@ -5,6 +5,10 @@
 }
 .productImageContainer{
   height: 350px;
+  transition: transform 0.4s ease;
+}
+.productImageContainer:hover{
+  transform: scale(1.1);
 }
 .positionHighlightedTag{
   top:0;
@@ -25,12 +29,15 @@
   color:red;
 }
 .showcasedImageContainer{
+  transition: transform 0.3s ease;
+  overflow: hidden;
   width:150px;
   height:150px;
   overflow:hidden;
   box-shadow: 2px 2px 10px 1px #02072440;
   border-radius:20px;
 }
+
 .selectedProductFlex{
   display:flex;
   gap:30px;

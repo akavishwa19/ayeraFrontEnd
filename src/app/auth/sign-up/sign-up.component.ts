@@ -49,6 +49,7 @@ export class SignUpComponent {
     return this.form.controls;
   }
 
+
   sucess(message) {
     this.messageService.add({
       severity: 'success',

@@ -13,7 +13,8 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap/gsap-core';
 import { CartTriggerService } from '../../services/cart-trigger.service';
-import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { AuthPopupComponent } from '../../auth/auth-popup/auth-popup.component';
 
 
 @Component({
@@ -24,6 +25,8 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
   categoryUrl: string = environment.baseurl + '/categories';
   cartUrl: string = environment.baseurl + '/cart';
+  imageUrl=environment.imageUrl;
+  imageMetaUrl=environment.imageMetaUrl;
 
   private offcanvasService = inject(NgbOffcanvas);
 
@@ -42,7 +45,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private triggerService: CartTriggerService
+    private triggerService: CartTriggerService,
+    private modalService: NgbModal
   ) {
     // const options: CreateEffectOptions = {
     //   allowSignalWrites: true
@@ -69,6 +73,10 @@ export class HeaderComponent implements OnInit {
   toggleCollapse(id : string){
     this.to_open = id;
     this.isCollapsed=!this.isCollapsed
+  }
+
+  openModal() {
+    this.modalService.open(AuthPopupComponent,{ size: 'xl', centered: true });
   }
 
   headerLogoAnimation() {

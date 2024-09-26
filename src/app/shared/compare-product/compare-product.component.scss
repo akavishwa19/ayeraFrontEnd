@@ -3,6 +3,9 @@
 }
 .tableBodySingle{
   flex-grow:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .tableHead{
   background-color:#020724;
@@ -14,6 +17,16 @@
   overflow: hidden;
 }
 .centerCellBorder{
-  border-right:1px solid #020724;
-  border-left:1px solid #020724;
+  // border-right:1px solid rgba(2, 7, 36, 0.2509803922);
+  // border-left:1px solid  rgba(2, 7, 36, 0.2509803922);
+}
+.rightCellBorder{
+  // border-right:1px solid  rgba(2, 7, 36, 0.2509803922);
+}
+.propertyBox{
+  width: 25%;
+}
+
+.backgroundGreyCell{
+  background-color: #F0F2F2;
 }

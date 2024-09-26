@@ -139,7 +139,7 @@
     <p class="font-lato font-18 text-black text-align-center font-weight-700">
       Unmatched quality, unbeatable value: our pieces that thrive over time
     </p>
-    <div class="row pt-3">
+    <div class="row ">
       <div class="categoryTabHeadings py-2 mb-4">
         <ng-container *ngFor="let category of secondaryCategorisList; let i = index">
           <button
@@ -192,9 +192,18 @@
       </ng-template>
       </div>
     </div>
-    <div class="truckFlex pt-4 mt-2">
-      <div class="truck_wrapper">
-        <div><img src="/assets/icons/delivery_truck.svg" /></div>
+    <div class="truckFlex pt-1 mt-2">
+   
+      <div class="position-relative">
+ 
+        <p
+          class="bg-white text-black px-2 font-lato font-weight-800 font-16 zero-margin-bottom zero-padding-bottom px-2"
+        >
+          FOR YOUR LOVED ONES
+        </p>
+        <div class="truck_wrapper">
+          <div class="truckIcon"><img  src="/assets/icons/truckIcon.svg" /></div>
+        </div>
       </div>
       <div>
         <p
@@ -336,7 +345,7 @@
       <div class="specialTitle small-device-d-none">
         <img src="assets/images/headLeft.png" />
       </div>
-      <div class="middleTitle mt-5">
+      <div class="middleTitle my-3 pb-4">
         <p
           class="mediaTitle text-align-center justify-center zero-margin-bottom zero-padding-bottom d_flex align-item-center"
         >
@@ -371,7 +380,7 @@
           </div>
           <div id="textPad{{ i }}" class="py-2 position-relative">
             <p
-              class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom"
+              class="font-lato font-18 font-weight-700 letter-spacing-02 text-align-center  cursor-pointer line-height-24 zero-margin-bottom zero-padding-bottom"
             >
               {{category.name}}
             </p>
@@ -401,7 +410,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-lg-3">
-        <div class="imageGallery">
+        <div class="imageGallery limitHeightGridOne">
           <img class="responsiveImage" src="assets/images/00.png" />
         </div>
         <div class="imageGallery mt-4">
@@ -409,7 +418,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="imageGallery">
+        <div class="imageGallery lastImageHeight">
           <img class="responsiveImage" src="assets/images/01.png" />
         </div>
       </div>
@@ -417,19 +426,19 @@
         <div class="imageGallery">
           <img class="responsiveImage" src="assets/images/02.png" />
         </div>
-        <div class="imageGallery mt-4">
+        <div class="imageGallery limitHeightGridOne mt-4">
           <img class="responsiveImage" src="assets/images/11.png" />
         </div>
       </div>
       <div class="col-12 col-lg-3">
-        <div class="imageGallery">
+        <div class="imageGallery lastImageHeight">
           <img class="responsiveImage" src="assets/images/03.png" />
         </div>
       </div>
     </div>
     <div class="row mt-4">
       <div class="col-12 col-lg-12">
-        <div class="imageGallery">
+        <div class="imageGallery limitHeightGridOne">
           <img class="responsiveImage" src="assets/images/20.png" />
         </div>
       </div>
@@ -464,7 +473,7 @@
             BEST PRICE <br />
             GUARANTEED
           </p>
-        </div>
+        </div>  
       </div>
       <div class="homeFeatureFlex">
         <img src="/assets/icons/30dayReplace.svg" />
@@ -592,7 +601,7 @@
   </div>
 </section>
 
-<section class="default-section-padding">
+<section class="default-section-padding" id="testimonialSection">
   <p
     class="mediaTitle text-align-center d_flex align-item-center justify-center pb-3"
   >

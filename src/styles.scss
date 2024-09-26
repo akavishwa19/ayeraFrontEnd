@@ -284,7 +284,7 @@ p {
   padding: 10px;
 }
 .firstSection {
-  padding-top: 220px !important;
+  padding-top: 180px !important;
 }
 .cursor-default {
   cursor: default !important;
@@ -503,8 +503,25 @@ p {
   transition: transform 0.5s ease;
 }
 
-#bestSellerSwiper .swiper-slide-active .hexagon {
+#testimonialSection .swiper-slide{
+  transition: transform 0.5s ease;
+  transform: scale(0.8);
+  filter: grayscale(100%) !important;
 }
+
+#testimonialSection .swiper-slide-active{
+  transform: scale(1);
+  filter: grayscale(0) !important;
+}
+
+.swiper-slide-active .testimonialCard{
+  filter: drop-shadow(0) !important;
+}
+
+.swiper-slide .testimonialCard{
+  filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.25)) !important;
+}
+
 // #bestSellerSwiper  .swiper-slide-next{
 //   transform: scale(0.7) !important;
 //    transition: transform 0.5s ease,
@@ -729,7 +746,7 @@ button:disabled {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 40px;
   height: 25px;
   background-color: #020724;
   top: -25px;
@@ -813,4 +830,10 @@ input[type="checkbox"] {
 .p-stepper .p-stepper-header.p-highlight .p-stepper-number {
   background: #020724 !important;
   color: #ffffff !important;
+}
+ul{
+  padding-left: 0 !important;
+}
+.crossBtnCategories {
+  filter: brightness(0) invert(1) grayscale(100%) brightness(1) contrast(100%) !important;
 }

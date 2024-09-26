@@ -1,17 +1,51 @@
-<section  [ngClass]="{'fade-in-out bg-blue-black': true, 'hidden': isHidden , 'bg-transparent':false}" class="fixed-top " class=" pb-2 positionFixed width-100 postionTopHeader" >
-  <div class=" mx-2" id="mainHeader">
+<section
+  [ngClass]="{
+    'fade-in-out bg-blue-black': true,
+    hidden: isHidden,
+    'bg-transparent': false
+  }"
+  class="fixed-top"
+  class="pb-2 positionFixed width-100 postionTopHeader"
+>
+  <div class="mx-2" id="mainHeader">
     <div class="container-fluid">
       <div class="headerFlex py-2 px-3">
         <div class="aayraLogoFlex">
           <div routerLink="/" class="aayraHeaderLogoHolder">
-            <img class="responsiveImage-contain" src="/assets/images/headerLogoAayra.png">
+            <img
+              class="responsiveImage-contain"
+              src="/assets/images/headerLogoAayra.png"
+            />
           </div>
-          <svg (click)="openEnd(content)" class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="50" height="39" viewBox="0 0 67 51" fill="none">
-            <path d="M3 3L43 3" stroke="white" stroke-width="5" stroke-linecap="round"/>
-            <path d="M3.01562 24.5H64.0484" stroke="white" stroke-width="5" stroke-linecap="round"/>
-            <path d="M24.0156 48.5H64.0156" stroke="white" stroke-width="5" stroke-linecap="round"/>
-            </svg>
-            <div
+          <svg
+            (click)="openEnd(content)"
+            class="cursor-pointer"
+            xmlns="http://www.w3.org/2000/svg"
+            width="50"
+            height="39"
+            viewBox="0 0 67 51"
+            fill="none"
+          >
+            <path
+              d="M3 3L43 3"
+              stroke="white"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M3.01562 24.5H64.0484"
+              stroke="white"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+            <path
+              d="M24.0156 48.5H64.0156"
+              stroke="white"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+          </svg>
+          <div
             class="categoryItem font-20 text-white font-lato font-weight-700 cursor-pointer uppercase mx-2 small-device-d-none"
             *ngFor="let category of featuredCategoryList"
             (mouseenter)="fetchByPrimary(category._id)"
@@ -21,7 +55,7 @@
             {{ category.name }}
           </div>
         </div>
-      
+
         <div class="rightPart">
           <div class="input-group small-device-d-none">
             <span class="input-group-text bg-white"
@@ -42,11 +76,15 @@
           <!-- <i
             class="fa-solid fa-user text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->
-          <div routerLink="/auth/login" class="cursor-pointer">
+          <div (click)="openModal()" class="cursor-pointer">
             <img src="/assets/icons/profile.svg" />
           </div>
           <div class="dashboardIconHolder">
-            <img routerLink="/dashboard" class="resposiveImage invertColor cursor-pointer " src="assets/icons/menu.png">
+            <img
+              routerLink="/dashboard"
+              class="resposiveImage invertColor cursor-pointer"
+              src="assets/icons/menu.png"
+            />
           </div>
           <!-- <i
             class="fa-solid text-white fa-heart text-black font-30 small-device-d-none cursor-pointer"
@@ -54,15 +92,23 @@
           <!-- <i
             class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->
-          <div routerLink="/cart" class="cursor-pointer position-relative"><img src="assets/icons/cart.svg" /> 
+          <div routerLink="/cart" class="cursor-pointer position-relative">
+            <img src="assets/icons/cart.svg" />
             <div class="badge">
-              <span class="font-18 font-weight-700 font-lato text-white ">{{cartCount()}}</span>
+              <span class="font-18 font-weight-700 font-lato text-white">{{
+                cartCount()
+              }}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="closePanelBoolean"   (mouseenter)="openPanel()"   (mouseleave)="closePanel()" class="container-fluid px-3 bg-light-grey py-3 mt-1 socialIcons border-radius-10 small-device-d-none position-relative">
+    <div
+      *ngIf="closePanelBoolean"
+      (mouseenter)="openPanel()"
+      (mouseleave)="closePanel()"
+      class="container-fluid px-3 bg-light-grey py-3 mt-1 socialIcons border-radius-10 small-device-d-none position-relative"
+    >
       <div class="categoryItemHolder medium-device-d-none">
         <div
           class="categoryItem font-18 font-lato font-weight-800 cursor-pointer uppercase"
@@ -70,57 +116,94 @@
           All Jewellery
         </div>
         <div
-        class="categoryItem font-18 font-lato font-weight-800 cursor-pointer uppercase dropdown-toggle"
-        data-bs-toggle="dropdown" aria-expanded="false"
-        *ngFor="let item of secondaryCategoryList"
-        (click)="fetchBySecondary(item._id)"
-      >
-       {{item.name}}
-      </div>
-      <ul  class="dropdown-menu p-2">
-        <li *ngFor="let category of tertiaryCategoryList"><a class="dropdown-item font-17 font-lato font-weight-800 cursor-pointer uppercase" >{{category.name}}</a></li>
-      </ul>
+          class="categoryItem font-18 font-lato font-weight-800 cursor-pointer uppercase dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          *ngFor="let item of secondaryCategoryList"
+          (click)="fetchBySecondary(item._id)"
+        >
+          {{ item.name }}
+        </div>
+        <ul class="dropdown-menu p-2">
+          <li *ngFor="let category of tertiaryCategoryList">
+            <a
+              class="dropdown-item font-17 font-lato font-weight-800 cursor-pointer uppercase"
+              >{{ category.name }}</a
+            >
+          </li>
+        </ul>
       </div>
       <!-- <div class="closePanel cursor-pointer">
         <i class="fa-regular fa-circle-xmark fa-2x "></i>
       </div> -->
-
     </div>
-    
   </div>
 </section>
 
 <ng-template #content let-offcanvas>
-	<div class="offcanvas-header">
-		<h4 class="offcanvas-title zero-margin-bottom zero-padding-bottom font-lato font-weight-600 font-21  text-black">ALL CATEGORIES</h4>
-		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
-	</div>
-	<div class="offcanvas-body">
-		<div class="row">
+  <div class="offcanvas-header bg-black">
+    <h4
+      class="offcanvas-title zero-margin-bottom zero-padding-bottom font-lato font-weight-600 font-30 text-white"
+    >
+      ALL CATEGORIES
+    </h4>
+    <button
+      type="button"
+      class="btn-close crossBtnCategories"
+      aria-label="Close"
+      (click)="offcanvas.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="offcanvas-body bg-black">
+    <div class="row">
       <ng-container *ngFor="let primary of allCategories">
         <div class="col-12 col-lg-3 col-md-3 col-sm-12">
-          <p class="text-black font-20 font-weight-700 " >{{primary.name}}</p>
+          <p class="text-white font-24 font-weight-700 pb-2">{{ primary.name }}</p>
           <ng-container *ngFor="let secondary of primary.secondary">
-            <div (click)="toggleCollapse(secondary._id)" class="secondaryCategories" >
-              <p class="font-16 font-weight-600">{{secondary.name}} <i *ngIf="secondary.tertiary.length>0" class="fa-solid fa-angle-down font-14 mx-2"></i></p>
+            <div class="secondaryCategories">
+              <p class="font-20 font-weight-600 text-white">
+              
+                {{ secondary.name }}
+              </p>
               <ng-container *ngFor="let tertiary of secondary.tertiary">
-                <div *ngIf="isCollapsed && to_open == secondary._id " class="tertiaryCategories" >
-                  <p class="font-16 font-weight-600"> {{tertiary.name}} <i *ngIf="tertiary.quaternary.length>0" class="fa-solid fa-angle-down font-14 mx-2"></i></p>
+                <div class="tertiaryCategories">
+                  <p class="font-16 font-weight-600 mx-2 text-white">
+                    <i class="fa-solid fa-angle-right"></i>
+                    {{ tertiary.name }}
+                    <!-- <i
+                      *ngIf="tertiary.quaternary.length > 0"
+                      class="fa-solid fa-angle-down font-14 mx-2"
+                    ></i> -->
+                  </p>
                   <ng-container *ngFor="let quaternary of tertiary.quaternary">
-                    <div class="quaternaryCategories" >
-                      <p class="font-16 font-weight-600">{{quaternary.name}} </p>
+                    <div class="quaternaryCategories">
+                      <p class="font-16 font-weight-600 mx-4 text-white">
+                        <i class="fa-solid fa-angle-right"></i>
+                        {{ quaternary.name }}
+                      </p>
                     </div>
                   </ng-container>
-                 
                 </div>
               </ng-container>
-              
             </div>
           </ng-container>
-          
         </div>
-
       </ng-container>
+      <div class="col-12 col-lg-3 col-md-3 col-sm-12">
+        <div class="primaryCategoryImages">
+          <div
+            class="singlePrimaryCategoryImage"
+            *ngFor="let image of allCategories"
+          >
+            <div class="primaryCategoryImageHolder">
+              <img
+                class="responsiveImage"
+                [src]="imageUrl + image.image + imageMetaUrl"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-	</div>
+  </div>
 </ng-template>

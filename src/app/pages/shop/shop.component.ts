@@ -419,7 +419,7 @@ export class ShopComponent implements OnInit {
         'border' + i
       );
 
-      specialBorderElement.style.border = '15px solid #020724';
+      specialBorderElement.style.border = '10px solid #020724';
 
       const textBorder: HTMLElement = document.getElementById('textPad' + i);
       textBorder.style.background = '#020724';

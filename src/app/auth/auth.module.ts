@@ -10,12 +10,16 @@ import { MessagesModule } from 'primeng/messages';
 import { ToastModule } from 'primeng/toast';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { AuthPopupComponent } from './auth-popup/auth-popup.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    AuthPopupComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     MessagesModule,
     ToastModule,
     HttpClientModule,
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
+    NgbModalModule
   ]
 })
 export class AuthModule { }

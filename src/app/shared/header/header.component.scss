@@ -47,6 +47,22 @@
 .fade-in-out.hidden {
   opacity: 0;
 }
+.singlePrimaryCategoryImage{
+
+  padding: 8px;
+  margin: 10px;
+
+}
+.primaryCategoryImageHolder{
+  border-radius: 10px;
+  width: 100%;
+  min-height: 300px;
+  max-height: 320px;
+   overflow: hidden;
+}
+.primaryCategoryImages{
+  width: 100%;
+}
 
 @media (min-width: 400px ) and (max-width: 600px) {
   .aayraHeaderLogoHolder{

@@ -95,7 +95,7 @@
 }
 .mediaHolder {
   border-radius: 30px;
-  border: 12px solid #020724;
+  border: 5px solid #020724;
   width: 80%;
   display: block;
   margin: auto;
@@ -116,16 +116,16 @@
   align-items: center;
 }
 .mediaBar {
-  border: 7px solid #020724;
+  border: 3px solid #020724;
   border-radius: 20px;
   width: 600px;
   display: block;
   margin: auto;
 }
 .testimonialCard {
-  filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.25));
+
   background: rgba(255, 255, 255, 0.4);
-  border: 5px solid #020724;
+  border: 3px solid #020724;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
   border-radius: 30px;
   padding: 15px;
@@ -138,14 +138,14 @@
 .testimonialUserHolder {
   border-radius: 25px;
   overflow: hidden;
-  width: 340px;
-  height: 340px;
+  max-width: 340px;
+  max-height: 300px;
 }
 .blissfulArtCard {
   width: 80%;
   display: block;
   margin: auto;
-  border: 10px solid #020724;
+  border: 3px solid #020724;
   border-radius: 35px;
   padding: 15px;
 }
@@ -172,7 +172,7 @@
 }
 .productImageHolder{
   overflow: hidden;
-  max-height: 350px;
+  max-height: 380px;
 }
 .hexagon {
   background: url("/assets/images/hexagonContainer.png") no-repeat;
@@ -282,7 +282,7 @@ th {
   justify-content: center;
 }
 .shopByMoodCard {
-  width: 300px;
+  min-width: 280px;
   display: flex;
 }
 .flex-direction-column {
@@ -549,12 +549,19 @@ th {
 
 
 .truck_wrapper{
-  width: 100px;
-  overflow: hidden;
+  position: absolute;
+  right: -45px;
+  top:-140%;
+
+
+
 }
 .customCategoryButton{
   background: #020724 !important;
   color: #ffffff;
+}
+.truckIcon{
+  position: relative;
 }
 
 
@@ -570,7 +577,7 @@ th {
 .categoryTabHeadings{
   display: flex;
   justify-content: center;
-  gap:30px;
+  gap:15px;
 }
 
 .noProductTemplateBlock{
@@ -579,6 +586,18 @@ th {
   justify-content: center;
   align-items: center;
 }
+
+.limitHeightGridOne{
+  max-height: 300px;
+}
+.lastImageHeight{
+  max-height: 560px;
+}
+
+.adjustHeightWithRow{
+  max-height: 300px;
+}
+
 
 //media queries
 

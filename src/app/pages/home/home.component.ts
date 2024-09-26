@@ -77,7 +77,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
 
   featuredProductsSwiper: SwiperOptions = {
-    slidesPerView: 2,
+    slidesPerView: 2.8,
     spaceBetween: 1,
     initialSlide: 2,
     loop: true,
@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         spaceBetween: 30,
       },
       1440: {
-        slidesPerView: 2,
+        slidesPerView: 2.5,
         spaceBetween: 20,
       },
     },
@@ -142,7 +142,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
       1440: {
         slidesPerView: 2.5,
-        spaceBetween: 20,
+        spaceBetween: 70,
       },
     },
   };
@@ -197,14 +197,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.fetchShopByCategoriesList();
     this.fetchFeaturedTags();
     this.headerAnimation();
-    this.loadFromRIght();
-    this.loadFromLeft();
+    // this.loadFromRIght();
+    // this.loadFromLeft();
     this.emerge();
     this.getVideoBanner();
+    this.moveTruck()
   }
 
   ngAfterViewInit(): void {
     this.fetchAllSecondaryCategories();
+  }
+
+  
+  moveTruck(){
+    gsap.fromTo(
+      '.truckIcon',
+      {
+        x: -500,
+      },
+      {
+        x:0,      
+        duration: 8.5,
+        scrollTrigger: {
+          trigger: '.truck_wrapper', 
+          start: 'top 50%', 
+          toggleActions: 'play none none none', 
+          once: true 
+        },
+        immediateRender:false
+      }
+    );
   }
 
   headerAnimation() {
@@ -241,6 +263,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     );
   }
+
 
   loadFromLeft(){
     gsap.fromTo(
