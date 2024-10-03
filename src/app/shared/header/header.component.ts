@@ -16,7 +16,6 @@ import { CartTriggerService } from '../../services/cart-trigger.service';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { AuthPopupComponent } from '../../auth/auth-popup/auth-popup.component';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,12 +24,12 @@ import { AuthPopupComponent } from '../../auth/auth-popup/auth-popup.component';
 export class HeaderComponent implements OnInit {
   categoryUrl: string = environment.baseurl + '/categories';
   cartUrl: string = environment.baseurl + '/cart';
-  imageUrl=environment.imageUrl;
-  imageMetaUrl=environment.imageMetaUrl;
+  imageUrl = environment.imageUrl;
+  imageMetaUrl = environment.imageMetaUrl;
 
   private offcanvasService = inject(NgbOffcanvas);
 
-  allCategories:any[]=[]
+  allCategories: any[] = [];
   featuredCategoryList: any[] = [];
   secondaryCategoryList: any[] = [];
   tertiaryCategoryList: any[] = [];
@@ -38,9 +37,10 @@ export class HeaderComponent implements OnInit {
   cartCount = this.triggerService.countSignal;
   isHidden = false;
   lastScrollTop = 0;
-  timeOutId:any;
+  timeOutId: any;
+  megaMenuTimeoutId:any;
   isCollapsed = false;
-
+  megaMenuBoolean:boolean=false;
 
   constructor(
     private http: HttpClient,
@@ -48,35 +48,26 @@ export class HeaderComponent implements OnInit {
     private triggerService: CartTriggerService,
     private modalService: NgbModal
   ) {
-    // const options: CreateEffectOptions = {
-    //   allowSignalWrites: true
-    // };
-    // effect(() => {
-    //   if (this.triggerService.triggerGetCall()) {
-    //     this.getCartCount();
-    //     this.triggerService.resetTrigger();
-    //   }
-    // }, options);
+
   }
   ngOnInit() {
-
-    this.triggerService.get_cart_count()
+    this.triggerService.get_cart_count();
 
     this.fetchPrimaryCategories();
-    this.fetchAllCategories()
+    this.fetchAllCategories();
     // if (this.router.url == '/') {
     //   this.headerLogoAnimation();
     // }
   }
 
-  to_open : string = '';
-  toggleCollapse(id : string){
+  to_open: string = '';
+  toggleCollapse(id: string) {
     this.to_open = id;
-    this.isCollapsed=!this.isCollapsed
+    this.isCollapsed = !this.isCollapsed;
   }
 
   openModal() {
-    this.modalService.open(AuthPopupComponent,{ size: 'xl', centered: true });
+    this.modalService.open(AuthPopupComponent, { size: 'xl', centered: true });
   }
 
   headerLogoAnimation() {
@@ -110,26 +101,34 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/shop/primary/', slug]);
   }
 
-  openPanel(){
-    clearTimeout(this.timeOutId)
-    this.closePanelBoolean=true;
+  closePanel() {
+    this.timeOutId = setTimeout(() => {
+      this.closePanelBoolean = false;
+    }, 200);
   }
 
-  closePanel(){
-    this.timeOutId=setTimeout(()=>{
-      this.closePanelBoolean=false
-    },1500)
- 
+  openPanel() {
+    clearTimeout(this.timeOutId);
+    this.closePanelBoolean = true;
+  }
+
+  closeMegaMenu(){
+    this.megaMenuTimeoutId = setTimeout(() => {
+      this.megaMenuBoolean = false;
+    }, 200);
+  }
+
+  openMegaMenus(){
+    clearTimeout(this.megaMenuTimeoutId);
+    this.megaMenuBoolean = true;
   }
 
   fetchByPrimary(id: string) {
-    this.openPanel()
+    this.openPanel();
     this.http
       .get(this.categoryUrl + '/secondary-category?id=' + id)
       .subscribe((res: any) => {
         this.secondaryCategoryList = res.data;
-      
-
       });
   }
 
@@ -147,12 +146,13 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  fetchAllCategories(){
-    this.http.get(this.categoryUrl+'/all-categories').subscribe((res:any)=>{
-      this.allCategories=res.data;
-    })
+  fetchAllCategories() {
+    this.http
+      .get(this.categoryUrl + '/all-categories')
+      .subscribe((res: any) => {
+        this.allCategories = res.data;
+      });
   }
-
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event) {
@@ -168,10 +168,10 @@ export class HeaderComponent implements OnInit {
   }
 
   openEnd(content: TemplateRef<any>) {
-		this.offcanvasService.open(content);
-	}
+    this.offcanvasService.open(content);
+  }
 
-  routeToWishlist(){
-    this.router.navigate(['/dashboard/wishlist'])
+  routeToWishlist() {
+    this.router.navigate(['/dashboard/wishlist']);
   }
 }

@@ -14,16 +14,15 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { CartTriggerService } from './services/cart-trigger.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-     LoadingBarHttpClientModule,
-     LoadingBarRouterModule,
-     LoadingBarModule
+    LoadingBarHttpClientModule,
+    LoadingBarRouterModule,
+    LoadingBarModule,
+    
   ],
   providers: [
     provideAnimationsAsync(),
@@ -35,6 +34,6 @@ import { CartTriggerService } from './services/cart-trigger.service';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

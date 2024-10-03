@@ -55,7 +55,9 @@ export class ProductComponent implements OnInit {
   closeResult = '';
   uploadedProductImages: any[] = [];
   swiperArray: number[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-  reviews: any[] = [];
+  reviews: any[] = [
+  
+  ];
   questions: any[] = [];
   pId: string = '';
   currentVariantId: string = null;

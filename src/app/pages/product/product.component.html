@@ -607,7 +607,8 @@
           </ng-container>
             
           </div>
-          <div
+          <ng-container *ngIf="reviews.length>0;else noreviews">
+            <div
             class="py-2 my-2 commentBorderBottom"
             *ngFor="let review of reviews"
           >
@@ -649,6 +650,17 @@
               </div>
             </div>
           </div>
+          </ng-container>
+          <ng-template #noreviews>
+            <div class="noProducts">
+              <p
+                class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+              >
+                NO REVIEWS FOUND
+              </p>
+            </div>
+          </ng-template>
+        
         </tab>
         <tab heading="Questions">
 
@@ -665,7 +677,9 @@
           </ng-container>
             
           </div>
-          <div
+          
+          <ng-container *ngIf="questions.length>0;else noQuestions">
+            <div
             class="py-2 my-2 commentBorderBottom"
             *ngFor="let question of questions"
           >
@@ -697,6 +711,17 @@
             
             </div>
           </div>
+          </ng-container>
+          <ng-template #noQuestions>
+            <div class="noProducts">
+              <p
+                class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+              >
+                NO QUESTIONS FOUND
+              </p>
+            </div>
+          </ng-template>
+      
 
         </tab>
       </tabset>

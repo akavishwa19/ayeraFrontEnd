@@ -18,7 +18,8 @@
             />
           </div>
           <svg
-            (click)="openEnd(content)"
+            (mouseover)="openMegaMenus()"
+            (mouseleave)="closeMegaMenu()"
             class="cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -86,11 +87,19 @@
               src="assets/icons/menu.png"
             />
           </div> -->
-          <div (click)="routeToWishlist()" class="heartHolder cursor-pointer ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27" fill="white">
-              <path d="M0 9.70553C0 16.9999 6.02914 20.887 10.4426 24.3662C12 25.594 13.5 26.7499 15 26.7499C16.5 26.7499 18 25.594 19.5574 24.3662C23.9709 20.887 30 16.9999 30 9.70553C30 2.41112 21.7497 -2.76192 15 4.25082C8.25024 -2.76192 0 2.41112 0 9.70553Z" fill="white"/>
+          <div (click)="routeToWishlist()" class="heartHolder cursor-pointer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="27"
+              viewBox="0 0 30 27"
+              fill="white"
+            >
+              <path
+                d="M0 9.70553C0 16.9999 6.02914 20.887 10.4426 24.3662C12 25.594 13.5 26.7499 15 26.7499C16.5 26.7499 18 25.594 19.5574 24.3662C23.9709 20.887 30 16.9999 30 9.70553C30 2.41112 21.7497 -2.76192 15 4.25082C8.25024 -2.76192 0 2.41112 0 9.70553Z"
+                fill="white"
+              />
             </svg>
-            
           </div>
           <!-- <i
             class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
@@ -140,6 +149,53 @@
         <i class="fa-regular fa-circle-xmark fa-2x "></i>
       </div> -->
     </div>
+    <div
+      *ngIf="megaMenuBoolean"
+      (mouseover)="openMegaMenus()"
+      (mouseleave)="closeMegaMenu()"
+      class="container-fluid px-3 bg-light-grey py-3 mt-1 socialIcons border-radius-10 small-device-d-none position-relative"
+    >
+      <div class="container">
+        <div class="row">
+          <ng-container *ngFor="let primary of allCategories">
+            <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+              <p class="text-aayra-red font-24 font-weight-800 pb-2">
+                {{ primary.name }}
+              </p>
+              <ng-container *ngFor="let secondary of primary.secondary">
+                <div class="secondaryCategories">
+                  <p class="font-20 font-weight-600 text-aayra-red">
+                    {{ secondary.name }}
+                  </p>
+                  <ng-container *ngFor="let tertiary of secondary.tertiary">
+                    <div class="tertiaryCategories">
+                      <p class="font-16 font-weight-600  text-black">
+                       
+                        {{ tertiary.name }}
+                        <!-- <i
+                          *ngIf="tertiary.quaternary.length > 0"
+                          class="fa-solid fa-angle-down font-14 mx-2"
+                        ></i> -->
+                      </p>
+                      <ng-container
+                        *ngFor="let quaternary of tertiary.quaternary"
+                      >
+                        <div class="quaternaryCategories">
+                          <p class="font-16 font-weight-600  text-black">
+                           
+                            {{ quaternary.name }}
+                          </p>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -156,57 +212,5 @@
       aria-label="Close"
       (click)="offcanvas.dismiss('Cross click')"
     ></button>
-  </div>
-  <div class="offcanvas-body bg-black">
-    <div class="row">
-      <ng-container *ngFor="let primary of allCategories">
-        <div class="col-12 col-lg-3 col-md-3 col-sm-12">
-          <p class="text-white font-24 font-weight-700 pb-2">{{ primary.name }}</p>
-          <ng-container *ngFor="let secondary of primary.secondary">
-            <div class="secondaryCategories">
-              <p class="font-20 font-weight-600 text-white">
-              
-                {{ secondary.name }}
-              </p>
-              <ng-container *ngFor="let tertiary of secondary.tertiary">
-                <div class="tertiaryCategories">
-                  <p class="font-16 font-weight-600 mx-2 text-white">
-                    <i class="fa-solid fa-angle-right"></i>
-                    {{ tertiary.name }}
-                    <!-- <i
-                      *ngIf="tertiary.quaternary.length > 0"
-                      class="fa-solid fa-angle-down font-14 mx-2"
-                    ></i> -->
-                  </p>
-                  <ng-container *ngFor="let quaternary of tertiary.quaternary">
-                    <div class="quaternaryCategories">
-                      <p class="font-16 font-weight-600 mx-4 text-white">
-                        <i class="fa-solid fa-angle-right"></i>
-                        {{ quaternary.name }}
-                      </p>
-                    </div>
-                  </ng-container>
-                </div>
-              </ng-container>
-            </div>
-          </ng-container>
-        </div>
-      </ng-container>
-      <div class="col-12 col-lg-3 col-md-3 col-sm-12">
-        <div class="primaryCategoryImages">
-          <div
-            class="singlePrimaryCategoryImage"
-            *ngFor="let image of allCategories"
-          >
-            <div class="primaryCategoryImageHolder">
-              <img
-                class="responsiveImage"
-                [src]="imageUrl + image.image + imageMetaUrl"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </ng-template>
