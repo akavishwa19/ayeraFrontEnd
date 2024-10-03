@@ -1,118 +1,146 @@
 <div class="breadCrumb">
   <p class="menuTitle">My account > Orders</p>
 </div>
-<div
-  class="col-12 col-lg-12 col-md-12 col-sm-12"
-  
->
-<ng-container *ngIf="ordersList.length>0;else noProducts">
-  <div class="suggestedCardHolder p-4 pb-4 mb-4" *ngFor="let order of ordersList">
-    <div class="orderHeadingFlex">
-      <p
-        class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black pb-2"
-      >
-        Order Id: <span class="text-grey"> {{ order.orderId }}</span>
-      </p>
-      
-      <p
-        class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black pb-2"
-      >
-        Ordered on:
-        <span class="text-grey">
-          {{ order.createdAt | date : "fullDate" }}
-        </span>
-      </p>
-    </div>
-    <p
-      class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black pb-2"
+<div class="col-12 col-lg-12 col-md-12 col-sm-12">
+  <ng-container *ngIf="ordersList.length > 0; else noProducts">
+    <div
+      class="suggestedCardHolder p-3 pb-4 mb-4"
+      *ngFor="let order of ordersList"
     >
-      Delivery at:  <span class="text-grey"> ({{ order.shippingAddress.addressName }})  {{ order.shippingAddress.address }} , {{ order.shippingAddress.city }} , {{ order.shippingAddress.state }} , {{ order.shippingAddress.country }} , {{ order.shippingAddress.pincode }} , </span>
-    </p>
-    <p
-      class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black pb-2"
-    >
-      Net amount: <span class="text-grey"> ₹ {{ order.netPrice }} </span>
-    </p>
-    <p
-    class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black pb-2"
-  >
-    Order status: <span class="text-grey"> {{ order.orderStatus }} </span>
-  </p>
+      <div class="orderHeadingFlex">
+        <div class="innerFlex">
+        <p
+          class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black  "
+        >
+          Order Id: <span class="text-grey"> {{ order.orderId }}</span>
+        </p>
 
-    <ng-container *ngFor="let product of order.cart">
-      <ng-container *ngIf="product.variantId==null;else withVariantOrder">
-        <div class="cardFlex pb-3" >
-          <div class="displayImageHolder">
-            <img class="responsiveImage" [src]="imageUrl+product.productId.featuredImage+imageMetaUrl" />
-          </div>
-          <div>
-            <p
-              class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+        <p
+          class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black"
+        >
+          Net amount: <span class="text-grey"> ₹ {{ order.netPrice }} </span>
+        </p>
+      </div>
+
+        <p
+          class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black"
+        >
+          Ordered on:
+          <span class="text-grey">
+            {{ order.createdAt | date : "fullDate" }}
+          </span>
+        </p>
+      </div>
+      <div class="orderHeadingFlex">
+        <p
+          class="font-lato font-18 font-weight-700 line-height-24 zero-margin-bottom zero-padding-bottom letter-spacing-04 text-black"
+        >
+          Delivery at:
+          <span class="text-grey">
+            ({{ order.shippingAddress.addressName }})
+            {{ order.shippingAddress.address }} ,
+            {{ order.shippingAddress.city }} ,
+            {{ order.shippingAddress.state }} ,
+            {{ order.shippingAddress.country }} ,
+            {{ order.shippingAddress.pincode }} ,
+          </span>
+        </p>
+
+        <p
+          class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black"
+        >
+          Order status: <span class="text-grey"> {{ order.orderStatus }} </span>
+        </p>
+      </div>
+
+      <div class="orderMoreFlex">
+        <div>
+          <ng-container *ngFor="let product of order.cart">
+            <ng-container
+              *ngIf="product.variantId == null; else withVariantOrder"
             >
-              {{product.productId.name}}
-            </p>
-    
-            <p
-              class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
-            >
-            Qty : {{product.quantity}}
-            </p>
+              <div class="cardFlex pt-3">
+                <div class="displayImageHolder">
+                  <img
+                    class="responsiveImage"
+                    [src]="
+                      imageUrl + product.productId.featuredImage + imageMetaUrl
+                    "
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+                  >
+                    {{ product.productId.name }}
+                  </p>
+
+                  <p
+                    class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+                  >
+                    Qty : {{ product.quantity }}
+                  </p>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #withVariantOrder>
+              <div class="cardFlex pt-3">
+                <div class="displayImageHolder">
+                  <img
+                    class="responsiveImage"
+                    [src]="
+                      imageUrl + product.variantId.images[0] + imageMetaUrl
+                    "
+                  />
+                </div>
+                <div>
+                  <p
+                    class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+                  >
+                    {{ product.variantId.name }}
+                  </p>
+
+                  <p
+                    class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+                  >
+                    Qty : {{ product.quantity }}
+                  </p>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
+        <div>
+          <div class="bottomInfoFlex pt-3">
+            <div>
+              <button
+                class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
+              >
+                Re-Order
+              </button>
+              <button
+                class="none-outline font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2 mx-2"
+              >
+                Exchange Order
+              </button>
+              <button
+                class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
+              >
+                Return Order
+              </button>
+            </div>
           </div>
         </div>
-      </ng-container>
-      <ng-template #withVariantOrder>
-        <div class="cardFlex pb-3" >
-          <div class="displayImageHolder">
-            <img class="responsiveImage" [src]="imageUrl+product.variantId.images[0]+imageMetaUrl" />
-          </div>
-          <div>
-            <p
-              class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
-            >
-            {{product.variantId.name}}
-            </p>
-    
-            <p
-              class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
-            >
-            Qty :  {{product.quantity}}
-            </p>
-          </div>
-        </div>
-      </ng-template>
-      
-    </ng-container>
-
-    
-    <div class="bottomInfoFlex pt-3">
-      <div>
-        <button
-          class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
-        >
-          Re-Order
-        </button>
-        <button
-          class="none-outline font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2 mx-2"
-        >
-          Exchange Order
-        </button>
-        <button
-          class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
-        >
-          Return Order
-        </button>
       </div>
     </div>
-  </div>
-</ng-container>
-<ng-template #noProducts>
-  <div class="noProducts">
-    <p
-      class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
-    >
-      NO PRODUCTS FOUND
-    </p>
-  </div>
-</ng-template>
-
+  </ng-container>
+  <ng-template #noProducts>
+    <div class="noProducts">
+      <p
+        class="font-lato font-weight-700 font-27 text-align-center zero-margin-bottom zero-padding-bottom"
+      >
+        NO PRODUCTS FOUND
+      </p>
+    </div>
+  </ng-template>
 </div>

@@ -1,72 +1,104 @@
-<div class="breadCrumb">
+<div class="componentHeaderFlex">
+  <div class="breadCrumb">
     <p class="menuTitle">My account > Wishlist</p>
+  </div>
+  <div>
+    <i
+      [ngClass]="triColumnBoolean ? 'text-black' : 'text-icon-light-grey'"
+      (click)="setTriColumnBoolean(true)"
+      class="fa-solid font-24 cursor-pointer fa-table-cells mx-2"
+    ></i>
+    <i
+      [ngClass]="!triColumnBoolean ? 'text-black' : 'text-icon-light-grey'"
+      (click)="setTriColumnBoolean(false)"
+      class="fa-solid font-24 cursor-pointer fa-table-cells-large"
+    ></i>
+  </div>
 </div>
 
-<div class="col-12 col-lg-6 col-md-8 col-sm-12">
-  <ng-container *ngIf="wishlist.length>0;else noProducts">
-    <div class="suggestedCardHolder p-4 pb-4 mb-4" *ngFor="let item of wishlist">
-      <ng-container *ngIf="item.variant.length>0;else normalProduct">
-        <div class="cardFlex">
-          <div class="displayImageHolder">
-            <img class="responsiveImage" [src]="imageUrl+item.variant[0].images[0]+imageMetaUrl" />
+<div class="row">
+  <ng-container *ngIf="wishlist.length > 0; else noProducts">
+    <div
+      [ngClass]="
+        triColumnBoolean
+          ? 'col-12 col-lg-4 col-md-6 col-sm-12'
+          : 'col-12 col-lg-6 col-md-6 col-sm-12'
+      "
+      class=""
+      *ngFor="let item of wishlist"
+    >
+      <div class="suggestedCardHolder p-4 pb-4 mb-4">
+        <ng-container *ngIf="item.variant.length > 0; else normalProduct">
+          <div class="cardFlex">
+            <div class="displayImageHolder">
+              <img
+                class="responsiveImage"
+                [src]="imageUrl + item.variant[0].images[0] + imageMetaUrl"
+              />
+            </div>
+            <div>
+              <p
+                class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+              >
+                {{ item.variant[0].name }}
+              </p>
+              <p
+                class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+              >
+                Product Code: {{ item.productLookup[0].productCode }}
+              </p>
+              <p
+                class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+              >
+                ₹ {{ item.variant[0].sellingPrice }}
+              </p>
+            </div>
           </div>
+        </ng-container>
+        <ng-template #normalProduct>
+          <div class="cardFlex">
+            <div class="displayImageHolder">
+              <img
+                class="responsiveImage"
+                [src]="
+                  imageUrl + item.productLookup[0].featuredImage + imageMetaUrl
+                "
+              />
+            </div>
+            <div>
+              <p
+                class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+              >
+                {{ item.productLookup[0].name }}
+              </p>
+              <p
+                class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+              >
+                Product Code: {{ item.productLookup[0].productCode }}
+              </p>
+              <p
+                class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
+              >
+                ₹ {{ item.productLookup[0].sellingPrice }}
+              </p>
+            </div>
+          </div>
+        </ng-template>
+        <div class="bottomInfoFlex pt-3">
           <div>
-            <p
-              class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
+            <button
+              class="none-outline font-lato font-18 font-weight-700 bg-white bg-blue-black border-radius-10px px-3 py-2 mx-2"
+              (click)="remove(item.product)"
             >
-              {{item.variant[0].name}}
-            </p>
-            <p
-              class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
+              Remove
+            </button>
+            <button
+              (click)="addToCart(item.product, item?.variant[0]?._id)"
+              class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
             >
-              Product Code: {{item.productLookup[0].productCode}}
-            </p>
-            <p
-              class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
-            >
-              ₹ {{item.variant[0].sellingPrice}}
-            </p>
+              Add to cart
+            </button>
           </div>
-        </div>
-      </ng-container>
-      <ng-template #normalProduct>
-        <div class="cardFlex">
-          <div class="displayImageHolder">
-            <img class="responsiveImage" [src]="imageUrl+item.productLookup[0].featuredImage+imageMetaUrl" />
-          </div>
-          <div>
-            <p
-              class="font-lato font-18 font-weight-700 line-height-24 letter-spacing-04 text-black capitalize"
-            >
-            {{item.productLookup[0].name}}
-            </p>
-            <p
-              class="font-lato font-16 font-weight-700 line-height-24 letter-spacing-04 text-discount-grey"
-            >
-            Product Code: {{item.productLookup[0].productCode}}
-            </p>
-            <p
-              class="text-black font-lato font-weight-700 font-16 letter-spacing-02 line-height-24 text-align-left zero-margin-bottom zero-padding-bottom"
-            >
-              ₹ {{item.productLookup[0].sellingPrice}}
-            </p>
-          </div>
-        </div>
-      </ng-template>
-      <div class="bottomInfoFlex pt-3">
-        <div>
-          <button
-            class="none-outline font-lato font-18 font-weight-700 bg-white bg-blue-black border-radius-10px px-3 py-2 mx-2"
-            (click)="remove(item.product)"
-          >
-            Remove
-          </button>
-          <button
-          (click)="addToCart(item.product,item?.variant[0]?._id)"
-            class="font-lato font-18 font-weight-700 bg-blue-black text-white border-radius-10px px-3 py-2"
-          >
-            Add to cart
-          </button>
         </div>
       </div>
     </div>
@@ -80,8 +112,6 @@
       </p>
     </div>
   </ng-template>
-  </div>
+</div>
 
-  <p-toast>
-
-  </p-toast>
+<p-toast> </p-toast>

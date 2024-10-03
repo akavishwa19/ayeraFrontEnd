@@ -170,4 +170,8 @@ export class HeaderComponent implements OnInit {
   openEnd(content: TemplateRef<any>) {
 		this.offcanvasService.open(content);
 	}
+
+  routeToWishlist(){
+    this.router.navigate(['/dashboard/wishlist'])
+  }
 }

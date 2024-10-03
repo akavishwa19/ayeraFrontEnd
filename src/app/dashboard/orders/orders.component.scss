@@ -21,11 +21,21 @@
   }
   .bottomInfoFlex{
     display:flex;
-    justify-content:flex-end;
+    justify-content:flex-start;
     align-items:flex-end;
   }
   .orderHeadingFlex{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+  .orderMoreFlex{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .innerFlex{
+    display: flex;
+    gap:30px;
     align-items: center;
   }

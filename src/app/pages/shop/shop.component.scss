@@ -47,8 +47,17 @@
   border-radius: 5px;
   overflow: hidden;
 }
+.limitWidthOnDesktop{
+  width: 90%;
+}
 
 //media queries
+
+@media (max-width:1500px){
+  .limitWidthOnDesktop{
+    width: 100%;
+  }
+}
 
 @media (max-width: 600px) {
   .filterFlex {

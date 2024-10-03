@@ -62,6 +62,9 @@ p {
 .text-grey {
   color: #6b6c73 !important;
 }
+.text-icon-light-grey{
+  color:#b4b5bd !important;
+}
 .text-light-grey {
   color: #ffffffcc;
 }
@@ -836,4 +839,14 @@ ul{
 }
 .crossBtnCategories {
   filter: brightness(0) invert(1) grayscale(100%) brightness(1) contrast(100%) !important;
+}
+.componentHeaderFlex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+}
+.menuTitle{
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }

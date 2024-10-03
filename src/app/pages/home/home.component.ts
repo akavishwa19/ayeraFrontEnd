@@ -201,7 +201,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // this.loadFromLeft();
     this.emerge();
     this.getVideoBanner();
-    this.moveTruck()
+    // this.moveTruck();
+    // this.animateText()
+    this.animateBoth()
   }
 
   ngAfterViewInit(): void {
@@ -227,6 +229,50 @@ export class HomeComponent implements OnInit, AfterViewInit {
         immediateRender:false
       }
     );
+  }
+
+  animateText() {
+    gsap.to('.text-animate span', {
+      duration: 1,        
+      color: 'black',      
+      ease: 'none',       
+      stagger: {
+        each: 0.3,       
+        from: 'start'     
+      }
+    });
+  }
+
+  animateBoth(){
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.truck_wrapper', 
+        start: 'top 50%', 
+        toggleActions: 'play none none none', 
+        once: true 
+      }
+    });
+  
+    // Add truck animation to the timeline
+    tl.fromTo('.truckIcon', 
+      { x: -500 },  // Start position of the truck
+      { 
+        x: 0,       // End position of the truck
+        duration: 8.5,  // Duration of truck movement
+        ease: 'power1.out'
+      }
+    );
+  
+    // Add text animation to the timeline, delayed until the truck animation starts
+    tl.to('.text-animate span', {
+      duration: 1,         
+      color: 'black',      
+      ease: 'none',       
+      stagger: {
+        each: 0.3,       
+        from: 'start'    
+      }
+    }, '-=5.5');
   }
 
   headerAnimation() {

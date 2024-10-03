@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -31,7 +32,8 @@ import { ToastModule } from 'primeng/toast';
     AddressesComponent,
     ResetPasswordComponent,
     AffiliatesComponent,
-    BuyBackJewelComponent
+    BuyBackJewelComponent,
+
   ],
   imports: [
     CommonModule,

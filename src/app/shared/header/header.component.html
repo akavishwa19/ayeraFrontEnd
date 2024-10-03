@@ -79,16 +79,19 @@
           <div (click)="openModal()" class="cursor-pointer">
             <img src="/assets/icons/profile.svg" />
           </div>
-          <div class="dashboardIconHolder">
+          <!-- <div class="dashboardIconHolder">
             <img
               routerLink="/dashboard"
               class="resposiveImage invertColor cursor-pointer"
               src="assets/icons/menu.png"
             />
+          </div> -->
+          <div (click)="routeToWishlist()" class="heartHolder cursor-pointer ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27" fill="white">
+              <path d="M0 9.70553C0 16.9999 6.02914 20.887 10.4426 24.3662C12 25.594 13.5 26.7499 15 26.7499C16.5 26.7499 18 25.594 19.5574 24.3662C23.9709 20.887 30 16.9999 30 9.70553C30 2.41112 21.7497 -2.76192 15 4.25082C8.25024 -2.76192 0 2.41112 0 9.70553Z" fill="white"/>
+            </svg>
+            
           </div>
-          <!-- <i
-            class="fa-solid text-white fa-heart text-black font-30 small-device-d-none cursor-pointer"
-          ></i> -->
           <!-- <i
             class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->

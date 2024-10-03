@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AffiliatesComponent } from './affiliates/affiliates.component';
 import { BuyBackJewelComponent } from './buy-back-jewel/buy-back-jewel.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -57,6 +58,7 @@ const routes: Routes = [
         path: 'buy-back-jewels',
         component: BuyBackJewelComponent,
       },
+
     ],
   },
 ];

@@ -15,6 +15,7 @@ export class WishlistComponent {
   cartUrl: string = environment.baseurl + '/cart';
   imageUrl: string = environment.imageUrl;
   imageMetaUrl: string = environment.imageMetaUrl;
+  triColumnBoolean:boolean=true;
 
   wishlist:any=[];
 
@@ -70,5 +71,9 @@ export class WishlistComponent {
     this.http.get(this.wishlistUrl+'/user-wishlist').subscribe((res:any)=>{
       this.wishlist=res.data;
     })
+  }
+
+  setTriColumnBoolean(passedBoolean:boolean){
+    this.triColumnBoolean=passedBoolean
   }
 }

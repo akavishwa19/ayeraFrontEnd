@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductCardCartComponent } from './product-card-cart/product-card-cart.component';
 import { ToastModule } from 'primeng/toast';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     NgSelectModule,
     NgbOffcanvasModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    MegaMenuModule
   ],
   exports: [
     AdvertisementHeaderComponent,
