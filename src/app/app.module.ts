@@ -12,6 +12,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { CartTriggerService } from './services/cart-trigger.service';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,8 +23,8 @@ import { CartTriggerService } from './services/cart-trigger.service';
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
     LoadingBarModule,
-    
-  ],
+    SharedModule
+],
   providers: [
     provideAnimationsAsync(),
     MessageService,

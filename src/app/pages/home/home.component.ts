@@ -21,6 +21,7 @@ import SwiperCore, {
   SwiperOptions,
   Swiper,
 } from 'swiper';
+
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { gsap } from 'gsap';
@@ -148,11 +149,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   };
 
   bestSellerWiper: SwiperOptions = {
-    slidesPerView: 2,
+    slidesPerView: 1,
     spaceBetween: 20,
-    // autoplay: {      
-    //   delay: 1500,
-    // },
+    autoplay: {      
+      delay: 1500,
+    },
     loop: true,
     centeredSlides: true,
     pagination: false,
