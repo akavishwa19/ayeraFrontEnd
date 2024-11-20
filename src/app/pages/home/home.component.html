@@ -205,9 +205,9 @@
           <div class="truckIcon"><img  src="/assets/icons/truckIcon.svg" /></div>
         </div>
       </div>
-      <div>
+      <div class=" defaultView">
         <p
-          class="bg-white text-black display-inline--block px-2 border-radius-5px font-lato font-weight-700 font-20 px-2"
+          class="bg-white text-black display-inline--block px-2 border-radius-5px font-lato font-weight-700 font-20 px-2 zero-padding-bottom line-height-19 zero-margin-bottom"
         >
           BUDGET CENTER
         </p>
@@ -217,7 +217,24 @@
           TAKE ME TO PRODUCTS WITH PRICE
         </p>
       </div>
-      <div>
+      <div class="budgetCenterFlex alternateDesignByView">
+        <div class="alternateViewFlex">
+        <div
+       
+          class=" textFlex bg-white text-black  px-2 border-radius-5px font-lato font-weight-700 font-20 px-2 zero-padding-bottom line-height-19 zero-margin-bottom mb-1 py-1"
+        >
+        <span>
+          BUDGET CENTER
+        </span>
+        </div>
+        </div>
+        <p
+          class="text-black px-2 font-lato font-weight-800 font-16 zero-margin-bottom zero-padding-bottom"
+        >
+          TAKE ME TO PRODUCTS WITH PRICE
+        </p>
+      </div>
+      <div class="scrollableTabsHolder">
         <ng-container *ngFor="let price of slabList; let i = index">
         <button
         id="priceSlabBtn{{ i }}"

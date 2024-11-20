@@ -15,6 +15,8 @@ import {
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
+import { AuthPopupComponent } from '../../auth/auth-popup/auth-popup.component';
 
 @Component({
   selector: 'app-product-card',
@@ -36,6 +38,7 @@ export class ProductCardComponent implements OnInit {
 
   @Output() valueLiked: EventEmitter<Object> = new EventEmitter<Object>();
 
+  authUrl:string=environment.baseurl+'/users';
   wishlistUrl = environment.baseurl + '/wishlist';
   productUrl = environment.baseurl + '/product';
   variantUrl = environment.baseurl + '/variant';
@@ -56,6 +59,10 @@ export class ProductCardComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  openModal() {
+    this.modalService.open(AuthPopupComponent, { size: 'xl', centered: true });
+  }
 
   open(content: TemplateRef<any>) {
     this.offcanvasService
@@ -85,9 +92,15 @@ export class ProductCardComponent implements OnInit {
   }
 
   handleLike(id: string) {
-    this.http.post(this.wishlistUrl + '?id=' + id, {}).subscribe((res: any) => {
-      this.valueLiked.emit({ response: 'value changed' });
-    });
+    this.http.get(this.authUrl+'/auth-check').subscribe((res:any)=>{
+      this.http.post(this.wishlistUrl + '?id=' + id, {}).subscribe((res: any) => {
+        this.valueLiked.emit({ response: 'value changed' });
+      });
+    },(error)=>{
+      this.openModal()
+    })
+
+    
   }
 
   routeToProduct() {

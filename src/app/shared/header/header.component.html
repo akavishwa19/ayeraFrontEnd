@@ -77,7 +77,7 @@
           <!-- <i
             class="fa-solid fa-user text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->
-          <div (click)="openModal()" class="cursor-pointer">
+          <div (click)="openDashboard()" class="cursor-pointer">
             <img src="/assets/icons/profile.svg" />
           </div>
           <!-- <div class="dashboardIconHolder">
@@ -104,7 +104,7 @@
           <!-- <i
             class="fa-solid fa-bag-shopping text-black font-21 small-device-d-none cursor-pointer"
           ></i> -->
-          <div routerLink="/cart" class="cursor-pointer position-relative">
+          <div (click)="routeToCart()" class="cursor-pointer position-relative">
             <img src="assets/icons/cart.svg" />
             <div class="badge">
               <span class="font-18 font-weight-700 font-lato text-white">{{

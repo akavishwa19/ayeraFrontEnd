@@ -215,7 +215,35 @@ th {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 60px;
+  gap: clamp(1rem, 3.3vw, 2rem);
+ 
+}
+.alternateViewFlex{
+  display: flex;
+  flex-direction: column;
+}
+.defaultView{
+  display: block;
+}
+.alternateDesignByView{
+  display: none !important;
+}
+.budgetCenterFlex{
+  display: flex;
+  align-items: center;
+}
+@media (max-width:1393px){
+  .truckFlex{
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px !important;
+  }
+  .defaultView{
+    display: none;
+  }
+  .alternateDesignByView{
+    display: block !important;
+  }
 }
 .bannerSIngleImageHolder {
   height: 180px;
@@ -610,6 +638,7 @@ th {
 
 
 
+
 //media queries
 
 //media query for blissful art
@@ -710,4 +739,15 @@ th {
     width: 50%;
     padding: 10px;
   }
+}
+
+.textFlex{
+  display: flex;
+  justify-content: center;
+}
+.scrollableTabsHolder{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
 }

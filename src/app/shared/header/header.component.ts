@@ -15,6 +15,7 @@ import { gsap } from 'gsap/gsap-core';
 import { CartTriggerService } from '../../services/cart-trigger.service';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { AuthPopupComponent } from '../../auth/auth-popup/auth-popup.component';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +23,7 @@ import { AuthPopupComponent } from '../../auth/auth-popup/auth-popup.component';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
+  authUrl: string = environment.baseurl + '/users';
   categoryUrl: string = environment.baseurl + '/categories';
   cartUrl: string = environment.baseurl + '/cart';
   imageUrl = environment.imageUrl;
@@ -38,18 +40,16 @@ export class HeaderComponent implements OnInit {
   isHidden = false;
   lastScrollTop = 0;
   timeOutId: any;
-  megaMenuTimeoutId:any;
+  megaMenuTimeoutId: any;
   isCollapsed = false;
-  megaMenuBoolean:boolean=false;
+  megaMenuBoolean: boolean = false;
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private triggerService: CartTriggerService,
     private modalService: NgbModal
-  ) {
-
-  }
+  ) {}
   ngOnInit() {
     this.triggerService.get_cart_count();
 
@@ -112,13 +112,13 @@ export class HeaderComponent implements OnInit {
     this.closePanelBoolean = true;
   }
 
-  closeMegaMenu(){
+  closeMegaMenu() {
     this.megaMenuTimeoutId = setTimeout(() => {
       this.megaMenuBoolean = false;
     }, 200);
   }
 
-  openMegaMenus(){
+  openMegaMenus() {
     clearTimeout(this.megaMenuTimeoutId);
     this.megaMenuBoolean = true;
   }
@@ -167,11 +167,44 @@ export class HeaderComponent implements OnInit {
     this.lastScrollTop = st <= 0 ? 0 : st;
   }
 
+  authCheck() {
+    this.http.get(this.authUrl + '/auth-check').subscribe((res: any) => {});
+  }
+
   openEnd(content: TemplateRef<any>) {
     this.offcanvasService.open(content);
   }
 
   routeToWishlist() {
-    this.router.navigate(['/dashboard/wishlist']);
+    this.http.get(this.authUrl + '/auth-check').subscribe(
+      (res: any) => {
+        this.router.navigate(['/dashboard/wishlist']);
+      },
+      (error) => {
+        this.openModal();
+      }
+    );
+  }
+
+  openDashboard() {
+    this.http.get(this.authUrl + '/auth-check').subscribe(
+      (res: any) => {
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        this.openModal();
+      }
+    );
+  }
+
+  routeToCart(){
+    this.http.get(this.authUrl + '/auth-check').subscribe(
+      (res: any) => {
+        this.router.navigate(['/cart']);
+      },
+      (error) => {
+        this.openModal();
+      }
+    );
   }
 }
